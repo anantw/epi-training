@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 8 — Certification Examination</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c9a227; --gold-d:#a07c10; --gold-light:#fdf8ec; --gold-mid:#f0d88a;
+  --navy:#0b1827; --navy-mid:#132338; --navy-light:#1e3452;
+  --teal:#0E8FA8; --teal-light:#e5f4f8;
+  --body:#1e2d3d; --muted:#5a7080; --border:#dce6ed;
+  --bg:#f0ece8; --card:#fff;
+  --green:#0a7a40; --green-bg:#edfaf3; --green-bd:#7ddba8;
+  --red:#b91c1c; --red-bg:#fef2f2; --red-bd:#fca5a5;
+  --amber:#b45309; --amber-bg:#fffbeb;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);min-height:100vh;font-size:14px;line-height:1.65}
+
+/* ── STICKY EXAM BAR ── */
+#examBar{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:2px solid var(--gold);padding:12px 0}
+.eb-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px}
+.eb-brand{font-family:'Fraunces',serif;color:var(--gold);font-size:16px;font-weight:600;flex-shrink:0}
+.eb-brand span{color:rgba(255,255,255,.45);font-size:11px;font-weight:400;margin-left:6px;font-family:'Inter',sans-serif}
+.eb-progress-wrap{flex:1}
+.eb-progress-label{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.4);margin-bottom:4px}
+.eb-progress-bar{height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.eb-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold));border-radius:3px;transition:width .3s}
+.eb-timer{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
+.eb-timer .et-label{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase}
+.eb-timer .et-time{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);font-weight:700;line-height:1;letter-spacing:2px}
+.eb-timer.warn .et-time{color:#f87171}
+
+/* ── COVER PAGE ── */
+#coverPage{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+.cover-header{background:linear-gradient(145deg,var(--navy) 0%,var(--navy-mid) 60%,#1a3a18 100%);border-radius:16px;padding:48px;text-align:center;position:relative;overflow:hidden;margin-bottom:32px}
+.cover-header::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,39,.12) 0%,transparent 70%)}
+.cover-seal{width:80px;height:80px;border-radius:50%;background:rgba(201,162,39,.15);border:2px solid rgba(201,162,39,.4);display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 20px;position:relative}
+.cover-header h1{font-family:'Playfair Display',serif;color:var(--gold);font-size:32px;font-weight:700;line-height:1.2;margin-bottom:8px}
+.cover-header h2{font-family:'Fraunces',serif;color:#fff;font-size:20px;font-weight:400;margin-bottom:16px}
+.cover-header p{color:rgba(255,255,255,.5);font-size:13.5px;max-width:520px;margin:0 auto}
+
+.cover-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.cm-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.cm-card .cmc-num{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--gold-d);line-height:1;margin-bottom:4px}
+.cm-card .cmc-label{font-size:11px;color:var(--muted)}
+
+.cover-sections{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px}
+.cover-sections h4{font-family:'Fraunces',serif;font-size:17px;color:var(--navy);margin-bottom:14px}
+.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cs-item{display:flex;gap:10px;align-items:center;padding:8px 10px;background:var(--bg);border-radius:7px}
+.cs-item .csi-num{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-d);min-width:28px}
+.cs-item .csi-info h5{font-size:12.5px;font-weight:700;color:var(--navy)}
+.cs-item .csi-info p{font-size:11px;color:var(--muted)}
+
+.cover-rules{background:var(--navy-mid);border-radius:12px;padding:18px 22px;margin-bottom:28px}
+.cover-rules h4{color:var(--gold);font-size:14px;font-weight:700;margin-bottom:12px}
+.cr-list{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.cr-item{font-size:12.5px;color:rgba(255,255,255,.7);padding-left:14px;position:relative;line-height:1.5}
+.cr-item::before{content:'›';position:absolute;left:0;color:var(--gold)}
+
+.name-field{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px}
+.name-field label{font-size:13px;font-weight:600;color:var(--navy);display:block;margin-bottom:8px}
+.name-field input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Playfair Display',serif;color:var(--navy);outline:none;transition:border .2s}
+.name-field input:focus{border-color:var(--gold)}
+.name-field input::placeholder{color:var(--muted);font-size:14px;font-family:'Inter',sans-serif}
+
+.start-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--gold-d),var(--gold));color:var(--navy);border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;font-family:'Playfair Display',serif;letter-spacing:.5px;transition:transform .15s,opacity .15s}
+.start-btn:hover{transform:translateY(-1px);opacity:.92}
+
+/* ── EXAM PAGE ── */
+#examPage{max-width:900px;margin:0 auto;padding:32px 24px 80px;display:none}
+
+.section-divider{display:flex;align-items:center;gap:14px;margin:32px 0 16px}
+.sd-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.sd-module{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-d)}
+.sd-title{font-family:'Fraunces',serif;font-size:19px;color:var(--navy);font-weight:600}
+.sd-count{margin-left:auto;font-size:11px;color:var(--muted);background:var(--bg);padding:4px 10px;border-radius:5px;border:1px solid var(--border);white-space:nowrap}
+.sd-line{flex:1;height:1px;background:var(--border)}
+
+/* ── QUESTION CARDS ── */
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:12px;transition:border .2s}
+.q-card.answered{border-color:var(--gold-mid)}
+.q-card.correct-card{border-color:var(--green-bd);background:var(--green-bg)}
+.q-card.wrong-card{border-color:var(--red-bd);background:var(--red-bg)}
+.q-header{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.q-num{background:var(--navy);color:var(--gold);border-radius:6px;font-size:12px;font-weight:800;padding:4px 9px;flex-shrink:0;font-family:'Playfair Display',serif}
+.q-text{font-size:14px;font-weight:600;color:var(--navy);line-height:1.5;flex:1}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;background:var(--card)}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light)}
+.q-opt.selected{border-color:var(--gold-d);background:var(--gold-light)}
+.q-opt.show-correct{border-color:var(--green);background:var(--green-bg);pointer-events:none}
+.q-opt.show-wrong{border-color:var(--red);background:var(--red-bg);pointer-events:none}
+.q-opt.show-neutral{pointer-events:none;opacity:.55}
+.opt-letter{width:22px;height:22px;border-radius:5px;border:1.5px solid var(--border);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--muted);background:var(--bg)}
+.q-opt.selected .opt-letter{background:var(--gold-d);color:#fff;border-color:var(--gold-d)}
+.q-opt.show-correct .opt-letter{background:var(--green);color:#fff;border-color:var(--green)}
+.q-opt.show-wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.opt-text{font-size:13.5px;color:var(--body);line-height:1.5}
+.q-feedback-text{margin-top:10px;padding:8px 12px;border-radius:6px;font-size:12.5px;line-height:1.5;display:none}
+.q-feedback-text.show{display:block}
+.q-feedback-text.correct{background:var(--green-bg);border:1px solid var(--green-bd);color:#0a5c30}
+.q-feedback-text.incorrect{background:var(--red-bg);border:1px solid var(--red-bd);color:#7f1d1d}
+
+.submit-zone{margin-top:32px}
+.submit-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:var(--gold);border:2px solid var(--gold);border-radius:12px;font-size:17px;font-weight:800;cursor:pointer;font-family:'Playfair Display',serif;letter-spacing:.5px;transition:all .15s}
+.submit-btn:hover{background:var(--gold-d);color:var(--navy);border-color:var(--gold-d)}
+.submit-note{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
+
+/* ── RESULTS PAGE ── */
+#resultsPage{max-width:900px;margin:0 auto;padding:32px 24px 80px;display:none}
+
+.results-hero{background:linear-gradient(145deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:16px;padding:40px;text-align:center;margin-bottom:28px;position:relative;overflow:hidden}
+.results-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,39,.15) 0%,transparent 70%)}
+.rh-icon{font-size:52px;margin-bottom:12px}
+.rh-status{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:6px}
+.rh-status.pass{color:var(--gold)}
+.rh-status.fail{color:#f87171}
+.rh-score{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:8px}
+.rh-name{font-family:'Fraunces',serif;font-size:16px;color:rgba(255,255,255,.5)}
+
+.results-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.rs-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.rs-card .rsc-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;line-height:1;margin-bottom:4px}
+.rs-card .rsc-label{font-size:11px;color:var(--muted)}
+.rsc-val.pass-v{color:var(--green)} .rsc-val.fail-v{color:var(--red)} .rsc-val.mid{color:var(--gold-d)}
+
+.section-breakdown{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:28px}
+.section-breakdown h4{font-family:'Fraunces',serif;font-size:17px;color:var(--navy);margin-bottom:18px}
+.sb-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.sb-row:last-child{margin-bottom:0}
+.sbr-label{font-size:12.5px;font-weight:600;color:var(--navy);min-width:220px;flex-shrink:0}
+.sbr-bar{flex:1;height:10px;background:var(--bg);border-radius:5px;overflow:hidden}
+.sbr-fill{height:100%;border-radius:5px;transition:width .6s}
+.sbr-score{font-size:12px;font-weight:700;min-width:50px;text-align:right;flex-shrink:0}
+.sbr-fill.full{background:var(--green)}
+.sbr-fill.good{background:var(--gold-d)}
+.sbr-fill.low{background:var(--red)}
+
+/* ── CERTIFICATE ── */
+#certificate{display:none;margin-bottom:28px}
+.cert-wrap{border:3px solid var(--gold-d);border-radius:16px;padding:48px;background:linear-gradient(145deg,#fdfaf2 0%,#fffde8 100%);text-align:center;position:relative;overflow:hidden}
+.cert-wrap::before,.cert-wrap::after{content:'';position:absolute;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,39,.08) 0%,transparent 70%)}
+.cert-wrap::before{top:-40px;left:-40px}
+.cert-wrap::after{bottom:-40px;right:-40px}
+.cert-border{border:1.5px solid rgba(201,162,39,.3);border-radius:10px;padding:36px;position:relative}
+.cert-seal{font-size:48px;margin-bottom:6px}
+.cert-issued{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.cert-org{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy-mid);margin-bottom:20px;font-weight:700}
+.cert-certifies{font-size:13px;color:var(--muted);margin-bottom:6px}
+.cert-name{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold-d);border-bottom:2px solid var(--gold-mid);padding-bottom:10px;margin-bottom:10px;min-height:52px}
+.cert-earned{font-size:13px;color:var(--muted);margin-bottom:10px}
+.cert-title{font-family:'Fraunces',serif;font-size:22px;color:var(--navy);font-weight:700;margin-bottom:20px}
+.cert-product{font-size:16px;color:var(--muted);margin-bottom:24px;font-style:italic}
+.cert-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px}
+.cert-score-box{background:var(--navy);border-radius:8px;padding:12px 18px;text-align:center}
+.cert-score-box .csb-val{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);font-weight:700}
+.cert-score-box .csb-label{font-size:9.5px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px}
+.cert-sig{text-align:center}
+.cert-sig .cs-line{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy-mid);border-bottom:1.5px solid var(--border);padding-bottom:6px;margin-bottom:4px;font-style:italic}
+.cert-sig .cs-name{font-size:11px;color:var(--muted)}
+.cert-date{text-align:right}
+.cert-date .cd-val{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy-mid)}
+.cert-date .cd-label{font-size:10px;color:var(--muted)}
+
+.cert-actions{display:flex;gap:12px;justify-content:center;margin-top:16px}
+.cert-btn{padding:11px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.cert-print{background:var(--gold-d);color:#fff;border:none}
+.cert-print:hover{background:var(--gold)}
+.cert-review{background:var(--card);color:var(--navy);border:1.5px solid var(--border)}
+.cert-review:hover{border-color:var(--gold);color:var(--gold-d)}
+
+.retry-btn{width:100%;padding:14px;background:var(--navy-mid);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:12px;font-family:'Fraunces',serif}
+.retry-btn:hover{background:var(--navy)}
+
+/* ── REVIEW MODE ── */
+#reviewPage{max-width:900px;margin:0 auto;padding:32px 24px 80px;display:none}
+.review-header{background:var(--navy);border-radius:12px;padding:18px 22px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center}
+.review-header h3{font-family:'Fraunces',serif;color:var(--gold);font-size:18px}
+.review-header p{color:rgba(255,255,255,.5);font-size:12px}
+.back-btn{padding:9px 20px;background:var(--gold-d);color:#fff;border:none;border-radius:8px;font-size:12.5px;font-weight:700;cursor:pointer}
+
+/* ── PRINT ── */
+@media print{
+  #examBar,#coverPage,#examPage,#resultsPage .results-hero,#resultsPage .results-stats,#resultsPage .section-breakdown,#resultsPage .cert-actions,.retry-btn,#reviewPage{display:none!important}
+  #certificate{display:block!important}
+  .cert-wrap{border-color:var(--gold-d)!important}
+  body{background:#fff}
+}
+
+@media(max-width:700px){
+  .cover-meta,.cs-grid,.cr-list,.results-stats{grid-template-columns:1fr 1fr}
+  .cert-bottom{flex-direction:column;gap:16px;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<div id="examBar" style="display:none">
+  <div class="eb-inner">
+    <div class="eb-brand">Epithrive® <span>Certification Exam</span></div>
+    <div class="eb-progress-wrap">
+      <div class="eb-progress-label">
+        <span>Progress: <span id="progCount">0</span>/40 answered</span>
+        <span id="progPct">0%</span>
+      </div>
+      <div class="eb-progress-bar"><div class="eb-progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div class="eb-timer" id="timerWrap">
+      <div class="et-label">Time Remaining</div>
+      <div class="et-time" id="timerDisplay">60:00</div>
+    </div>
+  </div>
+</div>
+
+<!-- COVER PAGE -->
+<div id="coverPage">
+  <div class="cover-header">
+    <div class="cover-seal">🏅</div>
+    <h1>Epithrive® Certification Examination</h1>
+    <h2>Certified Product Expert — Module 8</h2>
+    <p>The final assessment of the Epithrive® MR Training Programme. Successful completion certifies you as an Epithrive® Certified Product Expert, authorised for solo field deployment.</p>
+  </div>
+
+  <div class="cover-meta">
+    <div class="cm-card"><div class="cmc-num">40</div><div class="cmc-label">Questions Total</div></div>
+    <div class="cm-card"><div class="cmc-num">60</div><div class="cmc-label">Minutes Allowed</div></div>
+    <div class="cm-card"><div class="cmc-num">80%</div><div class="cmc-label">Pass Mark (32/40)</div></div>
+    <div class="cm-card"><div class="cmc-num">7</div><div class="cmc-label">Modules Covered</div></div>
+  </div>
+
+  <div class="cover-sections">
+    <h4>Examination Sections</h4>
+    <div class="cs-grid">
+      <div class="cs-item"><div class="csi-num">1</div><div class="csi-info"><h5>Wound Biology</h5><p>6 questions — Modules 1</p></div></div>
+      <div class="cs-item"><div class="csi-num">2</div><div class="csi-info"><h5>Wound Care Fundamentals</h5><p>5 questions — Module 2</p></div></div>
+      <div class="cs-item"><div class="csi-num">3</div><div class="csi-info"><h5>Ingredient Mastery</h5><p>10 questions — Module 3</p></div></div>
+      <div class="cs-item"><div class="csi-num">4</div><div class="csi-info"><h5>Clinical Evidence</h5><p>7 questions — Module 4</p></div></div>
+      <div class="cs-item"><div class="csi-num">5</div><div class="csi-info"><h5>Sales Skills</h5><p>5 questions — Module 5</p></div></div>
+      <div class="cs-item"><div class="csi-num">6</div><div class="csi-info"><h5>Compliance & Regulatory</h5><p>5 questions — Module 6</p></div></div>
+      <div class="cs-item"><div class="csi-num">7</div><div class="csi-info"><h5>Field Application</h5><p>2 questions — Module 7</p></div></div>
+    </div>
+  </div>
+
+  <div class="cover-rules">
+    <h4>📋 Examination Rules</h4>
+    <div class="cr-list">
+      <div class="cr-item">Each question has one correct answer only</div>
+      <div class="cr-item">You may review and change answers before submitting</div>
+      <div class="cr-item">Pass mark: 80% — 32 or more correct answers</div>
+      <div class="cr-item">Time limit: 60 minutes. Timer begins when you start.</div>
+      <div class="cr-item">Answers are revealed with explanations after submission</div>
+      <div class="cr-item">Certificate is generated automatically on pass</div>
+      <div class="cr-item">Any compliance question answered wrongly is flagged separately</div>
+      <div class="cr-item">Re-attempts require Area Manager authorisation</div>
+    </div>
+  </div>
+
+  <div class="name-field">
+    <label>Candidate Full Name (as it will appear on the certificate)</label>
+    <input type="text" id="candidateName" placeholder="Enter your full name here...">
+  </div>
+
+  <button class="start-btn" onclick="startExam()">Begin Examination →</button>
+</div>
+
+<!-- EXAM PAGE -->
+<div id="examPage">
+
+  <!-- SECTION 1: WOUND BIOLOGY -->
+  <div class="section-divider">
+    <div class="sd-icon" style="background:#e8f5e9">🔬</div>
+    <div><div class="sd-module">Section 1</div><div class="sd-title">Wound Biology</div></div>
+    <div class="sd-line"></div>
+    <div class="sd-count">Questions 1–6 · 6 marks</div>
+  </div>
+
+  <div class="q-card" id="q1"><div class="q-header"><span class="q-num">1</span><div class="q-text">A wound is classified as "chronic" when it has shown no measurable progress despite appropriate standard care for at least:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,1,'A')"><div class="opt-letter">A</div><div class="opt-text">1 week</div></div><div class="q-opt" onclick="selectOpt(this,1,'B')"><div class="opt-letter">B</div><div class="opt-text">2 weeks</div></div><div class="q-opt" onclick="selectOpt(this,1,'C')"><div class="opt-letter">C</div><div class="opt-text">4 weeks</div></div><div class="q-opt" onclick="selectOpt(this,1,'D')"><div class="opt-letter">D</div><div class="opt-text">6 weeks</div></div></div><div class="q-feedback-text" id="fb1"></div></div>
+
+  <div class="q-card" id="q2"><div class="q-header"><span class="q-num">2</span><div class="q-text">The correct sequence of the four phases of wound healing is:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,2,'A')"><div class="opt-letter">A</div><div class="opt-text">Inflammation → Hemostasis → Proliferation → Remodeling</div></div><div class="q-opt" onclick="selectOpt(this,2,'B')"><div class="opt-letter">B</div><div class="opt-text">Hemostasis → Inflammation → Proliferation → Remodeling</div></div><div class="q-opt" onclick="selectOpt(this,2,'C')"><div class="opt-letter">C</div><div class="opt-text">Hemostasis → Proliferation → Inflammation → Remodeling</div></div><div class="q-opt" onclick="selectOpt(this,2,'D')"><div class="opt-letter">D</div><div class="opt-text">Proliferation → Hemostasis → Inflammation → Remodeling</div></div></div><div class="q-feedback-text" id="fb2"></div></div>
+
+  <div class="q-card" id="q3"><div class="q-header"><span class="q-num">3</span><div class="q-text">Which cell type is the primary consumer of L-Glutamine in wound healing, and is responsible for killing bacteria through phagocytosis in the first 48 hours?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,3,'A')"><div class="opt-letter">A</div><div class="opt-text">Fibroblasts — the primary collagen-producing cells</div></div><div class="q-opt" onclick="selectOpt(this,3,'B')"><div class="opt-letter">B</div><div class="opt-text">Keratinocytes — the epithelial cells that resurface the wound</div></div><div class="q-opt" onclick="selectOpt(this,3,'C')"><div class="opt-letter">C</div><div class="opt-text">Neutrophils — immune cells arriving within hours that phagocytose bacteria</div></div><div class="q-opt" onclick="selectOpt(this,3,'D')"><div class="opt-letter">D</div><div class="opt-text">Platelets — the first responders that form the initial clot</div></div></div><div class="q-feedback-text" id="fb3"></div></div>
+
+  <div class="q-card" id="q4"><div class="q-header"><span class="q-num">4</span><div class="q-text">Which enzyme system, when chronically overactivated in the chronic wound microenvironment, destroys the extracellular matrix faster than fibroblasts can rebuild it — trapping the wound in a persistent stall?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,4,'A')"><div class="opt-letter">A</div><div class="opt-text">Lysyl oxidase — responsible for collagen cross-linking</div></div><div class="q-opt" onclick="selectOpt(this,4,'B')"><div class="opt-letter">B</div><div class="opt-text">Matrix metalloproteinases (MMPs) — ECM-degrading enzymes</div></div><div class="q-opt" onclick="selectOpt(this,4,'C')"><div class="opt-letter">C</div><div class="opt-text">DNA polymerase — required for cell division in proliferating cells</div></div><div class="q-opt" onclick="selectOpt(this,4,'D')"><div class="opt-letter">D</div><div class="opt-text">Glutathione peroxidase — the antioxidant protection enzyme</div></div></div><div class="q-feedback-text" id="fb4"></div></div>
+
+  <div class="q-card" id="q5"><div class="q-header"><span class="q-num">5</span><div class="q-text">Approximately what percentage of Indian surgical and elderly hospital patients are estimated to be nutritionally deficient or malnourished at the time of hospital admission?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,5,'A')"><div class="opt-letter">A</div><div class="opt-text">10–15%</div></div><div class="q-opt" onclick="selectOpt(this,5,'B')"><div class="opt-letter">B</div><div class="opt-text">20–25%</div></div><div class="q-opt" onclick="selectOpt(this,5,'C')"><div class="opt-letter">C</div><div class="opt-text">30–50%</div></div><div class="q-opt" onclick="selectOpt(this,5,'D')"><div class="opt-letter">D</div><div class="opt-text">60–75%</div></div></div><div class="q-feedback-text" id="fb5"></div></div>
+
+  <div class="q-card" id="q6"><div class="q-header"><span class="q-num">6</span><div class="q-text">In wound healing biology, angiogenesis — the growth of new blood vessels into the wound bed — is primarily driven by which Epithrive® ingredient through nitric oxide production?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,6,'A')"><div class="opt-letter">A</div><div class="opt-text">Marine Collagen Peptides (2.5g)</div></div><div class="q-opt" onclick="selectOpt(this,6,'B')"><div class="opt-letter">B</div><div class="opt-text">L-Arginine (7g) → Nitric Oxide via NOS pathway</div></div><div class="q-opt" onclick="selectOpt(this,6,'C')"><div class="opt-letter">C</div><div class="opt-text">Ca-HMB (1.5g) via mTOR pathway activation</div></div><div class="q-opt" onclick="selectOpt(this,6,'D')"><div class="opt-letter">D</div><div class="opt-text">Zinc (13mg) as cofactor for endothelial cell DNA polymerase</div></div></div><div class="q-feedback-text" id="fb6"></div></div>
+
+  <!-- SECTION 2: WOUND CARE -->
+  <div class="section-divider">
+    <div class="sd-icon" style="background:#fff3e0">🩹</div>
+    <div><div class="sd-module">Section 2</div><div class="sd-title">Wound Care Fundamentals</div></div>
+    <div class="sd-line"></div>
+    <div class="sd-count">Questions 7–11 · 5 marks</div>
+  </div>
+
+  <div class="q-card" id="q7"><div class="q-header"><span class="q-num">7</span><div class="q-text">In the T.I.M.E. wound management framework, what does the letter "E" specifically represent?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,7,'A')"><div class="opt-letter">A</div><div class="opt-text">Exudate control — managing wound fluid volume</div></div><div class="q-opt" onclick="selectOpt(this,7,'B')"><div class="opt-letter">B</div><div class="opt-text">Enzymatic debridement of non-viable tissue</div></div><div class="q-opt" onclick="selectOpt(this,7,'C')"><div class="opt-letter">C</div><div class="opt-text">Epithelial/Edge advancement — stimulating wound closure through keratinocyte migration</div></div><div class="q-opt" onclick="selectOpt(this,7,'D')"><div class="opt-letter">D</div><div class="opt-text">Elevation — offloading pressure from the wound site</div></div></div><div class="q-feedback-text" id="fb7"></div></div>
+
+  <div class="q-card" id="q8"><div class="q-header"><span class="q-num">8</span><div class="q-text">Silver antimicrobial dressings are typically used for a limited duration (2–4 weeks) and not indefinitely. What is the primary clinical reason for this restriction?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,8,'A')"><div class="opt-letter">A</div><div class="opt-text">Bacteria develop silver resistance after 2 weeks, making them ineffective</div></div><div class="q-opt" onclick="selectOpt(this,8,'B')"><div class="opt-letter">B</div><div class="opt-text">Silver ions are cytotoxic to fibroblasts at high concentrations with prolonged exposure, impeding granulation</div></div><div class="q-opt" onclick="selectOpt(this,8,'C')"><div class="opt-letter">C</div><div class="opt-text">Silver dressings are too expensive for prolonged outpatient use</div></div><div class="q-opt" onclick="selectOpt(this,8,'D')"><div class="opt-letter">D</div><div class="opt-text">Silver dressings cause wound maceration when used beyond 2 weeks</div></div></div><div class="q-feedback-text" id="fb8"></div></div>
+
+  <div class="q-card" id="q9"><div class="q-header"><span class="q-num">9</span><div class="q-text">Which global guidelines body explicitly recommends Arginine, Zinc, and Vitamin C supplementation specifically for pressure injury patients?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,9,'A')"><div class="opt-letter">A</div><div class="opt-text">FSSAI — Food Safety and Standards Authority of India</div></div><div class="q-opt" onclick="selectOpt(this,9,'B')"><div class="opt-letter">B</div><div class="opt-text">WHO — World Health Organization Nutrition Division</div></div><div class="q-opt" onclick="selectOpt(this,9,'C')"><div class="opt-letter">C</div><div class="opt-text">EPUAP/NPIAP — European/National Pressure Injury Advisory Panels</div></div><div class="q-opt" onclick="selectOpt(this,9,'D')"><div class="opt-letter">D</div><div class="opt-text">CDSCO — Central Drugs Standard Control Organisation</div></div></div><div class="q-feedback-text" id="fb9"></div></div>
+
+  <div class="q-card" id="q10"><div class="q-header"><span class="q-num">10</span><div class="q-text">In a Wagner Grade II diabetic foot ulcer, the wound extends to which tissue depth?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,10,'A')"><div class="opt-letter">A</div><div class="opt-text">Superficial ulcer — epidermis only, no tissue involvement</div></div><div class="q-opt" onclick="selectOpt(this,10,'B')"><div class="opt-letter">B</div><div class="opt-text">Deep ulcer penetrating to tendon, capsule, or bone without abscess</div></div><div class="q-opt" onclick="selectOpt(this,10,'C')"><div class="opt-letter">C</div><div class="opt-text">Deep abscess with osteomyelitis</div></div><div class="q-opt" onclick="selectOpt(this,10,'D')"><div class="opt-letter">D</div><div class="opt-text">Partial gangrene of the foot</div></div></div><div class="q-feedback-text" id="fb10"></div></div>
+
+  <div class="q-card" id="q11"><div class="q-header"><span class="q-num">11</span><div class="q-text">Negative Pressure Wound Therapy (NPWT / VAC therapy) is a particularly strong indication for initiating Epithrive® alongside it because:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,11,'A')"><div class="opt-letter">A</div><div class="opt-text">NPWT depletes amino acids directly from the wound, which Epithrive® replenishes</div></div><div class="q-opt" onclick="selectOpt(this,11,'B')"><div class="opt-letter">B</div><div class="opt-text">NPWT mechanically drives granulation but demands Arginine, Glutamine, and Collagen substrates to build it — creating the highest nutritional demand of any dressing modality</div></div><div class="q-opt" onclick="selectOpt(this,11,'C')"><div class="opt-letter">C</div><div class="opt-text">NPWT blocks oral nutrient absorption, requiring supplemental amino acid delivery</div></div><div class="q-opt" onclick="selectOpt(this,11,'D')"><div class="opt-letter">D</div><div class="opt-text">NPWT causes Zinc depletion, which Epithrive® specifically replaces</div></div></div><div class="q-feedback-text" id="fb11"></div></div>
+
+  <!-- SECTION 3: INGREDIENTS -->
+  <div class="section-divider">
+    <div class="sd-icon" style="background:#e3f2fd">⚗️</div>
+    <div><div class="sd-module">Section 3</div><div class="sd-title">Ingredient Mastery</div></div>
+    <div class="sd-line"></div>
+    <div class="sd-count">Questions 12–21 · 10 marks</div>
+  </div>
+
+  <div class="q-card" id="q12"><div class="q-header"><span class="q-num">12</span><div class="q-text">L-Arginine at 7g per sachet supports wound healing primarily through which two distinct biological pathways?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,12,'A')"><div class="opt-letter">A</div><div class="opt-text">Arginine → mTOR activation → protein synthesis; Arginine → collagen cross-linking via lysyl oxidase</div></div><div class="q-opt" onclick="selectOpt(this,12,'B')"><div class="opt-letter">B</div><div class="opt-text">Arginine → Nitric Oxide (via NOS) → angiogenesis; Arginine → Ornithine → Proline → collagen synthesis</div></div><div class="q-opt" onclick="selectOpt(this,12,'C')"><div class="opt-letter">C</div><div class="opt-text">Arginine → Glutamine → immune cell fuel; Arginine → fibroblast proliferation via growth factors</div></div><div class="q-opt" onclick="selectOpt(this,12,'D')"><div class="opt-letter">D</div><div class="opt-text">Arginine → Zinc cofactor activation → DNA polymerase; Arginine → antioxidant protection</div></div></div><div class="q-feedback-text" id="fb12"></div></div>
+
+  <div class="q-card" id="q13"><div class="q-header"><span class="q-num">13</span><div class="q-text">Ca-HMB (Calcium β-Hydroxy-β-Methylbutyrate) is included in the Epithrive® India formulation to address which specific clinical problem in wound patients?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,13,'A')"><div class="opt-letter">A</div><div class="opt-text">Collagen fibre instability due to insufficient cross-linking in the remodeling phase</div></div><div class="q-opt" onclick="selectOpt(this,13,'B')"><div class="opt-letter">B</div><div class="opt-text">Immune cell depletion causing susceptibility to wound infection</div></div><div class="q-opt" onclick="selectOpt(this,13,'C')"><div class="opt-letter">C</div><div class="opt-text">Muscle protein catabolism — chronic wounds trigger the ubiquitin-proteasome breakdown pathway, and HMB specifically inhibits this</div></div><div class="q-opt" onclick="selectOpt(this,13,'D')"><div class="opt-letter">D</div><div class="opt-text">Nitric oxide deficiency causing impaired endothelial blood flow to the wound</div></div></div><div class="q-feedback-text" id="fb13"></div></div>
+
+  <div class="q-card" id="q14"><div class="q-header"><span class="q-num">14</span><div class="q-text">Marine Collagen Peptides in Epithrive® are absorbed from the gut in which form, reaching peak plasma concentration within approximately 1 hour?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,14,'A')"><div class="opt-letter">A</div><div class="opt-text">As individual amino acids (glycine, proline) after complete hydrolysis in the intestine</div></div><div class="q-opt" onclick="selectOpt(this,14,'B')"><div class="opt-letter">B</div><div class="opt-text">As intact dipeptides and tripeptides (e.g. Gly-Pro-Hyp) via the PEPT1 transporter</div></div><div class="q-opt" onclick="selectOpt(this,14,'C')"><div class="opt-letter">C</div><div class="opt-text">As large collagen molecules that are broken down by hepatic enzymes before distribution</div></div><div class="q-opt" onclick="selectOpt(this,14,'D')"><div class="opt-letter">D</div><div class="opt-text">As hydroxyproline-only fragments after gastric acid digestion</div></div></div><div class="q-feedback-text" id="fb14"></div></div>
+
+  <div class="q-card" id="q15"><div class="q-header"><span class="q-num">15</span><div class="q-text">Without Copper (1.3mg per sachet), newly formed collagen fibres cannot be properly cross-linked. Which enzyme does Copper enable, and what is the clinical consequence of its absence?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,15,'A')"><div class="opt-letter">A</div><div class="opt-text">DNA polymerase — consequence: cell division in fibroblasts stops</div></div><div class="q-opt" onclick="selectOpt(this,15,'B')"><div class="opt-letter">B</div><div class="opt-text">Lysyl oxidase — consequence: collagen fibres are laid down but structurally weak, causing wound dehiscence risk</div></div><div class="q-opt" onclick="selectOpt(this,15,'C')"><div class="opt-letter">C</div><div class="opt-text">Glutathione peroxidase — consequence: oxidative stress overwhelms wound tissue</div></div><div class="q-opt" onclick="selectOpt(this,15,'D')"><div class="opt-letter">D</div><div class="opt-text">Prolyl hydroxylase — consequence: collagen triple helix cannot be stabilised</div></div></div><div class="q-feedback-text" id="fb15"></div></div>
+
+  <div class="q-card" id="q16"><div class="q-header"><span class="q-num">16</span><div class="q-text">Vitamin C (60mg per sachet) is described as the "rate-limiting cofactor" for collagen synthesis. What specifically does it enable that no other ingredient in the formulation can substitute?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,16,'A')"><div class="opt-letter">A</div><div class="opt-text">It fuels fibroblast energy metabolism via the Krebs cycle as an intermediate substrate</div></div><div class="q-opt" onclick="selectOpt(this,16,'B')"><div class="opt-letter">B</div><div class="opt-text">It enables hydroxylation of proline and lysine residues by prolyl/lysyl hydroxylase — stabilising the collagen triple helix</div></div><div class="q-opt" onclick="selectOpt(this,16,'C')"><div class="opt-letter">C</div><div class="opt-text">It activates the MMP-inhibiting cascade that prevents collagen degradation in chronic wounds</div></div><div class="q-opt" onclick="selectOpt(this,16,'D')"><div class="opt-letter">D</div><div class="opt-text">It cross-links mature collagen fibres via a ceruloplasmin-dependent pathway</div></div></div><div class="q-feedback-text" id="fb16"></div></div>
+
+  <div class="q-card" id="q17"><div class="q-header"><span class="q-num">17</span><div class="q-text">Vitamin A (750mcg per sachet) specifically supports which wound healing process that Vitamin C does not address?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,17,'A')"><div class="opt-letter">A</div><div class="opt-text">Collagen triple helix stabilisation via hydroxylation of proline residues</div></div><div class="q-opt" onclick="selectOpt(this,17,'B')"><div class="opt-letter">B</div><div class="opt-text">Re-epithelialization — driving keratinocyte differentiation and migration across the wound surface via retinoic acid signalling</div></div><div class="q-opt" onclick="selectOpt(this,17,'C')"><div class="opt-letter">C</div><div class="opt-text">Macrophage phagocytosis via interleukin-6 pathway activation</div></div><div class="q-opt" onclick="selectOpt(this,17,'D')"><div class="opt-letter">D</div><div class="opt-text">Angiogenesis via nitric oxide-mediated endothelial activation</div></div></div><div class="q-feedback-text" id="fb17"></div></div>
+
+  <div class="q-card" id="q18"><div class="q-header"><span class="q-num">18</span><div class="q-text">A patient on ciprofloxacin for wound infection is starting Epithrive®. What is the correct administration guidance and why?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,18,'A')"><div class="opt-letter">A</div><div class="opt-text">Take simultaneously — there are no clinically significant interactions between amino acids and fluoroquinolone antibiotics</div></div><div class="q-opt" onclick="selectOpt(this,18,'B')"><div class="opt-letter">B</div><div class="opt-text">Space by at least 2–3 hours — Zinc in Epithrive® chelates quinolone antibiotics, reducing absorption of both if taken simultaneously</div></div><div class="q-opt" onclick="selectOpt(this,18,'C')"><div class="opt-letter">C</div><div class="opt-text">Wait until the antibiotic course is complete, then start Epithrive®</div></div><div class="q-opt" onclick="selectOpt(this,18,'D')"><div class="opt-letter">D</div><div class="opt-text">Space by 30 minutes — Arginine reduces ciprofloxacin efficacy at the NOS binding site</div></div></div><div class="q-feedback-text" id="fb18"></div></div>
+
+  <div class="q-card" id="q19"><div class="q-header"><span class="q-num">19</span><div class="q-text">In the global formulation of Epithrive® (USA, UAE, Europe), Ca-HMB is replaced with which combination — and what is the clinical rationale for this specific replacement?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,19,'A')"><div class="opt-letter">A</div><div class="opt-text">L-Leucine (3g) — to provide the same anti-catabolic signal via the same Leucine metabolite pathway</div></div><div class="q-opt" onclick="selectOpt(this,19,'B')"><div class="opt-letter">B</div><div class="opt-text">L-Citrulline (1.5g) + L-Ornithine (1.5g) — to maintain the nitric oxide pathway without Arginine</div></div><div class="q-opt" onclick="selectOpt(this,19,'C')"><div class="opt-letter">C</div><div class="opt-text">L-Proline (1.5g) + L-Lysine (1.5g) — to avoid Abbott Juven patent infringement, creating a complete collagen synthesis complex</div></div><div class="q-opt" onclick="selectOpt(this,19,'D')"><div class="opt-letter">D</div><div class="opt-text">Creatine monohydrate (1.5g) + Beta-alanine (1.5g) — to provide anti-fatigue and muscle support</div></div></div><div class="q-feedback-text" id="fb19"></div></div>
+
+  <div class="q-card" id="q20"><div class="q-header"><span class="q-num">20</span><div class="q-text">Selenium (30mcg per sachet) functions as a cofactor for which specific enzyme system that provides antioxidant protection in healing tissue?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,20,'A')"><div class="opt-letter">A</div><div class="opt-text">Lysyl oxidase — the collagen cross-linking enzyme</div></div><div class="q-opt" onclick="selectOpt(this,20,'B')"><div class="opt-letter">B</div><div class="opt-text">Prolyl hydroxylase — the collagen stabilising enzyme</div></div><div class="q-opt" onclick="selectOpt(this,20,'C')"><div class="opt-letter">C</div><div class="opt-text">Glutathione peroxidase (GPx) — the body's primary enzyme-based antioxidant system, neutralising hydrogen peroxide and lipid peroxides</div></div><div class="q-opt" onclick="selectOpt(this,20,'D')"><div class="opt-letter">D</div><div class="opt-text">Nitric oxide synthase (NOS) — the enzyme producing vasodilating nitric oxide</div></div></div><div class="q-feedback-text" id="fb20"></div></div>
+
+  <div class="q-card" id="q21"><div class="q-header"><span class="q-num">21</span><div class="q-text">Zinc (13mg per sachet) serves which specific critical function in the remodeling phase of wound healing — beyond its role in epithelialization?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,21,'A')"><div class="opt-letter">A</div><div class="opt-text">Fuelling macrophage phagocytosis through energy metabolism</div></div><div class="q-opt" onclick="selectOpt(this,21,'B')"><div class="opt-letter">B</div><div class="opt-text">Regulating matrix metalloproteinase (MMP) activity — ensuring balanced ECM breakdown and rebuilding for scar maturation</div></div><div class="q-opt" onclick="selectOpt(this,21,'C')"><div class="opt-letter">C</div><div class="opt-text">Cross-linking collagen fibres via the lysyl oxidase cofactor pathway</div></div><div class="q-opt" onclick="selectOpt(this,21,'D')"><div class="opt-letter">D</div><div class="opt-text">Activating the mTOR pathway to preserve lean muscle mass</div></div></div><div class="q-feedback-text" id="fb21"></div></div>
+
+  <!-- SECTION 4: CLINICAL EVIDENCE -->
+  <div class="section-divider">
+    <div class="sd-icon" style="background:#f3e8ff">📊</div>
+    <div><div class="sd-module">Section 4</div><div class="sd-title">Clinical Evidence</div></div>
+    <div class="sd-line"></div>
+    <div class="sd-count">Questions 22–28 · 7 marks</div>
+  </div>
+
+  <div class="q-card" id="q22"><div class="q-header"><span class="q-num">22</span><div class="q-text">What was the precise primary finding of the Epithrive® Indian clinical study (CSR-ETH-2025-001) at Week 8?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,22,'A')"><div class="opt-letter">A</div><div class="opt-text">65.0% (Epithrive® arm) vs 48.0% (control) wound area reduction — p=0.01</div></div><div class="q-opt" onclick="selectOpt(this,22,'B')"><div class="opt-letter">B</div><div class="opt-text">72.4% (Epithrive® arm) vs 52.1% (control) wound area reduction — p=0.004</div></div><div class="q-opt" onclick="selectOpt(this,22,'C')"><div class="opt-letter">C</div><div class="opt-text">72.4% (Epithrive® arm) vs 52.1% (control) wound area reduction — p=0.04</div></div><div class="q-opt" onclick="selectOpt(this,22,'D')"><div class="opt-letter">D</div><div class="opt-text">80.2% (Epithrive® arm) vs 52.1% (control) wound area reduction — p=0.004</div></div></div><div class="q-feedback-text" id="fb22"></div></div>
+
+  <div class="q-card" id="q23"><div class="q-header"><span class="q-num">23</span><div class="q-text">The India study showed a p-value of 0.004. When explaining this to a skeptical doctor, the most accurate interpretation is:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,23,'A')"><div class="opt-letter">A</div><div class="opt-text">There is a 4% probability the result occurred by chance — acceptable but moderate confidence</div></div><div class="q-opt" onclick="selectOpt(this,23,'B')"><div class="opt-letter">B</div><div class="opt-text">There is a 0.4% probability the result occurred by chance — we are 99.6% confident the difference is real</div></div><div class="q-opt" onclick="selectOpt(this,23,'C')"><div class="opt-letter">C</div><div class="opt-text">The study was 0.4% underpowered relative to an ideal sample size</div></div><div class="q-opt" onclick="selectOpt(this,23,'D')"><div class="opt-letter">D</div><div class="opt-text">The effect size was 0.4% above the minimum clinically important difference</div></div></div><div class="q-feedback-text" id="fb23"></div></div>
+
+  <div class="q-card" id="q24"><div class="q-header"><span class="q-num">24</span><div class="q-text">Williams and Barbul (2002, Annals of Surgery) published which specific finding that is directly relevant to Epithrive®'s surgical wound patient indication?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,24,'A')"><div class="opt-letter">A</div><div class="opt-text">Glutamine supplementation reduced ICU infections by 45% in critically ill patients (Wischmeyer 2003)</div></div><div class="q-opt" onclick="selectOpt(this,24,'B')"><div class="opt-letter">B</div><div class="opt-text">Arg+Gln+HMB blend reduced DFU healing time from 247 days to 83 days (Tatti 2012)</div></div><div class="q-opt" onclick="selectOpt(this,24,'C')"><div class="opt-letter">C</div><div class="opt-text">Arginine+HMB+Glutamine significantly increased wound collagen deposition in a double-blind RCT in elderly volunteers, with 3.5-day reduction in hospital stay</div></div><div class="q-opt" onclick="selectOpt(this,24,'D')"><div class="opt-letter">D</div><div class="opt-text">Arginine-enriched formula produced 19% greater wound area reduction vs standard ONS in pressure ulcer patients (Cereda 2015)</div></div></div><div class="q-feedback-text" id="fb24"></div></div>
+
+  <div class="q-card" id="q25"><div class="q-header"><span class="q-num">25</span><div class="q-text">A knowledgeable diabetologist raises the Armstrong et al. (2014) RCT, which showed no significant primary outcome difference with the Arg+Gln+HMB formulation class in DFU patients. The correct and complete response is:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,25,'A')"><div class="opt-letter">A</div><div class="opt-text">That study used an older formulation version — Epithrive®'s India data supersedes it</div></div><div class="q-opt" onclick="selectOpt(this,25,'B')"><div class="opt-letter">B</div><div class="opt-text">The primary outcome (overall DFU population at 16 weeks) was negative, but subgroup analysis showed benefit in malnourished patients (low albumin, poor perfusion) — which is exactly Epithrive®'s target patient profile</div></div><div class="q-opt" onclick="selectOpt(this,25,'C')"><div class="opt-letter">C</div><div class="opt-text">Armstrong's study was not randomised and should not be cited by doctors</div></div><div class="q-opt" onclick="selectOpt(this,25,'D')"><div class="opt-letter">D</div><div class="opt-text">Armstrong 2014 used a different formulation — Tatti 2012 is the correct DFU RCT to reference</div></div></div><div class="q-feedback-text" id="fb25"></div></div>
+
+  <div class="q-card" id="q26"><div class="q-header"><span class="q-num">26</span><div class="q-text">The Arribaslopez et al. (2021) systematic review and meta-analysis in Nutrients journal analysed how many human studies on Arginine and Glutamine supplementation in wound healing?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,26,'A')"><div class="opt-letter">A</div><div class="opt-text">12 studies across 4 databases</div></div><div class="q-opt" onclick="selectOpt(this,26,'B')"><div class="opt-letter">B</div><div class="opt-text">28 studies across 6 databases</div></div><div class="q-opt" onclick="selectOpt(this,26,'C')"><div class="opt-letter">C</div><div class="opt-text">44 human studies across 10 databases</div></div><div class="q-opt" onclick="selectOpt(this,26,'D')"><div class="opt-letter">D</div><div class="opt-text">67 studies across 12 databases</div></div></div><div class="q-feedback-text" id="fb26"></div></div>
+
+  <div class="q-card" id="q27"><div class="q-header"><span class="q-num">27</span><div class="q-text">Kisil & Gimelfarb (2023, J Yeungnam Medical Science) — the most recently published study supporting the formulation class — showed which specific outcome for pressure ulcer patients?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,27,'A')"><div class="opt-letter">A</div><div class="opt-text">140-day median healing (HMB/Arg/Gln) vs 200-day (SOC) — p&lt;0.03</div></div><div class="q-opt" onclick="selectOpt(this,27,'B')"><div class="opt-letter">B</div><div class="opt-text">170-day median healing (HMB/Arg/Gln) vs 218-day (SOC alone) — p&lt;0.046</div></div><div class="q-opt" onclick="selectOpt(this,27,'C')"><div class="opt-letter">C</div><div class="opt-text">120-day median healing (HMB/Arg/Gln) vs 180-day (SOC alone) — p&lt;0.05</div></div><div class="q-opt" onclick="selectOpt(this,27,'D')"><div class="opt-letter">D</div><div class="opt-text">180-day median healing (HMB/Arg/Gln) vs 280-day (SOC alone) — p=0.02</div></div></div><div class="q-feedback-text" id="fb27"></div></div>
+
+  <div class="q-card" id="q28"><div class="q-header"><span class="q-num">28</span><div class="q-text">The India study showed a 39% relative improvement in healing rate. This figure is calculated as:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,28,'A')"><div class="opt-letter">A</div><div class="opt-text">72.4% − 52.1% = 20.3 percentage points (the absolute difference)</div></div><div class="q-opt" onclick="selectOpt(this,28,'B')"><div class="opt-letter">B</div><div class="opt-text">(72.4 − 52.1) ÷ 52.1 × 100 = 39% — relative improvement over control arm's performance</div></div><div class="q-opt" onclick="selectOpt(this,28,'C')"><div class="opt-letter">C</div><div class="opt-text">72.4 ÷ 52.1 = 1.39, meaning Epithrive® patients healed 39 times faster</div></div><div class="q-opt" onclick="selectOpt(this,28,'D')"><div class="opt-letter">D</div><div class="opt-text">100 − 72.4 = 27.6% remaining wound area, which is 39% less than the control arm's 52.1%</div></div></div><div class="q-feedback-text" id="fb28"></div></div>
+
+  <!-- SECTION 5: SALES SKILLS -->
+  <div class="section-divider">
+    <div class="sd-icon" style="background:#fef3e8">🎯</div>
+    <div><div class="sd-module">Section 5</div><div class="sd-title">Sales Skills</div></div>
+    <div class="sd-line"></div>
+    <div class="sd-count">Questions 29–33 · 5 marks</div>
+  </div>
+
+  <div class="q-card" id="q29"><div class="q-header"><span class="q-num">29</span><div class="q-text">In the PRECBAC call structure, the "E" step (Explore) must occur at which point in the call — and why?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,29,'A')"><div class="opt-letter">A</div><div class="opt-text">After evidence delivery — to check if the doctor has questions about the study</div></div><div class="q-opt" onclick="selectOpt(this,29,'B')"><div class="opt-letter">B</div><div class="opt-text">Before pitching — needs assessment first ensures the pitch is calibrated to the doctor's specific challenge, not delivered generically</div></div><div class="q-opt" onclick="selectOpt(this,29,'C')"><div class="opt-letter">C</div><div class="opt-text">After rapport building — to establish the relationship before asking clinical questions</div></div><div class="q-opt" onclick="selectOpt(this,29,'D')"><div class="opt-letter">D</div><div class="opt-text">During the close — to understand if the doctor needs more information before committing</div></div></div><div class="q-feedback-text" id="fb29"></div></div>
+
+  <div class="q-card" id="q30"><div class="q-header"><span class="q-num">30</span><div class="q-text">Which closing statement represents best practice for a first call on an Orthopaedic Surgeon?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,30,'A')"><div class="opt-letter">A</div><div class="opt-text">"Please recommend Epithrive® to all your wound patients whenever appropriate."</div></div><div class="q-opt" onclick="selectOpt(this,30,'B')"><div class="opt-letter">B</div><div class="opt-text">"Would you add Epithrive® to your hospital formulary this month?"</div></div><div class="q-opt" onclick="selectOpt(this,30,'C')"><div class="opt-letter">C</div><div class="opt-text">"Would you try Epithrive® on your next DFU patient whose wound hasn't shown 30% improvement in 4 weeks and whose albumin is below 3.5 g/dL?"</div></div><div class="q-opt" onclick="selectOpt(this,30,'D')"><div class="opt-letter">D</div><div class="opt-text">"Can I email you the full clinical dossier for your review?"</div></div></div><div class="q-feedback-text" id="fb30"></div></div>
+
+  <div class="q-card" id="q31"><div class="q-header"><span class="q-num">31</span><div class="q-text">A doctor says "My patients already take Ensure — they don't need another supplement." The most effective response strategy is:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,31,'A')"><div class="opt-letter">A</div><div class="opt-text">Explain that Ensure is inferior and Epithrive® should replace it</div></div><div class="q-opt" onclick="selectOpt(this,31,'B')"><div class="opt-letter">B</div><div class="opt-text">Agree that Ensure is good for general nutrition, then explain that Epithrive® adds the wound-specific substrates (7g Arginine, 7g Glutamine, HMB, Marine Collagen) that are absent in Ensure — positioning them as complementary</div></div><div class="q-opt" onclick="selectOpt(this,31,'C')"><div class="opt-letter">C</div><div class="opt-text">Show a side-by-side comparison table demonstrating that Ensure has no clinical evidence</div></div><div class="q-opt" onclick="selectOpt(this,31,'D')"><div class="opt-letter">D</div><div class="opt-text">Explain that Epithrive® is significantly cheaper than Ensure per serving</div></div></div><div class="q-feedback-text" id="fb31"></div></div>
+
+  <div class="q-card" id="q32"><div class="q-header"><span class="q-num">32</span><div class="q-text">In the doctor prioritisation matrix, a surgeon who has high wound patient volume but low receptiveness to new products belongs in which quadrant — and what is the correct engagement strategy?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,32,'A')"><div class="opt-letter">A</div><div class="opt-text">Top Priority — weekly visits and maximum investment to convert quickly</div></div><div class="q-opt" onclick="selectOpt(this,32,'B')"><div class="opt-letter">B</div><div class="opt-text">Low Priority — minimal time investment; wait for them to become receptive naturally</div></div><div class="q-opt" onclick="selectOpt(this,32,'C')"><div class="opt-letter">C</div><div class="opt-text">Long Game — bi-weekly visits with different clinical angles; find alternate entry through nurse or dietitian</div></div><div class="q-opt" onclick="selectOpt(this,32,'D')"><div class="opt-letter">D</div><div class="opt-text">Ignore this doctor type — high volume low receptiveness doctors never convert</div></div></div><div class="q-feedback-text" id="fb32"></div></div>
+
+  <div class="q-card" id="q33"><div class="q-header"><span class="q-num">33</span><div class="q-text">What is the optimal timing and content for a WhatsApp follow-up message after a first doctor call?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,33,'A')"><div class="opt-letter">A</div><div class="opt-text">Within 5 days; send all available Epithrive® materials in a single message</div></div><div class="q-opt" onclick="selectOpt(this,33,'B')"><div class="opt-letter">B</div><div class="opt-text">Within 24 hours; reference the specific conversation and attach one company-approved PDF relevant to their specialty; include the mandatory disclaimer</div></div><div class="q-opt" onclick="selectOpt(this,33,'C')"><div class="opt-letter">C</div><div class="opt-text">Only when the doctor messages first to show interest</div></div><div class="q-opt" onclick="selectOpt(this,33,'D')"><div class="opt-letter">D</div><div class="opt-text">At the same time each week regardless of when the call occurred; consistency builds familiarity</div></div></div><div class="q-feedback-text" id="fb33"></div></div>
+
+  <!-- SECTION 6: COMPLIANCE -->
+  <div class="section-divider">
+    <div class="sd-icon" style="background:#fff9f0">⚖️</div>
+    <div><div class="sd-module">Section 6</div><div class="sd-title">Compliance & Regulatory</div></div>
+    <div class="sd-line"></div>
+    <div class="sd-count">Questions 34–38 · 5 marks</div>
+  </div>
+
+  <div class="q-card" id="q34"><div class="q-header"><span class="q-num">34</span><div class="q-text">Which of the following is a fully compliant statement that an Epithrive® MR may make during a doctor call?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,34,'A')"><div class="opt-letter">A</div><div class="opt-text">"Epithrive® is clinically proven to heal diabetic foot ulcers and pressure sores."</div></div><div class="q-opt" onclick="selectOpt(this,34,'B')"><div class="opt-letter">B</div><div class="opt-text">"This is an FSMP — a Food for Special Medical Purposes, specifically approved for wound patients."</div></div><div class="q-opt" onclick="selectOpt(this,34,'C')"><div class="opt-letter">C</div><div class="opt-text">"In our clinical study (CSR-ETH-2025-001), the Epithrive® arm showed 72.4% wound area reduction versus 52.1% with standard care alone at Week 8 — p=0.004."</div></div><div class="q-opt" onclick="selectOpt(this,34,'D')"><div class="opt-letter">D</div><div class="opt-text">"Epithrive® guarantees measurable wound improvement within 2 weeks for most patients."</div></div></div><div class="q-feedback-text" id="fb34"></div></div>
+
+  <div class="q-card" id="q35"><div class="q-header"><span class="q-num">35</span><div class="q-text">Epithrive® is currently classified under which regulatory category in India — and what is the implication for what an MR may claim?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,35,'A')"><div class="opt-letter">A</div><div class="opt-text">FSMP (Food for Special Medical Purposes) — may make condition-specific nutritional management claims</div></div><div class="q-opt" onclick="selectOpt(this,35,'B')"><div class="opt-letter">B</div><div class="opt-text">Schedule H drug requiring prescription — full disease treatment claims are permitted</div></div><div class="q-opt" onclick="selectOpt(this,35,'C')"><div class="opt-letter">C</div><div class="opt-text">Nutraceutical/Dietary Supplement under FSSAI (Licence 11524998000214) — nutrient function and adjunct support claims are permitted; disease treatment claims are prohibited</div></div><div class="q-opt" onclick="selectOpt(this,35,'D')"><div class="opt-letter">D</div><div class="opt-text">OTC general medicine approved by CDSCO — disease treatment claims are permitted with appropriate scientific substantiation</div></div></div><div class="q-feedback-text" id="fb35"></div></div>
+
+  <div class="q-card" id="q36"><div class="q-header"><span class="q-num">36</span><div class="q-text">A patient's family member contacts you reporting difficulty breathing and facial swelling within 1 hour of taking the first Epithrive® sachet. What is your immediate and complete response?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,36,'A')"><div class="opt-letter">A</div><div class="opt-text">Reassure them it is the Arginine causing vasodilation — normal, transient, no action needed</div></div><div class="q-opt" onclick="selectOpt(this,36,'B')"><div class="opt-letter">B</div><div class="opt-text">Tell them to reduce to half a sachet and monitor for the next 24 hours before deciding to stop</div></div><div class="q-opt" onclick="selectOpt(this,36,'C')"><div class="opt-letter">C</div><div class="opt-text">Note it for the monthly adverse event report; these symptoms are common and self-limiting</div></div><div class="q-opt" onclick="selectOpt(this,36,'D')"><div class="opt-letter">D</div><div class="opt-text">Advise stopping Epithrive® immediately, seek emergency medical attention, document all details (dose, timing, symptoms, batch number), and escalate to Area Manager within the hour</div></div></div><div class="q-feedback-text" id="fb36"></div></div>
+
+  <div class="q-card" id="q37"><div class="q-header"><span class="q-num">37</span><div class="q-text">The mandatory disclaimer that must accompany any Epithrive® outcome claim in any communication channel is:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,37,'A')"><div class="opt-letter">A</div><div class="opt-text">"Results may vary. Individual outcomes are not guaranteed. Consult your physician."</div></div><div class="q-opt" onclick="selectOpt(this,37,'B')"><div class="opt-letter">B</div><div class="opt-text">"FSSAI registered product. Clinical evidence available on request."</div></div><div class="q-opt" onclick="selectOpt(this,37,'C')"><div class="opt-letter">C</div><div class="opt-text">"Dietary supplement. Not intended to diagnose, treat, cure, or prevent any disease. For nutritional support as an adjunct to standard wound care."</div></div><div class="q-opt" onclick="selectOpt(this,37,'D')"><div class="opt-letter">D</div><div class="opt-text">"This nutraceutical has not been evaluated by CDSCO as a drug. For dietary use only."</div></div></div><div class="q-feedback-text" id="fb37"></div></div>
+
+  <div class="q-card" id="q38"><div class="q-header"><span class="q-num">38</span><div class="q-text">A doctor, impressed with Epithrive®, enthusiastically asks you to write "Proven to heal chronic wounds" on the patient information sheet you're leaving behind. What is the correct response?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,38,'A')"><div class="opt-letter">A</div><div class="opt-text">Write it — the doctor's clinical authority provides sufficient justification for this phrasing</div></div><div class="q-opt" onclick="selectOpt(this,38,'B')"><div class="opt-letter">B</div><div class="opt-text">Write it in pencil so it can be erased if needed; the doctor's enthusiasm is a positive signal</div></div><div class="q-opt" onclick="selectOpt(this,38,'C')"><div class="opt-letter">C</div><div class="opt-text">Decline politely, explain the regulatory constraint (nutraceutical — disease treatment claims are prohibited), offer compliant alternative language, and pass the feedback to management</div></div><div class="q-opt" onclick="selectOpt(this,38,'D')"><div class="opt-letter">D</div><div class="opt-text">Call your Area Manager and write it if they approve over the phone</div></div></div><div class="q-feedback-text" id="fb38"></div></div>
+
+  <!-- SECTION 7: FIELD APPLICATION -->
+  <div class="section-divider">
+    <div class="sd-icon" style="background:#e8f5e9">🚀</div>
+    <div><div class="sd-module">Section 7</div><div class="sd-title">Field Application</div></div>
+    <div class="sd-line"></div>
+    <div class="sd-count">Questions 39–40 · 2 marks</div>
+  </div>
+
+  <div class="q-card" id="q39"><div class="q-header"><span class="q-num">39</span><div class="q-text">A General Surgeon tells you: "We tried Epithrive® on a patient last month with a deep surgical site infection — it didn't work." The correct first response is:</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,39,'A')"><div class="opt-letter">A</div><div class="opt-text">Immediately present the India clinical study data showing 72.4% wound area reduction to counter the negative experience</div></div><div class="q-opt" onclick="selectOpt(this,39,'B')"><div class="opt-letter">B</div><div class="opt-text">Apologise and offer a free product replacement for the patient who didn't respond</div></div><div class="q-opt" onclick="selectOpt(this,39,'C')"><div class="opt-letter">C</div><div class="opt-text">"Thank you for telling me — can I ask what the wound status was at the time Epithrive® was started? Was active infection present?" — to investigate the patient selection context</div></div><div class="q-opt" onclick="selectOpt(this,39,'D')"><div class="opt-letter">D</div><div class="opt-text">Report this as an adverse event immediately and escalate to Medical Affairs</div></div></div><div class="q-feedback-text" id="fb39"></div></div>
+
+  <div class="q-card" id="q40"><div class="q-header"><span class="q-num">40</span><div class="q-text">During a third call, an ICU physician says "I'd like to formally add Epithrive® to our ICU nutrition protocol." What is the ideal next step an MR should propose?</div></div><div class="q-opts"><div class="q-opt" onclick="selectOpt(this,40,'A')"><div class="opt-letter">A</div><div class="opt-text">Thank the doctor and confirm the hospital pharmacy will begin stocking it automatically</div></div><div class="q-opt" onclick="selectOpt(this,40,'B')"><div class="opt-letter">B</div><div class="opt-text">Offer to prepare a one-page institutional protocol addition document with dosing, patient selection criteria, drug spacing notes, and clinical evidence — and schedule a joint meeting with the physician and clinical dietitian</div></div><div class="q-opt" onclick="selectOpt(this,40,'C')"><div class="opt-letter">C</div><div class="opt-text">Immediately forward the request to the hospital's procurement department without further involvement</div></div><div class="q-opt" onclick="selectOpt(this,40,'D')"><div class="opt-letter">D</div><div class="opt-text">Ask the doctor to submit a formal written request to the nutrition committee independently</div></div></div><div class="q-feedback-text" id="fb40"></div></div>
+
+  <div class="submit-zone">
+    <button class="submit-btn" onclick="submitExam()">Submit Examination →</button>
+    <div class="submit-note">Ensure all 40 questions are answered before submitting. Unanswered questions are marked incorrect.</div>
+  </div>
+</div>
+
+<!-- RESULTS PAGE -->
+<div id="resultsPage">
+  <div class="results-hero" id="resultsHero"></div>
+  <div class="results-stats" id="resultsStats"></div>
+  <div class="section-breakdown" id="sectionBreakdown"></div>
+  <div id="certificate"></div>
+  <div id="failActions"></div>
+</div>
+
+<!-- REVIEW PAGE -->
+<div id="reviewPage">
+  <div class="review-header">
+    <div><h3>Examination Review</h3><p>Correct answers highlighted in green · Your wrong answers in red</p></div>
+    <button class="back-btn" onclick="showResults()">← Back to Results</button>
+  </div>
+  <div id="reviewContent"></div>
+</div>
+
+<script>
+// ── EXAM DATA ──
+const ANSWERS = {
+  1:'B',2:'B',3:'C',4:'B',5:'C',6:'B',
+  7:'C',8:'B',9:'C',10:'B',11:'B',
+  12:'B',13:'C',14:'B',15:'B',16:'B',17:'B',18:'B',19:'C',20:'C',21:'B',
+  22:'B',23:'B',24:'C',25:'B',26:'C',27:'B',28:'B',
+  29:'B',30:'C',31:'B',32:'C',33:'B',
+  34:'C',35:'C',36:'D',37:'C',38:'C',
+  39:'C',40:'B'
+};
+
+const EXPLANATIONS = {
+  1:'A wound is clinically classified as chronic when it has shown no measurable progress in 2 or more weeks despite appropriate standard care. This 2-week threshold is the key trigger in the SNAP Rule for Epithrive® candidacy.',
+  2:'The correct sequence is Hemostasis (minutes-hours) → Inflammation (Day 0-5) → Proliferation (Day 3-21) → Remodeling (Day 21-2 years). These phases overlap but always follow this order in healthy healing.',
+  3:'Neutrophils are the first immune cells to arrive (within hours), phagocytose bacteria, and are the primary consumers of L-Glutamine. This is why Glutamine depletion in illness directly compromises early infection control in wounds.',
+  4:'Matrix metalloproteinases (MMPs) are the enzymes that remodel the ECM during normal healing. In chronic wounds, they become chronically overactivated, destroying collagen and growth factors faster than fibroblasts can rebuild — the core biology of a stalled wound. Zinc regulates MMP activity.',
+  5:'30-50% of Indian surgical and elderly hospital patients are estimated to be malnourished at admission. This is the key epidemiological fact that makes Epithrive® clinically necessary — the substrate gap exists in half of all potential patients.',
+  6:'L-Arginine (7g) is converted to Nitric Oxide via the NOS (Nitric Oxide Synthase) enzyme pathway. NO causes vasodilation → increased blood flow → more oxygen and nutrients delivered to the wound bed → angiogenesis and fibroblast recruitment. This is Epithrive®\'s primary vascular mechanism.',
+  7:'"E" in T.I.M.E. stands for Epithelial/Edge Advancement — the process of keratinocyte migration across the wound surface (re-epithelialization) and wound edge contraction. Epithrive® supports this through Vitamin A (keratinocyte differentiation), Zinc (keratinocyte proliferation), and Arginine (angiogenesis at wound edges).',
+  8:'Silver ions are cytotoxic to fibroblasts at high concentrations with prolonged exposure. Fibroblasts are the key collagen-producing cells required for granulation tissue. Extended silver use would impair granulation — which is why 2-4 weeks is the standard limit after which the wound is reassessed.',
+  9:'EPUAP (European Pressure Ulcer Advisory Panel) and NPIAP (National Pressure Injury Advisory Panel) explicitly recommend Arginine, Zinc, and Vitamin C supplementation specifically for pressure injury patients. This is the guideline foundation for recommending Epithrive® to wound care professionals.',
+  10:'Wagner Grade II DFU extends deep to tendon, joint capsule, or bone without abscess or osteomyelitis (that would be Grade III). Grade I is superficial without subcutaneous involvement. Grade II is the primary surgical wound nutrition target.',
+  11:'NPWT mechanically stimulates fibroblasts and drives granulation through controlled negative pressure — but this increased cellular activity demands substrates to build tissue. Arginine for angiogenesis, Glutamine for immune protection of the wound, and Marine Collagen as ECM precursors are exactly what NPWT\'s mechanical stimulus needs to translate into tissue.',
+  12:'L-Arginine operates through two distinct pathways: (1) → Nitric Oxide via NOS → vasodilation → angiogenesis → oxygen/nutrient delivery; (2) → Ornithine → Proline → Collagen synthesis scaffold. Both pathways are required for complete wound repair.',
+  13:'Ca-HMB specifically inhibits the ubiquitin-proteasome pathway — the cellular machinery responsible for breaking down muscle proteins during catabolism. By inhibiting this pathway, HMB preserves lean muscle mass in chronically ill wound patients, supporting mobility, oxygen delivery, and systemic recovery.',
+  14:'Marine Collagen Peptides in Epithrive® are pre-hydrolysed to dipeptides and tripeptides (notably Gly-Pro-Hyp). These are absorbed intact via the PEPT1 peptide transporter in the small intestine, reaching peak plasma within 1 hour and accumulating selectively at connective tissue and wound sites.',
+  15:'Copper enables lysyl oxidase — the enzyme that catalyses the cross-linking of collagen and elastin fibres into a stable, tensile matrix. Without Copper, individual collagen fibres are deposited but not cross-linked, creating a structurally weak scaffold at high risk of dehiscence (wound re-opening under minimal stress).',
+  16:'Vitamin C (ascorbic acid) is the cofactor for prolyl hydroxylase and lysyl hydroxylase — the enzymes that add hydroxyl groups to proline and lysine residues in procollagen. Without hydroxylation, the collagen triple helix cannot be properly stabilised, regardless of how much collagen substrate is available. This is why scurvy causes wound breakdown.',
+  17:'Vitamin A is converted to retinoic acid, which directly regulates gene expression for keratinocyte differentiation. It specifically drives keratinocyte migration across the wound surface (re-epithelialization) — a process Vitamin C does not address. Vitamin A also promotes fibroblast differentiation and regulates the inflammatory phase.',
+  18:'Zinc in Epithrive® chelates (binds) quinolone antibiotics (including ciprofloxacin) in the gastrointestinal tract, reducing absorption of both. The solution is simple: administer the antibiotic first (on an empty stomach as clinically recommended), wait 2-3 hours, then give Epithrive®. The spacing eliminates the interaction completely.',
+  19:'The global formulation replaces Ca-HMB with L-Proline (1.5g) + L-Lysine (1.5g) specifically to avoid patent overlap with Abbott\'s Juven product (which holds the HMB+Arg+Gln combination patent). Proline and Lysine create a "complete collagen synthesis complex" alongside Arginine — a different but clinically relevant formulation.',
+  20:'Selenium is incorporated into selenoproteins, most importantly glutathione peroxidase (GPx) — the enzyme that systematically processes hydrogen peroxide and lipid peroxides into harmless water. This enzyme-based antioxidant system complements the non-enzymatic antioxidants Vitamins C and E in protecting healing tissue from oxidative stress.',
+  21:'Zinc regulates matrix metalloproteinase (MMP) activity during the remodeling phase — ensuring balanced ECM breakdown and rebuilding so that collagen III is systematically replaced by the stronger, more organised Collagen I. Dysregulated MMPs (too high or too low) impair scar maturation and tensile strength development.',
+  22:'The precise finding is 72.4% (Epithrive® arm) vs 52.1% (standard care alone) mean wound area reduction at Week 8, with p=0.004. Every number matters: 72.4 not 72, 52.1 not 52, p=0.004 not p<0.05. Precision in citing this statistic is the mark of a credible MR.',
+  23:'p=0.004 means there is a 0.4% probability (not 4%) the result occurred by chance. The clinical language is: "We are 99.6% confident the difference between the two arms is real, not random." This is far stronger than the minimum threshold of p<0.05 (5% probability of chance).',
+  24:'Williams and Barbul (2002, Annals of Surgery) published a double-blind RCT showing significantly increased wound collagen deposition in elderly volunteers supplemented with Arg+HMB+Gln vs isonitrogenous control. This is the foundational collagen-deposition RCT for surgical wound patients. The 3.5-day hospital stay reduction was also from this study.',
+  25:'Armstrong 2014 was a correctly designed RCT (n=271 DFU patients) — but the overall population analysis diluted the effect. The subgroup with nutritional compromise (low pre-albumin, poor limb perfusion) — which is exactly Epithrive®\'s SNAP-Rule-defined target — showed clinical benefit. The lesson: patient selection determines the outcome.',
+  26:'The Arribaslopez et al. 2021 meta-analysis searched 10 electronic databases and analysed 44 human studies — 5 on Arginine and 39 on Glutamine supplementation in wound healing. It confirmed significant effects on hydroxyproline (collagen marker), nitrogen balance, IL-6, TNF-α, CRP, mortality, and length of stay.',
+  27:'Kisil & Gimelfarb (J Yeungnam Med Sci 2023) — the most recently published study — showed median time to complete pressure ulcer healing of 170 days (HMB/Arg/Gln group) vs 218 days (SOC alone), p<0.046. This was in elderly geriatric patients with multiple comorbidities including dementia and diabetes.',
+  28:'The 39% relative improvement = (72.4 − 52.1) ÷ 52.1 × 100 = 20.3 ÷ 52.1 × 100 = 38.96% ≈ 39%. This measures how much better the Epithrive® arm performed relative to what the control arm achieved. The absolute difference is 20.3 percentage points — both figures are useful in different conversations.',
+  29:'The "E" step (Explore) must occur before pitching — specifically before the "C" (Connect) and "B" (Build) steps. Asking first ensures the pitch addresses the doctor\'s actual challenge, not a generic presentation. A doctor who has just articulated their problem is primed to hear a solution.',
+  30:'The best first-call close asks for one specific, achievable action tied to a concrete patient profile trigger. "Your next DFU patient whose wound hasn\'t improved 30% in 4 weeks AND albumin <3.5" gives the doctor an immediate, recognisable clinical signal for when to act — removing ambiguity from the commitment.',
+  31:'Never make Ensure the enemy. Position Epithrive® as complementary: "Ensure handles caloric repletion — Epithrive® provides the wound-specific substrates (7g Arginine, 7g Glutamine, HMB, Collagen) that Ensure doesn\'t deliver." This removes switching friction entirely — the doctor doesn\'t have to change anything, just add.',
+  32:'High volume + Low receptiveness = "Long Game" quadrant. Strategy: bi-weekly visits, different clinical angles each time, find alternate entry through the nurse, dietitian, or a senior resident. These doctors are worth the effort due to volume — persistence and varied approaches eventually create an opening.',
+  33:'WhatsApp follow-up should be within 24 hours (ideally same evening), referencing the specific conversation ("As discussed today, the India study is attached"), attaching the most relevant company-approved PDF for that doctor\'s specialty, and always including the mandatory disclaimer. Specificity and speed are the two most important factors.',
+  34:'Option C is the only compliant statement — it attributes the finding precisely to the specific study (CSR-ETH-2025-001), states the exact numbers (72.4% vs 52.1%, p=0.004), and frames it as a study finding not a product claim. Options A, B, and D all contain prohibited claims: disease treatment (A), FSMP pre-approval (B), and guarantee (D).',
+  35:'Epithrive® is currently registered as a nutraceutical/dietary supplement under FSSAI (Licence 11524998000214). FSMP application is in progress but NOT yet approved. For nutraceuticals, nutrient function claims and adjunct support claims are permitted; disease treatment/prevention claims are prohibited.',
+  36:'Difficulty breathing + facial swelling = potential anaphylactic or severe allergic reaction — a medical emergency. The correct response is immediate: (1) advise stopping Epithrive® NOW, (2) seek emergency medical attention immediately, (3) document all details (dose, timing, symptoms, batch number), (4) escalate to Area Manager within the hour. NEVER minimise this or suggest dose reduction.',
+  37:'The mandatory disclaimer is: "Dietary supplement. Not intended to diagnose, treat, cure, or prevent any disease. For nutritional support as an adjunct to standard wound care." This specific wording is required on all materials and in any communication where outcome claims are made. Memorise it exactly.',
+  38:'Regardless of the doctor\'s enthusiasm or authority, the MR must decline to write prohibited claims on any materials. Compliance rules apply universally. The correct response: decline clearly but respectfully, explain the regulatory constraint briefly, offer compliant alternative language ("provides nutritional support for wound healing as an adjunct to standard care"), and escalate the feedback to management.',
+  39:'Before responding to a "it didn\'t work" statement, always gather clinical context first. Active infection in a wound overwhelms all nutritional intervention — Epithrive® is designed for wounds in the granulation/proliferative phase, not for wounds fighting active deep infection. Investigating the patient selection context almost always reveals a wrong-window problem, not a product failure.',
+  40:'Institutional protocol inclusion is the highest-value conversion in hospital MR work. The correct move is to proactively offer to prepare the protocol document AND schedule a joint meeting with both the physician AND the clinical dietitian — because protocol changes require dietitian buy-in. Never leave this to chance or the doctor\'s administrative process.'
+};
+
+const SECTIONS = [
+  {name:'Wound Biology',from:1,to:6,module:'Module 1'},
+  {name:'Wound Care Fundamentals',from:7,to:11,module:'Module 2'},
+  {name:'Ingredient Mastery',from:12,to:21,module:'Module 3'},
+  {name:'Clinical Evidence',from:22,to:28,module:'Module 4'},
+  {name:'Sales Skills',from:29,to:33,module:'Module 5'},
+  {name:'Compliance & Regulatory',from:34,to:38,module:'Module 6'},
+  {name:'Field Application',from:39,to:40,module:'Module 7'}
+];
+
+// Compliance-critical questions (auto-flag if wrong)
+const COMPLIANCE_QS = [34,35,36,37,38];
+
+let userAnswers = {};
+let timerInterval;
+let timeLeft = 3600; // 60 mins
+let examSubmitted = false;
+let candidateName = '';
+
+// ── TIMER ──
+function startTimer(){
+  updateTimerDisplay();
+  timerInterval = setInterval(()=>{
+    timeLeft--;
+    updateTimerDisplay();
+    if(timeLeft<=0){clearInterval(timerInterval);submitExam();}
+    if(timeLeft<=300){document.getElementById('timerWrap').classList.add('warn');}
+  },1000);
+}
+
+function updateTimerDisplay(){
+  const m=Math.floor(timeLeft/60).toString().padStart(2,'0');
+  const s=(timeLeft%60).toString().padStart(2,'0');
+  document.getElementById('timerDisplay').textContent=`${m}:${s}`;
+}
+
+// ── START EXAM ──
+function startExam(){
+  candidateName = document.getElementById('candidateName').value.trim() || 'Candidate';
+  document.getElementById('coverPage').style.display='none';
+  document.getElementById('examBar').style.display='block';
+  document.getElementById('examPage').style.display='block';
+  window.scrollTo(0,0);
+  startTimer();
+}
+
+// ── SELECT OPTION ──
+function selectOpt(el, qNum, letter){
+  if(examSubmitted) return;
+  const card = document.getElementById('q'+qNum);
+  card.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('.opt-letter').style.background='';
+  userAnswers[qNum] = letter;
+  card.classList.add('answered');
+  updateProgress();
+}
+
+function updateProgress(){
+  const answered = Object.keys(userAnswers).length;
+  const pct = Math.round(answered/40*100);
+  document.getElementById('progCount').textContent = answered;
+  document.getElementById('progPct').textContent = pct+'%';
+  document.getElementById('progFill').style.width = pct+'%';
+}
+
+// ── SUBMIT ──
+function submitExam(){
+  if(examSubmitted) return;
+  examSubmitted = true;
+  clearInterval(timerInterval);
+
+  // Score
+  let correct = 0;
+  const complianceFails = [];
+  for(let q=1;q<=40;q++){
+    if(userAnswers[q] === ANSWERS[q]) correct++;
+    else if(COMPLIANCE_QS.includes(q)) complianceFails.push(q);
+  }
+
+  const score = correct;
+  const passed = score >= 32;
+
+  // Reveal answers in exam
+  for(let q=1;q<=40;q++){
+    const card = document.getElementById('q'+q);
+    const ua = userAnswers[q];
+    const ca = ANSWERS[q];
+    card.querySelectorAll('.q-opt').forEach(opt=>{
+      const letter = opt.querySelector('.opt-letter').textContent;
+      if(letter===ca) opt.classList.add('show-correct');
+      else if(letter===ua && ua!==ca) opt.classList.add('show-wrong');
+      else opt.classList.add('show-neutral');
+      opt.style.cursor='default';
+    });
+    // Show feedback
+    const fb = document.getElementById('fb'+q);
+    fb.className = 'q-feedback-text show ' + (ua===ca?'correct':'incorrect');
+    fb.textContent = (ua===ca?'✓ Correct — ':'✗ Incorrect — ') + EXPLANATIONS[q];
+    if(ua===ca) card.classList.add('correct-card');
+    else card.classList.add('wrong-card');
+  }
+
+  // Show results
+  document.getElementById('examPage').style.display='none';
+  document.getElementById('resultsPage').style.display='block';
+  window.scrollTo(0,0);
+  renderResults(score,passed,complianceFails);
+}
+
+function renderResults(score,passed,complianceFails){
+  const timeTaken = 3600-timeLeft;
+  const mm=Math.floor(timeTaken/60);const ss=timeTaken%60;
+
+  // Hero
+  const hero = document.getElementById('resultsHero');
+  hero.innerHTML=`
+    <div class="rh-icon">${passed?'🏅':'📋'}</div>
+    <div class="rh-status ${passed?'pass':'fail'}">${passed?'CERTIFIED — PASSED':'NOT YET CERTIFIED — FAILED'}</div>
+    <div class="rh-score">${score} / 40 correct &nbsp;·&nbsp; ${Math.round(score/40*100)}% &nbsp;·&nbsp; Pass mark: 80% (32/40)</div>
+    <div class="rh-name">${candidateName}</div>
+  `;
+
+  // Stats
+  const wrong = 40-score;
+  const elapsed = `${mm}m ${ss}s`;
+  document.getElementById('resultsStats').innerHTML=`
+    <div class="rs-card"><div class="rsc-val ${score>=32?'pass-v':'fail-v'}">${score}</div><div class="rsc-label">Correct Answers</div></div>
+    <div class="rs-card"><div class="rsc-val fail-v">${wrong}</div><div class="rsc-label">Incorrect Answers</div></div>
+    <div class="rs-card"><div class="rsc-val mid">${Math.round(score/40*100)}%</div><div class="rsc-label">Score</div></div>
+    <div class="rs-card"><div class="rsc-val mid">${elapsed}</div><div class="rsc-label">Time Taken</div></div>
+  `;
+
+  // Section breakdown
+  let bHTML='<h4>Performance by Section</h4>';
+  SECTIONS.forEach(sec=>{
+    let secCorrect=0;
+    const total=sec.to-sec.from+1;
+    for(let q=sec.from;q<=sec.to;q++) if(userAnswers[q]===ANSWERS[q]) secCorrect++;
+    const pct=Math.round(secCorrect/total*100);
+    const cls=pct>=80?'full':pct>=60?'good':'low';
+    bHTML+=`<div class="sb-row">
+      <div class="sbr-label">${sec.name} <span style="font-size:10px;color:var(--muted)">(${sec.module})</span></div>
+      <div class="sbr-bar"><div class="sbr-fill ${cls}" style="width:${pct}%"></div></div>
+      <div class="sbr-score" style="color:${pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)'}">${secCorrect}/${total}</div>
+    </div>`;
+  });
+
+  if(complianceFails.length>0){
+    bHTML+=`<div style="margin-top:14px;background:var(--red-bg);border:1px solid var(--red-bd);border-radius:8px;padding:12px 14px;font-size:12.5px;color:var(--red)">
+      <strong>⚠️ Compliance Flag:</strong> Questions ${complianceFails.join(', ')} (compliance/regulatory) were answered incorrectly. Review Module 6 before field deployment regardless of overall score.
+    </div>`;
+  }
+  document.getElementById('sectionBreakdown').innerHTML=bHTML;
+
+  // Certificate or fail actions
+  const now=new Date();
+  const dateStr=now.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+
+  if(passed){
+    document.getElementById('certificate').style.display='block';
+    document.getElementById('certificate').innerHTML=`
+      <div class="cert-wrap">
+        <div class="cert-border">
+          <div class="cert-seal">🏅</div>
+          <div class="cert-issued">Certificate of Achievement</div>
+          <div class="cert-org">Nuin Wellness Pvt. Ltd. · ZenFitra Lifesciences Division</div>
+          <div class="cert-certifies">This certifies that</div>
+          <div class="cert-name">${candidateName}</div>
+          <div class="cert-earned">has successfully completed the Epithrive® Medical Representative Training Programme and passed the Certification Examination with a score of ${score}/40 (${Math.round(score/40*100)}%), thereby earning the designation of</div>
+          <div class="cert-title">Epithrive® Certified Product Expert</div>
+          <div class="cert-product">Authorised for solo field deployment — Wound Healing Nutrition Specialist</div>
+          <div class="cert-bottom">
+            <div class="cert-score-box"><div class="csb-val">${score}/40</div><div class="csb-label">Final Score</div></div>
+            <div class="cert-sig"><div class="cs-line">Anant Warhade</div><div class="cs-name">Director, Nuin Wellness Pvt. Ltd.</div></div>
+            <div class="cert-date"><div class="cd-val">${dateStr}</div><div class="cd-label">Date of Certification</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-actions">
+        <button class="cert-btn cert-print" onclick="window.print()">🖨️ Print Certificate</button>
+        <button class="cert-btn cert-review" onclick="showReview()">📋 Review Answers</button>
+      </div>
+    `;
+  } else {
+    document.getElementById('failActions').innerHTML=`
+      <div style="background:var(--red-bg);border:1px solid var(--red-bd);border-radius:12px;padding:20px 22px;margin-bottom:14px">
+        <h4 style="font-family:'Fraunces',serif;color:var(--red);margin-bottom:8px">Score below pass mark — Certification not awarded</h4>
+        <p style="font-size:13.5px;color:var(--body);line-height:1.65">You scored ${score}/40 (${Math.round(score/40*100)}%) — the pass mark is 32/40 (80%). Review the sections where you scored below 80%, return to the corresponding modules, and complete additional practice before re-attempting. Re-attempts require Area Manager authorisation.</p>
+      </div>
+      <button class="retry-btn" onclick="showReview()">📋 Review All Answers & Explanations</button>
+    `;
+  }
+}
+
+function showReview(){
+  document.getElementById('resultsPage').style.display='none';
+  document.getElementById('reviewPage').style.display='block';
+  document.getElementById('examPage').style.display='block';
+  document.getElementById('examPage').style.paddingTop='0';
+  document.getElementById('reviewPage').appendChild(document.getElementById('examPage'));
+  window.scrollTo(0,0);
+  // Disable submit zone
+  const sz=document.querySelector('.submit-zone');
+  if(sz) sz.style.display='none';
+}
+
+function showResults(){
+  document.getElementById('reviewPage').style.display='none';
+  document.getElementById('resultsPage').style.display='block';
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

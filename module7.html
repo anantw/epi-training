@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 7 — Field Application</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --olive:#2d4a1e; --olive-mid:#3d6429; --olive-light:#edf3e8;
+  --orange:#F4811F; --orange-d:#d46b0e; --orange-light:#fef3e8; --orange-mid:#fbd9b5;
+  --teal:#0E8FA8; --teal-light:#e5f4f8; --teal-mid:#b5dce8;
+  --navy:#0e1e2c; --navy-mid:#1a3045;
+  --body:#1e2d3d; --muted:#5a7080; --border:#d8e4ec;
+  --bg:#f0ece6; --card:#fff;
+  --green:#0a7a40; --green-bg:#edfaf3; --green-bd:#7ddba8;
+  --red:#b91c1c; --red-bg:#fef2f2; --red-bd:#fca5a5;
+  --amber:#b45309; --amber-bg:#fffbeb; --amber-bd:#fcd34d;
+  --pass:#15803d; --warn:#d97706; --fail:#dc2626;
+  --sidebar-w:256px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--body);display:flex;min-height:100vh;font-size:14px;line-height:1.65}
+
+/* ── SIDEBAR ── */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--navy);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sidebar::-webkit-scrollbar{width:3px}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+.sb-brand{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-tag{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);display:block;margin-bottom:5px;color:#a8d48a}
+.sb-brand h2{font-family:'Fraunces',serif;color:#fff;font-size:18px;font-weight:600}
+.sb-brand p{color:rgba(255,255,255,.38);font-size:11px;margin-top:3px}
+.sb-cat{padding:16px 20px 6px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.22)}
+.sb-nav a{display:flex;align-items:center;gap:9px;padding:8px 20px;color:rgba(255,255,255,.52);text-decoration:none;font-size:12px;font-weight:600;border-left:3px solid transparent;transition:all .18s}
+.sb-nav a:hover,.sb-nav a.active{color:#fff;background:rgba(255,255,255,.05);border-left-color:#a8d48a}
+.sb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0}
+.sb-nav a:hover .sb-dot,.sb-nav a.active .sb-dot{background:#a8d48a}
+.sb-badge{margin:14px 20px;padding:12px 14px;background:rgba(45,74,30,.4);border:1px solid rgba(168,212,138,.25);border-radius:8px;font-size:11px;color:rgba(255,255,255,.55);line-height:1.55}
+.sb-badge strong{color:#a8d48a}
+
+/* ── MAIN ── */
+#main{margin-left:var(--sidebar-w);flex:1;padding:0 44px 100px;max-width:1020px}
+
+/* ── HEADER ── */
+.page-header{background:linear-gradient(145deg,#0e1e2c 0%,#1a3a14 55%,#2d5c18 100%);margin:0 -44px 52px;padding:52px 44px 48px;position:relative;overflow:hidden;border-bottom:3px solid #4a8a2e}
+.page-header::before{content:'';position:absolute;top:-50px;right:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(74,138,46,.2) 0%,transparent 70%)}
+.ph-pretag{display:inline-flex;align-items:center;gap:8px;background:rgba(74,138,46,.2);border:1px solid rgba(74,138,46,.4);border-radius:4px;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a8d48a;margin-bottom:14px}
+.page-header h1{font-family:'Fraunces',serif;color:#fff;font-size:38px;font-weight:700;line-height:1.1;margin-bottom:10px}
+.page-header h1 em{color:#a8d48a;font-style:normal}
+.page-header .ph-sub{color:rgba(255,255,255,.48);font-size:14.5px;max-width:580px;line-height:1.65}
+.ph-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.ph-chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,.6)}
+.ph-chip strong{color:#fff}
+
+/* ── SECTIONS ── */
+.section{margin-bottom:60px;scroll-margin-top:24px}
+.sec-hd{display:flex;align-items:center;gap:12px;margin-bottom:26px;padding-bottom:14px;border-bottom:2px solid var(--border)}
+.sec-num{width:34px;height:34px;background:var(--olive-mid);color:#fff;border-radius:6px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-hd h2{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--navy)}
+.sec-hd .sh-sub{font-size:12.5px;color:var(--muted);margin-top:1px}
+
+/* ── CALLOUTS ── */
+.callout{border-radius:8px;padding:14px 18px;margin-bottom:16px;font-size:13.5px;line-height:1.65}
+.callout.olive{background:var(--olive-light);border:1px solid #b8d4a0}.callout.olive strong{color:var(--olive-mid)}
+.callout.orange{background:var(--orange-light);border:1px solid var(--orange-mid)}.callout.orange strong{color:var(--orange-d)}
+.callout.navy{background:var(--navy);color:rgba(255,255,255,.72)}.callout.navy strong{color:#a8d48a}
+.callout.teal{background:var(--teal-light);border:1px solid var(--teal-mid)}.callout.teal strong{color:var(--teal)}
+
+/* ── PRE-FIELD BRIEFING ── */
+.brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.brief-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
+.brief-card .bc-num{font-family:'Fraunces',serif;font-size:42px;font-weight:700;color:var(--olive-light);line-height:1;margin-bottom:8px}
+.brief-card h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.brief-card p{font-size:12.5px;color:var(--muted);line-height:1.55}
+
+/* ── DETAILING DRILL ── */
+.drill-timeline{position:relative;margin-bottom:20px}
+.drill-timeline::before{content:'';position:absolute;left:40px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--olive-mid),var(--orange))}
+.drill-step{display:flex;gap:20px;margin-bottom:20px;position:relative}
+.ds-marker{width:80px;display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.ds-circle{width:28px;height:28px;border-radius:50%;background:var(--olive-mid);border:3px solid var(--bg);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;z-index:1;position:relative}
+.ds-time{font-size:10px;color:var(--orange-d);font-weight:700;margin-top:4px;white-space:nowrap}
+.ds-content{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.ds-content h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.ds-content p{font-size:13px;color:var(--body);line-height:1.6}
+.ds-script{margin-top:10px;background:var(--olive-light);border-left:3px solid var(--olive-mid);border-radius:0 6px 6px 0;padding:10px 13px;font-size:12.5px;color:#1a2e10;font-style:italic;line-height:1.6}
+.ds-tips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ds-tip{background:var(--bg);border-radius:4px;padding:3px 10px;font-size:11px;font-weight:600;color:var(--muted)}
+
+/* ── ROLE-PLAY WITH RUBRIC ── */
+.rp-container{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.rp-hd{padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;background:#fafbfc}
+.rp-badge{background:var(--olive-mid);color:#fff;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.rp-hd-meta{flex:1}
+.rp-hd-meta h4{font-size:14px;font-weight:700;color:var(--navy)}
+.rp-hd-meta p{font-size:12px;color:var(--muted);margin-top:2px}
+.rp-diff{font-size:9.5px;font-weight:800;padding:3px 9px;border-radius:3px;letter-spacing:.5px;text-transform:uppercase;flex-shrink:0}
+.diff-1{background:#e8fdf2;color:var(--green)}
+.diff-2{background:var(--amber-bg);color:var(--amber)}
+.diff-3{background:var(--red-bg);color:var(--red)}
+.rp-chevron{font-size:18px;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.rp-container.open .rp-chevron{transform:rotate(90deg);color:var(--olive-mid)}
+.rp-body{display:none;border-top:1px solid var(--border)}
+.rp-container.open .rp-body{display:block}
+
+.rp-layout{display:grid;grid-template-columns:1fr 320px;gap:0}
+.rp-dialog-pane{padding:20px;border-right:1px solid var(--border)}
+.rp-rubric-pane{padding:20px;background:#fafbfc}
+
+.rp-scene{background:var(--bg);border-radius:8px;padding:12px 14px;font-size:13px;margin-bottom:14px}
+.rp-scene strong{color:var(--navy);display:block;margin-bottom:3px;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+
+.rp-line{display:flex;gap:10px;margin-bottom:12px}
+.rp-speaker{font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;min-width:36px;padding-top:8px;flex-shrink:0}
+.rp-speaker.dr{color:var(--red)}
+.rp-speaker.mr{color:var(--teal)}
+.rp-speaker.nu{color:var(--amber)}
+.rp-speaker.fa{color:var(--purple,#6527a8)}
+.rp-bubble{flex:1;padding:9px 13px;border-radius:8px;font-size:13px;line-height:1.6}
+.rp-line .dr~.rp-bubble,.rp-line .nu~.rp-bubble,.rp-line .fa~.rp-bubble{background:#f4f7fa;color:var(--body)}
+.rp-line .mr~.rp-bubble{background:var(--teal-light);color:var(--body)}
+
+.rp-rubric-pane h5{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.rubric-item{margin-bottom:14px}
+.rubric-item .ri-label{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px;display:flex;justify-content:space-between}
+.rubric-item .ri-bar{height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;margin-bottom:3px}
+.rubric-item .ri-fill{height:100%;border-radius:4px;transition:width .4s}
+.rubric-item .ri-desc{font-size:11px;color:var(--muted);line-height:1.4}
+.ri-fill.pass{background:linear-gradient(90deg,var(--pass),#22c55e)}
+.ri-fill.warn{background:linear-gradient(90deg,var(--warn),#f59e0b)}
+.ri-fill.fail{background:linear-gradient(90deg,var(--fail),#ef4444)}
+
+.rp-score{margin-top:16px;background:var(--olive-light);border:1px solid #b8d4a0;border-radius:8px;padding:12px 14px}
+.rp-score h6{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--olive-mid);margin-bottom:6px}
+.rp-score p{font-size:12.5px;color:#1a3010;line-height:1.5}
+
+.rp-coach{padding:14px 20px;background:#fff9f0;border-top:1px solid #fbd9b5}
+.rp-coach h6{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--orange-d);margin-bottom:6px}
+.rp-coach p{font-size:12.5px;color:var(--body);line-height:1.6}
+.rp-coach ul{padding-left:16px;margin-top:6px}
+.rp-coach li{font-size:12.5px;color:var(--body);margin-bottom:4px;line-height:1.5}
+
+/* ── SHADOW FRAMEWORK ── */
+.shadow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.shadow-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.shadow-card-head{padding:12px 16px}
+.shadow-card-head h4{color:#fff;font-size:13px;font-weight:700}
+.shadow-card-head p{color:rgba(255,255,255,.6);font-size:10px;margin-top:2px}
+.sc-pre{background:var(--navy)}
+.sc-during{background:var(--olive-mid)}
+.sc-post{background:#7c3005}
+.shadow-card-body{padding:14px 16px}
+.sc-check{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+.sc-chk{width:16px;height:16px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:transparent;transition:all .15s}
+.sc-chk:hover{border-color:var(--olive-mid)}
+.sc-chk.checked{background:var(--olive-mid);border-color:var(--olive-mid);color:#fff}
+.sc-check p{font-size:12px;color:var(--body);line-height:1.5}
+
+/* ── PERFORMANCE RUBRIC ── */
+.perf-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:13px;margin-bottom:20px}
+.perf-table th{background:var(--navy);color:rgba(255,255,255,.65);padding:10px 14px;text-align:left;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.perf-table td{padding:12px 14px;border-bottom:1px solid #f0f4f6;vertical-align:top;line-height:1.5}
+.perf-table tr:last-child td{border-bottom:none}
+.perf-table td:first-child{font-weight:700;color:var(--navy);width:160px}
+.perf-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.pb-pass{background:var(--green-bg);color:var(--green)}
+.pb-warn{background:var(--amber-bg);color:var(--amber)}
+.pb-fail{background:var(--red-bg);color:var(--red)}
+
+/* ── SELF-ASSESSMENT ── */
+.self-assess{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px}
+.self-assess h4{font-family:'Fraunces',serif;font-size:18px;color:var(--navy);margin-bottom:6px}
+.self-assess p{font-size:13px;color:var(--muted);margin-bottom:18px}
+.sa-item{margin-bottom:16px}
+.sa-item .sa-q{font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.sa-item .sa-scale{display:flex;gap:6px}
+.sa-btn{flex:1;padding:8px 4px;border-radius:7px;border:1.5px solid var(--border);font-size:11px;font-weight:700;cursor:pointer;text-align:center;transition:all .15s;background:var(--card);color:var(--muted)}
+.sa-btn:hover{border-color:var(--olive-mid);color:var(--olive-mid)}
+.sa-btn.selected{background:var(--olive-mid);color:#fff;border-color:var(--olive-mid)}
+.sa-score-display{margin-top:20px;background:var(--olive-light);border:1px solid #b8d4a0;border-radius:10px;padding:16px 18px;display:none}
+.sa-score-display.show{display:block}
+.sa-score-display h5{font-family:'Fraunces',serif;font-size:17px;color:var(--olive-mid);margin-bottom:8px}
+.sa-score-display p{font-size:13.5px;color:#1a3010;line-height:1.6}
+
+/* ── COMMON MISTAKES ── */
+.mistake-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.mistake-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.mistake-card .mc-head{padding:12px 16px;background:var(--red-bg);border-bottom:2px solid var(--red-bd)}
+.mistake-card .mc-head h5{font-size:12px;font-weight:700;color:var(--red)}
+.mistake-card .mc-fix{padding:12px 16px;background:var(--green-bg);border-top:2px solid var(--green-bd)}
+.mistake-card .mc-fix h5{font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px}
+.mistake-card .mc-body{padding:10px 16px}
+.mistake-card p{font-size:12.5px;color:var(--body);line-height:1.55}
+
+/* ── SURPRISE SCENARIOS ── */
+.surprise-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.surprise-hd{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;background:#fafbfc}
+.surprise-icon{font-size:20px;flex-shrink:0}
+.surprise-title{font-size:14px;font-weight:600;color:var(--navy);flex:1}
+.surprise-chevron{font-size:18px;color:var(--muted);transition:transform .2s}
+.surprise-card.open .surprise-chevron{transform:rotate(90deg);color:var(--olive-mid)}
+.surprise-body{display:none;padding:16px 18px;border-top:1px solid var(--border)}
+.surprise-card.open .surprise-body{display:block}
+.surprise-body .sb-situation{background:var(--bg);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--body);margin-bottom:12px;border-left:3px solid var(--amber)}
+.surprise-body .sb-response{background:var(--olive-light);border-radius:8px;padding:12px 14px;font-size:13px;color:#1a3010;line-height:1.65;border-left:3px solid var(--olive-mid)}
+.surprise-body .sb-lesson{margin-top:10px;font-size:12px;color:var(--muted);font-style:italic}
+
+/* ── 30-60-90 DAY PLAN ── */
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px}
+.plan-col{border-right:1px solid var(--border)}
+.plan-col:last-child{border-right:none}
+.plan-col-head{padding:16px 18px}
+.plan-col-head h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
+.plan-col-head p{font-size:11px;color:rgba(255,255,255,.65)}
+.ph-30{background:var(--navy-mid)}.ph-60{background:var(--olive-mid)}.ph-90{background:var(--orange-d)}
+.plan-col-body{padding:16px 18px}
+.plan-item{display:flex;gap:8px;margin-bottom:10px}
+.pi-week{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);min-width:48px;padding-top:2px;flex-shrink:0}
+.pi-text{font-size:12.5px;color:var(--body);line-height:1.5}
+.pi-text strong{color:var(--navy)}
+.plan-metric{margin-top:12px;padding:10px 12px;background:var(--bg);border-radius:8px}
+.plan-metric .pm-label{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.plan-metric p{font-size:13px;font-weight:700;color:var(--navy)}
+
+/* ── GO/NO-GO ASSESSMENT ── */
+.gng-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:14px}
+.gng-num{width:30px;height:30px;border-radius:6px;background:var(--bg);color:var(--muted);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gng-q{flex:1;font-size:13.5px;color:var(--navy);font-weight:500}
+.gng-btns{display:flex;gap:6px;flex-shrink:0}
+.gng-btn{padding:6px 14px;border-radius:6px;border:1.5px solid var(--border);font-size:12px;font-weight:700;cursor:pointer;background:var(--card);transition:all .15s}
+.gng-btn.yes:hover,.gng-btn.yes.sel{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
+.gng-btn.no:hover,.gng-btn.no.sel{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
+.gng-result{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-top:16px;display:none}
+.gng-result.show{display:block}
+.gng-pass{border-color:var(--green-bd);background:var(--green-bg)}
+.gng-warn{border-color:var(--amber-bd);background:var(--amber-bg)}
+.gng-fail{border-color:var(--red-bd);background:var(--red-bg)}
+
+@media(max-width:860px){
+  body{flex-direction:column}
+  #sidebar{position:relative;width:100%;height:auto}
+  #main{margin-left:0;padding:0 20px 60px}
+  .brief-grid,.shadow-grid,.mistake-grid,.plan-grid,.perf-table tr{display:block;grid-template-columns:1fr}
+  .rp-layout{grid-template-columns:1fr}
+  .rp-rubric-pane{border-top:1px solid var(--border);border-right:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-brand">
+    <span class="sb-tag">🚀 Field Training Day</span>
+    <h2>Epithrive®</h2>
+    <p>Module 7 — Field Application</p>
+  </div>
+  <div class="sb-cat">Contents</div>
+  <div class="sb-nav">
+    <a href="#s1" class="active"><span class="sb-dot"></span>Pre-Field Briefing</a>
+    <a href="#s2"><span class="sb-dot"></span>3-Minute Detailing Drill</a>
+    <a href="#s3"><span class="sb-dot"></span>Scored Role-Play Scenarios</a>
+    <a href="#s4"><span class="sb-dot"></span>Shadowing Framework</a>
+    <a href="#s5"><span class="sb-dot"></span>Performance Rubric</a>
+    <a href="#s6"><span class="sb-dot"></span>Self-Assessment Tool</a>
+    <a href="#s7"><span class="sb-dot"></span>Common Field Mistakes</a>
+    <a href="#s8"><span class="sb-dot"></span>Handling Surprises</a>
+    <a href="#s9"><span class="sb-dot"></span>30-60-90 Day Field Plan</a>
+    <a href="#s10"><span class="sb-dot"></span>Go / No-Go Assessment</a>
+  </div>
+  <div class="sb-badge">
+    <strong>Module 7 purpose:</strong> You've learned the knowledge. Now prove you can use it. This module is about execution — scripted practice, scored performance, and field readiness assessment.
+  </div>
+</nav>
+
+<main id="main">
+
+<div class="page-header">
+  <div class="ph-pretag">🚀 Module 7 of 8 — Field Training Day</div>
+  <h1>Field <em>Application</em></h1>
+  <p class="ph-sub">Modules 1–6 gave you the knowledge. This module puts you in the field. Scored role-plays, 3-minute detailing drills, a shadowing checklist, performance rubrics, and the Go/No-Go readiness assessment before your first solo calls.</p>
+  <div class="ph-chips">
+    <div class="ph-chip"><strong>3-Minute</strong> detailing drill</div>
+    <div class="ph-chip"><strong>6</strong> scored role-play scenarios</div>
+    <div class="ph-chip"><strong>Shadowing</strong> framework</div>
+    <div class="ph-chip"><strong>Self-assessment</strong> tool</div>
+    <div class="ph-chip"><strong>Go/No-Go</strong> field readiness test</div>
+  </div>
+</div>
+
+<!-- S1: PRE-FIELD BRIEFING -->
+<section class="section" id="s1">
+  <div class="sec-hd"><div class="sec-num">1</div><div><h2>Pre-Field Briefing</h2><div class="sh-sub">Three things to internalise before you walk into any doctor's office</div></div></div>
+
+  <p style="font-size:14px;line-height:1.75;margin-bottom:20px">Field success is 60% preparation and 40% execution. New MRs who struggle in the field almost always struggle because of preparation failure — not knowledge failure. You've studied six modules. This section distils everything into the three mental anchors that matter before every single call.</p>
+
+  <div class="brief-grid">
+    <div class="brief-card">
+      <div class="bc-num">01</div>
+      <h4>Know Your Single Objective</h4>
+      <p>Before entering the room, write on your notepad: "Today my one objective is ________." It must be specific, achievable, and framed as a doctor action — not a sale. "Get him to try Epithrive® on his next stalled DFU patient" is an objective. "Sell Epithrive®" is a wish.</p>
+    </div>
+    <div class="brief-card" style="border-top:4px solid var(--orange)">
+      <div class="bc-num" style="color:#fbd9b5">02</div>
+      <h4>Know the First Question You'll Ask</h4>
+      <p>Never open a call without a prepared clinical question. "How many DFU patients do you see per week who are stalling despite good dressings?" opens the conversation. "Good morning, I'm from Epithrive®" closes it. Prepare your opening question — not your opening pitch.</p>
+    </div>
+    <div class="brief-card">
+      <div class="bc-num">03</div>
+      <h4>Know What You'll Leave Behind</h4>
+      <p>Before walking in, decide exactly which one or two materials you'll leave. Doctor Summary only (first call). Doctor Summary + Case Study (second call). Full Formulation Explainer (for dietitian). Don't drop the entire bag. One targeted material creates more impact than five random ones.</p>
+    </div>
+  </div>
+
+  <div class="callout navy">
+    <strong>The field mindset mantra:</strong> "I am not here to sell. I am here to understand a clinical problem and share a nutritional solution. If I understand their problem better than they expect me to, I earn the right to be heard. If I share evidence precisely and honestly, I earn the right to be trusted. If I ask for one small specific action, I earn the chance to come back."
+  </div>
+</section>
+
+<!-- S2: 3-MINUTE DETAILING DRILL -->
+<section class="section" id="s2">
+  <div class="sec-hd"><div class="sec-num">2</div><div><h2>The 3-Minute Detailing Drill</h2><div class="sh-sub">How to present the Doctor Summary A4 in exactly 180 seconds — practise this until it's automatic</div></div></div>
+
+  <p style="font-size:13.5px;line-height:1.7;margin-bottom:18px">Most doctors will give you 2–4 minutes on a first call. If you cannot deliver a credible, complete, compliant Epithrive® detailing in under 3 minutes — with the doctor summary in hand — you will lose the call before it begins. This drill gives you the sequence, the timing, and the exact language for each beat.</p>
+
+  <div class="drill-timeline">
+    <div class="drill-step">
+      <div class="ds-marker">
+        <div class="ds-circle">1</div>
+        <div class="ds-time">0:00–0:20</div>
+      </div>
+      <div class="ds-content">
+        <h4>Context Setting — The Problem Statement</h4>
+        <p>Set the clinical context before touching the product. 15–20 seconds. Makes everything that follows relevant.</p>
+        <div class="ds-script">"Doctor, in chronic wound patients — DFU, pressure injuries, post-surgical — the wound often stalls not because the local care is inadequate, but because the body lacks the systemic substrates to build new tissue."</div>
+        <div class="ds-tips"><span class="ds-tip">Eye contact</span><span class="ds-tip">No product name yet</span><span class="ds-tip">Clinical tone</span></div>
+      </div>
+    </div>
+
+    <div class="drill-step">
+      <div class="ds-marker">
+        <div class="ds-circle">2</div>
+        <div class="ds-time">0:20–0:40</div>
+      </div>
+      <div class="ds-content">
+        <h4>Product Introduction — One Sentence</h4>
+        <p>Name the product, describe it precisely, position it as adjunct. 20 seconds.</p>
+        <div class="ds-script">"Epithrive® is India's first targeted wound-healing nutrition formula — a daily sachet providing 7g L-Arginine, 7g L-Glutamine, Ca-HMB, and Marine Collagen Peptides as an adjunct to standard wound care."</div>
+        <div class="ds-tips"><span class="ds-tip">Show the sachet visual</span><span class="ds-tip">"Adjunct" — not replacement</span></div>
+      </div>
+    </div>
+
+    <div class="drill-step">
+      <div class="ds-marker">
+        <div class="ds-circle">3</div>
+        <div class="ds-time">0:40–1:10</div>
+      </div>
+      <div class="ds-content">
+        <h4>The Mechanism — 30 Seconds Max</h4>
+        <p>One pathway, one mechanism, one clinical implication. Resist the urge to explain all 14 ingredients.</p>
+        <div class="ds-script">"Arginine is the rate-limiting substrate for nitric oxide — which drives angiogenesis and blood flow to the wound bed. In diabetic and malnourished patients, Arginine and Glutamine are systematically depleted. Epithrive® restores these specifically, which is why the clinical data shows a difference even when standard care is identical."</div>
+        <div class="ds-tips"><span class="ds-tip">Point to formulation diagram</span><span class="ds-tip">Link to their patient</span></div>
+      </div>
+    </div>
+
+    <div class="drill-step">
+      <div class="ds-marker">
+        <div class="ds-circle">4</div>
+        <div class="ds-time">1:10–1:50</div>
+      </div>
+      <div class="ds-content">
+        <h4>The Evidence Beat — 40 Seconds</h4>
+        <p>One study, one statistic, one author. Don't cite five studies — cite one precisely. Then offer the full CSR.</p>
+        <div class="ds-script">"We've completed an Indian clinical study — n=60 patients, prospective comparative design. Primary finding: 72.4% mean wound area reduction in the Epithrive® arm versus 52.1% with standard care alone at Week 8 — p=0.004. Both arms received identical standard wound care. The PI was Dr. Praful Bhanegaonkar, MS Ortho. The full study report is available — or I can leave this A4 summary today."</div>
+        <div class="ds-tips"><span class="ds-tip">Point to the bar chart on A4</span><span class="ds-tip">Offer the leave-behind naturally</span><span class="ds-tip">State p-value precisely</span></div>
+      </div>
+    </div>
+
+    <div class="drill-step">
+      <div class="ds-marker">
+        <div class="ds-circle">5</div>
+        <div class="ds-time">1:50–2:20</div>
+      </div>
+      <div class="ds-content">
+        <h4>Practical Details — 30 Seconds</h4>
+        <p>Remove every practical barrier in one breath.</p>
+        <div class="ds-script">"Dosing: 1 sachet per day in 200ml water — or 2 sachets for large/chronic wounds. Orange flavour, no added sugar — safe for diabetics. Available directly via WhatsApp at +91 99708 43254 — no prescription needed, so families can order immediately on your recommendation."</div>
+        <div class="ds-tips"><span class="ds-tip">WhatsApp number ready</span><span class="ds-tip">Price ready if asked</span></div>
+      </div>
+    </div>
+
+    <div class="drill-step">
+      <div class="ds-marker">
+        <div class="ds-circle">6</div>
+        <div class="ds-time">2:20–3:00</div>
+      </div>
+      <div class="ds-content">
+        <h4>The Close — 40 Seconds</h4>
+        <p>Leave with a specific, single, achievable action request. Then let there be silence.</p>
+        <div class="ds-script">"Doctor, would you consider trying Epithrive® on your next patient whose wound hasn't shown 30% improvement in 4 weeks, or whose albumin is below 3.5? Just one patient — so you can form your own clinical impression. I'll follow up in a week. [Hand over the A4 summary.] Thank you for your time."</div>
+        <div class="ds-tips"><span class="ds-tip">Specific patient profile trigger</span><span class="ds-tip">Hand over material</span><span class="ds-tip">Wait for response</span><span class="ds-tip">Don't fill the silence</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout olive">
+    <strong>Drill instruction:</strong> Time yourself delivering this sequence against a mirror — or with a colleague as the doctor. Target: under 3 minutes for all 6 beats. Most new MRs run 5–7 minutes initially. The goal is 2:45–3:00 delivered naturally, not rushed. Practice daily for 5 days before your first live call. The sequence should feel conversational, not scripted.
+  </div>
+</section>
+
+<!-- S3: SCORED ROLE-PLAYS -->
+<section class="section" id="s3">
+  <div class="sec-hd"><div class="sec-num">3</div><div><h2>Scored Role-Play Scenarios</h2><div class="sh-sub">6 complex field situations with full dialogue and evaluator rubrics — each scored on 5 dimensions</div></div></div>
+
+  <p style="font-size:13.5px;line-height:1.7;margin-bottom:16px">These scenarios are graded as <strong>Hard</strong> — they involve interruptions, curve-ball objections, emotional pressure, and multi-turn dialogue. The rubric on the right shows how a trainer evaluates each dimension. Study the model response and the coaching notes before practicing with a partner.</p>
+
+  <!-- SCENARIO 1 -->
+  <div class="rp-container open">
+    <div class="rp-hd" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 1</span>
+      <div class="rp-hd-meta"><h4>Orthopaedic Surgeon — First call, dismissive, running late</h4><p>Most common first-call situation — earn time in under 60 seconds or lose the visit</p></div>
+      <span class="rp-diff diff-2">Medium</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-layout">
+        <div class="rp-dialog-pane">
+          <div class="rp-scene"><strong>Setting</strong> Surgeon OPD. 3 patients waiting. The doctor looks up briefly when you enter and says nothing.</div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Doctor, I'll keep this to 90 seconds. In post-debridement DFU patients — the wound often stalls because the systemic substrate supply doesn't match the metabolic demand. I work with Nuin Wellness on Epithrive® — a wound nutrition formula. Our Indian study: 72.4% vs 52.1% wound area reduction at Week 8, p=0.004. The PI was Dr. Bhanegaonkar, MS Ortho. May I leave a one-pager?</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">These supplement companies come every week. Leave it with the receptionist. [turns away]</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Understood, Doctor. One thing that's different — this has an Indian clinical study, p=0.004, PI is an Orthopaedic Surgeon. May I ask — when a DFU patient stalls after good debridement, what do you currently do next? [pause] I'll leave the summary and call your receptionist for 5 minutes next week.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Come on Thursday. I have more time in the afternoon.</div></div>
+        </div>
+        <div class="rp-rubric-pane">
+          <h5>Evaluator Rubric</h5>
+          <div class="rubric-item">
+            <div class="ri-label">Opening Hook <span>90%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:90%"></div></div>
+            <div class="ri-desc">Led with clinical problem not product name. Respected time constraint immediately.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Dismissal Handling <span>85%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:85%"></div></div>
+            <div class="ri-desc">Did not grovel or over-explain. Differentiated crisply ("Indian study, Ortho PI") and asked a question.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Evidence Delivery <span>80%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:80%"></div></div>
+            <div class="ri-desc">Key stat delivered precisely. Study ID could have been mentioned.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Close <span>95%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:95%"></div></div>
+            <div class="ri-desc">Secured a return appointment. Did not oversell. Clean exit.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Compliance <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">No prohibited claims. Correct statistical framing throughout.</div>
+          </div>
+          <div class="rp-score">
+            <h6>Overall Score: 90/100 — Pass</h6>
+            <p>Excellent recovery from dismissal. The question at the end ("what do you do next?") was smart — it planted a clinical gap without demanding attention.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rp-coach">
+        <h6>Coaching Notes</h6>
+        <ul>
+          <li>The moment the doctor dismisses you as "another supplement company" is the moment that defines the call. Do NOT apologise or try harder with more data — that confirms their assumption. Instead, differentiate crisply and ask a clinical question.</li>
+          <li>Securing "Thursday afternoon" is a win from a dismissal. Never leave without a next step.</li>
+          <li>The pause before "I'll leave the summary" is intentional — silence after a question gives the doctor space to answer. Don't fill it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 2 -->
+  <div class="rp-container">
+    <div class="rp-hd" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 2</span>
+      <div class="rp-hd-meta"><h4>Ward Nurse — Safe for diabetic patient with CKD Stage 3?</h4><p>Clinical safety question from non-prescriber — must be accurate, not evasive</p></div>
+      <span class="rp-diff diff-1">Moderate</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-layout">
+        <div class="rp-dialog-pane">
+          <div class="rp-scene"><strong>Setting</strong> Ward nursing station. A Sister asks about a patient whose doctor has recommended Epithrive® — the patient is diabetic with CKD Stage 3 and is on metformin and a quinolone antibiotic.</div>
+          <div class="rp-line"><span class="rp-speaker nu">SISTER</span><div class="rp-bubble">Doctor said to start Epithrive® for Mr. Patil — he's diabetic, CKD Stage 3, on ciprofloxacin. I want to make sure before I give it to him.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Good thinking to check — let me give you the specific answers. CKD Stage 3 (eGFR 30–60): Epithrive® is safe at the standard 1 sachet per day dose. No dose reduction needed at Stage 3. The amino acid load is within acceptable limits. Monitor renal parameters if used long-term, as with any supplement in CKD, but Stage 3 is not a contraindication.</div></div>
+          <div class="rp-line"><span class="rp-speaker nu">SISTER</span><div class="rp-bubble">And the ciprofloxacin?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Important point — Zinc in Epithrive® can reduce ciprofloxacin absorption if taken simultaneously. The solution is simple: give Mr. Patil his ciprofloxacin first on an empty stomach — as is standard — wait 2–3 hours, then give Epithrive® dissolved in water. Morning antibiotic, midday or afternoon Epithrive®. Please note this spacing on his medication sheet so the family knows when they take over at home.</div></div>
+          <div class="rp-line"><span class="rp-speaker nu">SISTER</span><div class="rp-bubble">And the diabetes — sugar in the product?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">No added sugar — this was a deliberate design decision because most wound patients are diabetic. Orange flavour is from natural flavouring. Safe with metformin and insulin. No blood glucose impact from the amino acid ingredients. He can take it safely.</div></div>
+        </div>
+        <div class="rp-rubric-pane">
+          <h5>Evaluator Rubric</h5>
+          <div class="rubric-item">
+            <div class="ri-label">Clinical Accuracy <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">CKD Stage 3 answer correct. Drug interaction correctly identified and resolved with timing guidance.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Communication Clarity <span>95%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:95%"></div></div>
+            <div class="ri-desc">Answered each question in sequence without hedging. Practical, nurse-friendly language.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Safety First Attitude <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">Validated the nurse's caution. Gave actionable guidance for the medication sheet — clinical partnership behavior.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Scope Discipline <span>90%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:90%"></div></div>
+            <div class="ri-desc">Stayed within MR knowledge scope. Could have flagged "check with doctor if any concern" for CKD monitoring.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Compliance <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">No outcome claims made. Safety answers only, factual and precise.</div>
+          </div>
+          <div class="rp-score">
+            <h6>Overall Score: 97/100 — Excellent</h6>
+            <p>This is precisely what MRs should be for nursing staff — a fast, reliable, clinically accurate resource. The medication sheet suggestion shows field IQ.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rp-coach">
+        <h6>Coaching Notes</h6>
+        <ul>
+          <li>Never hedge on direct safety questions from nursing staff — they need clear, actionable answers, not "it depends." Give the specific answer, then add the caveat.</li>
+          <li>The drug interaction answer is critical to get right. Zinc + quinolone = space by 2–3 hours. This is a commonly encountered situation in wound patients on infection treatment.</li>
+          <li>Suggesting a note on the medication sheet earns trust immediately — it shows you're thinking about patient safety, not just product usage.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 3 -->
+  <div class="rp-container">
+    <div class="rp-hd" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 3</span>
+      <div class="rp-hd-meta"><h4>Caregiver at pharmacy — "Does this actually work?"</h4><p>Emotionally loaded, sceptical caregiver — requires empathy before evidence</p></div>
+      <span class="rp-diff diff-3">Hard — Emotional</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-layout">
+        <div class="rp-dialog-pane">
+          <div class="rp-scene"><strong>Setting</strong> Medical store near a surgical hospital. A son, roughly 35, is buying wound dressings for his diabetic mother. He has been told about Epithrive® by the pharmacist. He's spent 4 months managing her foot wound with no progress.</div>
+          <div class="rp-line"><span class="rp-speaker fa">SON</span><div class="rp-bubble">I'm tired of spending money on things that don't work. Does this actually work or is it just marketing?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">I hear you — four months is exhausting. And I understand why trust is completely reasonable to withhold. I'm going to be honest with you: I can't promise you it will work for your mother. What I can tell you is what it is and what the evidence shows.</div></div>
+          <div class="rp-line"><span class="rp-speaker fa">SON</span><div class="rp-bubble">Okay. Tell me.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Everything you've used so far — dressings, medicines — has been working on the wound from the outside. What Epithrive® does is supply the building blocks the body needs internally: Arginine for blood flow to the wound, Glutamine to support the immune cells fighting infection, and Collagen precursors for new tissue. We did a clinical study — 60 patients, similar wound types. The Epithrive® group showed 72.4% wound reduction vs 52.1% with dressings alone at 8 weeks. That's a real difference — not dramatic marketing numbers.</div></div>
+          <div class="rp-line"><span class="rp-speaker fa">SON</span><div class="rp-bubble">How much is it?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">₹3,995 for 10 sachets — about ₹400 per day. One sachet a day in water, orange flavour, no sugar — safe for your mother's diabetes. I'd suggest starting one box, and asking the doctor to look at the wound bed at the end of 10–12 days. If you see granulation tissue starting — pink, healthy tissue — that's the signal it's working. If there's no visible change at all, you can stop and you haven't lost much.</div></div>
+          <div class="rp-line"><span class="rp-speaker fa">SON</span><div class="rp-bubble">I'll take one box. If nothing happens in 10 days, I'm done.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">That's completely fair. Let me give you this product information sheet — and my WhatsApp number. Message me at Day 10 and tell me what the wound looks like. I want to know too.</div></div>
+        </div>
+        <div class="rp-rubric-pane">
+          <h5>Evaluator Rubric</h5>
+          <div class="rubric-item">
+            <div class="ri-label">Empathy First <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">Named the exhaustion, validated the scepticism before pitching. Zero defensiveness.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Honesty Calibration <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">"I can't promise" and "not dramatic marketing numbers" built far more trust than a guarantee would have.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Evidence Framing <span>90%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:90%"></div></div>
+            <div class="ri-desc">Study stat landed cleanly. "Not dramatic marketing numbers" was a confident, trust-building phrase.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Low-Risk Trial Close <span>95%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:95%"></div></div>
+            <div class="ri-desc">One box, 10-day checkpoint, specific visual signal to watch for. Reduced financial and emotional risk perfectly.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Relationship Building <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">"Message me at Day 10 — I want to know too." Extraordinary. Transforms a transaction into a partnership.</div>
+          </div>
+          <div class="rp-score">
+            <h6>Overall Score: 97/100 — Exceptional</h6>
+            <p>This is masterclass-level caregiver handling. The honesty, the low-risk trial offer, and the Day 10 follow-up ask all demonstrate field intelligence. The son will come back.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rp-coach">
+        <h6>Coaching Notes</h6>
+        <ul>
+          <li>The worst thing you can do with an exhausted caregiver is start with clinical data. They don't care about the study until they trust you. Earn trust first — data second.</li>
+          <li>"I can't promise you it will work" is counterintuitively the most powerful sales statement in this scenario. It signals honesty, which is what this person needs more than hope.</li>
+          <li>The 10-day checkpoint with a visual signal ("pink granulation tissue") transforms a vague hope into a concrete test. Caregivers respond to specific, observable milestones.</li>
+          <li>Asking to be messaged at Day 10 turns you into a partner in the outcome — not a salesperson who moved on after the transaction.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 4 -->
+  <div class="rp-container">
+    <div class="rp-hd" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 4</span>
+      <div class="rp-hd-meta"><h4>Skeptical Diabetologist — "This is just another supplement company"</h4><p>Category dismissal — must elevate Epithrive® beyond supplement perception in under 2 minutes</p></div>
+      <span class="rp-diff diff-2">Medium-Hard</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-layout">
+        <div class="rp-dialog-pane">
+          <div class="rp-scene"><strong>Setting</strong> Second call. Diabetologist who previously heard the India study but dismissed it. Returns today with a more pointed attitude.</div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Look — I see 10 supplement companies a week. All of them have "studies." None of them actually change how I practice. Why are you different?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">That's a completely fair challenge — and I'd rather earn that answer than assert it. Let me be specific about what's different and let you judge. First: the formulation. Most wound supplements contain generic amino acids. Epithrive® delivers 7g L-Arginine — the specific precursor to nitric oxide that your DFU patients' endothelium can no longer produce adequately. That's not a supplement claim — that's a pathway your patients are missing.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Go on.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Second: the evidence behind this formulation class goes beyond one company study. Williams and Barbul published a double-blind RCT in Annals of Surgery showing significantly increased wound collagen deposition with Arginine+HMB+Glutamine in elderly volunteers. Tatti et al. showed DFU healing time dropped from 247 to 83 days. A 2021 meta-analysis of 44 human studies confirmed consistent effects. Our Indian study adds p=0.004 in 60 Indian patients — same direction as the global literature.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">All right. What patient profile specifically?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Your DFU patient who has a wound stalled beyond 4 weeks, albumin below 3.5 g/dL, or pre-albumin below 15 mg/dL — and is not making 30% progress despite standard care. That's the SNAP Rule we use. That patient has a measurable nutritional deficit driving the stall. Epithrive® addresses the deficit, not the wound directly.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">That's a reasonable case. Send me the references on WhatsApp and I'll review properly.</div></div>
+        </div>
+        <div class="rp-rubric-pane">
+          <h5>Evaluator Rubric</h5>
+          <div class="rubric-item">
+            <div class="ri-label">Category Dismissal Response <span>95%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:95%"></div></div>
+            <div class="ri-desc">"Let me be specific and let you judge" — perfect framing. Didn't defend the category, elevated the product.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Mechanistic Depth <span>90%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:90%"></div></div>
+            <div class="ri-desc">Arginine-NO pathway in diabetic endothelium — exactly right for a diabetologist. Matched to specialty.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Evidence Breadth <span>95%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:95%"></div></div>
+            <div class="ri-desc">Annals of Surgery, Tatti, meta-analysis, India study — layered evidence cited naturally, not desperately.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Patient Profile Precision <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">SNAP Rule applied correctly. Specific albumin thresholds cited. Doctor immediately knows which patients qualify.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Next Step Secured <span>95%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:95%"></div></div>
+            <div class="ri-desc">References via WhatsApp — doctor has committed to reviewing. Clear follow-up action.</div>
+          </div>
+          <div class="rp-score">
+            <h6>Overall Score: 95/100 — Excellent</h6>
+            <p>The SNAP Rule application at the end was decisive. A skeptical doctor who asks "what patient profile specifically?" is engaged — and a precise answer clinches the next step.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rp-coach">
+        <h6>Coaching Notes</h6>
+        <ul>
+          <li>When a doctor dismisses the category ("just another supplement"), the instinct is to over-defend. Resist it. Respond with specificity — mechanism, then evidence, then patient profile. Let precision do the work.</li>
+          <li>"Let me be specific and let you judge" is a powerful phrase. It signals confidence without defensiveness, and it transfers the judgment to the doctor — where it belongs.</li>
+          <li>Having the SNAP Rule thresholds (albumin &lt;3.5, pre-albumin &lt;15, wound stalled 4+ weeks) ready to cite shows that you understand their clinical workflow — not just your product.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 5 -->
+  <div class="rp-container">
+    <div class="rp-hd" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 5</span>
+      <div class="rp-hd-meta"><h4>ICU Physician — Converting after a patient outcome</h4><p>A doctor reports early improvement in a pressure ulcer patient — convert to systematic protocol inclusion</p></div>
+      <span class="rp-diff diff-1">Moderate — Harvest Call</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-layout">
+        <div class="rp-dialog-pane">
+          <div class="rp-scene"><strong>Setting</strong> Third call. ICU physician at Pune hospital. Three weeks ago, started Epithrive® on a Stage III pressure ulcer patient. The patient's wound bed has improved visibly. The doctor is impressed but hasn't changed protocol.</div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">The patient you suggested it for — the wound is looking much better. Granulation tissue forming. The nursing team noticed it too. I'm not saying it's Epithrive® specifically, but something is working.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">That's exactly what the healing trajectory should look like — the granulation tissue is the signal that angiogenesis and fibroblast recruitment are happening. The only variable that changed was Epithrive® adding the Arginine-Glutamine-Collagen substrate. The local care was already good — you proved that. The nutrition added what local care couldn't. I'm genuinely pleased.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">How many of my ICU patients would benefit from this?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Any patient who can take oral fluids or NG tube administration and has a Stage II or above pressure injury — especially if they've been admitted for more than 5 days. The Kisil and Gimelfarb 2023 paper I'll resend showed median pressure ulcer healing at 170 vs 218 days in elderly complex patients. Your malnourished, ventilated patients — particularly those with albumin below 3.5 — are the highest-yield group.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Could we add it to our ICU nutrition protocol formally?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Yes — and I'd strongly recommend it. I can prepare a one-page institutional protocol addition document with dosing guidance, patient selection criteria, drug spacing notes, and the clinical evidence summary — formatted for your nutrition committee. Would it be useful if I had that ready by next Thursday? I'd bring it for you and the clinical dietitian together.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Yes — include Dt. Nair in that meeting.</div></div>
+        </div>
+        <div class="rp-rubric-pane">
+          <h5>Evaluator Rubric</h5>
+          <div class="rubric-item">
+            <div class="ri-label">Attributing the Outcome <span>90%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:90%"></div></div>
+            <div class="ri-desc">Correctly credited the doctor's local care while connecting the nutritional contribution. "You proved that" was excellent.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Expanding the Opportunity <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">When doctor asked "how many patients?" — answered with precision, evidence, and specific criteria. Not vague.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Protocol Inclusion Close <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">Immediately moved from individual patient to institutional protocol — the highest-value conversion. Offered to prepare the document.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Multi-Stakeholder Play <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">Including Dt. Nair (dietitian) in the next meeting was the right move. Protocol approval requires dietitian buy-in.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Concrete Next Step <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">Document ready by Thursday, dietitian included. Fully specific next step with no ambiguity.</div>
+          </div>
+          <div class="rp-score">
+            <h6>Overall Score: 98/100 — Exceptional</h6>
+            <p>Textbook harvest call. The pivot from one patient to institutional protocol is the highest-value conversion move in pharma/nutrition sales. This MR executed it flawlessly.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rp-coach">
+        <h6>Coaching Notes</h6>
+        <ul>
+          <li>The third call with a positive outcome is your most important call. Don't just celebrate — immediately ask "how many more patients?" and "can we formalise this?"</li>
+          <li>"You proved that" — credit the doctor's clinical decision-making before attributing the benefit to Epithrive®. This is both accurate and strategically smart.</li>
+          <li>Proposing an institutional protocol document immediately elevates you from MR to clinical partner. Most MRs never make this move. It's available to anyone who recognises the moment.</li>
+          <li>Including the dietitian in the next meeting is not optional — it's the right clinical governance. Nutrition protocol changes require dietitian sign-off. Getting both in one room saves two calls.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO 6 -->
+  <div class="rp-container">
+    <div class="rp-hd" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 6</span>
+      <div class="rp-hd-meta"><h4>General Surgeon — "We tried it and it didn't work for one patient"</h4><p>Negative feedback from a past trial — the most dangerous objection to handle poorly</p></div>
+      <span class="rp-diff diff-3">Hard — Damage Control</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-layout">
+        <div class="rp-dialog-pane">
+          <div class="rp-scene"><strong>Setting</strong> Return call on a General Surgeon who tried Epithrive® three weeks ago on a post-surgical patient. The patient had a severely infected wound that didn't heal despite Epithrive® + standard care. The doctor is now skeptical.</div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">We tried it. Didn't work. The wound didn't get better and frankly I think the family wasted money.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Thank you for telling me directly — I really want to understand what happened. Can I ask — what was the wound status at the time Epithrive® was started? Was there active infection present?</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Yes — there was a deep surgical site infection. We were on IV antibiotics.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">That's really important context. In the presence of an active, deep surgical site infection — especially with IV antibiotic dependency — the wound biology is overwhelmed by infection. No nutritional supplement can substitute for infection control. Epithrive® is designed to support healing once the wound bed is stable: after infection is cleared and the wound is in the granulation or proliferative phase. In a raging infection, the substrate problem is secondary to the bacterial burden problem.</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">So when should it be used?</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Ideally, in one of three windows: post-debridement once the wound is clean, once active infection is controlled (wound bed is red/pink, no purulence), or in a chronic stalled wound where infection is not the primary problem — nutritional deficit is. If the wound is red, granulating, or epithelialising but slow — that's the right patient. The patient you tried it on was in the wrong window. I should have been clearer about the patient selection criteria when I first presented. I'm sorry for that. Can we identify a patient in your current panel who is post-infection and in the granulation phase?</div></div>
+          <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Actually, yes — I have a patient who was infected last month. Infection is cleared now. Wound is clean but not closing.</div></div>
+          <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">That's the ideal patient. Infection cleared, wound stable, not progressing — the stall is now nutritional. Would you try Epithrive® on this patient specifically?</div></div>
+        </div>
+        <div class="rp-rubric-pane">
+          <h5>Evaluator Rubric</h5>
+          <div class="rubric-item">
+            <div class="ri-label">Receiving Negative Feedback <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">No defensiveness. Immediately asked a clarifying question. Turned feedback into investigation.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Root Cause Analysis <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">Identified the correct reason for failure: active infection = wrong window. Clinically accurate and explained clearly.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Accountability <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">"I should have been clearer — I'm sorry for that." This is the most important line in the scenario. Ownership without excuse.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Recovery Close <span>95%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:95%"></div></div>
+            <div class="ri-desc">Immediately pivoted to the right patient in the doctor's current panel. Specific, actionable, non-defensive.</div>
+          </div>
+          <div class="rubric-item">
+            <div class="ri-label">Patient Selection Education <span>100%</span></div>
+            <div class="ri-bar"><div class="ri-fill pass" style="width:100%"></div></div>
+            <div class="ri-desc">Three clear windows defined. Doctor now knows exactly when to use Epithrive®. This prevents future wrong-window failures.</div>
+          </div>
+          <div class="rp-score">
+            <h6>Overall Score: 99/100 — Masterclass</h6>
+            <p>This is the hardest scenario — and this MR executed it perfectly. Accountability + clinical explanation + immediate pivot to right patient = a near-perfect damage-control call.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rp-coach">
+        <h6>Coaching Notes</h6>
+        <ul>
+          <li>When a doctor says "we tried it and it didn't work" — never defend immediately. Ask what happened first. The answer usually reveals a patient selection problem, not a product failure.</li>
+          <li>"I should have been clearer about the patient selection criteria. I'm sorry for that." Taking ownership for the wrong-patient-selection is critical and counter-intuitive. It shifts the conversation from product failure to guidance failure — which is correctable.</li>
+          <li>The three windows (post-debridement clean, post-infection stable, chronic non-infectious stall) are the patient selection criteria the MR should have established before the trial. Always establish the right patient profile before a trial — not after a failure.</li>
+          <li>Getting from "it didn't work" to "would you try it on this patient" in one call is an exceptional outcome. Most MRs would lose the doctor permanently in this scenario.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4: SHADOWING FRAMEWORK -->
+<section class="section" id="s4">
+  <div class="sec-hd"><div class="sec-num">4</div><div><h2>Shadowing Framework</h2><div class="sh-sub">How to get the most from accompanied calls with your Area Manager</div></div></div>
+
+  <p style="font-size:13.5px;line-height:1.7;margin-bottom:18px">Every new MR must complete at least 5 accompanied field calls with their Area Manager before transitioning to solo calls. The shadowing program is not observation — it is structured practice with immediate feedback. Use these checklists to maximise every joint call.</p>
+
+  <div class="shadow-grid">
+    <div class="shadow-card">
+      <div class="shadow-card-head sc-pre"><h4>📋 Pre-Call (Together)</h4><p>10 minutes before entering the clinic</p></div>
+      <div class="shadow-card-body">
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Discuss the specific objective for this call — one action to ask for</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Agree who speaks — MR leads, AM observes (or AM demos, MR observes)</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>MR states the planned opening question out loud</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>MR identifies the primary evidence point to use</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Materials confirmed and ready — correct leave-behind for this doctor</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>AM notes 2–3 specific behaviours to watch (opening, evidence delivery, close)</p></div>
+      </div>
+    </div>
+
+    <div class="shadow-card">
+      <div class="shadow-card-head sc-during"><h4>👁️ During the Call (AM Observes)</h4><p>Note specific moments — not general impressions</p></div>
+      <div class="shadow-card-body">
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Did MR open with clinical observation (not social)?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Did MR ask a needs-assessment question before pitching?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Did MR calibrate pitch to the doctor's answer?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Was evidence delivered with correct attribution (study name + stat + p-value)?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Were all claims compliant? No prohibited language?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Was the close specific and single? Did MR wait for the response?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Was the leave-behind handed over naturally — not dumped?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Did MR confirm the next step before leaving?</p></div>
+      </div>
+    </div>
+
+    <div class="shadow-card">
+      <div class="shadow-card-head sc-post"><h4>🗣️ Post-Call Debrief</h4><p>Within 5 minutes of exiting — while memory is fresh</p></div>
+      <div class="shadow-card-body">
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>MR self-assesses first: "What went well? What would I change?"</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.contains('checked')?'✓':''"></div><p>AM gives one specific positive observation (exact moment, exact language)</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>AM gives one specific improvement area (with alternative language suggested)</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>Did the call achieve its stated objective? If not — why?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>What is the follow-up action and who does it?</p></div>
+        <div class="sc-check"><div class="sc-chk" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':''"></div><p>One thing to practice before the next call is identified</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout teal"><strong>Debrief rule:</strong> MR self-assesses BEFORE AM gives feedback. This trains self-awareness — the single most important skill for long-term field development. An MR who can accurately diagnose their own call performance will improve 3× faster than one who waits for external feedback.</div>
+</section>
+
+<!-- S5: PERFORMANCE RUBRIC -->
+<section class="section" id="s5">
+  <div class="sec-hd"><div class="sec-num">5</div><div><h2>MR Performance Rubric</h2><div class="sh-sub">The 6 dimensions on which every field call is evaluated — know what good looks like</div></div></div>
+
+  <table class="perf-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Pass — What Good Looks Like</th>
+        <th>Warning — Common Weak Zone</th>
+        <th>Fail — Immediately Correctable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Clinical Credibility</td>
+        <td><span class="perf-badge pb-pass">Pass</span> Uses wound biology vocabulary naturally. Answers safety questions precisely. Knows SNAP Rule thresholds off the top of the head.</td>
+        <td><span class="perf-badge pb-warn">Warn</span> Has the knowledge but sounds like they're reciting it — not owning it. Practice makes it conversational.</td>
+        <td><span class="perf-badge pb-fail">Fail</span> Cannot answer basic safety questions. Gets wound staging wrong. Makes clinical statements that are inaccurate.</td>
+      </tr>
+      <tr>
+        <td>Evidence Delivery</td>
+        <td><span class="perf-badge pb-pass">Pass</span> Cites study name + statistic + p-value + PI name fluently. "CSR-ETH-2025-001, 72.4% vs 52.1%, p=0.004, Dr. Bhanegaonkar MS Ortho."</td>
+        <td><span class="perf-badge pb-warn">Warn</span> Gets the numbers right but forgets attribution. Or cites the right study for the wrong specialty. Calibration needs work.</td>
+        <td><span class="perf-badge pb-fail">Fail</span> Gets the statistic wrong. Says "90%" instead of "72.4%." Uses non-compliant framing: "Epithrive® heals 72% of wounds."</td>
+      </tr>
+      <tr>
+        <td>Objection Handling</td>
+        <td><span class="perf-badge pb-pass">Pass</span> Hears the real question behind the words. Acknowledges before responding. Answers specifically without over-explaining.</td>
+        <td><span class="perf-badge pb-warn">Warn</span> Over-justifies when challenged. Provides three answers when one would do. Becomes slightly defensive under pressure.</td>
+        <td><span class="perf-badge pb-fail">Fail</span> Becomes flustered when objected to. Falls back to generic product claims. Cannot answer the Armstrong RCT objection.</td>
+      </tr>
+      <tr>
+        <td>Compliance</td>
+        <td><span class="perf-badge pb-pass">Pass</span> Never uses "treats, cures, heals." Never references FSMP. Always frames study data as study findings, not product claims. Includes disclaimer when appropriate.</td>
+        <td><span class="perf-badge pb-warn">Warn</span> Generally compliant but occasionally slips with enthusiastic overclaiming in excited moments. Needs monitoring.</td>
+        <td><span class="perf-badge pb-fail">Fail</span> Any use of "treats," "cures," or "FSMP." Any guarantee of outcomes. Any prohibited disease treatment claim. Zero tolerance.</td>
+      </tr>
+      <tr>
+        <td>Close Quality</td>
+        <td><span class="perf-badge pb-pass">Pass</span> Asks for one specific, achievable action. Uses the patient-profile trigger (stalled wound, albumin &lt;3.5). Waits for the answer without filling silence.</td>
+        <td><span class="perf-badge pb-warn">Warn</span> Close is vague ("please recommend when appropriate"). Or multiple asks in one close. Or doesn't close at all — leaves without asking for anything.</td>
+        <td><span class="perf-badge pb-fail">Fail</span> Closes with "hope to see you next time." No action requested. Or asks for something unrealistic on a first call.</td>
+      </tr>
+      <tr>
+        <td>Follow-Through</td>
+        <td><span class="perf-badge pb-pass">Pass</span> WhatsApp follow-up within 24 hours, referencing the specific conversation. Attaches correct material. Includes disclaimer. Plans the next call objective.</td>
+        <td><span class="perf-badge pb-warn">Warn</span> Follows up but generically ("here's the product information"). Or follows up but without referencing what was discussed. Misses the personalisation.</td>
+        <td><span class="perf-badge pb-fail">Fail</span> No follow-up sent. Or follow-up contains non-compliant claims. Or follow-up is sent 5 days later — momentum lost.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- S6: SELF-ASSESSMENT -->
+<section class="section" id="s6">
+  <div class="sec-hd"><div class="sec-num">6</div><div><h2>Self-Assessment Tool</h2><div class="sh-sub">Rate your own field readiness — honest answers only</div></div></div>
+
+  <div class="self-assess">
+    <h4>Post-Call Self-Assessment</h4>
+    <p>Complete this within 10 minutes of every call during your first 30 days. Choose 1 (Poor) to 5 (Excellent) for each question. Total out of 50 — 40+ is field-ready, 30–39 needs review, below 30 return to the relevant module.</p>
+
+    <div class="sa-item">
+      <div class="sa-q">1. I opened with a clinical observation or question — not a social pleasantry.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,0)">1 — Not at all</div>
+        <div class="sa-btn" onclick="selectSa(this,0)">2 — Barely</div>
+        <div class="sa-btn" onclick="selectSa(this,0)">3 — Partially</div>
+        <div class="sa-btn" onclick="selectSa(this,0)">4 — Mostly</div>
+        <div class="sa-btn" onclick="selectSa(this,0)">5 — Fully</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">2. I asked a needs-assessment question before pitching the product.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,1)">1</div><div class="sa-btn" onclick="selectSa(this,1)">2</div><div class="sa-btn" onclick="selectSa(this,1)">3</div><div class="sa-btn" onclick="selectSa(this,1)">4</div><div class="sa-btn" onclick="selectSa(this,1)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">3. I cited the clinical study with correct attribution (study code / PI / statistic / p-value).</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,2)">1</div><div class="sa-btn" onclick="selectSa(this,2)">2</div><div class="sa-btn" onclick="selectSa(this,2)">3</div><div class="sa-btn" onclick="selectSa(this,2)">4</div><div class="sa-btn" onclick="selectSa(this,2)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">4. I handled at least one objection by acknowledging the real concern before responding.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,3)">1</div><div class="sa-btn" onclick="selectSa(this,3)">2</div><div class="sa-btn" onclick="selectSa(this,3)">3</div><div class="sa-btn" onclick="selectSa(this,3)">4</div><div class="sa-btn" onclick="selectSa(this,3)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">5. I used only compliant language — no "treats/cures/heals," no FSMP reference.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,4)">1</div><div class="sa-btn" onclick="selectSa(this,4)">2</div><div class="sa-btn" onclick="selectSa(this,4)">3</div><div class="sa-btn" onclick="selectSa(this,4)">4</div><div class="sa-btn" onclick="selectSa(this,4)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">6. My close asked for one specific, achievable action — and I waited for the response.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,5)">1</div><div class="sa-btn" onclick="selectSa(this,5)">2</div><div class="sa-btn" onclick="selectSa(this,5)">3</div><div class="sa-btn" onclick="selectSa(this,5)">4</div><div class="sa-btn" onclick="selectSa(this,5)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">7. I left behind the right material — targeted for this specific doctor and call stage.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,6)">1</div><div class="sa-btn" onclick="selectSa(this,6)">2</div><div class="sa-btn" onclick="selectSa(this,6)">3</div><div class="sa-btn" onclick="selectSa(this,6)">4</div><div class="sa-btn" onclick="selectSa(this,6)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">8. I confirmed a next step before leaving the room.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,7)">1</div><div class="sa-btn" onclick="selectSa(this,7)">2</div><div class="sa-btn" onclick="selectSa(this,7)">3</div><div class="sa-btn" onclick="selectSa(this,7)">4</div><div class="sa-btn" onclick="selectSa(this,7)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">9. I sent a WhatsApp follow-up within 24 hours with the correct material and disclaimer.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,8)">1</div><div class="sa-btn" onclick="selectSa(this,8)">2</div><div class="sa-btn" onclick="selectSa(this,8)">3</div><div class="sa-btn" onclick="selectSa(this,8)">4</div><div class="sa-btn" onclick="selectSa(this,8)">5</div>
+      </div>
+    </div>
+    <div class="sa-item">
+      <div class="sa-q">10. Overall, I felt like a clinical advisor — not a product salesperson — in this call.</div>
+      <div class="sa-scale">
+        <div class="sa-btn" onclick="selectSa(this,9)">1</div><div class="sa-btn" onclick="selectSa(this,9)">2</div><div class="sa-btn" onclick="selectSa(this,9)">3</div><div class="sa-btn" onclick="selectSa(this,9)">4</div><div class="sa-btn" onclick="selectSa(this,9)">5</div>
+      </div>
+    </div>
+
+    <button onclick="computeSa()" style="margin-top:16px;padding:10px 24px;background:var(--olive-mid);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Calculate My Score</button>
+
+    <div class="sa-score-display" id="saResult">
+      <h5 id="saTitle">Your Score</h5>
+      <p id="saText"></p>
+    </div>
+  </div>
+</section>
+
+<!-- S7: COMMON MISTAKES -->
+<section class="section" id="s7">
+  <div class="sec-hd"><div class="sec-num">7</div><div><h2>Common Field Mistakes</h2><div class="sh-sub">What new MRs typically get wrong in the first 30 days — and how to correct each one</div></div></div>
+
+  <div class="mistake-grid">
+    <div class="mistake-card">
+      <div class="mc-head"><h5>❌ Pitching before listening</h5></div>
+      <div class="mc-body"><p>New MRs deliver the elevator pitch the moment they sit down — before asking a single question about the doctor's patients or challenges. The doctor hasn't connected the product to their problem yet, so nothing lands.</p></div>
+      <div class="mc-fix"><h5>✓ Correction</h5><p>Ask one needs-assessment question first. "How many DFU patients do you see per week who are stalling despite good dressings?" Then the pitch becomes an answer to a question they've just articulated.</p></div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mc-head"><h5>❌ Citing the stat wrong under pressure</h5></div>
+      <div class="mc-body"><p>"72.4 percent" becomes "about 70 percent" or "nearly 75 percent" when the MR is nervous. Or "p=0.004" becomes "p less than 0.05." Imprecision signals insecurity — the opposite of clinical credibility.</p></div>
+      <div class="mc-fix"><h5>✓ Correction</h5><p>Drill the exact numbers until they're automatic. "72.4 versus 52.1, p equals 0.004." Write it on a card. Say it 20 times before your first call. Precision is what differentiates you from "just another MR."</p></div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mc-head"><h5>❌ Leaving too much material</h5></div>
+      <div class="mc-body"><p>First call, nervous MR places the Doctor Summary, Formulation Explainer, Case Study, and clinical dossier on the desk. The doctor glances at the pile, doesn't touch any of it, and moves on.</p></div>
+      <div class="mc-fix"><h5>✓ Correction</h5><p>First call: Doctor Summary only. "I'm leaving just this one page — everything you need in 2 minutes of reading." The constraint creates value. "I'll bring the full formulation detail on Thursday" creates the next appointment.</p></div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mc-head"><h5>❌ Vague close — "please recommend when appropriate"</h5></div>
+      <div class="mc-body"><p>This is the most common close failure. "When appropriate" gives the doctor no signal for when that is — so nothing changes. The MR leaves without a commitment and without a next step.</p></div>
+      <div class="mc-fix"><h5>✓ Correction</h5><p>"Your next DFU patient whose wound hasn't moved in 4 weeks and albumin is below 3.5 — would you try Epithrive® on that specific patient?" A patient profile trigger is a specific, recognisable moment — not a vague intention.</p></div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mc-head"><h5>❌ Over-explaining under objection</h5></div>
+      <div class="mc-body"><p>Doctor says "the evidence isn't strong enough." MR responds with 5 studies, 8 statistics, and 3 meta-analyses — for 4 minutes. The doctor stops listening after 30 seconds. Desperation doesn't build credibility.</p></div>
+      <div class="mc-fix"><h5>✓ Correction</h5><p>Acknowledge → one clear response → stop. "You're right — the India study is a pilot. Behind it is a 2021 meta-analysis of 44 human studies and an Annals of Surgery RCT. Would you review the full CSR?" One bridge, one reference, one next step.</p></div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mc-head"><h5>❌ Missing the follow-up window</h5></div>
+      <div class="mc-body"><p>The call goes well. The doctor seems interested. The MR sends a WhatsApp 4 days later — too late. The doctor has seen 60 more patients, forgotten the conversation, and the momentum is gone completely.</p></div>
+      <div class="mc-fix"><h5>✓ Correction</h5><p>WhatsApp within 24 hours — ideally the same evening. Reference the specific conversation: "As discussed today, the India study summary is attached." The specificity shows you were paying attention. The speed shows you're serious.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- S8: SURPRISE SCENARIOS -->
+<section class="section" id="s8">
+  <div class="sec-hd"><div class="sec-num">8</div><div><h2>Handling Field Surprises</h2><div class="sh-sub">When the call doesn't go to script — how to stay calm and navigate</div></div></div>
+
+  <div class="surprise-card open">
+    <div class="surprise-hd" onclick="toggleSurprise(this)"><span class="surprise-icon">😤</span><span class="surprise-title">Another MR has given incorrect information about Epithrive® to the doctor</span><span class="surprise-chevron">›</span></div>
+    <div class="surprise-body">
+      <div class="sb-situation"><strong>Situation:</strong> The doctor says "I heard Epithrive® has serious kidney side effects from another representative who came last week."</div>
+      <div class="sb-response"><strong>Response:</strong> "I'm concerned to hear that — and I want to correct that directly. Epithrive® is safe in CKD Stage 1–3 at standard dosing. We recommend caution and dose monitoring in Stage 4, and nephrologist clearance in Stage 5. The amino acid load is within acceptable limits for the vast majority of wound patients. I'd like to understand where that information came from — it does not reflect our clinical data or the product's safety profile. May I send you our safety summary so you have the correct information in writing?"<br><br>Then: escalate immediately to your Area Manager. Incorrect information from any source — including another MR — is an urgent correction issue.</div>
+      <div class="sb-lesson">Never attack the other MR by name. Correct the information precisely. Offer written documentation. Escalate.</div>
+    </div>
+  </div>
+
+  <div class="surprise-card">
+    <div class="surprise-hd" onclick="toggleSurprise(this)"><span class="surprise-icon">📵</span><span class="surprise-title">Doctor suddenly takes a 10-minute call mid-detailing</span><span class="surprise-chevron">›</span></div>
+    <div class="surprise-body">
+      <div class="sb-situation"><strong>Situation:</strong> You're at the evidence delivery stage — the best part of the call. The doctor's phone rings and they take a long call. When they return, they've completely lost the thread.</div>
+      <div class="sb-response"><strong>Response:</strong> Use the interruption as a reset opportunity. When they return, don't resume where you were — re-hook. "Doctor, while you were on that call I was thinking — the one data point from the India study that I think is most relevant for your DFU patients is this: 72.4% wound area reduction versus 52.1%, p=0.004. I'll leave this A4 summary. Could I book 5 minutes on your calendar for Thursday to go through the mechanism detail?"<br><br>You've compressed the rest of the call into the most important point and secured the next appointment — turning an interruption into an advance.</div>
+      <div class="sb-lesson">Interruptions are opportunities to re-prioritise. Drop everything else. Deliver the single most important point. Book the return.</div>
+    </div>
+  </div>
+
+  <div class="surprise-card">
+    <div class="surprise-hd" onclick="toggleSurprise(this)"><span class="surprise-icon">❓</span><span class="surprise-title">Doctor asks a clinical question you genuinely don't know the answer to</span><span class="surprise-chevron">›</span></div>
+    <div class="surprise-body">
+      <div class="sb-situation"><strong>Situation:</strong> "Can this be used alongside methotrexate in a rheumatoid patient with a pressure ulcer?" You have no specific data on this interaction.</div>
+      <div class="sb-response"><strong>Response:</strong> "That's a specific clinical question I want to answer accurately rather than guess at. Methotrexate has its own nutritional interaction profile and I don't want to give you incorrect guidance. Let me confirm with our Medical Affairs team and come back to you by end of this week with the specific answer — in writing."<br><br>Then: actually do it. Message your Area Manager within 2 hours. Get the answer from Medical Affairs. Send it to the doctor by Thursday at the latest.</div>
+      <div class="sb-lesson">"I don't know — let me find out and come back" is a more trust-building answer than a confident wrong one. Doctors respect honesty. Follow-through is mandatory.</div>
+    </div>
+  </div>
+
+  <div class="surprise-card">
+    <div class="surprise-hd" onclick="toggleSurprise(this)"><span class="surprise-icon">😡</span><span class="surprise-title">A hostile family member at the pharmacy demands a refund and says it didn't work</span><span class="surprise-chevron">›</span></div>
+    <div class="surprise-body">
+      <div class="sb-situation"><strong>Situation:</strong> A family member is angry, voice raised, saying they bought two boxes and the wound "got worse" — and they want their money back from the pharmacist.</div>
+      <div class="sb-response"><strong>Response:</strong> Step 1 — De-escalate first. "I can hear how frustrated you are — and I want to understand what happened. Can we step aside for a moment?" Step 2 — Gather information calmly: what type of wound, how long used, what changed. Step 3 — Acknowledge: "I'm sorry the experience wasn't what you hoped for." Step 4 — If the wound genuinely worsened: "Please have the doctor see the wound today — this needs clinical assessment, not just nutritional support." Step 5 — Escalate to Area Manager immediately. Do not discuss refund policy yourself — that is the company's domain.<br><br>Step 6 — Document the adverse feedback and escalate the same day.</div>
+      <div class="sb-lesson">An angry caregiver is a clinical signal, not just a complaint. Treat it as patient safety first, service issue second. Never argue. Always escalate adverse outcomes.</div>
+    </div>
+  </div>
+
+  <div class="surprise-card">
+    <div class="surprise-hd" onclick="toggleSurprise(this)"><span class="surprise-icon">🏆</span><span class="surprise-title">A doctor asks you to join a ward round and present Epithrive® to the entire team</span><span class="surprise-chevron">›</span></div>
+    <div class="surprise-body">
+      <div class="sb-situation"><strong>Situation:</strong> An interested ICU physician says "Come back tomorrow at 9am — I want you to present Epithrive® to my team during morning rounds." This is an opportunity and a test.</div>
+      <div class="sb-response"><strong>Response:</strong> Accept immediately — then call your Area Manager the same evening. Prepare a 5-minute structured presentation: (1) The wound nutrition gap — 30 seconds; (2) Epithrive® formulation overview — 60 seconds; (3) India study headline data — 60 seconds; (4) Patient selection criteria (SNAP Rule) — 60 seconds; (5) Dosing, safety summary, and how to order — 60 seconds.<br><br>Bring printed Doctor Summaries for every person in the room. Stand, speak clearly, and handle questions precisely. Use only compliant language — a room full of clinicians will catch any overclaim. End with: "Happy to answer any questions now or via WhatsApp individually."</div>
+      <div class="sb-lesson">Ward round presentations are the highest-value single activity in hospital MR sales. One successful ward round can create 5–10 simultaneous recommenders. Prepare the night before. Never improvise at this level.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S9: 30-60-90 DAY PLAN -->
+<section class="section" id="s9">
+  <div class="sec-hd"><div class="sec-num">9</div><div><h2>30-60-90 Day Field Plan</h2><div class="sh-sub">What good looks like at each milestone in your first quarter</div></div></div>
+
+  <div class="plan-grid">
+    <div class="plan-col">
+      <div class="plan-col-head ph-30"><h4>Days 1–30</h4><p>Foundation & Calibration</p></div>
+      <div class="plan-col-body">
+        <div class="plan-item"><div class="pi-week">Wk 1–2</div><div class="pi-text"><strong>5 accompanied calls with AM.</strong> Observe, then lead. Post-call debrief every time. Detailing drill practiced daily.</div></div>
+        <div class="plan-item"><div class="pi-week">Wk 3</div><div class="pi-text"><strong>Solo calls begin.</strong> 4–6 HCP calls per day. Priority: Orthopaedic surgeons and diabetologists in Pune. Leave Doctor Summary only.</div></div>
+        <div class="plan-item"><div class="pi-week">Wk 4</div><div class="pi-text"><strong>Map your territory.</strong> Classify every visited doctor in the priority matrix. Identify 5 "Top Priority" doctors for focused investment in Month 2.</div></div>
+        <div class="plan-metric">
+          <div class="pm-label">30-Day Target</div>
+          <p>25+ HCP calls · 5+ trial patient commitments · 0 compliance incidents</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-col-head ph-60"><h4>Days 31–60</h4><p>Depth & First Conversions</p></div>
+      <div class="plan-col-body">
+        <div class="plan-item"><div class="pi-week">Wk 5–6</div><div class="pi-text"><strong>Return calls on Month 1 contacts.</strong> Bring case study card. Ask about trial patients. Convert "interested" to "first prescription note."</div></div>
+        <div class="plan-item"><div class="pi-week">Wk 7</div><div class="pi-text"><strong>Engage dietitians.</strong> Visit hospital nutrition teams. Leave ESPEN/EPUAP guideline reference + formulation explainer. Target protocol inclusion conversation.</div></div>
+        <div class="plan-item"><div class="pi-week">Wk 8</div><div class="pi-text"><strong>Pharmacy network.</strong> Visit 15+ pharmacies near surgical hospitals. Leave product and WhatsApp ordering card. Train pharmacist on "when to recommend."</div></div>
+        <div class="plan-metric">
+          <div class="pm-label">60-Day Target</div>
+          <p>3+ regular recommenders · 10+ patient orders tracked · 2 institutional dietitian engagements</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-col">
+      <div class="plan-col-head ph-90"><h4>Days 61–90</h4><p>Scale & Systematic Recommendation</p></div>
+      <div class="plan-col-body">
+        <div class="plan-item"><div class="pi-week">Wk 9–10</div><div class="pi-text"><strong>Convert to discharge note.</strong> With your 3+ regular recommenders, propose "wound nutrition support — Epithrive®" as a standard discharge notation for qualifying patients.</div></div>
+        <div class="plan-item"><div class="pi-week">Wk 11</div><div class="pi-text"><strong>Institutional protocol proposal.</strong> If you have an ICU or surgical ward contact, propose the formal nutrition protocol addition. Prepare the protocol document with AM support.</div></div>
+        <div class="plan-item"><div class="pi-week">Wk 12</div><div class="pi-text"><strong>Review and plan Quarter 2.</strong> Territory audit: which doctors converted? Which stalled? Where are the gaps? Set Q2 targets with AM.</div></div>
+        <div class="plan-metric">
+          <div class="pm-label">90-Day Target</div>
+          <p>8+ regular recommenders · 1 institutional protocol initiated · 25+ patient orders monthly</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S10: GO/NO-GO -->
+<section class="section" id="s10">
+  <div class="sec-hd"><div class="sec-num">10</div><div><h2>Go / No-Go Assessment</h2><div class="sh-sub">15 questions — answer honestly. 13/15 Yes = cleared for solo field calls.</div></div></div>
+
+  <p style="font-size:13.5px;line-height:1.7;margin-bottom:16px">This is your pre-solo-field-deployment assessment. Complete it with your Area Manager. Be honest — the consequences of deploying before you're ready are worse than the delay. A "No" on any compliance question is an automatic review, regardless of total score.</p>
+
+  <div id="gngList">
+    <div class="gng-item"><div class="gng-num">1</div><div class="gng-q">I can deliver the 3-minute detailing drill from memory, fluently, in under 3 minutes.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">2</div><div class="gng-q">I can cite "CSR-ETH-2025-001, 72.4% vs 52.1% wound area reduction at Week 8, p=0.004, PI Dr. Bhanegaonkar MS Ortho" correctly without notes.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">3</div><div class="gng-q">I know the SNAP Rule thresholds (albumin &lt;3.5, pre-albumin &lt;15, BMI &lt;18.5, wound stalled 2+ weeks) without looking them up.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">4</div><div class="gng-q">I know that "treats, cures, heals, and FSMP" are prohibited — and I have never used them in any practice call or WhatsApp message.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">5</div><div class="gng-q">I can explain what Epithrive® does — and does not do — without making a disease treatment claim.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">6</div><div class="gng-q">I know the drug interaction between Zinc and quinolone antibiotics — and can give the correct timing guidance (2–3 hour separation).</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">7</div><div class="gng-q">I know the CKD staging safety profile — Stage 1–3 safe, Stage 4 monitor, Stage 5 nephrology clearance.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">8</div><div class="gng-q">I can name at least 3 global studies supporting the formulation class (Williams & Barbul, Cereda, Arribaslopez 2021, Tatti, Kisil & Gimelfarb).</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">9</div><div class="gng-q">I know the adverse event reporting chain and can name the first person I would contact in an AE situation.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">10</div><div class="gng-q">I have a 30-second elevator pitch memorised for at least 3 different HCP types (surgeon, diabetologist, dietitian, ICU physician, or nurse).</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">11</div><div class="gng-q">I know exactly what leave-behind materials to use for a first call vs. a second call vs. a dietitian visit.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">12</div><div class="gng-q">I know the price per box (₹3,995 / 10 sachets), the standard dose (1 sachet/day), and the WhatsApp ordering number (+91 99708 43254) without notes.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">13</div><div class="gng-q">I have completed at least 3 practice role-plays and received a passing score (80+/100) from my Area Manager in at least one.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">14</div><div class="gng-q">I have completed at least 3 accompanied field calls with my AM and received a formal debrief for each.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+    <div class="gng-item"><div class="gng-num">15</div><div class="gng-q">I understand the difference between "Epithrive® is a nutraceutical" and "FSMP" — and I will never use the FSMP term until officially notified by management.</div><div class="gng-btns"><button class="gng-btn yes" onclick="selectGng(this)">Yes</button><button class="gng-btn no" onclick="selectGng(this)">No</button></div></div>
+  </div>
+
+  <button onclick="computeGng()" style="margin-top:14px;padding:11px 28px;background:var(--olive-mid);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Submit Assessment</button>
+
+  <div class="gng-result" id="gngResult"></div>
+
+  <div class="callout olive" style="margin-top:20px">
+    <strong>After clearing the Go/No-Go:</strong> Proceed to Module 8 (Certification Test) to complete the Epithrive® Certified Product Expert assessment. Module 8 is a 40-question written certification exam. Pass mark: 80%. The certification must be completed before solo field deployment is formally approved.
+  </div>
+</section>
+
+</main>
+
+<script>
+// Sidebar nav
+const navLinks=document.querySelectorAll('.sb-nav a');
+const sections=document.querySelectorAll('.section');
+function setActive(){
+  let c='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.id});
+  navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+c));
+}
+window.addEventListener('scroll',setActive);setActive();
+navLinks.forEach(l=>l.addEventListener('click',e=>{
+  e.preventDefault();
+  document.querySelector(l.getAttribute('href'))?.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+
+// Role-play accordion
+function toggleRp(hd){
+  const c=hd.closest('.rp-container');
+  c.classList.toggle('open');
+}
+
+// Surprise accordion
+function toggleSurprise(hd){
+  const c=hd.closest('.surprise-card');
+  c.classList.toggle('open');
+}
+
+// Self-assessment
+const saScores=new Array(10).fill(0);
+function selectSa(btn,qIdx){
+  const scale=btn.closest('.sa-scale');
+  scale.querySelectorAll('.sa-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const val=Array.from(scale.children).indexOf(btn)+1;
+  saScores[qIdx]=val;
+}
+
+function computeSa(){
+  const total=saScores.reduce((a,b)=>a+b,0);
+  const el=document.getElementById('saResult');
+  const title=document.getElementById('saTitle');
+  const text=document.getElementById('saText');
+  el.className='sa-score-display show';
+  if(total>=40){
+    title.textContent=`Your Score: ${total}/50 — Field Ready ✓`;
+    text.textContent=`Excellent self-assessment. A score of ${total}/50 indicates strong field readiness across the PRECBAC dimensions. Focus on maintaining this standard through your first 30 calls, and re-assess after each week to track any dimension that drops below 4.`;
+  } else if(total>=30){
+    title.textContent=`Your Score: ${total}/50 — Review Required`;
+    text.textContent=`Score of ${total}/50 indicates emerging field competence with gaps. Review the dimensions where you scored 1–3 and return to the corresponding module before solo calls. Re-assess after 5 more practice sessions.`;
+  } else {
+    title.textContent=`Your Score: ${total}/50 — Return to Training`;
+    text.textContent=`Score of ${total}/50 indicates significant preparation gaps. Return to Modules 3–6 and complete the 3-minute detailing drill daily. Request additional accompanied calls with your AM before solo deployment.`;
+  }
+}
+
+// Go/No-Go
+function selectGng(btn){
+  const btns=btn.closest('.gng-btns');
+  btns.querySelectorAll('.gng-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+
+function computeGng(){
+  const items=document.querySelectorAll('.gng-item');
+  let yes=0,no=0,compFail=false;
+  const compQ=[3,4,8]; // 0-indexed = Q4,Q5,Q9 (compliance, FSMP, AE)
+  items.forEach((item,i)=>{
+    const sel=item.querySelector('.gng-btn.sel');
+    if(!sel)return;
+    if(sel.classList.contains('yes')){yes++;}
+    else{no++;if(compQ.includes(i))compFail=true;}
+  });
+  const answered=yes+no;
+  const el=document.getElementById('gngResult');
+  if(answered<15){el.className='gng-result show';el.innerHTML='<h4>Please answer all 15 questions.</h4>';return;}
+  if(compFail){
+    el.className='gng-result show gng-fail';
+    el.innerHTML='<h4 style="color:var(--red);font-family:\'Fraunces\',serif;margin-bottom:8px">⛔ Automatic Review — Compliance Gap</h4><p style="font-size:13.5px;line-height:1.65">You answered "No" to a compliance-critical question (Questions 4, 5, or 9). Regardless of total score, a compliance gap requires immediate review with your Area Manager and return to Module 6 before any field deployment. This is non-negotiable.</p>';
+  } else if(yes>=13){
+    el.className='gng-result show gng-pass';
+    el.innerHTML=`<h4 style="color:var(--green);font-family:'Fraunces',serif;margin-bottom:8px">✓ CLEARED — ${yes}/15 — Proceed to Module 8</h4><p style="font-size:13.5px;line-height:1.65">Excellent. You have achieved the Go threshold (13+ Yes answers with no compliance failures). Proceed to Module 8 — the Epithrive® Certified Product Expert examination. Pass mark: 80% (32/40 questions). Upon certification, you are formally cleared for solo field deployment.</p>`;
+  } else {
+    el.className='gng-result show gng-warn';
+    el.innerHTML=`<h4 style="color:var(--amber);font-family:'Fraunces',serif;margin-bottom:8px">⚠️ NOT YET — ${yes}/15 — Further Preparation Required</h4><p style="font-size:13.5px;line-height:1.65">You answered "No" to ${no} questions — the threshold is 13 Yes answers minimum. Review the specific gaps, return to the relevant modules, complete additional role-play sessions with your AM, and re-attempt this assessment. A No-Go is not a failure — it is honest preparation.</p>`;
+  }
+}
+</script>
+</body>
+</html>

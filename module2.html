@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 2 — Wound Care Fundamentals</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=Sora:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0E8FA8;
+  --teal-d: #0b7a92;
+  --teal-light: #e4f4f8;
+  --teal-mid: #afd9e6;
+  --orange: #F4811F;
+  --orange-light: #fef3e8;
+  --navy: #102030;
+  --navy-mid: #1c3549;
+  --slate: #2d4357;
+  --body: #263545;
+  --muted: #607080;
+  --border: #d8e4ed;
+  --bg: #eef2f6;
+  --card: #ffffff;
+  --green: #0f7940;
+  --green-bg: #edfaf3;
+  --green-border: #7ddba8;
+  --amber: #c47d00;
+  --amber-bg: #fef9ec;
+  --amber-border: #f7ce6b;
+  --red: #c0291a;
+  --red-bg: #fdf2f1;
+  --red-border: #f5a9a3;
+  --purple: #6b3da6;
+  --purple-bg: #f4effc;
+  --sidebar-w: 258px;
+
+  /* TIME colours */
+  --t-col: #b84c0d;
+  --i-col: #9b0a21;
+  --m-col: #1261a0;
+  --e-col: #136b3f;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--body);
+  display: flex;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ─── SIDEBAR ─── */
+#sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex; flex-direction: column;
+}
+#sidebar::-webkit-scrollbar { width: 3px; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); }
+.sb-brand { padding: 22px 20px 16px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.sb-tag { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 5px; font-family: 'Fira Code', monospace; }
+.sb-brand h2 { font-family: 'Fraunces', serif; color: #fff; font-size: 18px; font-weight: 600; }
+.sb-brand p { color: rgba(255,255,255,.38); font-size: 11px; margin-top: 3px; }
+.sb-cat { padding: 16px 20px 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.22); }
+.sb-nav a { display: flex; align-items: center; gap: 9px; padding: 8px 20px; color: rgba(255,255,255,.5); text-decoration: none; font-size: 12px; font-weight: 500; border-left: 3px solid transparent; transition: all .18s; }
+.sb-nav a:hover, .sb-nav a.active { color: #fff; background: rgba(255,255,255,.05); border-left-color: var(--teal); }
+.sb-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.15); flex-shrink: 0; }
+.sb-nav a:hover .sb-dot, .sb-nav a.active .sb-dot { background: var(--teal); }
+.sb-note { margin: 16px 20px; padding: 11px 13px; background: rgba(14,143,168,.1); border: 1px solid rgba(14,143,168,.25); border-radius: 8px; font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.55; }
+.sb-note strong { color: var(--teal); }
+
+/* ─── MAIN ─── */
+#main { margin-left: var(--sidebar-w); flex: 1; padding: 0 44px 100px; max-width: 1020px; }
+
+/* ─── HEADER ─── */
+.page-header {
+  background: linear-gradient(150deg, #0a1825 0%, #102a3e 50%, #0e4a5c 100%);
+  margin: 0 -44px 52px;
+  padding: 52px 44px 48px;
+  position: relative; overflow: hidden;
+  border-bottom: 3px solid var(--teal);
+}
+.page-header::before { content: ''; position: absolute; top: -50px; right: -80px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(14,143,168,.18) 0%, transparent 70%); }
+.ph-pretag { display: inline-flex; align-items: center; gap: 8px; background: rgba(14,143,168,.2); border: 1px solid rgba(14,143,168,.4); border-radius: 4px; padding: 4px 12px; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #7dd8ea; margin-bottom: 14px; font-family: 'Fira Code', monospace; }
+.page-header h1 { font-family: 'Fraunces', serif; color: #fff; font-size: 38px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+.page-header h1 em { color: #7dd8ea; font-style: normal; }
+.page-header .ph-sub { color: rgba(255,255,255,.48); font-size: 14.5px; max-width: 580px; line-height: 1.65; }
+.ph-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.ph-chip { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 6px; padding: 7px 14px; font-size: 12px; color: rgba(255,255,255,.6); }
+.ph-chip strong { color: #fff; }
+
+/* ─── SECTIONS ─── */
+.section { margin-bottom: 60px; scroll-margin-top: 24px; }
+.sec-hd { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+.sec-num { width: 34px; height: 34px; background: var(--teal); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Fira Code', monospace; }
+.sec-hd h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: var(--navy); }
+.sec-hd .sh-sub { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+
+/* ─── CALLOUTS ─── */
+.callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; font-size: 13.5px; line-height: 1.65; }
+.callout.teal { background: var(--teal-light); border: 1px solid var(--teal-mid); }
+.callout.teal strong { color: var(--teal-d); }
+.callout.navy { background: var(--navy); color: rgba(255,255,255,.72); }
+.callout.navy strong { color: #7dd8ea; }
+.callout.amber { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+.callout.amber strong { color: var(--amber); }
+.callout.green { background: var(--green-bg); border: 1px solid var(--green-border); }
+.callout.green strong { color: var(--green); }
+
+/* ─── T.I.M.E. FRAMEWORK ─── */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.time-cell { border-right: 1px solid var(--border); }
+.time-cell:last-child { border-right: none; }
+.tc-head {
+  padding: 16px 14px 12px;
+  text-align: center;
+}
+.tc-head .tc-letter {
+  font-family: 'Fraunces', serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+  opacity: .15;
+}
+.time-cell.T .tc-letter { color: var(--t-col); }
+.time-cell.I .tc-letter { color: var(--i-col); }
+.time-cell.M .tc-letter { color: var(--m-col); }
+.time-cell.E .tc-letter { color: var(--e-col); }
+.tc-head h4 { font-size: 13px; font-weight: 700; }
+.time-cell.T .tc-head h4 { color: var(--t-col); }
+.time-cell.I .tc-head h4 { color: var(--i-col); }
+.time-cell.M .tc-head h4 { color: var(--m-col); }
+.time-cell.E .tc-head h4 { color: var(--e-col); }
+.tc-head .tc-full { font-size: 11px; color: var(--muted); margin-top: 2px; font-weight: 600; }
+.tc-body { padding: 0 14px 16px; }
+.tc-body ul { padding-left: 14px; }
+.tc-body li { font-size: 12px; color: var(--body); margin-bottom: 5px; line-height: 1.5; }
+.tc-footer { padding: 10px 14px; font-size: 11.5px; font-weight: 600; text-align: center; }
+.time-cell.T .tc-footer { background: #fff4ef; color: var(--t-col); }
+.time-cell.I .tc-footer { background: #fff0f2; color: var(--i-col); }
+.time-cell.M .tc-footer { background: #eff6ff; color: var(--m-col); }
+.time-cell.E .tc-footer { background: #edfaf3; color: var(--e-col); }
+
+/* ─── WOUND ASSESSMENT GRID ─── */
+.assess-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+.assess-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.assess-card .ac-icon { font-size: 26px; margin-bottom: 8px; }
+.assess-card h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.assess-card p { font-size: 12.5px; color: var(--body); line-height: 1.55; }
+.assess-card .ac-tip { margin-top: 8px; font-size: 11.5px; color: var(--teal-d); font-weight: 600; }
+
+/* ─── DEBRIDEMENT ─── */
+.debride-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+.db-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.db-head { padding: 12px 14px; }
+.db-head h4 { font-size: 13px; font-weight: 700; color: #fff; }
+.db-head .db-type { font-size: 10px; color: rgba(255,255,255,.7); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 3px; }
+.db-s { background: #1a6b4a; }
+.db-e { background: #1a4e8a; }
+.db-a { background: #6b3d8a; }
+.db-m { background: #7a4a00; }
+.db-body { padding: 12px 14px; }
+.db-body p { font-size: 12px; color: var(--body); line-height: 1.55; margin-bottom: 8px; }
+.db-body .db-use { font-size: 11px; background: var(--teal-light); color: var(--teal-d); border-radius: 4px; padding: 4px 8px; font-weight: 600; display: inline-block; }
+
+/* ─── DRESSING MATRIX ─── */
+.dressing-accordion { margin-bottom: 20px; }
+.dr-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+.dr-head { padding: 14px 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; }
+.dr-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.dr-meta { flex: 1; }
+.dr-meta h4 { font-size: 14px; font-weight: 600; color: var(--navy); }
+.dr-meta .dr-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+.dr-tag { font-size: 10px; padding: 2px 7px; border-radius: 3px; font-weight: 600; }
+.dr-toggle { font-size: 20px; color: var(--muted); transition: transform .2s; flex-shrink: 0; }
+.dr-item.open .dr-toggle { transform: rotate(45deg); color: var(--teal); }
+.dr-body { display: none; padding: 0 18px 16px; border-top: 1px solid var(--border); }
+.dr-item.open .dr-body { display: block; }
+.dr-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 14px; }
+.dr-col h5 { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.dr-col ul { padding-left: 14px; }
+.dr-col li { font-size: 12.5px; color: var(--body); margin-bottom: 4px; line-height: 1.5; }
+.dr-col .dr-epithrive { background: var(--teal-light); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--teal-d); font-weight: 500; margin-top: 6px; }
+
+/* ─── GUIDELINES ─── */
+.guideline-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.gl-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; border-top: 4px solid; }
+.gl-espen { border-top-color: #1261a0; }
+.gl-epuap { border-top-color: #7c3aed; }
+.gl-npuap { border-top-color: var(--green); }
+.gl-card .gl-org { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: 'Fira Code', monospace; margin-bottom: 4px; }
+.gl-espen .gl-org { color: #1261a0; }
+.gl-epuap .gl-org { color: #7c3aed; }
+.gl-npuap .gl-org { color: var(--green); }
+.gl-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+.gl-card ul { padding-left: 14px; }
+.gl-card li { font-size: 12.5px; color: var(--body); margin-bottom: 5px; line-height: 1.5; }
+.gl-relevance { margin-top: 10px; padding: 8px 10px; background: var(--teal-light); border-radius: 6px; font-size: 12px; color: var(--teal-d); font-weight: 600; }
+
+/* ─── PROTOCOL INTEGRATION ─── */
+.protocol-flow {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 28px 30px;
+  margin-bottom: 20px;
+}
+.protocol-flow h3 { font-family: 'Fraunces', serif; color: #fff; font-size: 20px; margin-bottom: 8px; }
+.protocol-flow .pf-sub { color: rgba(255,255,255,.45); font-size: 13px; margin-bottom: 22px; }
+.pf-row { display: flex; gap: 0; align-items: stretch; margin-bottom: 16px; }
+.pf-label { min-width: 130px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px 0 0 8px; padding: 12px 14px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .5px; display: flex; align-items: center; }
+.pf-content { flex: 1; border: 1px solid rgba(255,255,255,.1); border-left: none; border-radius: 0 8px 8px 0; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.pf-tag { border-radius: 5px; padding: 4px 10px; font-size: 12px; font-weight: 600; }
+.pf-tag.soc { background: rgba(255,255,255,.08); color: rgba(255,255,255,.65); }
+.pf-tag.epithrive { background: rgba(14,143,168,.25); color: #7dd8ea; border: 1px solid rgba(14,143,168,.35); }
+.pf-plus { color: rgba(255,255,255,.3); font-size: 18px; font-weight: 700; padding: 0 2px; }
+.pf-result { margin-top: 16px; background: rgba(14,143,168,.15); border: 1px solid rgba(14,143,168,.3); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; }
+.pf-result .pfr-icon { font-size: 26px; flex-shrink: 0; }
+.pf-result .pfr-text { font-size: 13.5px; color: rgba(255,255,255,.8); line-height: 1.6; }
+.pf-result strong { color: #7dd8ea; }
+
+/* ─── HCP PERSONA CARDS ─── */
+.hcp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.hcp-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.hcp-head { padding: 16px 18px; display: flex; align-items: center; gap: 14px; }
+.hcp-avatar { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.hcp-h-meta h4 { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: #fff; line-height: 1.2; }
+.hcp-h-meta .hcp-title { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 2px; }
+.ortho .hcp-head { background: linear-gradient(135deg, #143a5a, #1e5c8a); }
+.diab .hcp-head { background: linear-gradient(135deg, #4a0d2e, #7b1245); }
+.icu .hcp-head { background: linear-gradient(135deg, #0d3a2e, #145c47); }
+.diet .hcp-head { background: linear-gradient(135deg, #3a2d00, #6b5200); }
+.nurse .hcp-head { background: linear-gradient(135deg, #2a0a4a, #4e1480); }
+.gensurg .hcp-head { background: linear-gradient(135deg, #1a1a2e, #2d2d5a); }
+.hcp-body { padding: 16px 18px; }
+.hcp-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.hcp-row-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); min-width: 90px; flex-shrink: 0; padding-top: 1px; }
+.hcp-row-val { font-size: 13px; color: var(--body); line-height: 1.55; }
+.hcp-pitch { margin-top: 12px; background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 6px 6px 0; padding: 10px 12px; font-size: 12.5px; color: var(--navy); line-height: 1.55; font-style: italic; }
+
+/* ─── INFECTION SIGNS ─── */
+.infection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.inf-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+.inf-card.local { border-top: 3px solid var(--amber); }
+.inf-card.spread { border-top: 3px solid var(--red); }
+.inf-card.systemic { border-top: 3px solid #8b0000; }
+.inf-card h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+.inf-card.local h4 { color: var(--amber); }
+.inf-card.spread h4 { color: var(--red); }
+.inf-card.systemic h4 { color: #8b0000; }
+.inf-card ul { padding-left: 14px; }
+.inf-card li { font-size: 12.5px; color: var(--body); margin-bottom: 4px; line-height: 1.5; }
+
+/* ─── SPECIALISED CARE TABLE ─── */
+.spec-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; font-size: 13px; margin-bottom: 20px; }
+.spec-table th { background: var(--navy); color: rgba(255,255,255,.6); padding: 10px 16px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-family: 'Fira Code', monospace; }
+.spec-table td { padding: 12px 16px; border-bottom: 1px solid #edf2f7; vertical-align: top; line-height: 1.5; font-size: 13px; }
+.spec-table tr:last-child td { border-bottom: none; }
+.spec-table tr:nth-child(even) td { background: #f8fafc; }
+.spec-table td:first-child { font-weight: 700; color: var(--navy); width: 160px; }
+.spec-table td:nth-child(2) { color: var(--muted); font-size: 12.5px; }
+
+/* ─── OFFLOADING & COMPRESSION ─── */
+.special-care-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.sc-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.sc-block-head { padding: 14px 16px; background: var(--navy-mid); }
+.sc-block-head h4 { color: #fff; font-size: 14px; font-weight: 700; }
+.sc-block-head p { color: rgba(255,255,255,.5); font-size: 11px; margin-top: 2px; }
+.sc-block-body { padding: 14px 16px; }
+.sc-block-body ul { padding-left: 14px; }
+.sc-block-body li { font-size: 12.5px; color: var(--body); margin-bottom: 5px; line-height: 1.5; }
+
+/* ─── QUIZ ─── */
+.quiz-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.quiz-q-head { padding: 14px 18px; display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+.qq-num { width: 26px; height: 26px; border-radius: 6px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Fira Code', monospace; }
+.qq-text { flex: 1; font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+.quiz-opts { padding: 0 18px 14px 56px; }
+.q-opt { display: flex; align-items: flex-start; gap: 8px; padding: 9px 12px; border-radius: 7px; border: 1.5px solid var(--border); font-size: 13px; color: var(--body); cursor: pointer; margin-bottom: 7px; background: var(--card); width: 100%; text-align: left; transition: all .15s; }
+.q-opt::before { content: '○'; color: var(--muted); font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+.q-opt:hover { border-color: var(--teal); background: var(--teal-light); }
+.q-opt.correct { border-color: var(--green); background: var(--green-bg); color: #0f5c31; font-weight: 600; }
+.q-opt.correct::before { content: '✓'; color: var(--green); }
+.q-opt.wrong { border-color: var(--red); background: var(--red-bg); color: #911d1d; }
+.q-opt.wrong::before { content: '✗'; color: var(--red); }
+.q-feedback { display: none; margin: 0 18px 12px 56px; padding: 9px 12px; border-radius: 6px; font-size: 12.5px; line-height: 1.6; }
+.q-feedback.show { display: block; }
+.q-feedback.ok { background: var(--green-bg); border: 1px solid var(--green-border); color: #0c4f29; }
+.q-feedback.no { background: var(--red-bg); border: 1px solid var(--red-border); color: #7a1c1c; }
+
+@media (max-width: 860px) {
+  body { flex-direction: column; }
+  #sidebar { position: relative; width: 100%; height: auto; }
+  #main { margin-left: 0; padding: 0 20px 60px; }
+  .time-grid, .debride-grid, .assess-grid, .guideline-grid, .hcp-grid, .infection-grid, .special-care-grid, .dr-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <span class="sb-tag">MR Training Program</span>
+    <h2>Epithrive®</h2>
+    <p>Module 2 — Wound Care</p>
+  </div>
+  <div class="sb-cat">Contents</div>
+  <div class="sb-nav">
+    <a href="#s1" class="active"><span class="sb-dot"></span>The T.I.M.E. Framework</a>
+    <a href="#s2"><span class="sb-dot"></span>Wound Assessment</a>
+    <a href="#s3"><span class="sb-dot"></span>Debridement Types</a>
+    <a href="#s4"><span class="sb-dot"></span>Dressing Selection Guide</a>
+    <a href="#s5"><span class="sb-dot"></span>Infection Recognition</a>
+    <a href="#s6"><span class="sb-dot"></span>Specialised Care</a>
+    <a href="#s7"><span class="sb-dot"></span>Nutrition in Guidelines</a>
+    <a href="#s8"><span class="sb-dot"></span>Protocol Integration</a>
+    <a href="#s9"><span class="sb-dot"></span>Know Your HCPs</a>
+    <a href="#s10"><span class="sb-dot"></span>Knowledge Check</a>
+  </div>
+  <div class="sb-note">
+    <strong>MR objective:</strong> Understand standard wound care well enough to speak credibly with every HCP in the wound team — and to position Epithrive® as the missing nutritional layer in their existing protocols.
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="ph-pretag">Module 2 of 8</div>
+    <h1>Wound Care <em>Fundamentals</em></h1>
+    <p class="ph-sub">The standard of care your doctors follow every day. You need to know it well enough to walk into any ward, understand what's happening, and position Epithrive® as the intelligent adjunct that completes the protocol.</p>
+    <div class="ph-chips">
+      <div class="ph-chip"><strong>T.I.M.E.</strong> Wound Management Framework</div>
+      <div class="ph-chip"><strong>4</strong> Debridement Types</div>
+      <div class="ph-chip"><strong>8</strong> Dressing Categories</div>
+      <div class="ph-chip"><strong>6</strong> HCP Persona Guides</div>
+      <div class="ph-chip"><strong>ESPEN · EPUAP · NPUAP</strong> Guidelines</div>
+    </div>
+  </div>
+
+  <!-- S1: T.I.M.E. -->
+  <section class="section" id="s1">
+    <div class="sec-hd">
+      <div class="sec-num">1</div>
+      <div>
+        <h2>The T.I.M.E. Framework</h2>
+        <div class="sh-sub">The global standard for structured wound bed preparation — what every wound care team follows</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.75;color:var(--body);margin-bottom:20px">T.I.M.E. is the internationally recognised wound bed preparation framework developed by the European Wound Management Association (EWMA). It provides a systematic approach to wound management by addressing four core barriers to healing. Every wound care specialist uses this mental model — knowing it puts you on equal footing in any clinical conversation.</p>
+
+    <div class="time-grid">
+      <div class="time-cell T">
+        <div class="tc-head">
+          <div class="tc-letter">T</div>
+          <h4>Tissue Management</h4>
+          <div class="tc-full">Non-viable tissue removal</div>
+        </div>
+        <div class="tc-body">
+          <ul>
+            <li>Remove necrotic, sloughy, or fibrinous tissue from wound bed</li>
+            <li>Prevents bacterial growth and chronic inflammation</li>
+            <li>Creates a clean base for granulation tissue to form</li>
+            <li>Methods: surgical debridement, enzymatic agents, autolytic dressings</li>
+            <li>Healthy wound bed should be: pink/red, moist, granular</li>
+          </ul>
+        </div>
+        <div class="tc-footer">Epithrive® role: Arginine → collagen scaffold to replace removed tissue</div>
+      </div>
+
+      <div class="time-cell I">
+        <div class="tc-head">
+          <div class="tc-letter">I</div>
+          <h4>Infection / Inflammation</h4>
+          <div class="tc-full">Control the biological burden</div>
+        </div>
+        <div class="tc-body">
+          <ul>
+            <li>Identify and control bacterial bioburden — from contamination → colonisation → infection</li>
+            <li>Critically colonised wounds: high bacterial load without classic signs</li>
+            <li>Local infection: erythema, warmth, pain, purulent exudate</li>
+            <li>Chronic inflammation: persistent elevated MMPs → ECM destruction</li>
+            <li>Treatment: topical antimicrobials, systemic antibiotics if spreading</li>
+          </ul>
+        </div>
+        <div class="tc-footer">Epithrive® role: Glutamine → immune cell fuel → infection control support</div>
+      </div>
+
+      <div class="time-cell M">
+        <div class="tc-head">
+          <div class="tc-letter">M</div>
+          <h4>Moisture Balance</h4>
+          <div class="tc-full">Optimal wound environment</div>
+        </div>
+        <div class="tc-body">
+          <ul>
+            <li>Wound healing requires a moist (not wet, not dry) environment</li>
+            <li>Too dry: cell migration is impaired; eschar forms over surface</li>
+            <li>Too wet (maceration): surrounding skin breaks down; wound expands</li>
+            <li>Exudate management is the primary purpose of modern dressings</li>
+            <li>Correct dressing absorbs excess exudate without drying the wound bed</li>
+          </ul>
+        </div>
+        <div class="tc-footer">Epithrive® role: Collagen peptides → ECM integrity → improved exudate control</div>
+      </div>
+
+      <div class="time-cell E">
+        <div class="tc-head">
+          <div class="tc-letter">E</div>
+          <h4>Epithelial / Edge Advancement</h4>
+          <div class="tc-full">Stimulate wound closure</div>
+        </div>
+        <div class="tc-body">
+          <ul>
+            <li>Keratinocytes must migrate from wound edges across the wound bed to close the surface</li>
+            <li>Non-advancing edges signal a stalled wound — cells are senescent or hypoxic</li>
+            <li>Wound contraction (myofibroblasts) pulls edges together simultaneously</li>
+            <li>Undermining or rolling edges indicate chronic wound failure</li>
+            <li>Stimulation methods: debridement, growth factors, surgical techniques</li>
+          </ul>
+        </div>
+        <div class="tc-footer">Epithrive® role: Vitamin A + Zinc → keratinocyte migration; Arginine → angiogenesis at edges</div>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <strong>How to use T.I.M.E. in a doctor conversation:</strong> "I know you're managing this wound using the T.I.M.E. framework. You're addressing the tissue, the infection, and the moisture balance with local care. What Epithrive® adds is the systemic nutritional substrate that supports E — epithelial advancement — and everything that drives it: angiogenesis, collagen deposition, immune competence, and anti-catabolism."
+    </div>
+  </section>
+
+  <!-- S2: WOUND ASSESSMENT -->
+  <section class="section" id="s2">
+    <div class="sec-hd">
+      <div class="sec-num">2</div>
+      <div>
+        <h2>Wound Assessment</h2>
+        <div class="sh-sub">What the wound care team evaluates at every visit — know the parameters</div>
+      </div>
+    </div>
+
+    <div class="assess-grid">
+      <div class="assess-card">
+        <div class="ac-icon">📐</div>
+        <h4>Size & Dimensions</h4>
+        <p>Length × Width (cm²) measured photographically or with ruler. Wound area reduction percentage is the key healing metric — exactly what the India clinical study used. Depth measured with sterile probe.</p>
+        <div class="ac-tip">Clinical study basis: 72.4% wound area reduction at Week 8</div>
+      </div>
+      <div class="assess-card">
+        <div class="ac-icon">🔬</div>
+        <h4>Tissue Type</h4>
+        <p>Necrotic (black/brown, eschar) · Slough (yellow/white, fibrinous) · Granulation (red/pink, healthy) · Epithelial (pink, advancing) · Hypergranulation (raised above surface — excess). Progress = movement from necrotic toward epithelial.</p>
+        <div class="ac-tip">Red granulation = wound progressing. Yellow slough = stalled.</div>
+      </div>
+      <div class="assess-card">
+        <div class="ac-icon">💧</div>
+        <h4>Exudate</h4>
+        <p>Amount: none → light → moderate → heavy. Type: serous (clear, normal), haemoserous (pink), purulent (green/yellow, infected). Excessive exudate with odour → infection or high MMP activity → wound stalling.</p>
+        <div class="ac-tip">Decreasing exudate + improving clarity = healing progress</div>
+      </div>
+      <div class="assess-card">
+        <div class="ac-icon">🔴</div>
+        <h4>Wound Edges & Margins</h4>
+        <p>Attached vs. undermined (tunnelling underneath). Rolled/epiboly edges = non-advancing; chronic wound. Well-defined, attached, advancing edges = healing. Undermining depth and direction documented in clock-face notation.</p>
+        <div class="ac-tip">Advancing edges = Epithrive® doing its job systemically</div>
+      </div>
+      <div class="assess-card">
+        <div class="ac-icon">🌡️</div>
+        <h4>Peri-Wound Skin</h4>
+        <p>Maceration (white, soggy — too wet). Erythema (redness spreading beyond wound margin — infection). Induration (firm, raised — spreading infection). Callus formation (pressure wounds). Skin temperature differential vs. normal tissue.</p>
+        <div class="ac-tip">Vitamin E + Selenium → peri-wound oxidative protection</div>
+      </div>
+      <div class="assess-card">
+        <div class="ac-icon">⏱️</div>
+        <h4>Healing Trajectory</h4>
+        <p>Is the wound improving, static, or deteriorating? Rule of thumb: if wound area has not reduced ≥30% in 4 weeks with standard care, the healing trajectory is insufficient — nutritional support should be considered. Stalled = SNAP Rule trigger.</p>
+        <div class="ac-tip">No 30% reduction in 4 weeks → Epithrive® conversation</div>
+      </div>
+    </div>
+
+    <div class="callout teal">
+      <strong>The MR's assessment literacy goal:</strong> You don't need to assess wounds yourself — that is the clinician's role. You need to understand the terms, so when a doctor says "wound has slough but no granulation" or "edges are undermined and not advancing," you understand what this means clinically — and can recognise it as the exact scenario where nutritional substrate support is most needed.
+    </div>
+  </section>
+
+  <!-- S3: DEBRIDEMENT -->
+  <section class="section" id="s3">
+    <div class="sec-hd">
+      <div class="sec-num">3</div>
+      <div>
+        <h2>Debridement — Types &amp; Rationale</h2>
+        <div class="sh-sub">The cornerstone of T–Tissue management — know all four methods</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.7;color:var(--body);margin-bottom:18px">Debridement is the removal of non-viable, infected, or foreign tissue from a wound to expose healthy tissue beneath and allow healing to progress. It is the most fundamental wound care intervention. Understanding debridement makes you credible with surgeons and wound nurses — and creates the critical context for why nutritional support matters: <em>debridement dramatically increases metabolic demand for tissue repair.</em></p>
+
+    <div class="debride-grid">
+      <div class="db-card">
+        <div class="db-head db-s">
+          <div class="db-type">Surgical / Sharp</div>
+          <h4>Fastest. Most complete.</h4>
+        </div>
+        <div class="db-body">
+          <p>Scalpel, scissors, or curette used by surgeon or trained clinician. Removes all necrotic tissue in a single session. Creates a bleeding wound bed — signals the body to restart healing cascade. Gold standard for heavily infected or heavily necrotic wounds.</p>
+          <p><strong>When used:</strong> Wagner 3–4 DFU, heavily infected pressure ulcers, post-traumatic wounds with necrotic tissue, large burns.</p>
+          <span class="db-use">MR context: Surgical debridement massively ↑ metabolic demand → substrate need ↑ immediately</span>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-head db-e">
+          <div class="db-type">Enzymatic</div>
+          <h4>Selective. Ongoing.</h4>
+        </div>
+        <div class="db-body">
+          <p>Topical enzyme preparations (collagenase-based, e.g., Iruxol Mono, Collatamp) break down necrotic tissue selectively without damaging healthy tissue. Applied under dressing, changed every 1–2 days. Slower than surgical but more selective and patient-friendly.</p>
+          <p><strong>When used:</strong> Moderate necrosis, outpatient settings, patients who cannot tolerate surgical debridement (elderly, anticoagulated).</p>
+          <span class="db-use">MR context: Enzymatic agents work on local environment; Epithrive® supports systemic substrate</span>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-head db-a">
+          <div class="db-type">Autolytic</div>
+          <h4>Gentlest. Self-directed.</h4>
+        </div>
+        <div class="db-body">
+          <p>Uses the body's own enzymes and moisture — created by an occlusive or semi-occlusive dressing (hydrocolloid, hydrogel) — to soften and liquefy necrotic tissue. Painless, patient-friendly, no specialist skill required. Slowest method. Not suitable for infected wounds.</p>
+          <p><strong>When used:</strong> Light to moderate slough, community settings, elderly patients, palliative wound management.</p>
+          <span class="db-use">MR context: Autolytic takes weeks — Epithrive® shortens the systemic healing lag</span>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-head db-m">
+          <div class="db-type">Mechanical / Biological</div>
+          <h4>Targeted. Emerging.</h4>
+        </div>
+        <div class="db-body">
+          <p>Mechanical: Wet-to-dry gauze (non-selective, painful, now largely abandoned), wound irrigation with saline or PHMB, ultrasound-assisted debridement. Biological (Maggot therapy): sterile Lucilia sericata larvae consume necrotic tissue selectively — highly effective in deep, refractory wounds. Used in specialised centres.</p>
+          <p><strong>When used:</strong> NPWT (Negative Pressure Wound Therapy) also removes slough continuously.</p>
+          <span class="db-use">MR context: Whatever method — substrate supply from Epithrive® remains the limiting factor</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout amber">
+      <strong>The critical nutritional link:</strong> Every debridement method, whether surgical or enzymatic, removes not just dead tissue but also growth factors and wound signals — resetting the wound to an earlier healing stage. This dramatically increases the demand for Arginine (NO → revascularisation), Glutamine (immune reinitiation), and Collagen Peptides (ECM scaffold rebuilding). Epithrive® initiated within 24–48 hours of surgical debridement provides the substrates the wound biology needs to capitalise on the cleaned wound bed.
+    </div>
+  </section>
+
+  <!-- S4: DRESSING SELECTION -->
+  <section class="section" id="s4">
+    <div class="sec-hd">
+      <div class="sec-num">4</div>
+      <div>
+        <h2>Dressing Selection Guide</h2>
+        <div class="sh-sub">8 dressing categories — what each does, when it's used, and what Epithrive® adds alongside</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.7;color:var(--body);margin-bottom:16px">Dressings manage the <em>local wound environment</em>. They control moisture, protect against contamination, and in advanced forms, actively support healing. Dressings do not address systemic nutritional deficits — which is exactly where Epithrive® operates. An MR who understands dressing choices can have a genuine clinical conversation with any wound nurse or surgeon.</p>
+
+    <div class="dressing-accordion">
+
+      <div class="dr-item open">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#e8f5e9">🩹</div>
+          <div class="dr-meta">
+            <h4>Basic / Traditional Dressings (Gauze, Non-adherent)</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#e8f5e9;color:#1b5e20">Low cost</span>
+              <span class="dr-tag" style="background:#fff3e0;color:#e65100">Limited functionality</span>
+              <span class="dr-tag" style="background:#f3e5f5;color:#6a1b9a">Frequent changes</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>What It Does</h5>
+              <ul>
+                <li>Physical barrier against contamination</li>
+                <li>Absorbs light exudate</li>
+                <li>Wet-to-dry: mechanical debridement (non-selective)</li>
+                <li>Non-adherent versions protect fragile tissue</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Used When</h5>
+              <ul>
+                <li>Low-exudate wounds or as secondary dressing</li>
+                <li>Post-surgical closure (simple wounds)</li>
+                <li>Resource-limited settings</li>
+                <li>Dressing changes twice daily often required</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">When only basic dressings are used, systemic nutritional support from Epithrive® becomes even more critical — it compensates for the lack of advanced dressing-level wound stimulation by driving healing from the systemic side.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dr-item">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#e3f2fd">💧</div>
+          <div class="dr-meta">
+            <h4>Hydrocolloid Dressings (e.g., DuoDERM, Comfeel)</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#e3f2fd;color:#0d47a1">Moist healing</span>
+              <span class="dr-tag" style="background:#e8f5e9;color:#1b5e20">Autolytic debridement</span>
+              <span class="dr-tag" style="background:#f3e5f5;color:#6a1b9a">3–5 day wear</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>What It Does</h5>
+              <ul>
+                <li>Creates a moist, hypoxic environment that promotes autolytic debridement</li>
+                <li>Absorbs light-to-moderate exudate into gel matrix</li>
+                <li>Self-adhesive, waterproof — patient-friendly</li>
+                <li>Creates an occlusive seal that raises local CO₂ → promotes angiogenesis</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Used When</h5>
+              <ul>
+                <li>Stage II pressure ulcers</li>
+                <li>Light slough, partial thickness wounds</li>
+                <li>Epithelialising wounds in final closure</li>
+                <li>Not suitable for infected or heavily exuding wounds</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">Hydrocolloid manages moisture locally. Epithrive® provides Arginine (angiogenesis), Vitamin C (collagen stabilisation), and Zinc (epithelialization) — systemic drivers that make the moist environment productive.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dr-item">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#fff3e0">🧽</div>
+          <div class="dr-meta">
+            <h4>Foam Dressings (e.g., Mepilex, Allevyn, Biatain)</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#fff3e0;color:#e65100">High absorption</span>
+              <span class="dr-tag" style="background:#e3f2fd;color:#0d47a1">Pressure redistribution</span>
+              <span class="dr-tag" style="background:#e8f5e9;color:#1b5e20">3–7 day wear</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>What It Does</h5>
+              <ul>
+                <li>Highly absorbent polyurethane foam manages moderate-to-heavy exudate</li>
+                <li>Maintains moisture balance without maceration</li>
+                <li>Provides cushioning and pressure redistribution on bony prominences</li>
+                <li>Available in adhesive and non-adhesive forms</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Used When</h5>
+              <ul>
+                <li>Pressure injuries Stage II–III (sacrum, heels)</li>
+                <li>Moderately exuding DFU</li>
+                <li>Venous leg ulcers (under compression bandage)</li>
+                <li>Fungating wounds, donor sites</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">Foam dressings are the most common pressure ulcer dressing. HMB from Epithrive® preserves the lean mass and mobility that is the long-term solution to pressure prevention — foam manages the local environment, HMB addresses systemic catabolism.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dr-item">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#fce4ec">🦠</div>
+          <div class="dr-meta">
+            <h4>Silver / Antimicrobial Dressings (e.g., Mepilex Ag, Aquacel Ag)</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#fce4ec;color:#880e4f">Infection control</span>
+              <span class="dr-tag" style="background:#f3e5f5;color:#6a1b9a">Biofilm disruption</span>
+              <span class="dr-tag" style="background:#fff3e0;color:#e65100">Limited duration</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>What It Does</h5>
+              <ul>
+                <li>Ionic silver (Ag⁺) kills bacteria by disrupting cell membrane and metabolic enzymes</li>
+                <li>Effective against MRSA, Pseudomonas, and other resistant organisms</li>
+                <li>Disrupts biofilm formation — which antibiotics alone cannot penetrate</li>
+                <li>Reduces wound malodour</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Used When</h5>
+              <ul>
+                <li>Critically colonised or locally infected wounds</li>
+                <li>Wounds with suspected biofilm (recurrent stalling despite debridement)</li>
+                <li>Not for long-term use — silver cytotoxic to fibroblasts at high doses</li>
+                <li>Typically 2–4 weeks, then reassess</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">Silver controls local infection. Glutamine supports systemic immune competence alongside it — ensuring macrophages and neutrophils can clear what the silver weakens. Together they address both local bioburden and systemic immune fuel.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dr-item">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#e8eaf6">🌊</div>
+          <div class="dr-meta">
+            <h4>Alginate Dressings (e.g., Kaltostat, Sorbsan)</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#e8eaf6;color:#1a237e">Heavy exudate</span>
+              <span class="dr-tag" style="background:#e8f5e9;color:#1b5e20">Haemostatic</span>
+              <span class="dr-tag" style="background:#fce4ec;color:#880e4f">Deep/cavity wounds</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>What It Does</h5>
+              <ul>
+                <li>Derived from seaweed — absorbs up to 20× its weight in exudate</li>
+                <li>Haemostatic: activates clotting cascade</li>
+                <li>Forms a soft gel on contact with wound exudate — maintains moisture balance</li>
+                <li>Available as flat sheet or rope/ribbon for packing cavities</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Used When</h5>
+              <ul>
+                <li>Highly exuding wounds (Stage III–IV pressure ulcers)</li>
+                <li>Post-surgical cavities, sinuses, tunnelled wounds</li>
+                <li>Bleeding or haemostasis needed</li>
+                <li>Not for dry or lightly exuding wounds</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">High-exudate wounds lose protein through exudate continuously — accelerating nutritional depletion. Epithrive® replenishes Arginine, Glutamine, and Collagen lost through exudate, while alginate manages the physical moisture challenge.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dr-item">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#e0f2f1">🧬</div>
+          <div class="dr-meta">
+            <h4>Collagen Dressings (e.g., Promogran, Fibracol)</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#e0f2f1;color:#004d40">ECM scaffold</span>
+              <span class="dr-tag" style="background:#f3e5f5;color:#6a1b9a">MMP sequestration</span>
+              <span class="dr-tag" style="background:#e3f2fd;color:#0d47a1">Granulation support</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>What It Does</h5>
+              <ul>
+                <li>Provides exogenous collagen scaffold for fibroblast migration</li>
+                <li>Sequesters destructive MMPs (protecting growth factors in wound)</li>
+                <li>Stimulates endogenous collagen production</li>
+                <li>Promotes granulation tissue formation</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Used When</h5>
+              <ul>
+                <li>Stalled DFU, venous ulcers, pressure injuries</li>
+                <li>Granulation absent despite debridement</li>
+                <li>High MMP environment (chronic wound inflammation)</li>
+                <li>Changed every 1–7 days depending on exudate level</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">Collagen dressings provide local ECM scaffold. Epithrive®'s Marine Collagen Peptides provide systemic precursors — and Arginine → Ornithine → Proline → Collagen synthesis pathway provides the endogenous substrate that collagen dressings cannot supply.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dr-item">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#f9fbe7">⚡</div>
+          <div class="dr-meta">
+            <h4>NPWT — Negative Pressure Wound Therapy (VAC therapy)</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#f9fbe7;color:#33691e">Advanced</span>
+              <span class="dr-tag" style="background:#e3f2fd;color:#0d47a1">Large/deep wounds</span>
+              <span class="dr-tag" style="background:#fce4ec;color:#880e4f">Hospital/home</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>What It Does</h5>
+              <ul>
+                <li>Applies controlled negative pressure (suction) to wound via foam and sealed dressing</li>
+                <li>Removes excess exudate continuously</li>
+                <li>Mechanically stimulates fibroblasts and angiogenesis via tissue deformation</li>
+                <li>Reduces wound edge tension — promotes contraction</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Used When</h5>
+              <ul>
+                <li>Large open abdominal wounds, post-debridement DFU</li>
+                <li>Stage III–IV pressure injuries</li>
+                <li>Skin graft fixation</li>
+                <li>Dehisced surgical wounds</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">NPWT increases metabolic demand dramatically — it mechanically drives granulation but requires substrates to build it. This is an ideal combination indication: NPWT + Epithrive® provides both the physical stimulus and the nutritional substrate for tissue growth.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dr-item">
+        <div class="dr-head" onclick="toggleDr(this)">
+          <div class="dr-icon" style="background:#fbe9e7">🩺</div>
+          <div class="dr-meta">
+            <h4>Advanced Wound Care: Hydrogel, PHMB, Honey, Growth Factor Dressings</h4>
+            <div class="dr-tags">
+              <span class="dr-tag" style="background:#fbe9e7;color:#bf360c">Specialised</span>
+              <span class="dr-tag" style="background:#e8f5e9;color:#1b5e20">Rehydration / antimicrobial</span>
+            </div>
+          </div>
+          <div class="dr-toggle">+</div>
+        </div>
+        <div class="dr-body">
+          <div class="dr-grid">
+            <div class="dr-col">
+              <h5>Hydrogel</h5>
+              <ul>
+                <li>Donates moisture to dry necrotic wounds</li>
+                <li>Rehydrates eschar for autolytic debridement</li>
+                <li>Cooling effect — comfortable for burns and radiation wounds</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>PHMB / Medical Honey</h5>
+              <ul>
+                <li>PHMB (Polyhexamethylene biguanide): potent broad-spectrum antimicrobial in irrigation solution or dressings</li>
+                <li>Medical honey (Manuka): low pH + H₂O₂ → antimicrobial + osmotic debridement</li>
+              </ul>
+            </div>
+            <div class="dr-col">
+              <h5>Epithrive® Role</h5>
+              <div class="dr-epithrive">All advanced dressings address local wound environment challenges. Epithrive® remains the systemic nutritional complement regardless of dressing type — the substrate supply that no topical product can provide.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S5: INFECTION RECOGNITION -->
+  <section class="section" id="s5">
+    <div class="sec-hd">
+      <div class="sec-num">5</div>
+      <div>
+        <h2>Recognising Wound Infection</h2>
+        <div class="sh-sub">The progression from contamination to systemic infection — and why nutrition matters at every stage</div>
+      </div>
+    </div>
+
+    <div class="infection-grid">
+      <div class="inf-card local">
+        <h4>⚠️ Local Infection</h4>
+        <ul>
+          <li>Increased pain, warmth, erythema</li>
+          <li>Purulent exudate (yellow/green)</li>
+          <li>Wound odour</li>
+          <li>Delayed healing despite good care</li>
+          <li>Friable granulation tissue that bleeds easily</li>
+          <li>Treatment: topical antimicrobials (silver/PHMB/honey)</li>
+        </ul>
+      </div>
+      <div class="inf-card spread">
+        <h4>🚨 Spreading Infection (Cellulitis)</h4>
+        <ul>
+          <li>Erythema extending >2cm beyond wound margin</li>
+          <li>Lymphangitis (red streaks)</li>
+          <li>Lymphadenopathy</li>
+          <li>Systemic signs beginning (fever, raised WBC)</li>
+          <li>Treatment: oral / IV antibiotics + local care</li>
+          <li>Key risk: diabetic patients may have no fever (neuropathy)</li>
+        </ul>
+      </div>
+      <div class="inf-card systemic">
+        <h4>🆘 Systemic Infection (Sepsis)</h4>
+        <ul>
+          <li>Fever >38°C or hypothermia <36°C</li>
+          <li>HR >90, RR >20, altered consciousness</li>
+          <li>Elevated WBC, CRP, procalcitonin</li>
+          <li>Requires IV antibiotics, hospital admission</li>
+          <li>Septic patients are in extreme catabolic state — highest substrate need</li>
+          <li>Glutamine depletion is most severe here</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout teal">
+      <strong>The nutrition-infection connection for MRs:</strong> Glutamine is the primary fuel for immune cells (neutrophils and macrophages) — the cells that fight wound infection. In a malnourished patient with a chronic wound, Glutamine is often depleted 50–80% below normal. This means the immune system is fighting with an empty tank. Epithrive® (7g Glutamine per sachet) refuels this immune response — which is why patients on Epithrive® show faster resolution of wound colonisation alongside appropriate antimicrobial therapy.
+    </div>
+  </section>
+
+  <!-- S6: SPECIALISED CARE -->
+  <section class="section" id="s6">
+    <div class="sec-hd">
+      <div class="sec-num">6</div>
+      <div>
+        <h2>Specialised Care by Wound Type</h2>
+        <div class="sh-sub">Beyond dressings — the condition-specific interventions your doctors perform</div>
+      </div>
+    </div>
+
+    <div class="special-care-grid">
+      <div class="sc-block">
+        <div class="sc-block-head">
+          <h4>🦶 DFU — Offloading</h4>
+          <p>Critical intervention alongside nutrition and dressings</p>
+        </div>
+        <div class="sc-block-body">
+          <ul>
+            <li><strong>Total Contact Cast (TCC):</strong> Gold standard. Distributes plantar pressure evenly across the foot. Forces compliance. Significantly reduces DFU healing time.</li>
+            <li><strong>Instant TCC (iTCC) / Removable Cast Walker locked:</strong> Effective when TCC is not feasible. Removable but locked to ensure compliance.</li>
+            <li><strong>Forefoot offloading shoe / half shoe:</strong> Removes pressure from forefoot wounds. Less effective than TCC.</li>
+            <li><strong>Custom insoles and therapeutic footwear:</strong> Prevents recurrence post-healing — critical given 70% recurrence rate in DFU.</li>
+            <li><strong>Wheelchair or crutches:</strong> Non-weight-bearing for severe cases.</li>
+          </ul>
+          <div style="margin-top:10px;background:var(--teal-light);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--teal-d);font-weight:600">Epithrive® + offloading = systemic + mechanical healing. One without the other is suboptimal.</div>
+        </div>
+      </div>
+
+      <div class="sc-block">
+        <div class="sc-block-head">
+          <h4>🦵 VLU — Compression Therapy</h4>
+          <p>The primary driver of venous ulcer healing</p>
+        </div>
+        <div class="sc-block-body">
+          <ul>
+            <li><strong>Multi-layer compression bandaging:</strong> 4-layer (e.g., Profore) creates sustained 40mmHg at ankle — reverses venous hypertension. Gold standard. Changed weekly.</li>
+            <li><strong>Short-stretch (inelastic) bandaging:</strong> High working pressure with walking. Used in ambulant patients.</li>
+            <li><strong>Compression hosiery (stockings):</strong> Maintenance/prevention after healing. Class II (23–32mmHg) or III (34–46mmHg).</li>
+            <li><strong>Intermittent Pneumatic Compression (IPC):</strong> Machine-driven compression for non-ambulant or lymphoedema patients.</li>
+            <li><strong>Rule:</strong> Compression is only safe when ABPI >0.8 (adequate arterial flow confirmed by Doppler).</li>
+          </ul>
+          <div style="margin-top:10px;background:var(--teal-light);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--teal-d);font-weight:600">Compression reverses venous hypertension locally. Epithrive® supports the angiogenesis and collagen synthesis that compression creates the opportunity for.</div>
+        </div>
+      </div>
+
+      <div class="sc-block">
+        <div class="sc-block-head">
+          <h4>🛏️ Pressure Injuries — Repositioning</h4>
+          <p>Prevention is always better than treatment</p>
+        </div>
+        <div class="sc-block-body">
+          <ul>
+            <li><strong>2-hourly repositioning:</strong> The fundamental intervention. A nurse or caregiver manually turns the patient to prevent sustained pressure on any one point.</li>
+            <li><strong>Pressure-relieving surfaces:</strong> Alternating pressure mattresses (dynamic), high-specification foam (static). Reduces interface pressure below capillary closing pressure (~32mmHg).</li>
+            <li><strong>Positioning devices:</strong> Heel boots (remove heel from mattress entirely), positioning wedges (30° lateral tilt), foam props.</li>
+            <li><strong>Skin care:</strong> Moisture barriers to protect skin from incontinence-related moisture damage (IAD). Skin assessment at every reposition.</li>
+            <li><strong>Friction reduction:</strong> Slide sheets, hoists — reduce skin shear during repositioning.</li>
+          </ul>
+          <div style="margin-top:10px;background:var(--teal-light);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--teal-d);font-weight:600">HMB from Epithrive® preserves the lean mass that protects bony prominences — a malnourished patient has less padding and higher pressure injury risk.</div>
+        </div>
+      </div>
+
+      <div class="sc-block">
+        <div class="sc-block-head">
+          <h4>💉 Diabetes Management in DFU</h4>
+          <p>Glycaemic control is foundational to wound healing</p>
+        </div>
+        <div class="sc-block-body">
+          <ul>
+            <li><strong>HbA1c target:</strong> &lt;7.5% for active wound healing. High glucose impairs neutrophil function, reduces endothelial NO production, and glycates collagen (making it dysfunctional).</li>
+            <li><strong>Blood glucose monitoring:</strong> Daily or per ward protocol. Hyperglycaemia (>200mg/dL) significantly impairs all wound healing phases.</li>
+            <li><strong>Insulin optimisation:</strong> In hospitalised DFU patients, IV insulin infusion often used to tightly control glucose perioperatively and during debridement periods.</li>
+            <li><strong>Foot care education:</strong> Daily inspection, appropriate footwear, early reporting of breaks in skin — preventing the DFU cycle from restarting.</li>
+            <li><strong>Vascular assessment:</strong> Ankle-Brachial Pressure Index (ABPI) — identifies ischaemia, guides revascularisation decisions.</li>
+          </ul>
+          <div style="margin-top:10px;background:var(--teal-light);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--teal-d);font-weight:600">Epithrive® has no added sugar — safe alongside insulin therapy. Arginine supports the NO production that diabetes impairs at the endothelial level.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7: NUTRITION IN GUIDELINES -->
+  <section class="section" id="s7">
+    <div class="sec-hd">
+      <div class="sec-num">7</div>
+      <div>
+        <h2>Nutrition in Global Wound Care Guidelines</h2>
+        <div class="sh-sub">What ESPEN, EPUAP, and NPUAP formally recommend — the evidence base behind Epithrive®'s positioning</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.7;color:var(--body);margin-bottom:18px">When a doctor asks "is wound nutrition an established practice?" the answer is yes — and it is backed by the three most authoritative bodies in wound care. These guidelines form the clinical rationale for Epithrive® as a medically grounded nutritional adjunct, not a novel or unproven intervention.</p>
+
+    <div class="guideline-grid">
+      <div class="gl-card gl-espen">
+        <div class="gl-org">ESPEN</div>
+        <h4>European Society for Clinical Nutrition & Metabolism</h4>
+        <ul>
+          <li>Recommends oral nutritional supplementation (ONS) for patients with pressure injuries or at high nutritional risk</li>
+          <li>Protein requirements increase in wound healing: 1.2–2.0g protein/kg/day for wound patients</li>
+          <li>Arginine supplementation formally recommended in pressure ulcer patients who are malnourished or at nutritional risk</li>
+          <li>Recommends micronutrient supplementation (Zinc, Vitamin C) in deficient wound patients</li>
+        </ul>
+        <div class="gl-relevance">Epithrive® directly delivers ESPEN-recommended substrates: Arg, protein-equivalent amino acids, Zinc, Vitamin C — in a single daily sachet</div>
+      </div>
+
+      <div class="gl-card gl-epuap">
+        <div class="gl-org">EPUAP / NPIAP</div>
+        <h4>European / National Pressure Injury Advisory Panel</h4>
+        <ul>
+          <li>Strong recommendation to offer high-protein, high-calorie ONS to people with pressure injuries who cannot meet nutritional requirements through diet alone</li>
+          <li>Recommends Arginine, Zinc, and Vitamin C supplementation specifically for pressure injury healing</li>
+          <li>Nutrition screening (MUST or equivalent) recommended for every pressure injury patient — reflects importance of nutritional status</li>
+          <li>States: "Malnutrition is a major risk factor for pressure injury development and delayed healing"</li>
+        </ul>
+        <div class="gl-relevance">EPUAP explicitly recommends Arg + Zinc + Vit C combination — exactly what Epithrive® provides alongside Glutamine, HMB, and Collagen</div>
+      </div>
+
+      <div class="gl-card gl-npuap">
+        <div class="gl-org">NPUAP / IWGDF</div>
+        <h4>International Working Group on the Diabetic Foot</h4>
+        <ul>
+          <li>Nutritional support formally recognised as an adjunct to DFU management</li>
+          <li>IWGDF guidelines identify malnutrition as an independent risk factor for poor DFU outcomes and amputation</li>
+          <li>Protein and micronutrient supplementation recommended for malnourished DFU patients</li>
+          <li>Nutritional assessment (albumin, pre-albumin, MUST) recommended as part of DFU workup</li>
+          <li>Arginine's role in NO-mediated microcirculation improvement cited in evidence-based guidelines</li>
+        </ul>
+        <div class="gl-relevance">IWGDF identifies malnutrition as amputation risk — Epithrive® addresses this with the specific substrates that DFU healing requires</div>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <strong>How to use this with doctors:</strong> "Wound nutrition isn't a novel concept — ESPEN, EPUAP, and the IWGDF all formally recommend nutritional supplementation for wound patients. Epithrive® delivers exactly the substrates these guidelines identify: Arginine, Glutamine, Zinc, Vitamin C, and Collagen — in clinically validated doses, in one daily sachet. We're not asking you to add something experimental to your protocol. We're helping you implement what the guidelines already recommend."
+    </div>
+  </section>
+
+  <!-- S8: PROTOCOL INTEGRATION -->
+  <section class="section" id="s8">
+    <div class="sec-hd">
+      <div class="sec-num">8</div>
+      <div>
+        <h2>Protocol Integration</h2>
+        <div class="sh-sub">Where Epithrive® sits in the complete wound care pathway — for every wound type</div>
+      </div>
+    </div>
+
+    <div class="protocol-flow">
+      <h3>Epithrive® in the Standard of Care Protocol</h3>
+      <p class="pf-sub">Epithrive® does not replace any component of standard wound care. It adds the nutritional layer that standard care does not address.</p>
+
+      <div class="pf-row">
+        <div class="pf-label">DFU Protocol</div>
+        <div class="pf-content">
+          <span class="pf-tag soc">Glycaemic control</span>
+          <span class="pf-tag soc">Debridement</span>
+          <span class="pf-tag soc">Antibiotics (if infected)</span>
+          <span class="pf-tag soc">Offloading footwear</span>
+          <span class="pf-tag soc">Wound dressing</span>
+          <span class="pf-plus">+</span>
+          <span class="pf-tag epithrive">Epithrive® 1–2 sachets/day · Min 4–6 weeks</span>
+        </div>
+      </div>
+
+      <div class="pf-row">
+        <div class="pf-label">Pressure Injury</div>
+        <div class="pf-content">
+          <span class="pf-tag soc">2-hourly repositioning</span>
+          <span class="pf-tag soc">Pressure-relieving surface</span>
+          <span class="pf-tag soc">Foam / silver dressing</span>
+          <span class="pf-tag soc">Skin care</span>
+          <span class="pf-plus">+</span>
+          <span class="pf-tag epithrive">Epithrive® 1–2 sachets/day · 6–8 weeks</span>
+        </div>
+      </div>
+
+      <div class="pf-row">
+        <div class="pf-label">Post-Surgical</div>
+        <div class="pf-content">
+          <span class="pf-tag soc">Sterile dressing</span>
+          <span class="pf-tag soc">Infection monitoring</span>
+          <span class="pf-tag soc">Suture/staple care</span>
+          <span class="pf-tag soc">Physiotherapy</span>
+          <span class="pf-plus">+</span>
+          <span class="pf-tag epithrive">Epithrive® Start Day 1 post-op · 4–6 weeks</span>
+        </div>
+      </div>
+
+      <div class="pf-row">
+        <div class="pf-label">Burns</div>
+        <div class="pf-content">
+          <span class="pf-tag soc">Fluid resuscitation</span>
+          <span class="pf-tag soc">Infection control</span>
+          <span class="pf-tag soc">Silvadene / advanced dressing</span>
+          <span class="pf-tag soc">Grafting (if needed)</span>
+          <span class="pf-plus">+</span>
+          <span class="pf-tag epithrive">Epithrive® 2 sachets/day · 4–8 weeks</span>
+        </div>
+      </div>
+
+      <div class="pf-row">
+        <div class="pf-label">Venous Ulcer</div>
+        <div class="pf-content">
+          <span class="pf-tag soc">Compression bandaging</span>
+          <span class="pf-tag soc">ABPI assessment</span>
+          <span class="pf-tag soc">Foam / alginate dressing</span>
+          <span class="pf-tag soc">Leg elevation</span>
+          <span class="pf-plus">+</span>
+          <span class="pf-tag epithrive">Epithrive® 1 sachet/day · Until closure</span>
+        </div>
+      </div>
+
+      <div class="pf-result">
+        <div class="pfr-icon">🎯</div>
+        <div class="pfr-text">Standard wound care manages the <strong>local wound environment</strong> — tissue, infection, moisture, and mechanical factors. Epithrive® manages the <strong>systemic nutritional environment</strong> — angiogenesis substrates, immune fuel, collagen precursors, and anti-catabolism. Both are needed. Neither replaces the other. This is the complete wound care protocol.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S9: KNOW YOUR HCPs -->
+  <section class="section" id="s9">
+    <div class="sec-hd">
+      <div class="sec-num">9</div>
+      <div>
+        <h2>Know Your HCPs</h2>
+        <div class="sh-sub">Six clinical personas — their world, their patient, their concern, and your opening line</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.7;color:var(--body);margin-bottom:18px">Every HCP sees wound nutrition through a different lens. The surgeon thinks in surgical outcomes. The diabetologist thinks in HbA1c and amputation risk. The ICU physician thinks in infection and length of stay. The dietitian thinks in evidence and compliance. An MR who walks into each room speaking that HCP's language immediately earns a different level of engagement.</p>
+
+    <div class="hcp-grid">
+      <div class="hcp-card ortho">
+        <div class="hcp-head">
+          <div class="hcp-avatar" style="background:rgba(255,255,255,.12)">🦴</div>
+          <div class="hcp-h-meta">
+            <h4>Orthopaedic Surgeon</h4>
+            <div class="hcp-title">MS Ortho · Primary target for DFU and post-surgical wounds</div>
+          </div>
+        </div>
+        <div class="hcp-body">
+          <div class="hcp-row"><span class="hcp-row-label">Primary concern</span><span class="hcp-row-val">Wound closure after surgery, post-debridement healing, preventing re-operation, infection control in bone-adjacent wounds</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Patient type</span><span class="hcp-row-val">DFU Wagner 2–4, post-debridement, traumatic wounds with tissue loss, osteomyelitis post-op</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Pain points</span><span class="hcp-row-val">Wound re-opening after surgery, malnourished patients who don't heal, high infection rates, readmissions</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Evidence leads</span><span class="hcp-row-val">India study (CSR-ETH-2025-001), Williams & Barbul (Annals Surgery), Tatti DFU healing time</span></div>
+          <div class="hcp-pitch">"Doctor, in post-debridement wounds, the tissue removal increases metabolic demand dramatically — but most protocols don't address the substrate supply side. Our clinical study showed 72.4% wound area reduction in the Epithrive® arm at Week 8. The PI was an Orthopaedic Surgeon — Dr. Bhanegaonkar."</div>
+        </div>
+      </div>
+
+      <div class="hcp-card diab">
+        <div class="hcp-head">
+          <div class="hcp-avatar" style="background:rgba(255,255,255,.12)">🩸</div>
+          <div class="hcp-h-meta">
+            <h4>Diabetologist / Endocrinologist</h4>
+            <div class="hcp-title">MD / DM Endocrinology · DFU primary concern</div>
+          </div>
+        </div>
+        <div class="hcp-body">
+          <div class="hcp-row"><span class="hcp-row-label">Primary concern</span><span class="hcp-row-val">Preventing DFU progression to amputation, glycaemic control, managing neuropathy and vasculopathy</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Patient type</span><span class="hcp-row-val">Type 2 diabetes with DFU, neuropathic ulcers, ischaemic ulcers, long-duration diabetics</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Pain points</span><span class="hcp-row-val">Impaired microcirculation (NO deficit), malnourished patients, high HbA1c, amputation rate, patient non-compliance</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Evidence leads</span><span class="hcp-row-val">Tatti 2012 (247→83 days), Arginine-NO pathway in diabetic endothelium, India study</span></div>
+          <div class="hcp-pitch">"In diabetics, the endothelial NO production is impaired — which is why DFU wounds are hypoxic and slow to heal. Epithrive® provides 7g L-Arginine daily — which restores the NO pathway, improves microcirculation, and supports the collagen synthesis your wound patients desperately need. No added sugar — safe alongside insulin therapy."</div>
+        </div>
+      </div>
+
+      <div class="hcp-card icu">
+        <div class="hcp-head">
+          <div class="hcp-avatar" style="background:rgba(255,255,255,.12)">🏥</div>
+          <div class="hcp-h-meta">
+            <h4>ICU / Critical Care Physician</h4>
+            <div class="hcp-title">MD IDCCM · Pressure injuries, burns, post-surgical</div>
+          </div>
+        </div>
+        <div class="hcp-body">
+          <div class="hcp-row"><span class="hcp-row-label">Primary concern</span><span class="hcp-row-val">Preventing HAIs, reducing length of stay, nutritional support in critically ill, pressure injury prevention</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Patient type</span><span class="hcp-row-val">Mechanically ventilated, septic patients, post-major surgery, severe burns, prolonged bed rest</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Pain points</span><span class="hcp-row-val">Muscle wasting, pressure injuries in ICU patients, high infection rates, malnourished patients on enteral feeds only</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Evidence leads</span><span class="hcp-row-val">Wischmeyer 2003 (45% infection reduction), Kisil & Gimelfarb 2023 (PU healing 170 vs 218 days), hospital stay reduction</span></div>
+          <div class="hcp-pitch">"In the ICU, Glutamine depletion is the rule — not the exception. Wischmeyer showed 45% fewer infections with Glutamine supplementation. Epithrive® provides 7g Glutamine + 7g Arginine + Ca-HMB to combat the catabolic state. For any patient who can take oral fluids, this is the most cost-effective nutritional intervention in your pressure injury prevention arsenal."</div>
+        </div>
+      </div>
+
+      <div class="hcp-card diet">
+        <div class="hcp-head">
+          <div class="hcp-avatar" style="background:rgba(255,255,255,.12)">🥗</div>
+          <div class="hcp-h-meta">
+            <h4>Clinical Dietitian</h4>
+            <div class="hcp-title">RD / PGD · Nutritional prescription authority</div>
+          </div>
+        </div>
+        <div class="hcp-body">
+          <div class="hcp-row"><span class="hcp-row-label">Primary concern</span><span class="hcp-row-val">Nutritional adequacy, evidence base of supplements, patient compliance, meeting ESPEN/EPUAP guidelines, MUST screening</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Patient type</span><span class="hcp-row-val">All wound patients — dietitian is consulted when MUST ≥2 or albumin is flagged</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Pain points</span><span class="hcp-row-val">General ONS don't meet wound-specific substrate needs, patient palatability, compliance with multiple supplements</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Evidence leads</span><span class="hcp-row-val">ESPEN/EPUAP guidelines citing Arg+Zinc+VitC, Arribaslopez 2021 meta-analysis, complete formulation vs general ONS</span></div>
+          <div class="hcp-pitch">"You know the EPUAP guidelines recommend Arginine, Zinc, and Vitamin C specifically for pressure injury patients — alongside protein. Epithrive® delivers all of these plus Glutamine, HMB, and Marine Collagen Peptides in a single orange-flavour sachet. No added sugar. The formulation completeness argument is something you'll appreciate better than anyone: this is not a general protein supplement."</div>
+        </div>
+      </div>
+
+      <div class="hcp-card nurse">
+        <div class="hcp-head">
+          <div class="hcp-avatar" style="background:rgba(255,255,255,.12)">🩺</div>
+          <div class="hcp-h-meta">
+            <h4>Wound Care Nurse / Sister</h4>
+            <div class="hcp-title">Primary wound care deliverer · Dressings, assessment, education</div>
+          </div>
+        </div>
+        <div class="hcp-body">
+          <div class="hcp-row"><span class="hcp-row-label">Primary concern</span><span class="hcp-row-val">Practical wound care, dressing choice, patient and caregiver education, reducing dressing change frequency</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Patient type</span><span class="hcp-row-val">All wound types — the nurse sees the wound most frequently and has the closest patient relationship</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Pain points</span><span class="hcp-row-val">Wounds that don't respond to dressings, patient compliance, time-intensive dressing changes, caregiver burden</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Evidence leads</span><span class="hcp-row-val">Case study progression photos, 40% fewer dressings data, ease of use (1 sachet/day)</span></div>
+          <div class="hcp-pitch">"Sister, you see these wounds more than anyone. When the dressing isn't enough — when the wound just sits there despite good local care — that's usually a systemic substrate problem. Epithrive® is one sachet per day dissolved in water, orange flavour. It gives the body what it needs to make the dressing work. We've seen patients who were stuck for weeks start showing granulation within 10–12 days."</div>
+        </div>
+      </div>
+
+      <div class="hcp-card gensurg">
+        <div class="hcp-head">
+          <div class="hcp-avatar" style="background:rgba(255,255,255,.12)">🔪</div>
+          <div class="hcp-h-meta">
+            <h4>General Surgeon</h4>
+            <div class="hcp-title">MS Surgery · Post-op wounds, burns, abdominal surgery</div>
+          </div>
+        </div>
+        <div class="hcp-body">
+          <div class="hcp-row"><span class="hcp-row-label">Primary concern</span><span class="hcp-row-val">Post-surgical wound healing, anastomosis integrity, preventing dehiscence, reducing hospital stay</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Patient type</span><span class="hcp-row-val">Abdominal surgery patients, laparotomy wounds, bowel surgery, trauma, burns</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Pain points</span><span class="hcp-row-val">Wound dehiscence in malnourished or elderly patients, infection rates, anastomotic leaks, prolonged recovery</span></div>
+          <div class="hcp-row"><span class="hcp-row-label">Evidence leads</span><span class="hcp-row-val">Williams & Barbul 2002 (collagen deposition), Stehle (nitrogen balance, reduced post-op complications), hospital stay data</span></div>
+          <div class="hcp-pitch">"For your high-risk surgical patients — malnourished, elderly, or diabetic — we know the wound biology is already compromised before the first incision. Williams and Barbul showed in a double-blind RCT that Arg+HMB+Gln significantly increased wound collagen deposition in elderly volunteers and reduced hospital stay by 3.5 days. Starting Epithrive® on Day 1 or 2 post-op gives the wound the substrates it needs to close on schedule."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S10: KNOWLEDGE CHECK -->
+  <section class="section" id="s10">
+    <div class="sec-hd">
+      <div class="sec-num">10</div>
+      <div>
+        <h2>Knowledge Check</h2>
+        <div class="sh-sub">Six wound care questions — test your clinical vocabulary</div>
+      </div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q-head">
+        <div class="qq-num">1</div>
+        <div class="qq-text">In the T.I.M.E. framework, what does the letter "E" specifically refer to and what does Epithrive® contribute to it?</div>
+      </div>
+      <div class="quiz-opts">
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Exudate management is "M" — Moisture Balance in the T.I.M.E. framework.')">A) Exudate management — Epithrive® reduces wound fluid production</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Enzymatic debridement relates to "T" — Tissue management.')">B) Enzymatic debridement — Epithrive® enhances enzyme activity at the wound</button>
+        <button class="q-opt" onclick="checkQ(this,'correct','Correct. "E" = Epithelial/Edge Advancement — stimulating wound closure by keratinocyte migration and wound contraction. Epithrive® contributes through: Vitamin A + Zinc (keratinocyte migration), Arginine (angiogenesis at wound edges), Marine Collagen (ECM scaffold for edge advancement).')">C) Epithelial/Edge advancement — Epithrive® contributes via Vitamin A, Zinc, and Arginine supporting keratinocyte migration and angiogenesis at wound margins</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Electrolyte replacement is not part of the T.I.M.E. framework.')">D) Electrolyte replacement — Epithrive® provides essential minerals</button>
+      </div>
+      <div class="q-feedback" id="qfb_0"></div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q-head">
+        <div class="qq-num">2</div>
+        <div class="qq-text">A doctor says "this wound has heavy exudate and I'm concerned about maceration of surrounding skin." Which dressing type are they most likely to use?</div>
+      </div>
+      <div class="quiz-opts">
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Hydrocolloid is for light-to-moderate exudate wounds. Heavy exudate would overwhelm the hydrocolloid gel matrix and cause maceration — the very problem the doctor is concerned about.')">A) Hydrocolloid dressing</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Hydrogel adds moisture to dry wounds — the opposite of what is needed here. It would worsen maceration.')">B) Hydrogel dressing</button>
+        <button class="q-opt" onclick="checkQ(this,'correct','Correct. Alginate dressings are highly absorbent (up to 20× their weight) and are specifically indicated for heavily exuding wounds. They manage the moisture overload that causes maceration of peri-wound skin.')">C) Alginate dressing</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Basic gauze absorbs some exudate but is insufficient for heavy exudate — it becomes saturated quickly and provides no active moisture management.')">D) Basic gauze dressing</button>
+      </div>
+      <div class="q-feedback" id="qfb_1"></div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q-head">
+        <div class="qq-num">3</div>
+        <div class="qq-text">Why is Negative Pressure Wound Therapy (NPWT / VAC therapy) a particularly strong indication for starting Epithrive® alongside it?</div>
+      </div>
+      <div class="quiz-opts">
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. NPWT is a local wound therapy — it does not supply amino acids or nutrients, so this is not an interaction concern.')">A) Because NPWT depletes amino acids from the wound directly</button>
+        <button class="q-opt" onclick="checkQ(this,'correct','Correct. NPWT mechanically stimulates fibroblasts and drives granulation tissue formation — but this process demands substrates to build that tissue. NPWT creates the biological demand; Epithrive® provides the nutritional supply. It\'s the ideal combination: physical stimulus + nutritional substrate.')">B) Because NPWT dramatically increases metabolic demand for tissue repair — it drives granulation but needs substrates to build it; Epithrive® provides the Arginine, Glutamine, and Collagen that NPWT cannot</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. NPWT does not interfere with Epithrive® absorption — both work through entirely different pathways.')">C) Because NPWT blocks oral absorption of nutrients and Epithrive® compensates</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. While NPWT does remove exudate, the clinical reason to combine with Epithrive® is the substrate demand, not merely exudate protein loss (though that is also a consideration).')">D) Because NPWT removes wound exudate that contains valuable protein</button>
+      </div>
+      <div class="q-feedback" id="qfb_2"></div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q-head">
+        <div class="qq-num">4</div>
+        <div class="qq-text">A wound care nurse tells you "the edges of this wound are rolled and not advancing despite good dressing management." What is this a sign of, and what is the Epithrive® link?</div>
+      </div>
+      <div class="quiz-opts">
+        <button class="q-opt" onclick="checkQ(this,'correct','Correct. Rolled/epiboly wound edges = chronic, non-advancing wound. Keratinocytes that should be migrating across the surface have become senescent or are blocked by hypoxia and MMP overactivity. Epithrive® addresses this systemically: Arginine restores angiogenesis and oxygen delivery (overcoming hypoxia), Zinc supports keratinocyte proliferation, Vitamin A drives keratinocyte differentiation and migration.')">A) Sign of a chronic stalled wound — keratinocytes cannot advance due to hypoxia and high MMP activity. Epithrive® provides Arginine (restores oxygenation), Zinc, and Vitamin A to support keratinocyte migration</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Rolled edges are not a sign of infection — infection typically causes erythema, warmth, and purulent exudate. Rolled edges indicate chronicity and cellular senescence.')">B) Sign of underlying wound infection — Epithrive® provides Glutamine for immune support</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Rolled edges are actually a sign of too little moisture — the wound edge is epithelialising without the wound bed being ready — but the primary clinical meaning is wound chronicity/senescence.')">C) Sign of excessive wound moisture — Epithrive® helps by reducing exudate volume</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Rolled edges are seen in chronic non-healing wounds — not in normal post-surgical healing.')">D) Normal finding in post-surgical healing — no intervention needed</button>
+      </div>
+      <div class="q-feedback" id="qfb_3"></div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q-head">
+        <div class="qq-num">5</div>
+        <div class="qq-text">Which two global bodies explicitly recommend Arginine supplementation for wound patients in their clinical guidelines?</div>
+      </div>
+      <div class="quiz-opts">
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. WHO and ICMR have not issued specific Arginine-for-wounds guidelines. The relevant bodies are ESPEN and EPUAP/NPIAP.')">A) WHO and ICMR</button>
+        <button class="q-opt" onclick="checkQ(this,'correct','Correct. ESPEN (European Society for Clinical Nutrition & Metabolism) formally recommends Arginine supplementation for malnourished pressure ulcer patients. EPUAP/NPIAP recommends Arginine, Zinc, and Vitamin C specifically for pressure injury healing. Both are the most cited authorities in wound nutrition — citing them in a clinical conversation immediately elevates credibility.')">B) ESPEN and EPUAP / NPIAP</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. FSSAI regulates food safety in India — it does not issue wound nutrition clinical guidelines.')">C) FSSAI and CDSCO</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. While IWGDF addresses DFU nutrition, it is ESPEN and EPUAP/NPIAP that most explicitly cite Arginine supplementation for wound patients in guideline documents.')">D) IWGDF and American Diabetes Association</button>
+      </div>
+      <div class="q-feedback" id="qfb_4"></div>
+    </div>
+
+    <div class="quiz-item">
+      <div class="quiz-q-head">
+        <div class="qq-num">6</div>
+        <div class="qq-text">A surgeon is about to use surgical debridement on a malnourished DFU patient. What is the single most important point about timing that you should make when recommending Epithrive®?</div>
+      </div>
+      <div class="quiz-opts">
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Waiting until the wound has closed means missing the critical window when substrate demand is highest. Epithrive® should begin as early as possible.')">A) Start Epithrive® only after the wound has closed to consolidate gains</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Starting two weeks before debridement misses the most critical window — the immediate post-debridement period when metabolic demand spikes.')">B) Start Epithrive® two weeks before debridement to pre-load nutrients</button>
+        <button class="q-opt" onclick="checkQ(this,'correct','Correct. Surgical debridement removes necrotic tissue AND resets wound biology — dramatically increasing metabolic demand for angiogenesis, fibroblast recruitment, and ECM synthesis. Starting Epithrive® within 24–48 hours of debridement provides the substrates at the exact moment the wound biology is most active and most demanding. The post-debridement window is when nutritional support has the highest impact.')">C) Start Epithrive® within 24–48 hours post-debridement — this is when metabolic demand for Arginine, Glutamine, and Collagen is at its peak, and nutritional substrate availability has the highest impact on recovery trajectory</button>
+        <button class="q-opt" onclick="checkQ(this,'wrong','Incorrect. Timing matters significantly. The post-debridement window (first 48–72 hours) is when wound biology is most active and most substrate-hungry — this is when early Epithrive® initiation has the highest value.')">D) Timing doesn't matter — Epithrive® can be started any time during the wound care journey</button>
+      </div>
+      <div class="q-feedback" id="qfb_5"></div>
+    </div>
+
+    <div class="callout green" style="margin-top:16px">
+      <strong>Module 2 complete.</strong> You now understand the T.I.M.E. wound management framework, the full spectrum of wound assessment parameters, all four debridement types, eight dressing categories and when each is used, how to recognise infection progression, specialised care for each wound type, the global nutrition guidelines (ESPEN, EPUAP, NPUAP), the complete protocol integration model, and how to speak credibly with each HCP in the wound care team. Proceed to Module 3 (Ingredient Mastery) or your next assigned module.
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Sidebar nav
+const navLinks = document.querySelectorAll('.sb-nav a');
+const sections = document.querySelectorAll('.section');
+function setActive() {
+  let curr = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) curr = s.id; });
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + curr));
+}
+window.addEventListener('scroll', setActive); setActive();
+navLinks.forEach(l => {
+  l.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(l.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Dressing accordion
+function toggleDr(header) {
+  const item = header.closest('.dr-item');
+  item.classList.toggle('open');
+}
+
+// Quiz
+const answered = {};
+function checkQ(el, result, feedback) {
+  const item = el.closest('.quiz-item');
+  const idx = [...document.querySelectorAll('.quiz-item')].indexOf(item);
+  if (answered[idx]) return;
+  answered[idx] = true;
+  item.querySelectorAll('.q-opt').forEach(o => { o.disabled = true; o.style.cursor = 'default'; });
+  if (result === 'correct') {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    item.querySelectorAll('.q-opt').forEach(o => {
+      if (o.getAttribute('onclick')?.includes("'correct'")) o.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById('qfb_' + idx);
+  if (fb) {
+    fb.textContent = (result === 'correct' ? '✓ ' : '✗ ') + feedback;
+    fb.className = 'q-feedback show ' + (result === 'correct' ? 'ok' : 'no');
+  }
+}
+</script>
+</body>
+</html>

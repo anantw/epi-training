@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 4 — Clinical Evidence</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0E8FA8;
+  --teal-light: #e6f5f8;
+  --teal-mid: #b5e0eb;
+  --orange: #F4811F;
+  --orange-light: #fef3e8;
+  --navy: #0f1f2e;
+  --navy-mid: #1a3248;
+  --body: #2c3e50;
+  --muted: #64788a;
+  --border: #dde7ed;
+  --bg: #f3f0ec;
+  --white: #ffffff;
+  --green: #059669;
+  --green-bg: #ecfdf5;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --sidebar-w: 256px;
+  --gold: #b8962e;
+  --silver: #7a8fa0;
+  --bronze: #9c6940;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--body);
+  display: flex;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ─── SIDEBAR ─── */
+#sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+#sidebar::-webkit-scrollbar { width: 3px; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); }
+
+.sb-brand { padding: 22px 20px 16px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.sb-tag { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 5px; }
+.sb-brand h2 { font-family: 'Fraunces', serif; color: #fff; font-size: 18px; font-weight: 600; }
+.sb-brand p { color: rgba(255,255,255,.38); font-size: 11px; margin-top: 3px; }
+.sb-cat { padding: 16px 20px 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.22); }
+.sb-nav a { display: flex; align-items: center; gap: 9px; padding: 8px 20px; color: rgba(255,255,255,.52); text-decoration: none; font-size: 12px; font-weight: 500; border-left: 3px solid transparent; transition: all .18s; }
+.sb-nav a:hover, .sb-nav a.active { color: #fff; background: rgba(255,255,255,.05); border-left-color: var(--teal); }
+.sb-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.15); flex-shrink: 0; }
+.sb-nav a:hover .sb-dot, .sb-nav a.active .sb-dot { background: var(--teal); }
+.sb-note { margin: 16px 20px; padding: 12px 14px; background: rgba(14,143,168,.1); border: 1px solid rgba(14,143,168,.25); border-radius: 8px; font-size: 11px; color: rgba(255,255,255,.55); line-height: 1.5; }
+.sb-note strong { color: var(--teal); }
+
+/* ─── MAIN ─── */
+#main { margin-left: var(--sidebar-w); flex: 1; padding: 0 44px 100px; max-width: 1020px; }
+
+/* ─── HEADER ─── */
+.page-header {
+  background: var(--navy);
+  margin: 0 -44px 52px;
+  padding: 52px 44px 48px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 3px solid var(--teal);
+}
+.page-header::before { content: ''; position: absolute; top: -60px; right: -80px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(14,143,168,.12) 0%, transparent 70%); }
+.page-header::after { content: ''; position: absolute; bottom: -30px; left: 300px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(244,129,31,.08) 0%, transparent 70%); }
+.ph-pretag { display: inline-flex; align-items: center; gap: 8px; background: rgba(14,143,168,.15); border: 1px solid rgba(14,143,168,.35); border-radius: 4px; padding: 4px 12px; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #7dd8ea; margin-bottom: 14px; font-family: 'IBM Plex Mono', monospace; }
+.page-header h1 { font-family: 'Fraunces', serif; color: #fff; font-size: 40px; font-weight: 700; line-height: 1.1; margin-bottom: 12px; }
+.page-header h1 em { color: var(--teal); font-style: normal; }
+.page-header .ph-sub { color: rgba(255,255,255,.48); font-size: 14.5px; max-width: 580px; line-height: 1.65; }
+.ph-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.ph-chip { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 6px; padding: 7px 14px; font-size: 12px; color: rgba(255,255,255,.6); }
+.ph-chip strong { color: #fff; }
+
+/* ─── SECTIONS ─── */
+.section { margin-bottom: 60px; scroll-margin-top: 24px; }
+.sec-hd { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+.sec-num { width: 34px; height: 34px; background: var(--teal); color: #fff; border-radius: 6px; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; }
+.sec-hd h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: var(--navy); }
+.sec-hd .sh-sub { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+
+/* ─── CALLOUTS ─── */
+.callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; font-size: 13.5px; line-height: 1.65; }
+.callout.teal { background: var(--teal-light); border: 1px solid var(--teal-mid); }
+.callout.teal strong { color: var(--teal); }
+.callout.orange { background: var(--orange-light); border: 1px solid #fbd9b5; }
+.callout.orange strong { color: var(--orange); }
+.callout.navy { background: var(--navy); color: rgba(255,255,255,.72); border: none; }
+.callout.navy strong { color: var(--teal); }
+.callout.green { background: var(--green-bg); border: 1px solid #6ee7b7; }
+.callout.green strong { color: var(--green); }
+.callout.red { background: var(--red-bg); border: 1px solid #fca5a5; }
+.callout.red strong { color: var(--red); }
+
+/* ─── EVIDENCE PYRAMID ─── */
+.pyramid-wrap { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 20px; }
+.pyramid-svg { flex-shrink: 0; }
+.pyramid-legend { flex: 1; }
+.pleg-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.pleg-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; margin-top: 3px; }
+.pleg-item h5 { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+.pleg-item p { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* ─── HERO STAT BLOCK ─── */
+.hero-stat-block {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 36px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(14,143,168,.3);
+}
+.hero-stat-block::before { content: ''; position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(14,143,168,.15) 0%, transparent 70%); }
+
+.hsb-top { margin-bottom: 28px; }
+.hsb-badge { display: inline-block; background: rgba(14,143,168,.2); border: 1px solid rgba(14,143,168,.4); border-radius: 4px; padding: 4px 12px; font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7dd8ea; font-family: 'IBM Plex Mono', monospace; margin-bottom: 10px; }
+.hsb-top h3 { font-family: 'Fraunces', serif; color: #fff; font-size: 22px; font-weight: 600; line-height: 1.3; margin-bottom: 6px; }
+.hsb-top p { color: rgba(255,255,255,.5); font-size: 13px; line-height: 1.6; }
+
+.bar-section { margin-bottom: 24px; }
+.bar-row { margin-bottom: 14px; }
+.bar-label-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.bar-label-name { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.7); }
+.bar-label-pct { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; line-height: 1; }
+.bar-label-pct.epi { color: var(--teal); }
+.bar-label-pct.ctl { color: rgba(255,255,255,.4); }
+.bar-track { height: 18px; background: rgba(255,255,255,.08); border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; position: relative; display: flex; align-items: center; padding-left: 8px; }
+.bar-fill.epi { background: linear-gradient(90deg, var(--teal), #0ab5d4); }
+.bar-fill.ctl { background: rgba(255,255,255,.2); }
+.bar-fill span { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.8); white-space: nowrap; }
+
+.stat-chips { display: flex; gap: 12px; flex-wrap: wrap; }
+.stat-chip { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 12px 16px; }
+.stat-chip .sc-num { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 3px; }
+.stat-chip .sc-label { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.3; }
+
+/* ─── STUDY DETAILS TABLE ─── */
+.study-meta { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+.study-meta table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.study-meta th { background: #f4f7f9; color: var(--muted); padding: 9px 16px; text-align: left; font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border-bottom: 1px solid var(--border); width: 180px; }
+.study-meta td { padding: 11px 16px; border-bottom: 1px solid #f0f4f6; font-size: 13px; color: var(--body); }
+.study-meta tr:last-child td, .study-meta tr:last-child th { border-bottom: none; }
+.study-meta td strong { color: var(--navy); }
+
+/* ─── STAT LITERACY ─── */
+.stat-literacy { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.stat-literacy h4 { font-family: 'Fraunces', serif; font-size: 18px; color: var(--navy); margin-bottom: 16px; }
+.sl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.sl-item { background: var(--bg); border-radius: 8px; padding: 14px; }
+.sl-item .sl-term { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: var(--teal); margin-bottom: 5px; }
+.sl-item .sl-def { font-size: 12px; color: var(--body); line-height: 1.5; }
+.sl-item .sl-val { margin-top: 6px; font-size: 12px; font-weight: 600; color: var(--navy); }
+
+/* ─── EVIDENCE CARDS ─── */
+.evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ev-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: box-shadow .2s; }
+.ev-card:hover { box-shadow: 0 4px 20px rgba(12,30,50,.08); }
+.ev-head { padding: 14px 18px 12px; border-bottom: 1px solid var(--border); }
+.ev-head-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.ev-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; }
+.ev-type.rct { background: #dcfce7; color: #065f46; }
+.ev-type.prospective { background: var(--teal-light); color: var(--teal); }
+.ev-type.retrospective { background: #fef9c3; color: #854d0e; }
+.ev-type.meta { background: #f3e8ff; color: #6b21a8; }
+.ev-type.rct-sr { background: #dbeafe; color: #1e40af; }
+.ev-year { font-size: 11px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; }
+.ev-title { font-size: 13.5px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+.ev-body { padding: 14px 18px; }
+.ev-row { display: flex; gap: 6px; margin-bottom: 5px; font-size: 12.5px; }
+.ev-key { color: var(--muted); min-width: 56px; flex-shrink: 0; }
+.ev-val { color: var(--body); font-weight: 500; }
+.ev-finding { margin-top: 10px; background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 12.5px; color: var(--navy); line-height: 1.5; }
+.ev-finding.amber { background: var(--amber-bg); border-left-color: var(--amber); }
+.ev-finding.green { background: var(--green-bg); border-left-color: var(--green); }
+.ev-finding.purple { background: #faf5ff; border-left-color: #7c3aed; }
+
+/* ─── EVIDENCE BY WOUND TYPE ─── */
+.wound-ev-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.wev-row { background: #fff; border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: stretch; overflow: hidden; }
+.wev-label { min-width: 170px; background: var(--navy-mid); color: #fff; padding: 14px 16px; display: flex; flex-direction: column; justify-content: center; }
+.wev-label h5 { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; line-height: 1.2; }
+.wev-label small { font-size: 10px; color: rgba(255,255,255,.45); margin-top: 3px; display: block; }
+.wev-studies { flex: 1; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.wev-tag { background: var(--teal-light); color: var(--teal); border-radius: 4px; padding: 4px 10px; font-size: 11.5px; font-weight: 600; }
+.wev-tag.orange { background: var(--orange-light); color: var(--orange); }
+.wev-tag.purple { background: #f3e8ff; color: #7c3aed; }
+
+/* ─── COMPLIANCE TRAFFIC LIGHT ─── */
+.traffic-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.tl-card { border-radius: 12px; padding: 20px; }
+.tl-card.green { background: var(--green-bg); border: 1.5px solid #6ee7b7; }
+.tl-card.amber { background: var(--amber-bg); border: 1.5px solid #fcd34d; }
+.tl-card.red { background: var(--red-bg); border: 1.5px solid #fca5a5; }
+.tl-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 10px; }
+.tl-card.green .tl-dot { background: var(--green); }
+.tl-card.amber .tl-dot { background: var(--amber); }
+.tl-card.red .tl-dot { background: var(--red); }
+.tl-card h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+.tl-card.green h4 { color: var(--green); }
+.tl-card.amber h4 { color: var(--amber); }
+.tl-card.red h4 { color: var(--red); }
+.tl-card ul { padding-left: 0; list-style: none; }
+.tl-card li { font-size: 12.5px; color: var(--body); margin-bottom: 6px; line-height: 1.5; padding-left: 14px; position: relative; }
+.tl-card li::before { position: absolute; left: 0; font-weight: 700; }
+.tl-card.green li::before { content: '✓'; color: var(--green); }
+.tl-card.amber li::before { content: '△'; color: var(--amber); }
+.tl-card.red li::before { content: '✗'; color: var(--red); }
+
+/* ─── CONVERSATION SCRIPTS ─── */
+.convo-block { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; }
+.convo-block h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 14px; }
+.convo-line { display: flex; gap: 10px; margin-bottom: 12px; }
+.convo-line:last-child { margin-bottom: 0; }
+.convo-speaker { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; min-width: 44px; padding-top: 2px; flex-shrink: 0; }
+.convo-speaker.dr { color: var(--red); }
+.convo-speaker.mr { color: var(--teal); }
+.convo-text { background: var(--bg); border-radius: 8px; padding: 9px 12px; font-size: 13px; color: var(--body); line-height: 1.6; flex: 1; }
+.convo-text.mr-text { background: var(--teal-light); }
+.convo-text .highlight { color: var(--navy); font-weight: 600; }
+.convo-note { margin-top: 10px; padding: 8px 12px; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; font-size: 12px; color: #854d0e; }
+
+/* ─── OBJECTION TABLE ─── */
+.obj-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); font-size: 13px; }
+.obj-table th { background: var(--navy); color: rgba(255,255,255,.6); padding: 10px 16px; text-align: left; font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.obj-table td { padding: 12px 16px; border-bottom: 1px solid #f0f4f6; vertical-align: top; line-height: 1.55; }
+.obj-table tr:last-child td { border-bottom: none; }
+.obj-table tr:nth-child(even) td { background: #fafcfd; }
+.obj-table td:first-child { color: var(--red); font-weight: 600; font-size: 12.5px; }
+.obj-table td:nth-child(2) { color: var(--muted); font-size: 12px; }
+.obj-table td:nth-child(3) { color: var(--navy); font-weight: 500; }
+
+/* ─── FLIP CARDS for studies (compact) ─── */
+.study-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+
+@media (max-width: 860px) {
+  body { flex-direction: column; }
+  #sidebar { position: relative; width: 100%; height: auto; }
+  #main { margin-left: 0; padding: 0 20px 60px; }
+  .pyramid-wrap { flex-direction: column; }
+  .evidence-grid, .study-row, .traffic-grid { grid-template-columns: 1fr; }
+  .sl-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <span class="sb-tag">MR Training Program</span>
+    <h2>Epithrive®</h2>
+    <p>Module 4 — Clinical Evidence</p>
+  </div>
+  <div class="sb-cat">Contents</div>
+  <div class="sb-nav">
+    <a href="#s1" class="active"><span class="sb-dot"></span>Why Evidence Matters</a>
+    <a href="#s2"><span class="sb-dot"></span>The Evidence Pyramid</a>
+    <a href="#s3"><span class="sb-dot"></span>The India Study — Full Dive</a>
+    <a href="#s4"><span class="sb-dot"></span>Reading Clinical Data</a>
+    <a href="#s5"><span class="sb-dot"></span>Global Evidence Library</a>
+    <a href="#s6"><span class="sb-dot"></span>Evidence by Wound Type</a>
+    <a href="#s7"><span class="sb-dot"></span>Compliant Communication</a>
+    <a href="#s8"><span class="sb-dot"></span>Using Evidence in Calls</a>
+    <a href="#s9"><span class="sb-dot"></span>Handling Objections</a>
+  </div>
+  <div class="sb-note">
+    <strong>Compliance rule:</strong> Never say "Epithrive® heals wounds." Always say: "In the clinical study, the Epithrive® arm showed 72.4% wound area reduction at Week 8 (p=0.004)."
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="ph-pretag">Module 4 of 8</div>
+    <h1>Clinical <em>Evidence</em></h1>
+    <p class="ph-sub">The data that converts a sceptical doctor. Every study, every finding, the compliant way to present it, and how to handle every evidence-based objection you'll face in the field.</p>
+    <div class="ph-chips">
+      <div class="ph-chip"><strong>1</strong> India Clinical Study</div>
+      <div class="ph-chip"><strong>10+</strong> Global Studies</div>
+      <div class="ph-chip"><strong>2</strong> Real-World Case Studies</div>
+      <div class="ph-chip"><strong>Traffic-light</strong> Compliance Guide</div>
+      <div class="ph-chip"><strong>9</strong> Evidence Objection Scripts</div>
+    </div>
+  </div>
+
+  <!-- S1: WHY EVIDENCE MATTERS -->
+  <section class="section" id="s1">
+    <div class="sec-hd">
+      <div class="sec-num">01</div>
+      <div>
+        <h2>Why Evidence Matters in Medical Sales</h2>
+        <div class="sh-sub">The difference between a product pitch and a clinical conversation</div>
+      </div>
+    </div>
+
+    <p style="font-size:14px;line-height:1.75;margin-bottom:18px">A doctor's primary obligation is to their patient. Their second obligation is to evidence. When you walk into a clinic and present Epithrive®, the doctor is not thinking about the price or the flavour — they are thinking: <em>"Is there credible evidence that this will benefit my patient?"</em> If you cannot answer that question precisely and confidently, the conversation ends. If you can, it begins.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px">
+      <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;border-top:4px solid var(--teal)">
+        <div style="font-size:28px;margin-bottom:8px">🎯</div>
+        <h4 style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">For the Surgeon</h4>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.5">Show the India study with p-value and wound area reduction. Reference Barbul (Annals of Surgery). Lead with the 72.4% outcome number.</p>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;border-top:4px solid var(--orange)">
+        <div style="font-size:28px;margin-bottom:8px">🔬</div>
+        <h4 style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">For the Diabetologist</h4>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.5">Lead with Tatti 2012 (DFU healing 247→83 days) and the India study DFU arm. Reinforce with Arginine-NO-microcirculation mechanism.</p>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;border-top:4px solid #7c3aed">
+        <div style="font-size:28px;margin-bottom:8px">🏥</div>
+        <h4 style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">For the Intensivist</h4>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.5">Lead with Wischmeyer 2003 (45% reduction in ICU infections), Kisil & Gimelfarb 2023 (pressure ulcer healing), and hospital stay reduction data.</p>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <strong>Golden rule:</strong> Know which studies are most relevant to each specialist. A surgeon responds to collagen deposition data. A diabetologist responds to DFU healing time data. An intensivist responds to infection reduction and hospital stay data. Same evidence library — calibrated delivery.
+    </div>
+  </section>
+
+  <!-- S2: EVIDENCE PYRAMID -->
+  <section class="section" id="s2">
+    <div class="sec-hd">
+      <div class="sec-num">02</div>
+      <div>
+        <h2>The Evidence Pyramid</h2>
+        <div class="sh-sub">Understanding study types — so you can explain why the evidence is credible</div>
+      </div>
+    </div>
+
+    <div class="pyramid-wrap">
+      <div class="pyramid-svg">
+        <svg viewBox="0 0 280 220" width="280" height="220" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, sans-serif">
+          <!-- Level 1: Meta-analysis / Systematic Review (top) -->
+          <polygon points="140,8 105,50 175,50" fill="#7c3aed"/>
+          <text x="140" y="36" text-anchor="middle" fill="white" font-size="7.5" font-weight="700">META-ANALYSIS</text>
+
+          <!-- Level 2: RCT -->
+          <polygon points="105,55 70,100 210,100" fill="#1d4ed8"/>
+          <text x="140" y="82" text-anchor="middle" fill="white" font-size="8.5" font-weight="700">RCT</text>
+
+          <!-- Level 3: Prospective Comparative -->
+          <polygon points="70,105 40,150 260,150" fill="#0E8FA8"/>
+          <text x="150" y="132" text-anchor="middle" fill="white" font-size="8.5" font-weight="700">PROSPECTIVE COMPARATIVE</text>
+
+          <!-- Level 4: Retrospective / Case-Control -->
+          <polygon points="40,155 14,200 266,200" fill="#d97706"/>
+          <text x="140" y="182" text-anchor="middle" fill="white" font-size="8.5" font-weight="700">RETROSPECTIVE / CASE SERIES</text>
+
+          <!-- Labels -->
+          <text x="290" y="32" fill="#7c3aed" font-size="8.5" font-weight="600">Highest</text>
+          <text x="290" y="42" fill="#7c3aed" font-size="7.5">evidence</text>
+          <text x="290" y="192" fill="#d97706" font-size="8.5" font-weight="600">Supporting</text>
+          <text x="290" y="202" fill="#d97706" font-size="7.5">evidence</text>
+        </svg>
+      </div>
+      <div class="pyramid-legend">
+        <div class="pleg-item">
+          <div class="pleg-dot" style="background:#7c3aed"></div>
+          <div>
+            <h5>Meta-Analysis / Systematic Review</h5>
+            <p>Pools multiple studies. Highest statistical power. Arribas-López et al. (2021) — pooled 44 human studies on Arginine & Glutamine wound healing. Our formulation class is supported here.</p>
+          </div>
+        </div>
+        <div class="pleg-item">
+          <div class="pleg-dot" style="background:#1d4ed8"></div>
+          <div>
+            <h5>Randomised Controlled Trial (RCT)</h5>
+            <p>Gold standard. Random allocation eliminates selection bias. Williams & Barbul (2002, Annals of Surgery), Armstrong et al. (2014), Cereda et al. — all RCTs supporting the formulation class.</p>
+          </div>
+        </div>
+        <div class="pleg-item">
+          <div class="pleg-dot" style="background:#0E8FA8"></div>
+          <div>
+            <h5>Prospective Comparative Study</h5>
+            <p>The Epithrive® India study (CSR-ETH-2025-001) sits here — prospective, comparative, pre-registered protocol, Indian patient population, 60 subjects, p=0.004. This is strong and clinically relevant evidence.</p>
+          </div>
+        </div>
+        <div class="pleg-item">
+          <div class="pleg-dot" style="background:#d97706"></div>
+          <div>
+            <h5>Retrospective / Case Series</h5>
+            <p>Sipahi et al. (2013), Kisil & Gimelfarb (2023), Epithrive® case studies. Real-world supporting evidence. Not primary — but strengthens the clinical picture alongside stronger designs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout teal">
+      <strong>Your message to doctors:</strong> "The evidence base for Epithrive® operates at multiple levels — a meta-analysis of 44 human studies, multiple RCTs on the formulation class, and our own Indian prospective comparative study with 60 patients showing p=0.004. This is not one isolated finding — it is a consistent signal across study designs and geographies."
+    </div>
+  </section>
+
+  <!-- S3: INDIA STUDY -->
+  <section class="section" id="s3">
+    <div class="sec-hd">
+      <div class="sec-num">03</div>
+      <div>
+        <h2>The Epithrive® India Study — Full Deep-Dive</h2>
+        <div class="sh-sub">CSR-ETH-2025-001 — the primary evidence asset for every doctor conversation</div>
+      </div>
+    </div>
+
+    <!-- HERO STAT -->
+    <div class="hero-stat-block">
+      <div class="hsb-top">
+        <div class="hsb-badge">CSR-ETH-2025-001 · Primary Finding</div>
+        <h3>Mean Wound Area Reduction at Week 8<br>Epithrive® + Standard Care vs. Standard Care Alone</h3>
+        <p>Prospective open-label comparative study · Indian multicentre · n=60 patients · 8–10 weeks</p>
+      </div>
+
+      <div class="bar-section">
+        <div class="bar-row">
+          <div class="bar-label-row">
+            <span class="bar-label-name">Epithrive® + Standard of Care &nbsp;<span style="font-size:11px;opacity:.5">(n=30)</span></span>
+            <span class="bar-label-pct epi">72.4%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill epi" style="width:72.4%"><span>72.4% wound area reduction</span></div>
+          </div>
+        </div>
+        <div class="bar-row" style="margin-top:12px">
+          <div class="bar-label-row">
+            <span class="bar-label-name">Standard of Care Alone &nbsp;<span style="font-size:11px;opacity:.5">(n=30)</span></span>
+            <span class="bar-label-pct ctl">52.1%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill ctl" style="width:52.1%"><span style="color:rgba(255,255,255,.6)">52.1% wound area reduction</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-chips">
+        <div class="stat-chip">
+          <div class="sc-num">p = 0.004</div>
+          <div class="sc-label">Statistically significant<br>Well below the 0.05 threshold</div>
+        </div>
+        <div class="stat-chip">
+          <div class="sc-num">+20.3pp</div>
+          <div class="sc-label">Absolute improvement<br>in wound area reduction</div>
+        </div>
+        <div class="stat-chip">
+          <div class="sc-num">+39%</div>
+          <div class="sc-label">Relative improvement<br>in healing rate at Week 8</div>
+        </div>
+        <div class="stat-chip">
+          <div class="sc-num">60</div>
+          <div class="sc-label">Indian patients<br>DFU + Pressure Injury + Post-Surgical</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDY METADATA -->
+    <div class="study-meta">
+      <table>
+        <tr><th>Study Code</th><td><strong style="font-family:'IBM Plex Mono',monospace">CSR-ETH-2025-001</strong></td></tr>
+        <tr><th>Study Design</th><td>Prospective open-label comparative study</td></tr>
+        <tr><th>Population</th><td>n = 60 Indian patients (30 Epithrive® + Standard of Care | 30 Standard of Care alone). Wound types: Diabetic Foot Ulcers, Pressure Injuries (Stage II–IV), Post-Surgical Wounds</td></tr>
+        <tr><th>Duration</th><td>8–10 weeks of follow-up</td></tr>
+        <tr><th>Primary Outcome</th><td><strong>Mean wound area reduction at Week 8</strong> — photographically measured and compared between arms</td></tr>
+        <tr><th>Key Finding</th><td><strong>72.4%</strong> wound area reduction (Epithrive® arm) vs. <strong>52.1%</strong> (Standard of Care arm) at Week 8 — p = 0.004 (statistically significant)</td></tr>
+        <tr><th>Principal Investigator</th><td>Dr. Praful Bhanegaonkar, MS Ortho — Orthopaedic Surgeon</td></tr>
+        <tr><th>Co-Investigator</th><td>Dr. Gauri Jahagirdar, MD IDCCM — Critical Care & Internal Medicine</td></tr>
+        <tr><th>Nutrition Consultant</th><td>Dr. Prathmesh Umrekar — Clinical Nutritionist</td></tr>
+        <tr><th>Intervention</th><td>1 sachet Epithrive® per day dissolved in 200–250 mL water, alongside unchanged standard wound care protocol. Control arm received standard care only — no nutritional supplement.</td></tr>
+        <tr><th>Full CSR</th><td>Available on request from your Area Manager. A compact A4 doctor summary version is available as a leave-behind.</td></tr>
+      </table>
+    </div>
+
+    <!-- WHAT IT MEANS -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:16px">
+      <h4 style="font-family:'Fraunces',serif;font-size:17px;color:var(--navy);margin-bottom:14px">What These Numbers Actually Mean</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <p style="font-size:13.5px;line-height:1.7;color:var(--body)"><strong style="color:var(--navy)">The 72.4% figure</strong> means that on average, patients in the Epithrive® arm saw their wound area shrink to 27.6% of its original size over 8 weeks. That is near-complete closure for many patients — not just improvement.</p>
+        </div>
+        <div>
+          <p style="font-size:13.5px;line-height:1.7;color:var(--body)"><strong style="color:var(--navy)">The 20.3 percentage point gap</strong> is the absolute difference in outcomes between the two arms — where the only variable was Epithrive®. Both groups received the same standard wound care. The nutrition was the sole differentiator.</p>
+        </div>
+        <div>
+          <p style="font-size:13.5px;line-height:1.7;color:var(--body)"><strong style="color:var(--navy)">The 39% relative improvement</strong> means the Epithrive® arm healed 39% better than the standard care arm relative to what standard care achieved. Not 39 percentage points — 39% relatively better.</p>
+        </div>
+        <div>
+          <p style="font-size:13.5px;line-height:1.7;color:var(--body)"><strong style="color:var(--navy)">p = 0.004</strong> means there is a 0.4% probability this result occurred by chance. The statistical threshold for significance is 5% (p &lt; 0.05). At 0.4%, this finding is far stronger than the minimum required for clinical significance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <strong>Important context for doctors:</strong> Both arms in this study received identical standard wound care — debridement, dressings, infection control, glycaemic management as applicable. Epithrive® was added as an adjunct, not a replacement. The observed difference is attributable solely to the nutritional intervention. This is the most important point to make when presenting the study.
+    </div>
+  </section>
+
+  <!-- S4: STATISTICAL LITERACY -->
+  <section class="section" id="s4">
+    <div class="sec-hd">
+      <div class="sec-num">04</div>
+      <div>
+        <h2>Reading Clinical Data</h2>
+        <div class="sh-sub">Six terms you must understand cold — and be able to explain simply to a doctor</div>
+      </div>
+    </div>
+
+    <div class="stat-literacy">
+      <h4>Statistical Literacy for MRs</h4>
+      <div class="sl-grid">
+        <div class="sl-item">
+          <div class="sl-term">p-value</div>
+          <div class="sl-def">The probability that the result occurred by chance. Lower = stronger result.</div>
+          <div class="sl-val">Our study: p = 0.004 · Threshold for significance: p &lt; 0.05 ✓</div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-term">Absolute Difference</div>
+          <div class="sl-def">The raw percentage-point gap between the two groups' outcomes.</div>
+          <div class="sl-val">72.4% − 52.1% = <strong>+20.3 percentage points</strong></div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-term">Relative Improvement</div>
+          <div class="sl-def">How much better the treatment arm performed relative to the control arm's outcome.</div>
+          <div class="sl-val">20.3 ÷ 52.1 × 100 = <strong>+39% relative improvement</strong></div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-term">Open-Label Study</div>
+          <div class="sl-def">Both patients and investigators know who receives the intervention. Prospective = patients enrolled before outcomes are known.</div>
+          <div class="sl-val">Our study design — appropriate for this type of nutritional intervention research</div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-term">n (Sample Size)</div>
+          <div class="sl-def">Number of participants. Larger n = more statistical power to detect real differences.</div>
+          <div class="sl-val">Our study: n = 60 (30 per arm) — appropriately powered for pilot evidence</div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-term">Adjunct Intervention</div>
+          <div class="sl-def">Added to existing standard of care — not replacing it. The critical framing for Epithrive®.</div>
+          <div class="sl-val">Epithrive® is always adjunct, never primary. Both arms had identical SOC.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout teal">
+      <strong>Simple explanation for a busy doctor:</strong> "p = 0.004 means if you ran this study 1000 times, only 4 times would the Epithrive® arm show better results by chance alone. In other words, we are 99.6% confident the difference is real, not random. That's a strong finding."
+    </div>
+  </section>
+
+  <!-- S5: GLOBAL EVIDENCE LIBRARY -->
+  <section class="section" id="s5">
+    <div class="sec-hd">
+      <div class="sec-num">05</div>
+      <div>
+        <h2>Global Evidence Library</h2>
+        <div class="sh-sub">Every study supporting the Epithrive® formulation class — know the headline finding for each</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--body);line-height:1.7;margin-bottom:20px">The India study is your primary evidence asset. But behind it sits over two decades of global research on the Arg+Gln+HMB+Collagen formulation class. Doctors who want more depth will ask about global data. This is your complete reference.</p>
+
+    <!-- TIER 1: HIGHEST EVIDENCE -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7c3aed;margin-bottom:12px;display:flex;align-items:center;gap:10px">
+      Tier 1 — Meta-Analysis &amp; Systematic Reviews
+      <div style="flex:1;height:1px;background:#e9d8ff"></div>
+    </div>
+
+    <div class="study-row">
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type meta">Meta-Analysis</span>
+            <span class="ev-year">2021</span>
+          </div>
+          <div class="ev-title">Arribas-López et al. — Effect of Amino Acids on Wound Healing: A Systematic Review and Meta-Analysis on Arginine and Glutamine</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">Nutrients (MDPI Open Access)</span></div>
+          <div class="ev-row"><span class="ev-key">Studies</span><span class="ev-val">44 human studies (5 Arginine + 39 Glutamine)</span></div>
+          <div class="ev-row"><span class="ev-key">Databases</span><span class="ev-val">10 electronic databases searched</span></div>
+          <div class="ev-finding purple">Arginine: Significant effect on hydroxyproline (collagen marker) — MD: 4.49, p&lt;0.00001. Glutamine: Significant effects on nitrogen balance, IL-6, TNF-α, CRP, mortality, and length of hospital stay (LOS −2.65 days, p&lt;0.00001). Conclusion: Nutritional supplementation enhances wound healing at multiple stages.</div>
+        </div>
+      </div>
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type rct-sr">RCT / SR Class</span>
+            <span class="ev-year">2015</span>
+          </div>
+          <div class="ev-title">Cereda et al. — Arginine-Enriched Nutritional Support in Pressure Ulcer Healing</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Design</span><span class="ev-val">Randomised controlled trial (pressure ulcers)</span></div>
+          <div class="ev-row"><span class="ev-key">Outcome</span><span class="ev-val">Wound area reduction vs. standard ONS</span></div>
+          <div class="ev-row"><span class="ev-key">Context</span><span class="ev-val">Hospital and community care settings</span></div>
+          <div class="ev-finding purple">Arginine-enriched formula produced 19% greater wound area reduction vs. standard oral nutritional supplement. ~2× faster pressure ulcer healing. 50% wound area reduction observed in 4 weeks. 3–4 day reduction in hospital stay. Most cited global evidence for this formulation class.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2: RCTs -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1d4ed8;margin:20px 0 12px;display:flex;align-items:center;gap:10px">
+      Tier 2 — Randomised Controlled Trials
+      <div style="flex:1;height:1px;background:#dbeafe"></div>
+    </div>
+
+    <div class="evidence-grid">
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type rct">RCT</span>
+            <span class="ev-year">2002</span>
+          </div>
+          <div class="ev-title">Williams, Abumrad &amp; Barbul — Effect of a Specialized Amino Acid Mixture on Human Collagen Deposition</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">Annals of Surgery (Vol. 236, No. 3)</span></div>
+          <div class="ev-row"><span class="ev-key">Design</span><span class="ev-val">Double-blind, randomised RCT</span></div>
+          <div class="ev-row"><span class="ev-key">Population</span><span class="ev-val">n=35 healthy volunteers aged 70+ years</span></div>
+          <div class="ev-row"><span class="ev-key">Dose</span><span class="ev-val">14g Arg + 3g HMB + 14g Gln vs. isonitrogenous control</span></div>
+          <div class="ev-finding green">Collagen deposition significantly enhanced at Days 7 and 14 vs. control (p&lt;0.05). Arg+HMB+Gln supplementation markedly increased wound collagen accumulation in elderly volunteers. Hospital stay reduced by 3.5 days in trauma patients. Foundational RCT for the formulation class.</div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type rct">RCT</span>
+            <span class="ev-year">2014</span>
+          </div>
+          <div class="ev-title">Armstrong et al. — Effect of Oral Nutritional Supplementation on Wound Healing in Diabetic Foot Ulcers</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">Diabetic Medicine (Wiley / Diabetes UK)</span></div>
+          <div class="ev-row"><span class="ev-key">Design</span><span class="ev-val">Prospective RCT — 38 US sites + Europe + Taiwan</span></div>
+          <div class="ev-row"><span class="ev-key">Population</span><span class="ev-val">n=271 DFU patients (130 Arg+Gln+HMB vs 141 control)</span></div>
+          <div class="ev-row"><span class="ev-key">Duration</span><span class="ev-val">16 weeks follow-up</span></div>
+          <div class="ev-finding amber">Primary outcome (wound closure at 16 weeks) showed no significant difference overall. However, subgroup analysis revealed benefit in high-risk patients (low albumin ≤17 mg/dL pre-albumin, poor limb perfusion) — exactly the malnourished patients Epithrive® targets. Important nuance: whole-population effects are harder to show when only high-risk patients respond.</div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type rct">RCT (Burns)</span>
+            <span class="ev-year">2019</span>
+          </div>
+          <div class="ev-title">Bagheri Miyab et al. — Hydrolyzed Collagen-Based Supplement on Wound Healing in Burn Patients</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">Burns (Elsevier)</span></div>
+          <div class="ev-row"><span class="ev-key">Design</span><span class="ev-val">Randomised double-blind pilot clinical trial</span></div>
+          <div class="ev-row"><span class="ev-key">Intervention</span><span class="ev-val">Hydrolysed bovine collagen (36g/day) vs. soy protein control</span></div>
+          <div class="ev-finding green">Hydrolysed collagen supplementation significantly improved wound healing outcomes in burn patients vs. matched-calorie soy protein control. Confirms collagen peptide bioavailability and wound-site accumulation in a high-acuity wound setting. Directly supports the Marine Collagen Peptide component of Epithrive®.</div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type rct">RCT (Collagen)</span>
+            <span class="ev-year">2018</span>
+          </div>
+          <div class="ev-title">Oesser et al. (Scientific Reports) — Collagen Hydrolysate (CH-b) for Pressure Ulcer Healing</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">Scientific Reports (Nature Publishing Group)</span></div>
+          <div class="ev-row"><span class="ev-key">Design</span><span class="ev-val">Randomised controlled trial (India National Ethics Committee approved)</span></div>
+          <div class="ev-row"><span class="ev-key">Population</span><span class="ev-val">n=120 pressure ulcer patients (India CTRI registered)</span></div>
+          <div class="ev-finding green">CH-b (higher Pro-Hyp + Hyp-Gly content): PUSH score significantly lower than placebo (p&lt;0.01). PSST score significantly lower (p=0.01). Wound area significantly lower (p=0.027) at 16 weeks. Combined primary+secondary improvement: 71.8% vs 21.4% (placebo). Confirms marine collagen peptide's wound-healing effect in Indian context.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3: PROSPECTIVE / RETROSPECTIVE -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin:20px 0 12px;display:flex;align-items:center;gap:10px">
+      Tier 3 — Prospective, Retrospective &amp; Case Evidence
+      <div style="flex:1;height:1px;background:var(--teal-mid)"></div>
+    </div>
+
+    <div class="evidence-grid">
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type retrospective">Retrospective Case-Control</span>
+            <span class="ev-year">2023</span>
+          </div>
+          <div class="ev-title">Kisil &amp; Gimelfarb — Long-Term HMB/Arg/Gln for Pressure Ulcer in Sedentary Older Adults</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">J Yeungnam Medical Science</span></div>
+          <div class="ev-row"><span class="ev-key">Population</span><span class="ev-val">n=45 (14 HMB/Arg/Gln, 31 SOC). Median age 85.5 years.</span></div>
+          <div class="ev-row"><span class="ev-key">Duration</span><span class="ev-val">20 weeks+ follow-up in geriatric care</span></div>
+          <div class="ev-finding">Median time to complete PU healing: <strong>170 days (HMB/Arg/Gln) vs. 218 days (SOC alone)</strong> — p&lt;0.046. More than 20 weeks of supplementation had a positive effect on difficult PU healing in elderly patients with multiple comorbidities. This is the most recent geriatric pressure ulcer evidence for the formulation class.</div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type retrospective">Retrospective Study</span>
+            <span class="ev-year">2013</span>
+          </div>
+          <div class="ev-title">Sipahi et al. — Effect of Arg+Gln+HMB on Wound Healing in Diabetic Dialysis Patients</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">BMC Nephrology</span></div>
+          <div class="ev-row"><span class="ev-key">Population</span><span class="ev-val">n=11 diabetic haemodialysis patients with DFU</span></div>
+          <div class="ev-row"><span class="ev-key">Duration</span><span class="ev-val">4 weeks treatment</span></div>
+          <div class="ev-finding">63.6% of patients showed wound depth improvement. 72.7% showed wound appearance improvement (Bates-Jensen assessment). Wound appearance (p=0.001) and depth (p=0.006) scores improved significantly. Critically important: shows benefit even in CKD/dialysis patients — the "too sick for supplements" objection is addressed here.</div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type prospective">Prospective Comparative</span>
+            <span class="ev-year">2010</span>
+          </div>
+          <div class="ev-title">Brewer et al. — Arginine-Containing Supplement in Community Spinal Patients with Pressure Ulcers</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Journal</span><span class="ev-val">Journal of Wound Care</span></div>
+          <div class="ev-row"><span class="ev-key">Design</span><span class="ev-val">Prospective intervention vs. historical control</span></div>
+          <div class="ev-row"><span class="ev-key">Population</span><span class="ev-val">Community-dwelling spinal cord injury patients with PU</span></div>
+          <div class="ev-finding">Arginine-containing supplement resulted in significantly shorter pressure ulcer healing times compared to historical controls without supplementation. Relevant for home care and community setting — mirrors the Epithrive® use case in caregiver-managed wound patients.</div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-head-top">
+            <span class="ev-type retrospective">Case Studies</span>
+            <span class="ev-year">2025</span>
+          </div>
+          <div class="ev-title">Epithrive® Real-World Case Evidence — Documented Patient Cases</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-row"><span class="ev-key">Case 1</span><span class="ev-val">66yr, Type 2 DM, Grade II–III big toe ulcer, 1 year+ duration</span></div>
+          <div class="ev-row"><span class="ev-key">Outcome</span><span class="ev-val">Near-complete epithelialisation in <strong>15 days</strong></span></div>
+          <div class="ev-row"><span class="ev-key">Case 2</span><span class="ev-val">62yr, Type 2 DM, Wagner Grade II DFU, 2 month+ post-debridement</span></div>
+          <div class="ev-row"><span class="ev-key">Outcome</span><span class="ev-val">Wound healed at Day 35. Cost &lt;2% of ₹3.5L total spend.</span></div>
+          <div class="ev-finding">Sequential wound photography documenting day-by-day progression. Granulation tissue Day 5–10 → epithelialisation Day 10–15 → closure Day 15–35. Doctor commentary available per case. Photographic evidence supports the biological mechanism claims.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOUNDATIONAL SCIENCE -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin:20px 0 12px;display:flex;align-items:center;gap:10px">
+      Foundational Mechanism Studies
+      <div style="flex:1;height:1px;background:#fcd34d"></div>
+    </div>
+
+    <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+        <thead>
+          <tr style="background:#fafcfd">
+            <th style="padding:10px 16px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)">Author / Year</th>
+            <th style="padding:10px 16px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)">Ingredient</th>
+            <th style="padding:10px 16px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)">Key Finding</th>
+            <th style="padding:10px 16px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)">Epithrive® Relevance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6;color:var(--navy);font-weight:600">Tatti et al. 2012</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Arg + Gln + HMB</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">DFU healing time reduced from <strong>247 days → 83 days</strong> with formulation blend vs. standard care</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Strongest DFU-specific outcome data for the formulation class</td>
+          </tr>
+          <tr style="background:#fafcfd">
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6;color:var(--navy);font-weight:600">Nissen et al. 1996</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Ca-HMB</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">57% reduction in muscle proteolysis with HMB supplementation</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Foundational anti-catabolic evidence for 1.5g HMB dose rationale</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6;color:var(--navy);font-weight:600">Wischmeyer 2003</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">L-Glutamine</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">45% reduction in ICU infections with Glutamine supplementation in critically ill patients</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Supports Glutamine's immune role — critical for ICU and pressure ulcer patients</td>
+          </tr>
+          <tr style="background:#fafcfd">
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6;color:var(--navy);font-weight:600">Barbul et al. 1990</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">L-Arginine</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Arginine enhances wound healing and lymphocyte immune responses in humans (Surgery)</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Early landmark human evidence. Same PI as Barbul 2002.</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6;color:var(--navy);font-weight:600">Oesser et al. 1999</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Collagen Peptides</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Collagen peptides (Gly-Pro-Hyp) absorbed intact and accumulate selectively at wound and connective tissue sites</td>
+            <td style="padding:10px 16px;border-bottom:1px solid #f0f4f6">Bioavailability proof for Marine Collagen Peptides in Epithrive®</td>
+          </tr>
+          <tr style="background:#fafcfd">
+            <td style="padding:10px 16px;color:var(--navy);font-weight:600">Stehle 1989</td>
+            <td style="padding:10px 16px">L-Glutamine</td>
+            <td style="padding:10px 16px">Parenteral Glutamine supplementation improved nitrogen balance and reduced postoperative infections</td>
+            <td style="padding:10px 16px">Foundational Glutamine evidence — oral formulations extrapolate this mechanism</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- S6: EVIDENCE BY WOUND TYPE -->
+  <section class="section" id="s6">
+    <div class="sec-hd">
+      <div class="sec-num">06</div>
+      <div>
+        <h2>Evidence by Wound Type</h2>
+        <div class="sh-sub">Which studies to cite for which specialist — know the right evidence for the right room</div>
+      </div>
+    </div>
+
+    <div class="wound-ev-grid">
+      <div class="wev-row">
+        <div class="wev-label" style="background:#7f1d1d">
+          <h5>Diabetic Foot Ulcer</h5>
+          <small>Primary target indication</small>
+        </div>
+        <div class="wev-studies">
+          <span class="wev-tag">CSR-ETH-2025-001 (India, 72.4%)</span>
+          <span class="wev-tag">Tatti 2012 (247→83 days)</span>
+          <span class="wev-tag orange">Armstrong 2014 (RCT — note subgroup)</span>
+          <span class="wev-tag">Sipahi 2013 (DFU in dialysis)</span>
+          <span class="wev-tag">Oesser 1999 (collagen bioavailability)</span>
+        </div>
+      </div>
+      <div class="wev-row">
+        <div class="wev-label" style="background:#1e1b4b">
+          <h5>Pressure Injury</h5>
+          <small>Stage II–IV; ICU &amp; geriatric</small>
+        </div>
+        <div class="wev-studies">
+          <span class="wev-tag">CSR-ETH-2025-001 (India, 72.4%)</span>
+          <span class="wev-tag">Cereda 2015 (2× faster healing)</span>
+          <span class="wev-tag">Kisil &amp; Gimelfarb 2023 (170 vs 218 days)</span>
+          <span class="wev-tag">Oesser/SCR 2018 (collagen RCT, India CTRI)</span>
+          <span class="wev-tag">Brewer 2010 (spinal patients)</span>
+        </div>
+      </div>
+      <div class="wev-row">
+        <div class="wev-label" style="background:#064e3b">
+          <h5>Post-Surgical Wound</h5>
+          <small>Dehiscence; high-risk closure</small>
+        </div>
+        <div class="wev-studies">
+          <span class="wev-tag">CSR-ETH-2025-001 (India, 72.4%)</span>
+          <span class="wev-tag">Williams &amp; Barbul 2002 (Annals Surgery)</span>
+          <span class="wev-tag">Barbul 1990 (collagen + lymphocyte response)</span>
+          <span class="wev-tag">Arribaslopez 2021 (meta-analysis)</span>
+          <span class="wev-tag">Williams 2002 (−3.5 days hospital stay)</span>
+        </div>
+      </div>
+      <div class="wev-row">
+        <div class="wev-label" style="background:#7c2d12">
+          <h5>Burns</h5>
+          <small>Partial &amp; full thickness; graft patients</small>
+        </div>
+        <div class="wev-studies">
+          <span class="wev-tag">Bagheri Miyab 2019 (RCT, collagen in burns)</span>
+          <span class="wev-tag">Wischmeyer 2003 (45% infection reduction)</span>
+          <span class="wev-tag">Stehle 1989 (Glutamine nitrogen balance)</span>
+          <span class="wev-tag orange">Note: Highest nutritional demand wound — 2 sachets/day</span>
+        </div>
+      </div>
+      <div class="wev-row">
+        <div class="wev-label" style="background:#4a1d96">
+          <h5>Chronic / Non-Healing</h5>
+          <small>Any wound stalled 2+ weeks</small>
+        </div>
+        <div class="wev-studies">
+          <span class="wev-tag">Arribaslopez 2021 (meta-analysis — all wound types)</span>
+          <span class="wev-tag">Cereda 2015 (19% greater reduction)</span>
+          <span class="wev-tag">CSR-ETH-2025-001 (stalled wound arm)</span>
+          <span class="wev-tag purple">Epithrive® Case Studies (15-day &amp; 35-day closure)</span>
+        </div>
+      </div>
+      <div class="wev-row">
+        <div class="wev-label" style="background:#1e3a5f">
+          <h5>ICU / Critical Care</h5>
+          <small>Pressure injury prevention; malnourished</small>
+        </div>
+        <div class="wev-studies">
+          <span class="wev-tag">Wischmeyer 2003 (45% ICU infection reduction)</span>
+          <span class="wev-tag">Kisil &amp; Gimelfarb 2023 (geriatric, complex comorbidities)</span>
+          <span class="wev-tag">Sipahi 2013 (haemodialysis patients)</span>
+          <span class="wev-tag">Stehle 1989 (nitrogen balance, post-op)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7: COMPLIANT COMMUNICATION -->
+  <section class="section" id="s7">
+    <div class="sec-hd">
+      <div class="sec-num">07</div>
+      <div>
+        <h2>Compliant Evidence Communication</h2>
+        <div class="sh-sub">The traffic-light guide — what you can say, what needs framing, and what is never permitted</div>
+      </div>
+    </div>
+
+    <div class="traffic-grid">
+      <div class="tl-card green">
+        <div class="tl-dot"></div>
+        <h4>✓ Green — Say Freely</h4>
+        <ul>
+          <li>"In the clinical study, the Epithrive® arm showed 72.4% wound area reduction at Week 8 vs. 52.1% in standard care (p=0.004)"</li>
+          <li>"The formulation class is supported by a 2021 meta-analysis of 44 human studies"</li>
+          <li>"Williams &amp; Barbul (Annals of Surgery 2002) showed collagen deposition significantly enhanced with Arg+HMB+Gln"</li>
+          <li>"Supports wound healing as an adjunct to standard care"</li>
+          <li>"Contains clinically researched doses of Arginine, Glutamine, HMB, and Marine Collagen Peptides"</li>
+          <li>"Nutritional support for tissue repair"</li>
+        </ul>
+      </div>
+      <div class="tl-card amber">
+        <div class="tl-dot"></div>
+        <h4>△ Amber — Use With Framing</h4>
+        <ul>
+          <li>"2× faster healing" — must attribute: "Cereda et al. found approximately 2× faster pressure ulcer healing with arginine-enriched formula"</li>
+          <li>"Healing in 15 days" — must be framed as: "In this documented case, a patient experienced near-complete closure in 15 days"</li>
+          <li>"The Armstrong RCT" — acknowledge the primary outcome limitation; lead with subgroup finding for malnourished patients</li>
+          <li>"Hospital stay reduction" — say "studies have shown" + cite Williams 2002; don't present as a guaranteed outcome</li>
+          <li>Any quantified outcome claim must be attributed to a specific study, not stated as a product guarantee</li>
+        </ul>
+      </div>
+      <div class="tl-card red">
+        <div class="tl-dot"></div>
+        <h4>✗ Red — Never Say</h4>
+        <ul>
+          <li>"Epithrive® heals / treats / cures wounds"</li>
+          <li>"Guaranteed to close the wound in X weeks"</li>
+          <li>"FSMP" or "Food for Special Medical Purposes" — not approved yet</li>
+          <li>"This will definitely reduce hospital stay by 3–4 days"</li>
+          <li>"Works better than antibiotics / dressings"</li>
+          <li>"Replaces standard wound care"</li>
+          <li>Any disease treatment claim without CDSCO drug approval</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:var(--navy);border-radius:12px;padding:20px 22px;margin-bottom:16px">
+      <h4 style="font-family:'Fraunces',serif;color:#fff;font-size:17px;margin-bottom:14px">The Compliant vs. Non-Compliant Comparison</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fca5a5;margin-bottom:8px">✗ Non-Compliant</div>
+          <div style="background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:8px;padding:12px;font-size:13px;color:#fca5a5;font-style:italic">"Epithrive® heals diabetic wounds 39% faster."</div>
+          <div style="background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:8px;padding:12px;font-size:13px;color:#fca5a5;font-style:italic;margin-top:8px">"This product treats pressure sores and bedsores."</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6ee7b7;margin-bottom:8px">✓ Compliant</div>
+          <div style="background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.3);border-radius:8px;padding:12px;font-size:13px;color:#6ee7b7">"In our clinical study (CSR-ETH-2025-001), patients in the Epithrive® arm showed 72.4% wound area reduction vs. 52.1% with standard care alone at Week 8 — p=0.004."</div>
+          <div style="background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.3);border-radius:8px;padding:12px;font-size:13px;color:#6ee7b7;margin-top:8px">"Epithrive® supports wound healing as a nutritional adjunct. It provides the specific substrates the body needs for tissue repair alongside standard wound care."</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border:2px dashed var(--orange);border-radius:10px;padding:14px 18px;background:var(--orange-light)">
+      <strong style="color:var(--orange)">Mandatory disclaimer — always present on any printed material you leave behind:</strong>
+      <p style="font-size:13px;margin-top:6px;color:#6e3a10;font-style:italic">"Dietary supplement. Not intended to diagnose, treat, cure, or prevent any disease. For nutritional support as an adjunct to standard wound care."</p>
+    </div>
+  </section>
+
+  <!-- S8: USING EVIDENCE IN CALLS -->
+  <section class="section" id="s8">
+    <div class="sec-hd">
+      <div class="sec-num">08</div>
+      <div>
+        <h2>Using Evidence in Doctor Calls</h2>
+        <div class="sh-sub">How to introduce, present, and land clinical data in a real conversation</div>
+      </div>
+    </div>
+
+    <div class="convo-block">
+      <h4>Script A — Introducing the India Study to a Surgeon (First Call)</h4>
+      <div class="convo-line">
+        <span class="convo-speaker mr">MR</span>
+        <span class="convo-text mr-text">Doctor, I wanted to share a clinical finding from an Indian prospective study we recently completed — 60 patients across DFU, pressure injuries, and post-surgical wounds. It's particularly relevant because it was conducted in our population.</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker dr">DR</span>
+        <span class="convo-text">Go ahead.</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker mr">MR</span>
+        <span class="convo-text mr-text">Both groups received identical standard wound care. The only difference was the addition of <span class="highlight">one sachet of Epithrive® per day</span>. At Week 8, the Epithrive® arm showed <span class="highlight">72.4% mean wound area reduction vs. 52.1% in the standard care arm — p=0.004</span>. That's a 20-point absolute difference, statistically significant, and reflects a 39% relative improvement in healing rate.</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker dr">DR</span>
+        <span class="convo-text">That's a meaningful difference. Who was the PI?</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker mr">MR</span>
+        <span class="convo-text mr-text">Dr. Praful Bhanegaonkar, MS Ortho — Orthopaedic Surgeon — as principal investigator. Co-investigator was Dr. Gauri Jahagirdar, MD IDCCM — Critical Care. The full CSR is available if you'd like to review it, or I can leave the A4 summary today.</span>
+      </div>
+      <div class="convo-note">Notice: the MR presents the finding precisely, attributes it correctly, names the investigators, and offers the leave-behind naturally — not as a pitch, as a service.</div>
+    </div>
+
+    <div class="convo-block">
+      <h4>Script B — Responding to "Show Me the Global Evidence" (Diabetologist)</h4>
+      <div class="convo-line">
+        <span class="convo-speaker dr">DR</span>
+        <span class="convo-text">Your India study is interesting but n=60 is small. Is there larger global evidence?</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker mr">MR</span>
+        <span class="convo-text mr-text">Absolutely — and that's a fair question. The global evidence base for this formulation class is substantial. For DFU specifically, Tatti et al. published data showing the Arg+Gln+HMB formula reduced diabetic foot ulcer healing time from <span class="highlight">247 days to 83 days</span> in longstanding neuropathic ulcers. For collagen deposition, Williams and Barbul at Johns Hopkins — published in Annals of Surgery 2002 — showed a double-blind RCT where the supplement significantly increased wound collagen in elderly patients.</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker mr">MR</span>
+        <span class="convo-text mr-text">There's also a 2021 systematic review and meta-analysis in Nutrients journal — 44 human studies — that confirmed significant effects of Arginine and Glutamine supplementation on multiple wound healing markers including nitrogen balance, cytokine levels, and length of hospital stay. Epithrive® delivers the same active components at therapeutic doses in a single sachet.</span>
+      </div>
+      <div class="convo-note">Key technique: bridge from the India study limitation to the global evidence without being defensive. "Fair question + here's the larger picture" is always more credible than defensiveness.</div>
+    </div>
+
+    <div class="convo-block">
+      <h4>Script C — Using Case Study Evidence (ICU Physician)</h4>
+      <div class="convo-line">
+        <span class="convo-speaker dr">DR</span>
+        <span class="convo-text">I have a bedridden patient with a Stage III pressure ulcer — albumin is 2.9. What have you actually seen this product do in someone like that?</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker mr">MR</span>
+        <span class="convo-text mr-text">We have documented a case with very similar parameters — a diabetic patient with a chronic wound and nutritional compromise. After starting Epithrive® one sachet daily alongside ongoing standard care, the wound showed organised granulation tissue by Day 12, wound margin contraction and reduced surface area by Day 25, and <span class="highlight">complete closure by Day 35</span>. The photographic documentation is available.</span>
+      </div>
+      <div class="convo-line">
+        <span class="convo-speaker mr">MR</span>
+        <span class="convo-text mr-text">For pressure ulcers specifically in older patients, Kisil and Gimelfarb published a 2023 case-control study showing HMB+Arg+Gln reduced median time to pressure ulcer healing from <span class="highlight">218 days to 170 days</span> in elderly patients with multiple comorbidities — including diabetes and dementia. That's the population profile you're describing.</span>
+      </div>
+      <div class="convo-note">ICU physicians respond to patient-like-mine evidence. Lead with the case that mirrors their patient, then support with the published data that confirms the pattern.</div>
+    </div>
+  </section>
+
+  <!-- S9: EVIDENCE OBJECTIONS -->
+  <section class="section" id="s9">
+    <div class="sec-hd">
+      <div class="sec-num">09</div>
+      <div>
+        <h2>Handling Evidence Objections</h2>
+        <div class="sh-sub">Every clinical data challenge — and how to answer it with confidence</div>
+      </div>
+    </div>
+
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>Doctor's Objection</th>
+          <th>What They Really Mean</th>
+          <th>The Right Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"n=60 is too small to mean anything."</td>
+          <td>Wants larger evidence. May have RCT standards.</td>
+          <td>Acknowledge the point, then pivot: "You're right that it's a pilot-scale study — and that's why we also have the global evidence base. Williams & Barbul's RCT in Annals of Surgery with elderly volunteers, Cereda's RCT showing 2× faster pressure ulcer healing, and a 2021 meta-analysis of 44 human studies — all consistently point in the same direction. The India study adds Indian population relevance to an already-established formulation class."</td>
+        </tr>
+        <tr>
+          <td>"The Armstrong 2014 RCT was negative — same formulation class, no difference in wound closure."</td>
+          <td>Has read the literature. Impressed — treat seriously.</td>
+          <td>"The Armstrong study is important to understand correctly. The primary outcome — wound closure in the overall population — showed no significant difference. But the subgroup analysis showed clear benefit in high-risk patients — specifically those with albumin ≤17 mg/dL pre-albumin and poor limb perfusion. That's exactly the malnourished patient we're targeting with Epithrive®. The lesson from Armstrong is that patient selection matters: whole-population effects are diluted when you include patients who don't have nutritional deficits."</td>
+        </tr>
+        <tr>
+          <td>"Open-label studies are biased — both patient and investigator know who gets the supplement."</td>
+          <td>Knows study design limitations.</td>
+          <td>"That's a fair methodological point. The primary outcome — wound area measured photographically — is objective, which reduces assessment bias considerably. The study was prospective with a pre-registered protocol. For nutritional interventions, open-label designs are standard — blinding a nutritional supplement against placebo is operationally difficult. The global RCT evidence supports the same conclusion with blinded designs, so the India study result is consistent with stronger methodology."</td>
+        </tr>
+        <tr>
+          <td>"I need a peer-reviewed published RCT from India before I recommend it."</td>
+          <td>High evidentiary bar. Wants publication.</td>
+          <td>"That's a completely fair standard, and it's one we're working toward. The clinical study report is available now for your review. In the meantime, the global published RCT evidence — Williams & Barbul 2002 (Annals of Surgery), Cereda 2015, and the 2021 meta-analysis of 44 human studies — provides published, peer-reviewed support for the formulation class. Would you be willing to try Epithrive® on one or two carefully selected malnourished wound patients while we progress toward publication?"</td>
+        </tr>
+        <tr>
+          <td>"72.4% vs 52.1% — is that really meaningful? Both groups healed."</td>
+          <td>Questioning clinical significance, not just statistical.</td>
+          <td>"Both groups did improve — that's expected, because both received good standard wound care. The question is whether adding Epithrive® made a meaningful additional difference. A 20-percentage-point absolute difference with p=0.004 is statistically significant and clinically meaningful. To put it concretely: in a patient whose wound was 10 cm² — the Epithrive® arm reached approximately 2.8 cm² remaining vs. 4.8 cm² in the control arm. That is the difference between near-closure and still-open, which translates directly to fewer dressing changes, lower infection risk, and shorter recovery."</td>
+        </tr>
+        <tr>
+          <td>"The case studies don't count as evidence."</td>
+          <td>Correct — and showing they understand evidence grades.</td>
+          <td>"You're absolutely right — case studies are not primary evidence. They sit at the base of the evidence pyramid. I'm not presenting them as proof of efficacy — I'm using them to illustrate what the published evidence looks like in a real patient. The primary evidence is the clinical study (CSR-ETH-2025-001) and the global literature. The case documentation shows the biological mechanism in action: granulation at Day 10, contraction at Day 25, closure at Day 35 — consistent with the formulation's mechanism."</td>
+        </tr>
+        <tr>
+          <td>"This is just a nutraceutical — it doesn't have drug approval."</td>
+          <td>May want pharmaceutical-grade evidence standards.</td>
+          <td>"Correct — Epithrive® is a nutraceutical, registered under FSSAI. This is also why it doesn't require a prescription, so your patients can access it immediately once you recommend it. For nutraceuticals, the evidence standard is clinical study data and mechanistic rationale — which Epithrive® has in the form of the India study and the global formulation-class evidence. The ingredients themselves are well-established nutritional substrates with deep mechanistic and clinical research. This is not an untested supplement — it is a clinical nutrition formulation."</td>
+        </tr>
+        <tr>
+          <td>"I've never heard of the investigators."</td>
+          <td>Wants validation of the research team's credentials.</td>
+          <td>"Dr. Praful Bhanegaonkar is an Orthopaedic Surgeon with extensive wound case experience — his specialty means he manages the exact patient population the study enrolled. Dr. Gauri Jahagirdar, MD IDCCM, specialises in critical care and internal medicine — the other major wound patient source. Dr. Prathmesh Umrekar, the Nutrition Consultant, brings clinical dietetics validation. The study was conducted with IRB-equivalent ethics oversight. The full CSR is available if you'd like to review the methods and findings directly."</td>
+        </tr>
+        <tr>
+          <td>"Why would I trust this over established brands like Ensure or Fresubin that have decades of evidence?"</td>
+          <td>Comparing to general ONS with larger evidence bases.</td>
+          <td>"Ensure and Fresubin are excellent products for general nutritional support — and they have the evidence base you'd expect for that use case. But they were not designed for wound healing. They don't contain therapeutic doses of Arginine (Epithrive® has 7g — most ONS have under 1g). They don't contain HMB or Marine Collagen Peptides at all. The formulation class that Epithrive® belongs to — Arg+Gln+HMB+Collagen — has its own evidence base in wound-specific settings. These are different products designed for different clinical purposes. Using Ensure for wound healing is like using a general multivitamin for chemotherapy-related deficiency — it's not wrong, but it's not targeted."</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout navy" style="margin-top:16px">
+      <strong>The meta-skill:</strong> Every evidence objection is an opportunity to demonstrate clinical credibility. Doctors who challenge the evidence are engaged — they're thinking. Doctors who accept without questioning are not really listening. Respond to challenges with specific data, not defensiveness. Acknowledge limitations honestly, then reframe with the broader picture. A doctor who sees you handle a tough question well will trust you more than one who sees you deflect it.
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Sidebar nav active
+const navLinks = document.querySelectorAll('.sb-nav a');
+const sections = document.querySelectorAll('.section');
+
+function setActive() {
+  let curr = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) curr = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + curr);
+  });
+}
+window.addEventListener('scroll', setActive);
+setActive();
+
+navLinks.forEach(l => {
+  l.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(l.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

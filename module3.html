@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 3 — Ingredient Mastery</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0E8FA8;
+  --teal-light: #e6f5f8;
+  --teal-mid: #c0e8f0;
+  --orange: #F4811F;
+  --orange-light: #fef3e8;
+  --navy: #12293D;
+  --navy-mid: #1f4060;
+  --body: #2c3e50;
+  --muted: #6b7f90;
+  --border: #dde8ed;
+  --bg: #F7F4F0;
+  --white: #ffffff;
+  --success: #2ecc71;
+  --warn: #e67e22;
+  --danger: #e74c3c;
+  --ingredient-1: #0E8FA8;
+  --ingredient-2: #1a7ab0;
+  --ingredient-3: #2d6a9f;
+  --ingredient-4: #8e44ad;
+  --sidebar-w: 260px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--body);
+  display: flex;
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 4px; }
+
+.sidebar-brand {
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-brand .brand-tag {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sidebar-brand h2 {
+  font-family: 'Fraunces', serif;
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.sidebar-brand p {
+  color: rgba(255,255,255,.45);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.sidebar-section-label {
+  padding: 18px 20px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: all .2s;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  color: var(--white);
+  background: rgba(255,255,255,.06);
+  border-left-color: var(--teal);
+}
+
+.sidebar-nav a .nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  flex-shrink: 0;
+}
+
+.sidebar-nav a:hover .nav-dot,
+.sidebar-nav a.active .nav-dot { background: var(--teal); }
+
+.sidebar-badge {
+  margin: 16px 20px;
+  background: rgba(14,143,168,.15);
+  border: 1px solid rgba(14,143,168,.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: rgba(255,255,255,.7);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.sidebar-badge span { color: var(--teal); font-weight: 600; }
+
+/* ── MAIN ── */
+#main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  padding: 0 40px 80px;
+  max-width: 1000px;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  margin: 0 -40px 48px;
+  padding: 48px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,143,168,.25) 0%, transparent 70%);
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: 140px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,129,31,.15) 0%, transparent 70%);
+}
+
+.module-tag {
+  display: inline-block;
+  background: rgba(14,143,168,.25);
+  border: 1px solid rgba(14,143,168,.5);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 14px;
+}
+
+.page-header h1 {
+  font-family: 'Fraunces', serif;
+  color: var(--white);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.page-header .subtitle {
+  color: rgba(255,255,255,.55);
+  font-size: 15px;
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+.header-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.meta-chip {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+}
+
+.meta-chip strong { color: var(--white); font-weight: 600; }
+
+/* ── SECTIONS ── */
+.section {
+  margin-bottom: 56px;
+  scroll-margin-top: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-number {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: var(--teal);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.section-header .sub {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin-top: 2px;
+}
+
+/* ── PRODUCT OVERVIEW GRID ── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.overview-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.overview-card .oc-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.overview-card .oc-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+.overview-card .oc-value.accent { color: var(--teal); }
+.overview-card .oc-value.orange { color: var(--orange); }
+
+/* ── SNAP RULE ── */
+.snap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 2px solid var(--teal);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.snap-cell {
+  padding: 20px 18px;
+  position: relative;
+}
+
+.snap-cell:not(:last-child) { border-right: 1px solid var(--teal-mid); }
+
+.snap-letter {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 4px;
+  opacity: .25;
+  position: absolute;
+  top: 10px; right: 14px;
+}
+
+.snap-cell h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.snap-cell p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  position: relative;
+}
+
+/* ── INGREDIENT CARDS ── */
+.ingredient-tier-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 28px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ingredient-tier-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.ingredient-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+
+.ingredient-card:hover { box-shadow: 0 4px 20px rgba(12,40,60,.08); }
+
+.ing-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ing-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-family: 'Fraunces', serif;
+  color: var(--white);
+}
+
+.ic-teal { background: linear-gradient(135deg, #0E8FA8, #0a7a93); }
+.ic-blue { background: linear-gradient(135deg, #1a7ab0, #155f8c); }
+.ic-indigo { background: linear-gradient(135deg, #2d6a9f, #1f4f7a); }
+.ic-purple { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+.ic-green { background: linear-gradient(135deg, #059669, #047857); }
+.ic-amber { background: linear-gradient(135deg, #d97706, #b45309); }
+.ic-rose { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+.ic-slate { background: linear-gradient(135deg, #475569, #334155); }
+
+.ing-meta { flex: 1; }
+
+.ing-name {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.2;
+}
+
+.ing-dose {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal);
+  margin-top: 2px;
+}
+
+.ing-tagline {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.ing-toggle {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teal);
+  font-size: 14px;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+
+.ingredient-card.open .ing-toggle { background: var(--teal); color: var(--white); transform: rotate(45deg); }
+
+.ing-body {
+  display: none;
+  padding: 0 22px 22px;
+  border-top: 1px solid var(--border);
+}
+
+.ingredient-card.open .ing-body { display: block; }
+
+.ing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ing-block {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.ing-block.full { grid-column: 1 / -1; }
+
+.ing-block h5 {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.ing-block h5.teal { color: var(--teal); }
+.ing-block h5.orange { color: var(--orange); }
+.ing-block h5.navy { color: var(--navy); }
+.ing-block h5.danger { color: var(--danger); }
+.ing-block h5.purple { color: #7c3aed; }
+
+.ing-block p, .ing-block li {
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.6;
+}
+
+.ing-block ul { padding-left: 16px; }
+.ing-block li { margin-bottom: 3px; }
+
+.ing-pathway {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.pathway-step {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.pathway-arrow { color: var(--teal); font-size: 14px; font-weight: 700; }
+
+.evidence-tag {
+  display: inline-block;
+  background: var(--teal-light);
+  color: var(--teal);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 3px 3px 0 0;
+}
+
+.warning-box {
+  background: #fff8f0;
+  border: 1px solid #fbd9b5;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: #924a15;
+}
+
+.warning-box strong { color: var(--orange); }
+
+/* ── PHASE MAP ── */
+.phase-map {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.phase-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.phase-row:last-child { border-bottom: none; }
+.phase-row.header-row { background: var(--navy); }
+
+.phase-cell {
+  padding: 16px 18px;
+  border-right: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.phase-cell:last-child { border-right: none; }
+
+.phase-row.header-row .phase-cell {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  border-right-color: rgba(255,255,255,.1);
+}
+
+.phase-name {
+  font-weight: 700;
+  color: var(--teal);
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.phase-timing {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.phase-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.pi-tag {
+  background: var(--teal-light);
+  color: var(--teal);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.pi-tag.orange { background: var(--orange-light); color: var(--orange); }
+.pi-tag.purple { background: #f3e8ff; color: #7c3aed; }
+.pi-tag.green { background: #ecfdf5; color: #059669; }
+
+.phase-action {
+  font-size: 12.5px;
+  color: var(--body);
+  line-height: 1.6;
+}
+
+/* ── ADME TABLE ── */
+.adme-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.adme-table th {
+  background: var(--navy);
+  color: rgba(255,255,255,.7);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.adme-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.adme-table tr:last-child td { border-bottom: none; }
+.adme-table tr:nth-child(even) td { background: #fafcfd; }
+.adme-table td:first-child { font-weight: 600; color: var(--navy); font-size: 12.5px; }
+.adme-table td:nth-child(2) { color: var(--muted); font-size: 12px; }
+
+/* ── SAFETY ── */
+.safety-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.safety-card {
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.safety-card.green { background: #ecfdf5; border: 1px solid #6ee7b7; }
+.safety-card.amber { background: #fffbeb; border: 1px solid #fcd34d; }
+.safety-card.red { background: #fef2f2; border: 1px solid #fca5a5; }
+
+.safety-card h4 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.safety-card.green h4 { color: #059669; }
+.safety-card.amber h4 { color: #d97706; }
+.safety-card.red h4 { color: #dc2626; }
+
+.safety-card ul { padding-left: 16px; }
+.safety-card li { font-size: 12.5px; color: var(--body); margin-bottom: 4px; line-height: 1.5; }
+
+.drug-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.drug-table th {
+  background: #fff8f0;
+  color: var(--orange);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #fbd9b5;
+}
+
+.drug-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.drug-table tr:last-child td { border-bottom: none; }
+.drug-table td:first-child { font-weight: 600; color: var(--navy); }
+
+/* ── FAQs ── */
+.faq-category {
+  margin-bottom: 28px;
+}
+
+.faq-cat-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq-cat-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #fbd9b5;
+}
+
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.faq-q {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+.faq-q-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.faq-q .faq-chevron {
+  margin-left: auto;
+  font-size: 16px;
+  color: var(--muted);
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-q .faq-chevron { transform: rotate(90deg); color: var(--teal); }
+
+.faq-a {
+  display: none;
+  padding: 0 18px 16px 52px;
+  font-size: 13.5px;
+  color: var(--body);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.faq-item.open .faq-a { display: block; }
+
+.faq-a strong { color: var(--navy); }
+.faq-a .compliance-note {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #fffbeb;
+  border-left: 3px solid var(--orange);
+  border-radius: 4px;
+  font-size: 12px;
+  color: #924a15;
+}
+
+.faq-a .compliance-note strong { color: var(--orange); }
+
+/* ── COMPLIANCE BAR ── */
+.compliance-banner {
+  background: linear-gradient(135deg, #fff8f0, #fef3e8);
+  border: 2px solid #fbd9b5;
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+.compliance-banner h4 {
+  font-family: 'Fraunces', serif;
+  color: var(--orange);
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.comp-col h5 {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.comp-col.can h5 { color: var(--success); }
+.comp-col.cannot h5 { color: var(--danger); }
+
+.comp-col li {
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin-bottom: 4px;
+  padding-left: 16px;
+  list-style: none;
+  position: relative;
+}
+
+.comp-col.can li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: 700; }
+.comp-col.cannot li::before { content: '✗'; position: absolute; left: 0; color: var(--danger); font-weight: 700; }
+
+.mandatory-disclaimer {
+  margin-top: 14px;
+  background: rgba(231,76,60,.06);
+  border: 1px dashed #e74c3c;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #c0392b;
+  font-style: italic;
+}
+
+/* ── DOSING PROTOCOL ── */
+.protocol-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.proto-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+}
+
+.proto-card .proto-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.proto-card h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.proto-card .proto-dose {
+  font-size: 20px;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+
+.proto-card p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── COMPLETENESS ARGUMENT ── */
+.completeness-block {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 28px 30px;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 16px;
+}
+
+.completeness-block h3 {
+  font-family: 'Fraunces', serif;
+  color: var(--white);
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 24px 1fr;
+  gap: 0;
+  margin-bottom: 14px;
+  align-items: center;
+}
+
+.comp-col-left, .comp-col-right {
+  background: rgba(255,255,255,.06);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.comp-col-left { border: 1px solid rgba(231,76,60,.3); }
+.comp-col-right { border: 1px solid rgba(14,143,168,.4); }
+
+.comp-col-left h5 { color: #e87a7a; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.comp-col-right h5 { color: var(--teal); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+
+.comp-col-left ul, .comp-col-right ul { padding-left: 16px; }
+.comp-col-left li, .comp-col-right li { font-size: 12.5px; margin-bottom: 3px; }
+
+.vs-badge {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  body { flex-direction: column; }
+  #sidebar { position: relative; width: 100%; height: auto; }
+  #main { margin-left: 0; padding: 0 20px 60px; }
+  .snap-grid { grid-template-columns: 1fr 1fr; }
+  .ing-grid { grid-template-columns: 1fr; }
+  .safety-grid { grid-template-columns: 1fr; }
+  .protocol-cards { grid-template-columns: 1fr; }
+  .compliance-grid { grid-template-columns: 1fr; }
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
+/* Print */
+@media print {
+  #sidebar { display: none; }
+  #main { margin-left: 0; }
+  .ingredient-card.open .ing-body, .faq-item.open .faq-a { display: block !important; }
+  .ing-body { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-brand">
+    <span class="brand-tag">MR Training Program</span>
+    <h2>Epithrive®</h2>
+    <p>Module 3 — Ingredient Mastery</p>
+  </div>
+
+  <div class="sidebar-section-label">Navigation</div>
+  <div class="sidebar-nav">
+    <a href="#s1" class="active"><span class="nav-dot"></span>Product at a Glance</a>
+    <a href="#s2"><span class="nav-dot"></span>The SNAP Rule</a>
+    <a href="#s3"><span class="nav-dot"></span>Dosing & Administration</a>
+    <a href="#s4"><span class="nav-dot"></span>Ingredient Deep-Dive</a>
+    <a href="#s5"><span class="nav-dot"></span>4-Phase Mechanism Map</a>
+    <a href="#s6"><span class="nav-dot"></span>Formulation Completeness</a>
+    <a href="#s7"><span class="nav-dot"></span>Pharmacokinetics (ADME)</a>
+    <a href="#s8"><span class="nav-dot"></span>Safety Profile</a>
+    <a href="#s9"><span class="nav-dot"></span>Doctor FAQs</a>
+    <a href="#s10"><span class="nav-dot"></span>Compliance Reference</a>
+  </div>
+
+  <div class="sidebar-badge">
+    <span>Regulatory Status:</span> Nutraceutical<br>
+    FSSAI: 11524998000214<br>
+    <span>Not FSMP</span> — approval pending
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="module-tag">Module 3 of 8</div>
+    <h1>Ingredient Mastery</h1>
+    <p class="subtitle">Know every molecule. Own every conversation. This module covers all 14 ingredients in Epithrive® — what they are, why they exist, how they work, and how to answer every clinical question a doctor will ask.</p>
+    <div class="header-meta">
+      <div class="meta-chip"><strong>14</strong> Active Ingredients</div>
+      <div class="meta-chip"><strong>4</strong> Healing Phases Covered</div>
+      <div class="meta-chip"><strong>24g</strong> Sachet · 1/day</div>
+      <div class="meta-chip"><strong>₹3,995</strong> per 10-sachet box</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: PRODUCT AT A GLANCE -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div>
+        <h2>Product at a Glance</h2>
+        <div class="sub">The facts every MR must know before opening their mouth</div>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="oc-label">Brand Name</div>
+        <div class="oc-value accent">Epithrive®</div>
+      </div>
+      <div class="overview-card">
+        <div class="oc-label">Company</div>
+        <div class="oc-value">Nuin Wellness Pvt. Ltd.<br><span style="font-size:12px;color:var(--muted)">ZenFitra Lifesciences Division</span></div>
+      </div>
+      <div class="overview-card">
+        <div class="oc-label">Category</div>
+        <div class="oc-value">Nutraceutical · Wound Healing Nutrition<br><span style="font-size:12px;color:var(--muted)">Adjunct to standard wound care</span></div>
+      </div>
+      <div class="overview-card">
+        <div class="oc-label">Format</div>
+        <div class="oc-value">24g Sachet · Orange flavour<br><span style="font-size:12px;color:var(--success);font-weight:600">No added sugar — diabetic-friendly</span></div>
+      </div>
+      <div class="overview-card">
+        <div class="oc-label">Pack & Price</div>
+        <div class="oc-value orange">₹3,995 / 10-sachet box</div>
+      </div>
+      <div class="overview-card">
+        <div class="oc-label">Manufacturer</div>
+        <div class="oc-value">Vital Nutraceuticals Pvt. Ltd.<br><span style="font-size:12px;color:var(--muted)">ISO 22000:2018 · cGMP · HACCP</span></div>
+      </div>
+      <div class="overview-card">
+        <div class="oc-label">FSSAI Licence</div>
+        <div class="oc-value" style="font-family:monospace;font-size:13px">11524998000214</div>
+      </div>
+      <div class="overview-card">
+        <div class="oc-label">Shelf Life & Storage</div>
+        <div class="oc-value">18 months<br><span style="font-size:12px;color:var(--muted)">Cool, dry place · triple-layer sachet</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--teal-light);border:1px solid var(--teal-mid);border-radius:12px;padding:16px 20px;font-size:13.5px;color:var(--navy);">
+      <strong style="color:var(--teal)">One-line pitch:</strong> Epithrive® is India's first targeted wound-healing nutrition formula delivering clinical doses of Arginine, Glutamine, Marine Collagen Peptides, HMB, and 10 essential micronutrients — in a single daily sachet — to support all four phases of wound healing as an adjunct to standard care.
+    </div>
+  </section>
+
+  <!-- SECTION 2: SNAP RULE -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div>
+        <h2>The SNAP Rule</h2>
+        <div class="sub">Identify the right patient in 30 seconds</div>
+      </div>
+    </div>
+
+    <div class="snap-grid">
+      <div class="snap-cell" style="background:#f0fafb">
+        <div class="snap-letter">S</div>
+        <h4>Stalled Wound</h4>
+        <p>No measurable progress in 2+ weeks despite standard care</p>
+      </div>
+      <div class="snap-cell" style="background:#fef9f5">
+        <div class="snap-letter" style="color:var(--orange)">N</div>
+        <h4>Nutrition Risk</h4>
+        <p>MUST ≥2, BMI &lt;18.5, or &gt;5% involuntary weight loss</p>
+      </div>
+      <div class="snap-cell" style="background:#f0fafb">
+        <div class="snap-letter">A</div>
+        <h4>Albumin Low</h4>
+        <p>Serum albumin &lt;3.5 g/dL or Pre-albumin &lt;15 mg/dL</p>
+      </div>
+      <div class="snap-cell" style="background:#fef9f5">
+        <div class="snap-letter" style="color:var(--orange)">P</div>
+        <h4>Pressure / DFU / Surgical / Burn</h4>
+        <p>Any of these chronic wound types qualifies</p>
+      </div>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--muted);margin-top:10px">💡 If a patient meets <strong style="color:var(--navy)">even one</strong> of these criteria and has a wound, Epithrive® is clinically appropriate. Two or more is a strong indication.</p>
+  </section>
+
+  <!-- SECTION 3: DOSING -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div>
+        <h2>Dosing & Administration</h2>
+        <div class="sub">Simple protocol — critical to know cold</div>
+      </div>
+    </div>
+
+    <div class="protocol-cards">
+      <div class="proto-card">
+        <div class="proto-icon">💊</div>
+        <h4>Mild–Moderate Wounds</h4>
+        <div class="proto-dose">1 sachet/day</div>
+        <p>Dissolved in 200–250 mL water. Can be taken at any time — between meals is preferred.</p>
+      </div>
+      <div class="proto-card">
+        <div class="proto-icon">🏥</div>
+        <h4>Large / Chronic Wounds</h4>
+        <div class="proto-dose">2 sachets/day</div>
+        <p>Split doses: morning and evening. Applies to Wagner 3+ DFU, Stage III–IV pressure injuries.</p>
+      </div>
+      <div class="proto-card">
+        <div class="proto-icon">📅</div>
+        <h4>Minimum Duration</h4>
+        <div class="proto-dose">4–6 weeks</div>
+        <p>Continue until wound closure. Healing timelines vary — never promise a fixed date.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;background:var(--teal-light);border-radius:10px;padding:14px 18px;font-size:13px;">
+      <strong style="color:var(--teal)">Preparation tip:</strong> Mix with 200–250 mL cool water. Can be chilled for better palatability. No cooking or heating required. Orange flavour — high acceptance among elderly and diabetic patients.
+    </div>
+  </section>
+
+  <!-- SECTION 4: INGREDIENT DEEP-DIVE -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div>
+        <h2>Ingredient Deep-Dive</h2>
+        <div class="sub">14 ingredients · 5 frameworks each: WHAT → WHY → HOW → WITHOUT IT → DOSE RATIONALE</div>
+      </div>
+    </div>
+
+    <!-- TIER 1 -->
+    <div class="ingredient-tier-label">Tier 1 — Primary Amino Acid Substrates (The Healing Engine)</div>
+
+    <!-- L-ARGININE -->
+    <div class="ingredient-card open" id="ing-arg">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-teal">Arg</div>
+        <div class="ing-meta">
+          <div class="ing-name">L-Arginine</div>
+          <div class="ing-dose">7 g per sachet — highest dose ingredient</div>
+          <div class="ing-tagline">Nitric Oxide precursor · Angiogenesis booster · Collagen scaffold driver</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">What It Is</h5>
+            <p>A conditionally essential amino acid — normally synthesised in the body, but becomes <strong>deficient during illness, diabetes, and chronic wounds</strong>. The most important substrate for wound-site blood flow and collagen production.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Why It's Needed in Wound Patients</h5>
+            <p>Diabetic patients have chronically impaired endothelial NO production. Chronic wound patients are arginine-depleted due to arginase I overexpression at wound sites. Without supplementation, the wound bed remains <strong>hypoxic and ischaemic</strong>.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">How It Works — Two Parallel Pathways</h5>
+            <div class="ing-pathway">
+              <span class="pathway-step">L-Arginine</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">NOS enzyme</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Nitric Oxide (NO)</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Vasodilation</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↑ Blood flow to wound</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↑ O₂ & nutrient delivery</span>
+            </div>
+            <div class="ing-pathway" style="margin-top:8px">
+              <span class="pathway-step">L-Arginine</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Arginase I</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Ornithine</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Proline</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Collagen synthesis ↑</span>
+            </div>
+            <p style="font-size:12px;color:var(--muted);margin-top:8px">Also activates immune cell (macrophage and T-cell) function and drives fibroblast proliferation in the proliferative phase.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <ul>
+              <li>Wound bed remains hypoxic</li>
+              <li>Angiogenesis fails to initiate</li>
+              <li>Collagen scaffold is weak</li>
+              <li>Granulation tissue does not form</li>
+              <li>Wound stays in inflammatory phase</li>
+            </ul>
+          </div>
+          <div class="ing-block">
+            <h5 class="purple">Dose Rationale — Why 7g?</h5>
+            <p>Studies by Barbul et al. (2002) and Cereda et al. (2015) used 7–14g daily. The 7g dose in Epithrive® matches the minimum effective therapeutic dose proven in clinical literature for wound healing, without exceeding safe limits for diabetic and elderly patients.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">Key Evidence</h5>
+            <span class="evidence-tag">Cereda 2015: 19% greater wound-area reduction</span>
+            <span class="evidence-tag">Barbul 2002: ↑ collagen deposition in elderly (Annals of Surgery)</span>
+            <span class="evidence-tag">Tatti 2012: DFU healing time 247→83 days</span>
+            <span class="evidence-tag">CSR-ETH-2025-001: 72.4% reduction (India study)</span>
+          </div>
+        </div>
+        <div class="warning-box"><strong>Safety note:</strong> May enhance hypotensive effects of ACE inhibitors. May cause mild flushing/warmth in some patients — this is vasodilation, not an allergic reaction. Advise patients this is expected and transient.</div>
+      </div>
+    </div>
+
+    <!-- L-GLUTAMINE -->
+    <div class="ingredient-card" id="ing-gln">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-blue">Gln</div>
+        <div class="ing-meta">
+          <div class="ing-name">L-Glutamine</div>
+          <div class="ing-dose">7 g per sachet — immune fuel & gut integrity guardian</div>
+          <div class="ing-tagline">Primary immune cell fuel · Fibroblast activator · Gut barrier protector</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">What It Is</h5>
+            <p>The most abundant amino acid in human plasma — conditionally essential under stress. Glutamine is the <strong>preferred fuel of immune cells, gut epithelial cells, and fibroblasts</strong>. Under wound/surgical stress, plasma levels fall 50–80%.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Why It's Needed in Wound Patients</h5>
+            <p>Trauma, surgery, and chronic illness deplete glutamine. This leads to <strong>immune failure, increased infection susceptibility, gut barrier breakdown (bacterial translocation), and impaired fibroblast function</strong> — all of which stall wound healing.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">How It Works — Three Mechanisms</h5>
+            <div class="ing-pathway">
+              <span class="pathway-step">L-Glutamine</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Macrophage fuel</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↑ Phagocytosis</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Infection control</span>
+            </div>
+            <div class="ing-pathway" style="margin-top:8px">
+              <span class="pathway-step">L-Glutamine</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Fibroblast proliferation</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↑ Collagen deposition</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Faster granulation</span>
+            </div>
+            <div class="ing-pathway" style="margin-top:8px">
+              <span class="pathway-step">L-Glutamine</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Gut barrier integrity</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↓ Bacterial translocation</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↓ Systemic infection</span>
+            </div>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <ul>
+              <li>Immune cells lack fuel → infection risk ↑</li>
+              <li>Fibroblasts cannot proliferate</li>
+              <li>Gut wall leaks → bacteria enter bloodstream</li>
+              <li>ICU patients: ↑ mortality, ↑ sepsis</li>
+              <li>Nitrogen balance becomes negative</li>
+            </ul>
+          </div>
+          <div class="ing-block">
+            <h5 class="purple">Dose Rationale — Why 7g?</h5>
+            <p>Clinical studies use 14–30g/day in ICU settings. The 7g oral dose in Epithrive® is calibrated for outpatient/home use, where high-dose parenteral glutamine is not feasible. Sufficient to restore depleted levels and support healing without renal burden.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">Key Evidence</h5>
+            <span class="evidence-tag">Wischmeyer 2003: 45% reduction in ICU infections</span>
+            <span class="evidence-tag">Stehle 1989: ↑ nitrogen balance, ↓ infections</span>
+            <span class="evidence-tag">Nutrients Meta-Analysis 2021: significant effect on IL-6, TNF-α, LOS</span>
+          </div>
+        </div>
+        <div class="warning-box"><strong>Safety note:</strong> Safe in most patients. Caution in severe hepatic failure (glutamine → ammonia). Monitor in CKD Stage 4–5.</div>
+      </div>
+    </div>
+
+    <!-- MARINE COLLAGEN PEPTIDES -->
+    <div class="ingredient-card" id="ing-col">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-indigo">Col</div>
+        <div class="ing-meta">
+          <div class="ing-name">Marine Collagen Peptides</div>
+          <div class="ing-dose">2.5 g per sachet — pre-hydrolysed for maximum bioavailability</div>
+          <div class="ing-tagline">ECM scaffold builder · Fibroblast activator · Tissue tensile strength provider</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">What It Is</h5>
+            <p>Pre-hydrolysed collagen from marine (fish) sources, broken into dipeptides and tripeptides — primarily <strong>Gly-Pro-Hyp (glycine-proline-hydroxyproline)</strong>. Collagen is the primary structural protein of all human tissue; it forms 70–80% of skin's dry weight and is the main ECM component in wounds.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Why It's Needed in Wound Patients</h5>
+            <p>Chronic wounds are characterised by <strong>collagen degradation exceeding deposition</strong>. Diabetic patients have impaired fibroblast collagen synthesis. Marine peptides provide direct precursors for new ECM formation and signal fibroblasts to produce more endogenous collagen.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">How It Works</h5>
+            <div class="ing-pathway">
+              <span class="pathway-step">Marine Collagen</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Hydrolysed → Gly-Pro-Hyp peptides</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">PEPT1 transporter (intact absorption)</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Peak plasma in 1 hour</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Accumulates in wound matrix</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Fibroblasts activated</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">New collagen fibres deposited</span>
+            </div>
+            <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Why marine over bovine?</strong> Marine collagen has Type I collagen content identical to human skin, superior bioavailability (smaller molecular weight), and avoids religious/cultural restrictions on bovine sources.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <ul>
+              <li>ECM formation is slow and fragile</li>
+              <li>Granulation tissue has poor tensile strength</li>
+              <li>Wound re-opens after apparent closure</li>
+              <li>Epithelialization is delayed</li>
+            </ul>
+          </div>
+          <div class="ing-block">
+            <h5 class="purple">Dose Rationale — Why 2.5g?</h5>
+            <p>Effective wound healing studies use 2.5–10g/day of collagen peptides. Epithrive® uses 2.5g as the foundational dose; Arginine's conversion to Proline provides additional collagen substrate — they work together. Increasing collagen peptides alone without amino acid co-factors yields diminishing returns.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">Key Evidence</h5>
+            <span class="evidence-tag">Oesser 1999: Collagen peptides accumulate directly at wound sites</span>
+            <span class="evidence-tag">Asserin 2015: ↑ dermal collagen density</span>
+            <span class="evidence-tag">Bagheri 2019 (Burns): Hydrolysed collagen ↑ burn wound healing vs control</span>
+          </div>
+        </div>
+        <div class="warning-box"><strong>Allergy note:</strong> Contains marine (fish) source. Ask patients about fish allergy before recommending. Rare but documented.</div>
+      </div>
+    </div>
+
+    <!-- CA-HMB -->
+    <div class="ingredient-card" id="ing-hmb">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-purple">HMB</div>
+        <div class="ing-meta">
+          <div class="ing-name">Ca-HMB (Calcium β-Hydroxy-β-Methylbutyrate)</div>
+          <div class="ing-dose">1.5 g per sachet — anti-catabolic agent</div>
+          <div class="ing-tagline">Muscle preservation · mTOR activator · Cell membrane stabiliser</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">What It Is</h5>
+            <p>A naturally occurring metabolite of the essential amino acid Leucine. In the body, ~5% of dietary leucine is converted to HMB via the KIC-dioxygenase enzyme. HMB is the <strong>bioactive molecule responsible for Leucine's anti-catabolic effect</strong>. Ca-HMB (calcium salt) is the most bioavailable and clinically validated form — 97% oral bioavailability.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Why It's Needed in Wound Patients</h5>
+            <p>Chronic wounds create a <strong>highly catabolic state</strong> — the body breaks down muscle protein for energy and immune substrates. This leads to sarcopenia, immobility, pressure injury risk, and impaired oxygen delivery to wound tissue. HMB interrupts this destructive cycle.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">How It Works — Three Mechanisms</h5>
+            <div class="ing-pathway">
+              <span class="pathway-step">Ca-HMB</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Inhibits ubiquitin-proteasome pathway</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↓ Muscle protein breakdown by 57%</span>
+            </div>
+            <div class="ing-pathway" style="margin-top:8px">
+              <span class="pathway-step">Ca-HMB</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Activates mTOR pathway</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">↑ Protein synthesis</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Preserves / rebuilds lean mass</span>
+            </div>
+            <div class="ing-pathway" style="margin-top:8px">
+              <span class="pathway-step">Ca-HMB</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">HMB-CoA</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Stabilises cell membranes</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Supports structural repair</span>
+            </div>
+            <p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>Clinical implication:</strong> A patient who retains muscle mass has better mobility, better pressure distribution, and better oxygen delivery — all of which accelerate wound closure.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <ul>
+              <li>Muscle breakdown continues unchecked</li>
+              <li>Patient becomes weaker and less mobile</li>
+              <li>Oxygen delivery to wound ↓</li>
+              <li>Pressure injury risk on other sites ↑</li>
+              <li>Recovery is longer and more difficult</li>
+            </ul>
+          </div>
+          <div class="ing-block">
+            <h5 class="purple">Dose Rationale — Why 1.5g?</h5>
+            <p>Nissen (1996) established 3g/day as the benchmark dose for maximal anti-catabolic effect. Epithrive® uses 1.5g as an effective dose for wound patients (less intensive physical stress than athletes). Combined with Arginine and Glutamine, the anti-catabolic effect is synergistic — each ingredient reduces catabolism through a different pathway.</p>
+          </div>
+          <div class="ing-block full">
+            <h5 class="teal">Key Evidence</h5>
+            <span class="evidence-tag">Nissen 1996: 57% reduction in muscle proteolysis</span>
+            <span class="evidence-tag">Williams 2002 (Annals Surgery): 3.5-day ↓ hospital stay in trauma</span>
+            <span class="evidence-tag">Kuhls 2007: HMB safe and effective in critically ill trauma patients</span>
+          </div>
+        </div>
+        <div class="warning-box"><strong>IP Note (India vs. Global formulation):</strong> Ca-HMB is present in the India formulation only. The global formulation (USA, UAE, Europe) replaces Ca-HMB with L-Proline (1.5g) + L-Lysine (1.5g) to avoid patent overlap. Do not reference this distinction unless directly asked.</div>
+      </div>
+    </div>
+
+    <!-- TIER 2: VITAMINS -->
+    <div class="ingredient-tier-label">Tier 2 — Vitamins (The Enzymatic Enablers)</div>
+
+    <!-- VITAMIN C -->
+    <div class="ingredient-card" id="ing-vitc">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-green">C</div>
+        <div class="ing-meta">
+          <div class="ing-name">Vitamin C (Ascorbic Acid)</div>
+          <div class="ing-dose">60 mg per sachet — fully absorbed at this dose</div>
+          <div class="ing-tagline">Collagen hydroxylation · Antioxidant · Immune enhancer</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">What It Is & Why Needed</h5>
+            <p>An essential water-soluble vitamin. Chronically ill and hospitalised patients are almost universally deficient. Vitamin C is <strong>the rate-limiting cofactor for collagen synthesis</strong> — without it, the collagen triple helix cannot be stabilised regardless of how much Arginine or Collagen Peptides are present.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="teal">How It Works</h5>
+            <div class="ing-pathway">
+              <span class="pathway-step">Vitamin C</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Prolyl/Lysyl hydroxylase cofactor</span>
+              <span class="pathway-arrow">→</span>
+              <span class="pathway-step">Collagen triple helix stabilised</span>
+            </div>
+            <p style="margin-top:8px;font-size:13px">Also neutralises reactive oxygen species (ROS) generated during inflammation — protecting healthy cells around the wound from oxidative damage. Supports neutrophil function and immune response.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <p>Collagen produced is unstable and breaks down rapidly. This is why scurvy — Vitamin C deficiency — is characterised by wound breakdown and failure to heal. Even mild deficiency significantly impairs collagen formation.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="purple">Dose Note</h5>
+            <p>60mg is fully absorbed (SVCT1 transporter saturates above 200mg). This is the optimal therapeutic dose — higher amounts are simply excreted. Calibrated for wound support without GI side effects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VITAMIN A -->
+    <div class="ingredient-card" id="ing-vita">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-amber">A</div>
+        <div class="ing-meta">
+          <div class="ing-name">Vitamin A (Retinol)</div>
+          <div class="ing-dose">750 mcg per sachet</div>
+          <div class="ing-tagline">Epithelialization driver · Fibroblast differentiator · Immune modulator</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">How It Works & Why Needed</h5>
+            <p>Converted to retinoic acid (active form) which directly regulates gene expression for epithelial cell differentiation. Vitamin A <strong>drives keratinocyte migration across the wound surface</strong> (re-epithelialization), promotes fibroblast differentiation, and modulates the inflammatory phase to prevent it from becoming chronic. Deficiency in elderly and diabetic patients is common.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <p>Re-epithelialization is delayed. The wound surface remains open longer, increasing infection risk. Inflammatory phase is poorly regulated — wounds get stuck in pathological chronic inflammation.</p>
+          </div>
+        </div>
+        <div class="warning-box"><strong>Caution:</strong> Vitamin A is fat-soluble and accumulates. The 750mcg dose in Epithrive® is within safe daily limits. Caution in patients already on high-dose Vitamin A supplements. Supervised use in pregnancy recommended.</div>
+      </div>
+    </div>
+
+    <!-- VITAMIN E -->
+    <div class="ingredient-card" id="ing-vite">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-amber">E</div>
+        <div class="ing-meta">
+          <div class="ing-name">Vitamin E (Tocopherol)</div>
+          <div class="ing-dose">7.5 mg per sachet</div>
+          <div class="ing-tagline">Primary lipid antioxidant · Cell membrane protector</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">How It Works</h5>
+            <p>Stored in cell membranes. During the inflammatory phase, ROS (reactive oxygen species) attack cell membranes of healthy tissue surrounding the wound. Vitamin E is the <strong>primary fat-soluble antioxidant that neutralises these ROS before they cause collateral damage</strong>. Works synergistically with Vitamin C (which regenerates oxidised Vitamin E).</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <p>Healthy peri-wound tissue is damaged by oxidative stress during inflammation. The healing area effectively expands rather than contracts. Healing is slower and scarring can be worse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B VITAMINS CARD -->
+    <div class="ingredient-card" id="ing-bvit">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-slate">B</div>
+        <div class="ing-meta">
+          <div class="ing-name">B Vitamins — B3 (Niacinamide), B6 (Pyridoxine), B12 (Cobalamin)</div>
+          <div class="ing-dose">B3: 10.5mg · B6: 1.43mg · B12: 1.65mcg</div>
+          <div class="ing-tagline">Cellular energy · DNA synthesis · Amino acid metabolism cofactors</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">Vitamin B3 (Niacinamide)</h5>
+            <p>Precursor to NAD+ — the primary cellular energy currency. Wound healing is an <strong>extremely energy-intensive process</strong>: immune cell activation, fibroblast proliferation, protein synthesis, and angiogenesis all require NAD+. B3 ensures the metabolic machinery runs at full capacity.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="navy">Vitamin B6 (Pyridoxine)</h5>
+            <p>Essential cofactor for amino acid metabolism. B6 directly enables the conversion and utilisation of both L-Arginine and L-Glutamine within healing tissue. Without adequate B6, the therapeutic amino acids in Epithrive® <strong>cannot be fully processed</strong>.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="navy">Vitamin B12 (Cobalamin)</h5>
+            <p>Critical for DNA synthesis in rapidly dividing cells. During the proliferative phase, <strong>fibroblasts, keratinocytes, and immune cells divide rapidly</strong> — all requiring B12. Particularly important in elderly patients and those with diabetic neuropathy, where B12 deficiency is common and impairs nerve function in wound tissue.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without Them</h5>
+            <ul>
+              <li>Energy-deprived healing cells → slow repair</li>
+              <li>Amino acids not metabolised efficiently</li>
+              <li>DNA synthesis errors in rapidly dividing cells</li>
+              <li>Neuropathic symptoms worsen in diabetics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3: MINERALS -->
+    <div class="ingredient-tier-label">Tier 3 — Minerals (The Structural & Enzymatic Support Layer)</div>
+
+    <!-- ZINC -->
+    <div class="ingredient-card" id="ing-zinc">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-teal">Zn</div>
+        <div class="ing-meta">
+          <div class="ing-name">Zinc</div>
+          <div class="ing-dose">13 mg per sachet — targeted therapeutic dose</div>
+          <div class="ing-tagline">DNA polymerase cofactor · Epithelialization driver · MMP regulator</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">Why It's Critical</h5>
+            <p>Zinc is a cofactor for over 300 enzymes in the human body. In wound healing, it serves three irreplaceable roles: <strong>(1)</strong> cofactor for DNA polymerase — enabling cell division in rapidly proliferating wound cells; <strong>(2)</strong> supports keratinocyte (skin cell) migration across the wound surface; <strong>(3)</strong> regulates matrix metalloproteinases (MMPs) which control the breakdown and rebuilding of ECM during remodeling. Zinc deficiency is extremely common in diabetic, elderly, and chronically ill patients.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <ul>
+              <li>Cell division in wound area slows dramatically</li>
+              <li>Epithelialization is impaired</li>
+              <li>MMP dysregulation → collagen is broken down faster than rebuilt</li>
+              <li>Immune function is weakened</li>
+              <li>Wound stays open longer, infection risk ↑</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warning-box"><strong>Drug interaction:</strong> Zinc reduces absorption of tetracycline and quinolone antibiotics. Space Epithrive® 2–3 hours apart from these medications. Also applies to Calcium for levothyroxine interactions.</div>
+      </div>
+    </div>
+
+    <!-- COPPER -->
+    <div class="ingredient-card" id="ing-cu">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-amber">Cu</div>
+        <div class="ing-meta">
+          <div class="ing-name">Copper</div>
+          <div class="ing-dose">1.3 mg per sachet</div>
+          <div class="ing-tagline">Collagen cross-linking via lysyl oxidase · Connective tissue integrity</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">How It Works</h5>
+            <p>Copper is an <strong>essential cofactor for lysyl oxidase</strong> — the enzyme that cross-links collagen and elastin fibres into a stable, tensile matrix. Without cross-linking, individual collagen fibres are laid down but remain structurally weak. The wound can appear to close but <strong>ruptures under minimal mechanical stress</strong>. Copper converts individual fibres into a robust, interconnected scaffold.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <p>Collagen fibres are deposited but not cross-linked. The healed wound has poor tensile strength and high risk of dehiscence (wound re-opening). This is the "look healed but breaks open" phenomenon common in malnourished surgical patients.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELENIUM -->
+    <div class="ingredient-card" id="ing-se">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-slate">Se</div>
+        <div class="ing-meta">
+          <div class="ing-name">Selenium</div>
+          <div class="ing-dose">30 mcg per sachet</div>
+          <div class="ing-tagline">Glutathione peroxidase cofactor · Primary antioxidant enzyme system</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">How It Works</h5>
+            <p>Selenium is incorporated into <strong>selenoproteins, most importantly glutathione peroxidase (GPx)</strong> — the body's primary enzyme-based antioxidant system. While Vitamins C and E neutralise individual ROS, GPx systematically processes hydrogen peroxide and lipid peroxides into harmless water. Works alongside Vitamin E as the antioxidant defence system protecting the healing wound from oxidative damage.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <p>Antioxidant defence is incomplete. Oxidative stress accumulates in wound tissue, damaging fibroblasts and immune cells. Particularly critical in diabetic patients who have chronically elevated oxidative stress.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALCIUM -->
+    <div class="ingredient-card" id="ing-ca">
+      <div class="ing-header" onclick="toggleIng(this)">
+        <div class="ing-icon ic-slate">Ca</div>
+        <div class="ing-meta">
+          <div class="ing-name">Calcium</div>
+          <div class="ing-dose">200 mg per sachet</div>
+          <div class="ing-tagline">Cell signalling · Enzyme activation · Structural support for HMB delivery</div>
+        </div>
+        <button class="ing-toggle">+</button>
+      </div>
+      <div class="ing-body">
+        <div class="ing-grid">
+          <div class="ing-block">
+            <h5 class="navy">Role in Wound Healing</h5>
+            <p>Calcium regulates intracellular signalling cascades that control cell proliferation, migration, and differentiation — all critical processes in wound repair. It is also required for <strong>cytokine secretion by immune cells</strong> and enzymatic activity across the healing cascade. Additionally, Ca-HMB (the HMB form used in Epithrive®) delivers HMB alongside calcium — the calcium salt form has superior bioavailability compared to free HMB acid.</p>
+          </div>
+          <div class="ing-block">
+            <h5 class="danger">Without It</h5>
+            <p>Multiple enzyme cascades in wound healing are impaired. Keratinocyte differentiation is slowed. Ca-HMB cannot be efficiently delivered without the calcium carrier. Bone health (relevant for bedridden/pressure injury patients) is also supported.</p>
+          </div>
+        </div>
+        <div class="warning-box"><strong>Drug interaction:</strong> Calcium reduces absorption of levothyroxine (thyroid medication). Advise patients on levothyroxine to take Epithrive® at a different time of day (minimum 4 hours apart).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PHASE MAP -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div>
+        <h2>4-Phase Mechanism Map</h2>
+        <div class="sub">Every ingredient mapped to every healing phase — why the combination cannot be replaced by any single nutrient</div>
+      </div>
+    </div>
+
+    <div class="phase-map">
+      <div class="phase-row header-row">
+        <div class="phase-cell">Healing Phase</div>
+        <div class="phase-cell">Epithrive® Ingredients Active</div>
+        <div class="phase-cell">Biological Action</div>
+      </div>
+
+      <div class="phase-row" style="background:#f0fafb">
+        <div class="phase-cell">
+          <div class="phase-name">① Hemostasis & Inflammation</div>
+          <div class="phase-timing">Minutes → Day 5</div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-ingredients">
+            <span class="pi-tag">Arginine</span>
+            <span class="pi-tag orange">Vitamin A</span>
+            <span class="pi-tag orange">Vitamin C</span>
+            <span class="pi-tag orange">Vitamin E</span>
+            <span class="pi-tag green">Selenium</span>
+            <span class="pi-tag green">Zinc</span>
+          </div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-action">Arginine → NO → vasodilation → leukocyte delivery to wound. Antioxidant shield (Vitamins A, C, E + Selenium) neutralises ROS and limits collateral tissue damage. Zinc regulates cytokine signalling.</div>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-cell">
+          <div class="phase-name">② Proliferative Phase</div>
+          <div class="phase-timing">Day 3 → Day 21</div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-ingredients">
+            <span class="pi-tag">Marine Collagen</span>
+            <span class="pi-tag orange">Vitamin C</span>
+            <span class="pi-tag">Copper</span>
+            <span class="pi-tag purple">Glutamine</span>
+            <span class="pi-tag orange">Vitamin B6</span>
+            <span class="pi-tag orange">Vitamin B12</span>
+          </div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-action">Collagen peptides provide ECM precursors. Vitamin C stabilises collagen triple helix. Copper enables cross-linking via lysyl oxidase. Glutamine fuels rapidly dividing fibroblasts. B vitamins support DNA synthesis for cell proliferation.</div>
+        </div>
+      </div>
+
+      <div class="phase-row" style="background:#fef9f5">
+        <div class="phase-cell">
+          <div class="phase-name">③ Granulation & Angiogenesis</div>
+          <div class="phase-timing">Day 5 → Day 21</div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-ingredients">
+            <span class="pi-tag">Arginine</span>
+            <span class="pi-tag purple">Glutamine</span>
+            <span class="pi-tag green">Zinc</span>
+            <span class="pi-tag orange">Vitamin A</span>
+            <span class="pi-tag orange">B3 (Niacinamide)</span>
+          </div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-action">Arginine → NO → microvascular growth (angiogenesis). Glutamine fuels immune cells maintaining infection control. Zinc supports fibroblast proliferation. Vitamin A drives keratinocyte differentiation. B3 provides NAD+ energy for this high-activity phase.</div>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-cell">
+          <div class="phase-name">④ Remodeling Phase</div>
+          <div class="phase-timing">Day 21 → 2 years</div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-ingredients">
+            <span class="pi-tag purple">Ca-HMB</span>
+            <span class="pi-tag green">Zinc</span>
+            <span class="pi-tag">Copper</span>
+            <span class="pi-tag">Marine Collagen</span>
+          </div>
+        </div>
+        <div class="phase-cell">
+          <div class="phase-action">HMB preserves lean muscle mass → maintains mobility → supports long-term recovery and pressure redistribution. Zinc regulates MMP activity for balanced matrix remodeling. Copper ensures collagen fibres remain cross-linked and tensile.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;background:var(--teal-light);border-radius:10px;padding:14px 18px;font-size:13px;">
+      <strong style="color:var(--teal)">Key message for doctors:</strong> "No single ingredient covers more than 1–2 phases. Epithrive® is the only oral wound nutrition in India that provides complete coverage across all four healing phases simultaneously — which is why the clinical study showed a 72.4% wound reduction vs. 52.1% with standard care alone."
+    </div>
+  </section>
+
+  <!-- SECTION 6: FORMULATION COMPLETENESS -->
+  <section class="section" id="s6">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div>
+        <h2>Formulation Completeness Argument</h2>
+        <div class="sub">The competitive differentiator — why Epithrive® cannot be substituted</div>
+      </div>
+    </div>
+
+    <div class="completeness-block">
+      <h3>Why Substitutes Fall Short</h3>
+      <div class="comparison-row">
+        <div class="comp-col-left">
+          <h5>Generic Whey Protein / Protein Powder</h5>
+          <ul>
+            <li>Provides general protein — no wound-specific amino acids</li>
+            <li>No Arginine in therapeutic dose (7g)</li>
+            <li>No Glutamine in therapeutic dose</li>
+            <li>No HMB — catabolism continues</li>
+            <li>No Marine Collagen Peptides</li>
+            <li>No wound-specific micronutrient stack</li>
+            <li>High sugar content in many brands</li>
+          </ul>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="comp-col-right">
+          <h5>Epithrive®</h5>
+          <ul>
+            <li>7g L-Arginine (angiogenesis + collagen)</li>
+            <li>7g L-Glutamine (immunity + granulation)</li>
+            <li>1.5g Ca-HMB (anti-catabolic)</li>
+            <li>2.5g Marine Collagen Peptides (ECM)</li>
+            <li>Vitamin C, A, E, B3, B6, B12</li>
+            <li>Zinc, Copper, Selenium, Calcium</li>
+            <li>No added sugar</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="comparison-row" style="margin-top:0">
+        <div class="comp-col-left">
+          <h5>Standard Oral Nutritional Supplements (Ensure, Fresubin)</h5>
+          <ul>
+            <li>General nutritional support — not wound-targeted</li>
+            <li>Arginine: &lt;1g typically</li>
+            <li>No HMB</li>
+            <li>Collagen: absent</li>
+            <li>High in carbohydrates — problematic for diabetics</li>
+            <li>Designed for caloric repletion, not wound substrate supply</li>
+          </ul>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="comp-col-right">
+          <h5>Epithrive®</h5>
+          <ul>
+            <li>Wound-specific substrate design</li>
+            <li>7g Arginine — 7× the typical dose</li>
+            <li>Ca-HMB — absent in all general ONS</li>
+            <li>Marine Collagen — absent in all general ONS</li>
+            <li>No added sugar — safe for diabetics</li>
+            <li>Single purpose: activate wound healing biology</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
+      <h4 style="font-family:'Fraunces',serif;color:var(--navy);font-size:17px;margin-bottom:10px">"The Orchestra Argument"</h4>
+      <p style="font-size:13.5px;color:var(--body);line-height:1.7">Wound healing is like an orchestra. Arginine is the conductor — it coordinates blood flow and directs the process. Glutamine is the fuel — it keeps every musician energised. Collagen Peptides are the string section — providing the foundational structure. HMB is the stage manager — preventing the performance from collapsing. The vitamins and minerals are the individual musicians — each plays a specific, irreplaceable note at a specific moment. <strong>Remove even one section and the symphony breaks down. Give a patient only protein powder and you've handed one violinist a ticket and called it a concert.</strong></p>
+    </div>
+  </section>
+
+  <!-- SECTION 7: ADME -->
+  <section class="section" id="s7">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <div>
+        <h2>Pharmacokinetics (ADME)</h2>
+        <div class="sub">For physicians who ask — how and when do these nutrients reach the wound?</div>
+      </div>
+    </div>
+
+    <table class="adme-table">
+      <thead>
+        <tr>
+          <th>Ingredient</th>
+          <th>Absorption</th>
+          <th>Peak Plasma</th>
+          <th>Target Distribution</th>
+          <th>Excretion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>L-Arginine</td>
+          <td>Active transport in jejunum & ileum</td>
+          <td>1–2 hours</td>
+          <td>Endothelial cells, immune cells, wound tissue</td>
+          <td>Renal (urea, nitrites)</td>
+        </tr>
+        <tr>
+          <td>L-Glutamine</td>
+          <td>Sodium-dependent transporters; 30–40% enterocyte first-pass</td>
+          <td>1–2 hours</td>
+          <td>Immune cells, gut mucosa, fibroblasts, muscle</td>
+          <td>Urea (nitrogen) + energy metabolism</td>
+        </tr>
+        <tr>
+          <td>Marine Collagen Peptides</td>
+          <td>Intact dipeptide/tripeptide absorption via PEPT1</td>
+          <td>1 hour</td>
+          <td>Skin, connective tissue, wound matrix — selective accumulation</td>
+          <td>Excess → urea</td>
+        </tr>
+        <tr>
+          <td>Ca-HMB</td>
+          <td>Small intestine; 97% oral bioavailability</td>
+          <td>1–2 hours</td>
+          <td>Muscle cells — stabilises myocyte membranes</td>
+          <td>Hepatic metabolism; minor renal excretion</td>
+        </tr>
+        <tr>
+          <td>Vitamin C</td>
+          <td>SVCT1 transporter; fully absorbed at 60mg dose</td>
+          <td>2–3 hours</td>
+          <td>High affinity for fibroblasts, neutrophils, collagen-producing tissues</td>
+          <td>Renal excretion of excess</td>
+        </tr>
+        <tr>
+          <td>Zinc</td>
+          <td>Duodenum & jejunum; uptake ↑ during healing</td>
+          <td>2–4 hours</td>
+          <td>Skin, hair follicles, wound margins — wound-site preference</td>
+          <td>Fecal (pancreatic secretions)</td>
+        </tr>
+        <tr>
+          <td>Copper</td>
+          <td>Stomach & proximal intestine</td>
+          <td>2–4 hours</td>
+          <td>Connective tissue via ceruloplasmin</td>
+          <td>Biliary excretion</td>
+        </tr>
+        <tr>
+          <td>Selenium</td>
+          <td>Highly bioavailable; intestinal absorption</td>
+          <td>2 hours</td>
+          <td>Incorporated into selenoproteins (GPx) throughout tissues</td>
+          <td>Urinary excretion</td>
+        </tr>
+        <tr>
+          <td>B Vitamins (B3, B6, B12)</td>
+          <td>B3 & B6: rapid small intestine. B12: intrinsic factor-mediated in ileum</td>
+          <td>1–3 hours</td>
+          <td>High cell-turnover tissues: bone marrow, skin, wound fibroblasts</td>
+          <td>Renal (water-soluble)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:14px;background:var(--teal-light);border-radius:10px;padding:14px 18px;font-size:13px;">
+      <strong style="color:var(--teal)">PK summary for doctors:</strong> All key ingredients peak in plasma within 1–2 hours of ingestion. Marine collagen peptides and Zinc demonstrate wound-tissue preferential accumulation — meaning the body actively directs them toward healing sites. The formulation is designed for rapid absorption with minimal metabolic burden on kidneys, appropriate for diabetic and elderly patient profiles.
+    </div>
+  </section>
+
+  <!-- SECTION 8: SAFETY -->
+  <section class="section" id="s8">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <div>
+        <h2>Safety Profile</h2>
+        <div class="sub">Know every contraindication, interaction, and caution before a doctor asks</div>
+      </div>
+    </div>
+
+    <div class="safety-grid">
+      <div class="safety-card green">
+        <h4>✓ Generally Safe / No Restriction</h4>
+        <ul>
+          <li>Type 1 & Type 2 Diabetes — no added sugar, diabetic-friendly</li>
+          <li>CKD Stage 1–3 — safe at standard dosing</li>
+          <li>Elderly (60+) — formulated for this population</li>
+          <li>Post-surgical patients — no known interactions with standard post-op medications (other than noted below)</li>
+          <li>Burns patients — well-tolerated orally</li>
+          <li>Long-term use until wound closure — no toxicity concern at therapeutic dose</li>
+        </ul>
+      </div>
+
+      <div class="safety-card amber">
+        <h4>⚠ Use With Caution / Monitor</h4>
+        <ul>
+          <li>CKD Stage 4 (eGFR 15–30) — monitor renal parameters; reduce dose or use under physician supervision</li>
+          <li>Severe hepatic failure — Glutamine → ammonia; caution</li>
+          <li>Patients on anticoagulants (warfarin) — Vitamin E at high doses may potentiate; 7.5mg dose is low-risk but document</li>
+          <li>Fish allergy — marine collagen source; ask before recommending</li>
+          <li>Patients on high-dose Vitamin A supplements — overlap risk</li>
+          <li>Pregnancy — Vitamin A content; supervised use recommended</li>
+        </ul>
+      </div>
+
+      <div class="safety-card red">
+        <h4>✗ Contraindicated / Do Not Use</h4>
+        <ul>
+          <li>Known allergy to any listed ingredient</li>
+          <li>Severe renal failure (CKD Stage 5 / dialysis) — amino acid load; not safe without nephrology clearance</li>
+          <li>Children under 12 years</li>
+          <li>Patients with herpes simplex virus (HSV) active infection — Arginine may theoretically support viral replication (theoretical risk, avoid during active outbreak)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 style="font-family:'Fraunces',serif;color:var(--navy);font-size:17px;margin-bottom:12px">Drug Interactions — Space or Monitor</h4>
+    <table class="drug-table">
+      <thead>
+        <tr>
+          <th>Interaction</th>
+          <th>Mechanism</th>
+          <th>Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Zinc + Tetracyclines / Quinolones</td>
+          <td>Zinc chelates the antibiotic, reducing absorption of both</td>
+          <td>Space by 2–3 hours. Take antibiotic first, Epithrive® after</td>
+        </tr>
+        <tr>
+          <td>Calcium + Levothyroxine</td>
+          <td>Calcium binds levothyroxine in the gut, reducing absorption</td>
+          <td>Space by minimum 4 hours. Take thyroid medication on empty stomach</td>
+        </tr>
+        <tr>
+          <td>Arginine + ACE Inhibitors / Antihypertensives</td>
+          <td>Additive vasodilation may enhance blood pressure-lowering effect</td>
+          <td>Monitor BP in patients on antihypertensives. Usually clinically insignificant at 7g dose</td>
+        </tr>
+        <tr>
+          <td>Vitamin E + Anticoagulants (Warfarin)</td>
+          <td>High-dose Vitamin E may potentiate anticoagulant effect</td>
+          <td>7.5mg dose in Epithrive® is well below threshold; monitor INR if concerned</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:14px;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:14px 18px;font-size:13px;">
+      <strong style="color:#059669">Common mild side effects (&lt;5–10% of patients):</strong> Bloating, mild gas/flatulence, mild abdominal discomfort (usually transient, first 2–3 days), metallic taste (due to minerals), mild flushing or warmth (Arginine vasodilation — this is expected and beneficial). Rare: mild headache. All effects are self-limiting and resolve with continued use.
+    </div>
+  </section>
+
+  <!-- SECTION 9: FAQs -->
+  <section class="section" id="s9">
+    <div class="section-header">
+      <div class="section-number">9</div>
+      <div>
+        <h2>Doctor FAQs</h2>
+        <div class="sub">Every question a doctor will ask — with calibrated, compliant answers</div>
+      </div>
+    </div>
+
+    <!-- CATEGORY A: Product & Formulation -->
+    <div class="faq-category">
+      <div class="faq-cat-title">A — Product & Formulation Questions</div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">1</div>
+          <div>What exactly is Epithrive® and how is it different from standard nutritional supplements like Ensure or Fresubin?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Epithrive® is a wound-specific nutritional formulation — not a general ONS. Standard supplements like Ensure or Fresubin are designed for caloric repletion in malnourished patients. They provide general protein, carbohydrates, and fats. What they do not provide is the wound-targeted combination that Epithrive® delivers:</p>
+          <ul style="margin:10px 0 10px 20px;font-size:13.5px">
+            <li><strong>7g L-Arginine</strong> — a therapeutic dose for nitric oxide production and angiogenesis. Most ONS have &lt;1g.</li>
+            <li><strong>7g L-Glutamine</strong> — for immune cell fuel and gut barrier integrity. Absent in most ONS.</li>
+            <li><strong>Ca-HMB</strong> — anti-catabolic metabolite. Absent in all standard ONS.</li>
+            <li><strong>2.5g Marine Collagen Peptides</strong> — direct ECM precursors. Absent in standard ONS.</li>
+            <li><strong>No added sugar</strong> — appropriate for diabetic patients who make up the majority of our wound patient population.</li>
+          </ul>
+          <p>Think of it this way: an Ensure gives a patient fuel. Epithrive® gives the body the specific raw materials the wound biology actually needs.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">2</div>
+          <div>Why is the Arginine dose 7g? Isn't that very high?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> 7g is not excessive — it is the minimum effective therapeutic dose supported by clinical literature. Barbul et al. (2002, Annals of Surgery) used 14g/day and demonstrated significant collagen deposition improvement in elderly volunteers. The Cereda et al. studies on pressure ulcers used similar doses. The 7g in Epithrive® is the lower bound of what is clinically effective.</p>
+          <p style="margin-top:8px">To put it in context: a healthy adult synthesises and metabolises approximately 20–30g of Arginine per day endogenously. In wound patients — especially diabetics — endothelial NO production is impaired and wound-site arginase activity is elevated, meaning local Arginine is rapidly consumed. 7g oral supplementation brings this depleted pool back to functional levels.</p>
+          <p style="margin-top:8px">At 7g, the dose is well below the threshold associated with adverse effects. No added sugar and low osmolality minimise GI intolerance.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">3</div>
+          <div>What is HMB and why is it in a wound product? I've only seen it in sports nutrition.</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> HMB (beta-hydroxy-beta-methylbutyrate) is indeed used in sports nutrition — but its mechanism is directly applicable to wound healing. HMB is a metabolite of the essential amino acid Leucine, and its primary action is <strong>inhibiting muscle protein breakdown via the ubiquitin-proteasome pathway</strong>.</p>
+          <p style="margin-top:8px">In sports, this preserves and builds muscle mass. In wound patients, the value is different but equally important:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li>Chronic wounds create a highly catabolic state. Patients lose significant muscle mass, especially bedridden elderly patients.</li>
+            <li>Muscle loss impairs mobility — which worsens pressure redistribution and increases risk of new ulcers.</li>
+            <li>Muscle loss reduces oxygen delivery capacity — a hypoxic wound heals poorly.</li>
+            <li>HMB interrupts the catabolic cycle, preserving lean mass and supporting systemic recovery.</li>
+          </ul>
+          <p>Williams et al. (2002, Annals of Surgery) showed a 3.5-day reduction in hospital stay with Arg+HMB+Gln supplementation in trauma patients. The mechanism works whether the patient is an athlete or a wound patient — catabolism is catabolism.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">4</div>
+          <div>Why marine collagen specifically? Can't the body produce its own collagen?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> The body can produce endogenous collagen — but in chronic wound patients, this production is severely impaired for three reasons: (1) the substrate supply (Arginine → Proline → Collagen) is depleted; (2) Vitamin C (the essential cofactor for collagen hydroxylation) is deficient; (3) fibroblast function is impaired by the inflammatory environment.</p>
+          <p style="margin-top:8px">Marine Collagen Peptides bypass the endogenous synthesis bottleneck by providing <strong>pre-formed Gly-Pro-Hyp tripeptides</strong> that are absorbed intact and deposited directly at wound sites (Oesser 1999). They also act as signalling molecules — stimulating fibroblasts to produce additional endogenous collagen.</p>
+          <p style="margin-top:8px">Why marine over bovine? Marine collagen is primarily Type I — the same type as human skin. It has a lower molecular weight than bovine collagen and superior oral bioavailability. It also avoids concerns around BSE and is acceptable across dietary restrictions in most Indian communities.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">5</div>
+          <div>Is this a prescription product? What is its regulatory category?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Epithrive® is registered as a <strong>nutraceutical</strong> under FSSAI (Licence No. 11524998000214). It is not a prescription drug and does not require a prescription to purchase. This means your patients or their caregivers can access it directly — through the product website or WhatsApp — without an additional step.</p>
+          <p style="margin-top:8px">It is classified as a dietary supplement that supports wound healing as an adjunct to standard wound care. While a prescription is not required, your recommendation as the treating physician is of course the most important factor in patient adoption and compliance.</p>
+          <div class="compliance-note"><strong>MR note:</strong> Do NOT use the term "FSMP" or "Food for Special Medical Purposes" — FSMP application is in progress but not yet approved. Stick to "nutraceutical" or "specialized wound nutrition".</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY B: Clinical & Safety -->
+    <div class="faq-category">
+      <div class="faq-cat-title">B — Clinical & Safety Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">6</div>
+          <div>Is it safe for my diabetic patients? Doesn't it contain sugar?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Epithrive® contains <strong>no added sugar</strong> — this was a deliberate formulation decision given that the majority of chronic wound patients in India are diabetic. The orange flavour is derived from natural flavouring, not from sucrose or glucose addition.</p>
+          <p style="margin-top:8px">The primary ingredients — L-Arginine, L-Glutamine, Marine Collagen Peptides, and Ca-HMB — are amino acids and amino acid metabolites. They do not directly raise blood glucose. Arginine can transiently stimulate insulin secretion (which is generally beneficial in wound patients), but at 7g/day this effect is minimal.</p>
+          <p style="margin-top:8px">The product has low osmolality, which minimises GI discomfort — a common concern in diabetic patients with gastroparesis.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">7</div>
+          <div>Can I use this in CKD patients? Many of my wound patients have renal compromise.</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> The answer depends on CKD stage:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>CKD Stage 1–3 (eGFR &gt;30):</strong> Epithrive® is safe at standard dosing. The amino acid load (14g total Arg + Gln) is within acceptable limits for Stage 1–3 patients. Monitor renal function if using long-term.</li>
+            <li><strong>CKD Stage 4 (eGFR 15–30):</strong> Use with caution. Reduce to 1 sachet/day and monitor serum urea and creatinine. Clinical judgement required — the benefit of wound healing support may outweigh the renal amino acid burden in selected patients.</li>
+            <li><strong>CKD Stage 5 / Dialysis:</strong> Not recommended without nephrology clearance. The amino acid load requires careful management in end-stage renal failure.</li>
+          </ul>
+          <p>In practice, most wound patients — even those with diabetic nephropathy — fall into CKD Stage 1–3 where Epithrive® is appropriate. We recommend checking baseline creatinine and eGFR when starting.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">8</div>
+          <div>Does Arginine at this dose cause any problems? I'm concerned about lysine/arginine balance and herpes reactivation.</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> You're thinking about the theoretical concern that high-dose Arginine supplementation could favour herpes simplex virus (HSV) replication, as HSV uses Arginine for replication while Lysine competitively inhibits this.</p>
+          <p style="margin-top:8px">This is a legitimate consideration, but the clinical context matters: <strong>in patients who are immunocompetent and HSV-negative, or HSV-positive but currently in latency</strong>, this is not a clinically significant concern at 7g/day. The evidence for Arginine supplementation causing HSV reactivation comes largely from in vitro studies, not robust clinical trials.</p>
+          <p style="margin-top:8px">However, as a precaution: <strong>avoid Epithrive® in patients with an active HSV outbreak</strong>. For patients with known recurrent oral or genital herpes, use clinical judgement — the wound healing benefit likely outweighs the theoretical risk in most cases, but this is a conversation to have with the patient.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">9</div>
+          <div>My patient is on warfarin / blood thinners. Is Epithrive® safe?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> The Vitamin E content (7.5mg) in Epithrive® is well below the dose at which clinically significant potentiation of anticoagulation occurs (&gt;400mg/day). At 7.5mg, the interaction with warfarin is negligible.</p>
+          <p style="margin-top:8px">However, as with any new supplement in a patient on anticoagulation, we recommend <strong>monitoring INR at the first follow-up</strong> after initiating Epithrive®. Standard practice is to flag any dietary change to the anticoagulation team. This is good clinical caution rather than a product-specific concern.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">10</div>
+          <div>My patient is on tetracycline/ciprofloxacin for wound infection. Can they take Epithrive® simultaneously?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Not simultaneously — but with a simple timing adjustment. The Zinc in Epithrive® can chelate tetracycline and quinolone antibiotics (like ciprofloxacin) in the gut, reducing absorption of both. This is a class-level interaction, not Epithrive®-specific.</p>
+          <p style="margin-top:8px"><strong>The solution is straightforward:</strong> take the antibiotic first on an empty stomach (as already recommended for these drugs), then wait 2–3 hours before taking Epithrive®. This eliminates the interaction. In practice, antibiotic doses are usually morning/evening; Epithrive® can be taken midday or at a different meal time. The wound healing benefit of Epithrive® is important enough to continue it alongside antibiotic therapy — just separate them in time.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">11</div>
+          <div>Can elderly patients tolerate the product? Won't 7g Arginine cause nausea or GI upset?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> GI tolerability has been addressed in the formulation design. Epithrive® has <strong>low osmolality</strong>, which minimises the GI effects commonly associated with high-dose amino acid supplements.</p>
+          <p style="margin-top:8px">A small percentage of patients (&lt;5%) may experience mild bloating, gas, or mild abdominal discomfort in the first 2–3 days. This is transient and resolves as the gut adapts. Some patients notice a mild flush or feeling of warmth — this is the Arginine-driven vasodilation working, not an adverse reaction. It is actually a sign the product is active.</p>
+          <p style="margin-top:8px">For elderly patients with gastroparesis or sensitive GI tracts, the sachet can be dissolved in cool water and sipped slowly rather than consumed quickly. Starting with half a sachet for the first 2–3 days and building up is an option in particularly sensitive patients, though not routinely necessary.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">12</div>
+          <div>Is it safe in post-surgical patients who are on parenteral nutrition or other IV support?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Yes, with monitoring of total amino acid intake. Epithrive® can be used as a <strong>bridge from IV nutritional support to oral nutrition</strong>, or alongside parenteral nutrition in patients who can tolerate oral intake. The key consideration is total nitrogen load — if a patient is already receiving high-dose IV amino acids, the additional 14g from Epithrive® should be factored into the total protein prescription.</p>
+          <p style="margin-top:8px">In practice, as patients transition to oral feeding post-surgery, Epithrive® adds the wound-specific substrates (Arginine, Glutamine, Collagen, HMB) that are absent in standard post-surgical nutritional protocols. This is exactly the phase where wound nutrition support has the highest impact — immediately post-operatively when the wound biology is most active.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY C: Evidence & Efficacy -->
+    <div class="faq-category">
+      <div class="faq-cat-title">C — Evidence & Efficacy Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">13</div>
+          <div>What is the clinical evidence for Epithrive® specifically? Is there an Indian study?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Yes. A prospective open-label comparative Indian study (CSR-ETH-2025-001) was conducted across diabetic foot ulcers, pressure injuries, and post-surgical wounds over 8–10 weeks. n=60 patients (30 Epithrive® + standard care vs. 30 standard care alone).</p>
+          <p style="margin-top:8px"><strong>Primary finding:</strong> 72.4% mean wound area reduction in the Epithrive® arm versus 52.1% in the control arm at Week 8. p=0.004 — statistically significant. This represents a 39% relative improvement in healing rate.</p>
+          <p style="margin-top:8px">Principal Investigator: Dr. Praful Bhanegaonkar, MS Ortho. Co-Investigator: Dr. Gauri Jahagirdar, MD IDCCM. The full Clinical Study Report is available on request.</p>
+          <div class="compliance-note"><strong>Compliant framing:</strong> Say "the study demonstrated 72.4% wound area reduction in the Epithrive® arm" — not "Epithrive® healed wounds 72% faster". The distinction matters for nutraceutical claim compliance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">14</div>
+          <div>Is there any RCT evidence — not just observational or open-label?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> The Epithrive® Indian study is prospective and comparative, though open-label. For the formulation class (Arginine + Glutamine + HMB), there are published RCTs supporting the individual mechanisms and combinations:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Williams & Barbul 2002 (Annals of Surgery):</strong> Double-blind, randomised — Arg+HMB+Gln significantly increased wound collagen deposition in elderly volunteers.</li>
+            <li><strong>Cereda et al. 2015:</strong> RCT — arginine-containing formula produced 19% greater wound area reduction in pressure ulcer patients vs. standard ONS.</li>
+            <li><strong>Tatti et al. 2012:</strong> Arg+Gln+HMB blend reduced DFU healing time from 247 days to 83 days in a controlled study.</li>
+            <li><strong>Nutrients Meta-Analysis (Arribas-López 2021):</strong> Systematic review of 44 human studies on Arginine and Glutamine supplementation — significant effects confirmed on healing parameters.</li>
+          </ul>
+          <p>The global evidence base for this formulation class is robust. The Epithrive® Indian study adds localised, population-relevant data to this body of evidence.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">15</div>
+          <div>How quickly should I expect to see results in my patients?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Based on clinical evidence and case data, typical observed progression in patients who respond:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Week 1–2:</strong> Reduced exudate, less peri-wound inflammation, improved wound bed colour (moving from pale to red/pink). These are early signs that perfusion and immune function are improving.</li>
+            <li><strong>Week 2–4:</strong> Visible granulation tissue formation. Wound margins begin contracting. Slough reduction.</li>
+            <li><strong>Week 4–8:</strong> Measurable reduction in wound area. In the Indian clinical study, 72.4% mean wound area reduction was observed at Week 8.</li>
+          </ul>
+          <p>The 15-day diabetic case study showed near-complete epithelialization in an unusually fast timeline — this reflects both the formulation's efficacy and the importance of adequate local care alongside nutrition support.</p>
+          <p style="margin-top:8px">Healing timelines vary based on wound severity, baseline nutrition, blood glucose control, and adequacy of local care. <strong>Never promise a specific timeline to patients or families.</strong></p>
+          <div class="compliance-note"><strong>Compliant framing:</strong> "Based on clinical study data, patients in the Epithrive® arm showed 72.4% wound area reduction at Week 8" — not "your patient will heal in 8 weeks".</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">16</div>
+          <div>Does nutrition actually make a meaningful difference, or is good wound dressing enough?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> This is the most important conceptual question — and the answer is definitive. Wound healing is a <strong>systemic biological process, not a local one</strong>. The wound dressing manages the local environment: moisture balance, infection control, debridement. But the actual repair — angiogenesis, collagen synthesis, granulation tissue formation, re-epithelialization — is driven by systemic biology. That biology runs on substrates.</p>
+          <p style="margin-top:8px">Imagine building a house. The dressing is the scaffolding and the safety net. But bricks, cement, wiring, and plumbing — the actual materials — have to come from somewhere. If the supply chain is cut off, the scaffolding stays up but the house never gets built. Nutrition is the supply chain.</p>
+          <p style="margin-top:8px">30–50% of surgical and elderly patients in Indian hospitals are malnourished. In these patients, the body simply does not have enough Arginine, Glutamine, or collagen precursors to run the healing cascade effectively. No dressing — however advanced — can compensate for the absence of these substrates.</p>
+          <p style="margin-top:8px">The clinical evidence confirms this. In the Epithrive® Indian study, both groups received identical standard wound care. The only difference was Epithrive® — and the difference in outcome was 20.3 percentage points.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">17</div>
+          <div>What types of wounds respond best? Is it only for diabetic foot ulcers?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Epithrive® is not limited to DFU. The formulation supports wound healing through systemic nutritional mechanisms that are applicable across all wound types where nutritional depletion or metabolic stress impairs healing. Validated and appropriate indications:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Diabetic Foot Ulcers (Wagner 1–3)</strong> — primary indication; strongest evidence base</li>
+            <li><strong>Pressure Injuries (Stage II–IV)</strong> — excellent evidence from Cereda et al. RCT and global literature</li>
+            <li><strong>Post-Surgical Wounds</strong> — especially dehisced wounds, high-risk closures, post-debridement</li>
+            <li><strong>Burns</strong> — Glutamine and Arginine are particularly important in burn patients (hypermetabolic state)</li>
+            <li><strong>Venous Leg Ulcers</strong> — respond well to improved microcirculation (Arginine) and collagen support</li>
+            <li><strong>Chronic non-healing wounds (&gt;2 weeks)</strong> — any wound that has stalled regardless of aetiology</li>
+            <li><strong>Traumatic wounds with tissue loss</strong> — significant ECM requirement</li>
+          </ul>
+          <p>The SNAP Rule applies universally — any wound patient who is nutritionally compromised, or whose wound has stalled, is a candidate.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY D: Practical & Compliance -->
+    <div class="faq-category">
+      <div class="faq-cat-title">D — Practical & Usage Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">18</div>
+          <div>How long should patients take Epithrive®? When do they stop?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> The minimum therapeutic duration is 4–6 weeks. Wound healing biology takes time — a 2-week course will not complete the collagen remodeling phase. The correct answer is: <strong>continue until wound closure</strong>.</p>
+          <p style="margin-top:8px">For practical guidance:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li>Mild-moderate wounds: typically 4–6 weeks (1 box minimum, likely 2–3 boxes)</li>
+            <li>Stage III–IV pressure injuries or Wagner 3 DFU: 8–12 weeks or more</li>
+            <li>Post-surgical wounds: 4 weeks minimum from surgery date</li>
+          </ul>
+          <p>There is no harm in continued use beyond wound closure in malnourished patients — it supports systemic nutritional recovery. But the clinical indication ends at wound closure.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">19</div>
+          <div>When should patients take it — morning, evening, with food, without food?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> There is no rigid timing requirement. Flexibility improves compliance. General guidance:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Any time of day</strong> — morning, afternoon, or evening are all appropriate</li>
+            <li><strong>Between meals</strong> is slightly preferred — avoids competition with dietary protein for amino acid transporters, maximising amino acid absorption</li>
+            <li><strong>Not simultaneously with tetracyclines or quinolones</strong> — space by 2–3 hours</li>
+            <li><strong>Chilled</strong> for palatability improvement — many patients find it more pleasant cold</li>
+            <li>For 2-sachet dosing: one morning, one evening</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">20</div>
+          <div>My patient is already taking a multivitamin. Will there be any overdose risk from the micronutrients?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> The micronutrient doses in Epithrive® are calibrated at therapeutic (not megadose) levels. For most patients taking a standard multivitamin, combined intake will remain within safe upper limits:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Zinc 13mg</strong> — Upper tolerable limit is 40mg/day. Combined with a standard MV (typically 5–10mg), total is 18–23mg — well within safe range</li>
+            <li><strong>Vitamin A 750mcg</strong> — Upper limit is 3000mcg/day. Well within safe range even with a multivitamin</li>
+            <li><strong>Vitamin E 7.5mg</strong> — Clinically significant effects start above 400mg; 7.5mg is negligible</li>
+            <li><strong>Selenium 30mcg</strong> — Upper limit 400mcg; well within range</li>
+          </ul>
+          <p>The only meaningful consideration is <strong>Vitamin A</strong> in patients already on high-dose retinol supplements (above 1500mcg/day from all sources). Ask patients about their supplement regimen at initiation.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">21</div>
+          <div>My patient's family says they can't afford it. How do I justify the cost?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> This is a cost-outcome conversation, not a cost conversation. Present the total economic picture:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Each dressing change:</strong> ₹300–700 in materials + nursing time. Faster healing = fewer dressings. Clinical data suggests 40% reduction in dressing requirement.</li>
+            <li><strong>Hospital stay:</strong> ₹3,000–8,000/day in a standard ward. Reducing stay by even 3 days pays for the entire course of Epithrive®.</li>
+            <li><strong>Amputation prevention:</strong> A DFU that doesn't heal can progress to amputation — a ₹2–5 lakh surgical event, plus lifetime disability costs. Nutrition support that prevents even one additional surgical intervention has enormous economic value.</li>
+            <li><strong>A 10-sachet box is ₹3,995</strong> — approximately ₹400/day. For a patient spending ₹500–1000/day on dressings and clinic visits, this is not an additive cost — it is a cost-reducing investment.</li>
+          </ul>
+          <p>Present the cost as: "The question isn't whether your family can afford Epithrive® — it's whether you can afford the alternative."</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">22</div>
+          <div>How is Epithrive® different from Juven (Abbott)?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Juven (Abbott) was the first Arg+Gln+HMB formula — developed by Metabolic Technologies Inc. and licensed to Abbott. Epithrive® is India's first wound nutrition product in this formulation class, developed specifically for Indian patients with full regulatory compliance under FSSAI.</p>
+          <p style="margin-top:8px">Key distinctions:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Marine Collagen Peptides</strong> — Juven does not contain collagen. Epithrive® adds a fourth major active component, creating a more complete formulation for wound ECM support.</li>
+            <li><strong>Made in India, for India</strong> — Epithrive® is manufactured locally under ISO 22000:2018, cGMP, HACCP standards. Supply chain is domestic and reliable.</li>
+            <li><strong>Price accessibility</strong> — Epithrive® is significantly more accessible for the Indian market than imported alternatives.</li>
+            <li><strong>No added sugar</strong> — calibrated for the diabetic-heavy wound patient profile of India.</li>
+          </ul>
+          <div class="compliance-note"><strong>MR Note:</strong> Do NOT disparage Juven or Abbott directly. Frame Epithrive® as an evolved, locally-developed formulation with an additional key ingredient. "Juven established the class; Epithrive® adds to it."</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">23</div>
+          <div>Where can my patients buy it? Can it be purchased on pharmacy or online?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Currently, Epithrive® is available through:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li><strong>Direct website:</strong> epithrive.com — patients or caregivers can order online</li>
+            <li><strong>WhatsApp ordering:</strong> +91 99708 43254 — caregivers can WhatsApp directly for orders, questions, or guidance</li>
+            <li><strong>Selected distributor channels</strong> — expanding across Maharashtra and Gujarat</li>
+          </ul>
+          <p>The easiest path for a caregiver after your recommendation is the WhatsApp channel — they send a message and the order is processed directly. No prescription needed. You may find it helpful to write "Epithrive® 1 sachet/day × 30 days" on the patient's summary sheet — this serves as a recommendation (not a prescription) and dramatically improves caregiver follow-through.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">24</div>
+          <div>Is there a trial pack or smaller quantity available for patients to try first?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Yes — a trial pack is available for new patients who want to assess tolerability and palatability before committing to a full box. This is particularly useful for elderly patients or those with a history of GI sensitivity to supplements. Please check with your area manager for current trial pack availability and pricing in your territory. Directing patients to the WhatsApp channel (+91 99708 43254) is the fastest way for them to enquire about trial options.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <div class="faq-q-num">25</div>
+          <div>Can I use Epithrive® alongside antibiotics, dressings, debridement — or does it replace anything?</div>
+          <span class="faq-chevron">›</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>Answer:</strong> Epithrive® is designed as a <strong>strict adjunct — it replaces nothing</strong>. Standard wound care protocol remains unchanged:</p>
+          <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+            <li>Debridement — continue as indicated</li>
+            <li>Infection control / antibiotics — continue and space from Epithrive® as needed</li>
+            <li>Advanced wound dressings — continue as chosen</li>
+            <li>Offloading in DFU — continue</li>
+            <li>Blood glucose management — continue</li>
+          </ul>
+          <p>Epithrive® adds the nutritional substrate layer that standard wound protocols don't address. Think of it as adding the fuel — everything else is the engine. The engine still needs to run.</p>
+          <p style="margin-top:8px">This is also the correct message for patients who ask "can I just take this and not do dressings?" — the answer is no. The dressings manage the local environment; Epithrive® supports the systemic biology. Both are needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10: COMPLIANCE -->
+  <section class="section" id="s10">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <div>
+        <h2>Compliance Quick Reference</h2>
+        <div class="sub">Every MR must carry this in their head — not just their bag</div>
+      </div>
+    </div>
+
+    <div class="compliance-banner">
+      <h4>⚖️ Regulatory Guardrails — Non-Negotiable</h4>
+      <div class="compliance-grid">
+        <div class="comp-col can">
+          <h5>You CAN say</h5>
+          <ul>
+            <li>"Supports wound healing as an adjunct to standard wound care"</li>
+            <li>"Provides nutritional support for tissue repair"</li>
+            <li>"Clinical study (CSR-ETH-2025-001) showed 72.4% wound area reduction at Week 8"</li>
+            <li>"Contains clinically researched doses of Arginine, Glutamine, HMB, Marine Collagen Peptides"</li>
+            <li>"India's first targeted wound healing nutrition formula"</li>
+            <li>"Nutraceutical" or "specialized wound nutrition"</li>
+          </ul>
+        </div>
+        <div class="comp-col cannot">
+          <h5>You CANNOT say</h5>
+          <ul>
+            <li>"Epithrive® treats / cures / heals wounds"</li>
+            <li>"FSMP" or "Food for Special Medical Purposes"</li>
+            <li>"Guaranteed results in X days"</li>
+            <li>"This is a medicine"</li>
+            <li>"Epithrive® will close the wound"</li>
+            <li>Any disease treatment claim</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mandatory-disclaimer">
+        <strong>Mandatory disclaimer on all communications:</strong> "Dietary supplement. Not intended to diagnose, treat, cure, or prevent any disease."
+      </div>
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
+      <h4 style="font-family:'Fraunces',serif;color:var(--navy);font-size:17px;margin-bottom:12px">The Compliant Way to Frame Clinical Data</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--danger);margin-bottom:8px">❌ Non-Compliant</div>
+          <div style="background:#fef2f2;border-radius:8px;padding:12px;font-size:13px;color:#c0392b;font-style:italic;border:1px solid #fca5a5">"Epithrive® heals wounds 39% faster than standard care."</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--success);margin-bottom:8px">✓ Compliant</div>
+          <div style="background:#ecfdf5;border-radius:8px;padding:12px;font-size:13px;color:#059669;border:1px solid #6ee7b7">"In our clinical study, patients in the Epithrive® arm showed 72.4% wound area reduction vs. 52.1% in the standard care arm at Week 8 (p=0.004)."</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;background:var(--teal-light);border:1px solid var(--teal-mid);border-radius:12px;padding:18px 20px;font-size:13.5px;color:var(--navy)">
+      <strong style="color:var(--teal)">Remember:</strong> If you are ever unsure whether a claim is compliant, ask yourself: <em>"Am I saying the product treats or cures a disease?"</em> If yes — rephrase to describe what the nutritional ingredients <em>support</em>. When in doubt, escalate to your Area Manager before making the claim. A compliant MR is a protected MR.
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Sidebar nav active state
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+const sections = document.querySelectorAll('.section');
+
+function setActive() {
+  let curr = '';
+  sections.forEach(s => {
+    const t = s.offsetTop - 80;
+    if (window.scrollY >= t) curr = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + curr);
+  });
+}
+
+window.addEventListener('scroll', setActive);
+setActive();
+
+// Smooth scroll
+navLinks.forEach(l => {
+  l.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(l.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Toggle ingredient cards
+function toggleIng(header) {
+  const card = header.closest('.ingredient-card');
+  card.classList.toggle('open');
+}
+
+// Toggle FAQ items
+function toggleFaq(qEl) {
+  const item = qEl.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>

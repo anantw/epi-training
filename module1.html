@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 1 — Wound Biology</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0E8FA8;
+  --teal-d: #0a7891;
+  --teal-light: #e8f6f9;
+  --teal-mid: #b8e2ec;
+  --orange: #F4811F;
+  --orange-light: #fef3e8;
+  --navy: #12293D;
+  --navy-mid: #1a3a54;
+  --body: #2d3e50;
+  --muted: #6b7f90;
+  --border: #dde8ed;
+  --bg: #F4F1ED;
+  --white: #ffffff;
+  --card: #ffffff;
+  --phase1: #e74c3c;
+  --phase2: #e67e22;
+  --phase3: #2ecc71;
+  --phase4: #3498db;
+  --sidebar-w: 256px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--body);
+  display: flex;
+  min-height: 100vh;
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+/* ─── SIDEBAR ─── */
+#sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+#sidebar::-webkit-scrollbar { width: 3px; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); }
+
+.sb-brand {
+  padding: 22px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.sb-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 5px; }
+.sb-brand h2 { font-family: 'Fraunces', serif; color: var(--white); font-size: 18px; font-weight: 600; line-height: 1.2; }
+.sb-brand p { color: rgba(255,255,255,.4); font-size: 11px; margin-top: 3px; }
+
+.sb-cat { padding: 16px 20px 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.25); }
+
+.sb-nav a {
+  display: flex; align-items: center; gap: 9px;
+  padding: 8px 20px;
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  font-size: 12px; font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all .2s;
+}
+.sb-nav a:hover, .sb-nav a.active {
+  color: var(--white);
+  background: rgba(255,255,255,.05);
+  border-left-color: var(--teal);
+}
+.sb-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.18); flex-shrink: 0; }
+.sb-nav a:hover .sb-dot, .sb-nav a.active .sb-dot { background: var(--teal); }
+
+.sb-progress {
+  margin: 16px 20px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.sb-progress .sp-label { font-size: 9.5px; color: rgba(255,255,255,.35); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+.sb-progress .sp-bar { height: 4px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden; }
+.sb-progress .sp-fill { height: 100%; width: 14%; background: var(--teal); border-radius: 2px; }
+.sb-progress .sp-text { font-size: 11px; color: rgba(255,255,255,.4); margin-top: 6px; }
+
+/* ─── MAIN ─── */
+#main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  padding: 0 44px 100px;
+  max-width: 1020px;
+}
+
+/* ─── PAGE HEADER ─── */
+.page-header {
+  background: linear-gradient(145deg, #0a1e2e 0%, #1a3a54 60%, #0E8FA8 100%);
+  margin: 0 -44px 52px;
+  padding: 52px 44px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: ''; position: absolute;
+  bottom: -80px; right: -80px;
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,143,168,.2) 0%, transparent 70%);
+}
+.ph-pretag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(14,143,168,.2);
+  border: 1px solid rgba(14,143,168,.4);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #7dd8ea;
+  margin-bottom: 14px;
+}
+.page-header h1 {
+  font-family: 'Fraunces', serif;
+  color: var(--white);
+  font-size: 38px; font-weight: 700; line-height: 1.1;
+  margin-bottom: 10px;
+}
+.page-header h1 em { color: #7dd8ea; font-style: normal; }
+.page-header .ph-sub {
+  color: rgba(255,255,255,.5);
+  font-size: 15px;
+  max-width: 580px;
+  line-height: 1.65;
+}
+.ph-chips {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 28px;
+}
+.ph-chip {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 7px;
+  padding: 7px 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,.65);
+}
+.ph-chip strong { color: var(--white); }
+
+/* ─── SECTIONS ─── */
+.section { margin-bottom: 60px; scroll-margin-top: 24px; }
+
+.sec-hd {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+}
+.sec-num {
+  width: 34px; height: 34px;
+  background: var(--teal);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sec-hd h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px; font-weight: 600; color: var(--navy);
+}
+.sec-hd .sh-sub { font-size: 12.5px; color: var(--muted); font-weight: 400; margin-top: 1px; }
+
+/* ─── CALLOUT BOXES ─── */
+.callout {
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.callout.teal { background: var(--teal-light); border: 1px solid var(--teal-mid); color: var(--navy-mid); }
+.callout.orange { background: var(--orange-light); border: 1px solid #fbd9b5; color: #6e3a10; }
+.callout.navy { background: var(--navy); color: rgba(255,255,255,.75); }
+.callout strong { color: var(--teal); }
+.callout.orange strong { color: var(--orange); }
+.callout.navy strong { color: #7dd8ea; }
+
+/* ─── ACUTE vs CHRONIC ─── */
+.compare-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.c2-card {
+  border-radius: 12px;
+  padding: 20px;
+}
+.c2-card.acute { background: #ecfdf5; border: 1.5px solid #6ee7b7; }
+.c2-card.chronic { background: #fef2f2; border: 1.5px solid #fca5a5; }
+.c2-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .5px; }
+.c2-card.acute h4 { color: #059669; }
+.c2-card.chronic h4 { color: #dc2626; }
+.c2-card ul { padding-left: 16px; }
+.c2-card li { font-size: 13px; color: var(--body); margin-bottom: 4px; line-height: 1.5; }
+
+/* ─── PHASE TIMELINE ─── */
+.phase-timeline {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.timeline-track {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.tt-seg {
+  height: 100%;
+  position: relative;
+}
+.tt-seg.p1 { background: var(--phase1); width: 12%; }
+.tt-seg.p2 { background: var(--phase2); width: 22%; }
+.tt-seg.p3 { background: var(--phase3); width: 30%; }
+.tt-seg.p4 { background: var(--phase4); flex: 1; }
+
+.timeline-labels {
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: .3px;
+  margin-bottom: 20px;
+}
+.tl-label {
+  flex: none;
+  padding-right: 8px;
+}
+.tl-label.p1 { width: 12%; color: var(--phase1); }
+.tl-label.p2 { width: 22%; color: var(--phase2); }
+.tl-label.p3 { width: 30%; color: var(--phase3); }
+.tl-label.p4 { flex: 1; color: var(--phase4); }
+
+.phase-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.phase-card {
+  border-radius: 12px;
+  border: 1.5px solid;
+  overflow: hidden;
+}
+.phase-card.p1 { border-color: #fca5a5; }
+.phase-card.p2 { border-color: #fed7aa; }
+.phase-card.p3 { border-color: #6ee7b7; }
+.phase-card.p4 { border-color: #93c5fd; }
+
+.pc-head {
+  padding: 12px 14px;
+  color: var(--white);
+}
+.phase-card.p1 .pc-head { background: var(--phase1); }
+.phase-card.p2 .pc-head { background: var(--phase2); }
+.phase-card.p3 .pc-head { background: var(--phase3); }
+.phase-card.p4 .pc-head { background: var(--phase4); }
+
+.pc-head .ph-num { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: .75; }
+.pc-head h4 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; margin: 2px 0; }
+.pc-head .ph-time { font-size: 10.5px; opacity: .8; }
+
+.pc-body { background: var(--white); padding: 14px; }
+.pc-body ul { padding-left: 14px; }
+.pc-body li { font-size: 12px; color: var(--body); margin-bottom: 5px; line-height: 1.5; }
+.pc-key {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.phase-card.p1 .pc-key { background: #fef2f2; color: #dc2626; }
+.phase-card.p2 .pc-key { background: #fff7ed; color: #c2410c; }
+.phase-card.p3 .pc-key { background: #ecfdf5; color: #059669; }
+.phase-card.p4 .pc-key { background: #eff6ff; color: #1d4ed8; }
+
+/* ─── CELLS ─── */
+.cell-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.cell-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  border-top: 4px solid;
+}
+.cell-card.platelets { border-top-color: #e74c3c; }
+.cell-card.neutrophils { border-top-color: #e67e22; }
+.cell-card.macrophages { border-top-color: #9b59b6; }
+.cell-card.fibroblasts { border-top-color: #2ecc71; }
+.cell-card.keratinocytes { border-top-color: #3498db; }
+.cell-card.endothelial { border-top-color: #1abc9c; }
+
+.cell-icon { font-size: 28px; margin-bottom: 8px; }
+.cell-card h4 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.cell-card .cell-role { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.cell-card p { font-size: 12.5px; color: var(--body); line-height: 1.6; }
+.cell-card .cell-timing { margin-top: 8px; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+.cell-card.platelets .cell-timing { background: #fef2f2; color: #dc2626; }
+.cell-card.neutrophils .cell-timing { background: #fff7ed; color: #c2410c; }
+.cell-card.macrophages .cell-timing { background: #faf5ff; color: #7c3aed; }
+.cell-card.fibroblasts .cell-timing { background: #ecfdf5; color: #059669; }
+.cell-card.keratinocytes .cell-timing { background: #eff6ff; color: #1d4ed8; }
+.cell-card.endothelial .cell-timing { background: #f0fdfa; color: #0f766e; }
+
+/* ─── CHRONIC WOUND BIOLOGY ─── */
+.failure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.fail-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  border-left: 4px solid var(--danger, #dc2626);
+  position: relative;
+}
+.fail-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.fail-card p { font-size: 13px; color: var(--body); line-height: 1.6; }
+.fail-num {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.fail-arrow {
+  background: var(--navy);
+  color: rgba(255,255,255,.7);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fail-arrow .fa-icon { font-size: 22px; flex-shrink: 0; }
+
+/* ─── WOUND TYPES ─── */
+.wt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.wt-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.wt-head {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.wt-icon { font-size: 26px; flex-shrink: 0; }
+.wt-head h4 { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--white); line-height: 1.2; }
+.wt-head .wt-sub { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
+.wt-dfu .wt-head { background: linear-gradient(135deg, #8b0000, #c0392b); }
+.wt-press .wt-head { background: linear-gradient(135deg, #1a237e, #3949ab); }
+.wt-surg .wt-head { background: linear-gradient(135deg, #004d40, #00897b); }
+.wt-burn .wt-head { background: linear-gradient(135deg, #e65100, #f57c00); }
+.wt-vlu .wt-head { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+.wt-chronic .wt-head { background: linear-gradient(135deg, #37474f, #546e7a); }
+
+.wt-body { padding: 16px 18px; }
+.wt-body p { font-size: 13px; color: var(--body); line-height: 1.6; margin-bottom: 10px; }
+.wt-body h5 { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+/* WAGNER GRADES */
+.wagner-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.w-grade {
+  border-radius: 6px;
+  padding: 6px 4px;
+  text-align: center;
+  font-size: 10px;
+}
+.w-grade .wg-num { font-weight: 700; font-size: 15px; display: block; }
+.w-grade .wg-desc { font-size: 9px; line-height: 1.3; margin-top: 2px; color: var(--body); }
+.wg0 { background: #dcfce7; }
+.wg1 { background: #fef9c3; }
+.wg2 { background: #fed7aa; }
+.wg3 { background: #fecaca; }
+.wg4 { background: #fca5a5; }
+.wg5 { background: #ef4444; color: var(--white); }
+.wg5 .wg-desc { color: rgba(255,255,255,.8); }
+
+/* PRESSURE STAGES */
+.pressure-stages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.ps-stage {
+  border-radius: 6px;
+  padding: 8px 6px;
+  text-align: center;
+}
+.ps-stage .pss-num { font-weight: 700; font-size: 13px; display: block; }
+.ps-stage .pss-desc { font-size: 9.5px; line-height: 1.3; margin-top: 3px; }
+.ps1 { background: #fef9c3; }
+.ps2 { background: #fed7aa; }
+.ps3 { background: #fecaca; }
+.ps4 { background: #dc2626; color: var(--white); }
+.ps4 .pss-desc { color: rgba(255,255,255,.8); }
+
+.wt-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.wt-tag {
+  background: var(--teal-light);
+  color: var(--teal);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.wt-tag.danger { background: #fef2f2; color: #dc2626; }
+
+/* ─── INDIA BURDEN ─── */
+.burden-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.burden-stat {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.burden-stat::before {
+  content: '';
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(14,143,168,.15);
+}
+.bs-num {
+  font-family: 'Fraunces', serif;
+  font-size: 32px; font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.bs-unit { font-size: 14px; color: rgba(255,255,255,.5); }
+.bs-label { font-size: 11.5px; color: rgba(255,255,255,.6); line-height: 1.4; margin-top: 6px; }
+
+.burden-flow {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.burden-flow h4 { font-family: 'Fraunces', serif; font-size: 17px; color: var(--navy); margin-bottom: 14px; }
+.bf-chain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.bf-step {
+  background: var(--teal-light);
+  border: 1.5px solid var(--teal-mid);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+  text-align: center;
+  min-width: 100px;
+}
+.bf-arr {
+  color: var(--orange);
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+/* ─── NUTRITIONAL GAP ─── */
+.gap-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 13px;
+  background: var(--white);
+}
+.gap-table th {
+  background: var(--navy);
+  color: rgba(255,255,255,.65);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.gap-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.gap-table tr:last-child td { border-bottom: none; }
+.gap-table tr:nth-child(even) td { background: #fafcfd; }
+.gap-table td:first-child { font-weight: 600; color: var(--navy); }
+.gap-table td:nth-child(2) { color: var(--danger, #dc2626); font-size: 12.5px; }
+.gap-table td:nth-child(3) { color: var(--teal); font-size: 12.5px; }
+
+.bridge-block {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a54 100%);
+  border-radius: 14px;
+  padding: 28px 30px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.bridge-block::after {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,129,31,.15) 0%, transparent 70%);
+}
+.bridge-block h3 { font-family: 'Fraunces', serif; color: var(--white); font-size: 20px; margin-bottom: 14px; }
+.bridge-block p { color: rgba(255,255,255,.7); font-size: 13.5px; line-height: 1.7; margin-bottom: 10px; }
+.bridge-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.bridge-pill {
+  background: rgba(14,143,168,.25);
+  border: 1px solid rgba(14,143,168,.4);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px; font-weight: 600;
+  color: #7dd8ea;
+}
+
+/* ─── ASSESSMENT TOOLS ─── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.tool-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.tool-head {
+  padding: 14px 18px;
+  background: var(--teal);
+}
+.tool-head h4 { color: var(--white); font-size: 15px; font-weight: 700; }
+.tool-head p { color: rgba(255,255,255,.7); font-size: 11px; margin-top: 2px; }
+.tool-body { padding: 16px 18px; }
+.tool-body p { font-size: 13px; color: var(--body); line-height: 1.6; margin-bottom: 10px; }
+
+.must-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.must-table th { background: #f8f9fa; color: var(--muted); padding: 7px 10px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.must-table td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; line-height: 1.4; }
+.must-table tr:last-child td { border-bottom: none; }
+.must-table td:first-child { font-weight: 600; color: var(--navy); }
+
+.score-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.score-badge.low { background: #dcfce7; color: #059669; }
+.score-badge.mid { background: #fff7ed; color: #c2410c; }
+.score-badge.high { background: #fef2f2; color: #dc2626; }
+
+/* ─── STALLED WOUND VISUAL ─── */
+.stall-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.sc-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+.sc-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.sc-card.normal h4 { color: #059669; }
+.sc-card.chronic h4 { color: #dc2626; }
+
+.phase-bar-wrap { margin-bottom: 6px; }
+.pb-label { font-size: 10.5px; color: var(--muted); margin-bottom: 3px; }
+.pb-bar { height: 10px; border-radius: 5px; position: relative; overflow: hidden; background: #f0f0f0; }
+.pb-fill { height: 100%; border-radius: 5px; }
+.pb-fill.p1 { background: var(--phase1); }
+.pb-fill.p2 { background: var(--phase2); }
+.pb-fill.p3 { background: var(--phase3); }
+.pb-fill.p4 { background: var(--phase4); }
+
+/* ─── FACTORS GRID ─── */
+.factors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.factor-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.factor-card .fc-icon { font-size: 30px; margin-bottom: 8px; }
+.factor-card h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.factor-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.factor-card.bad { border-top: 3px solid #dc2626; }
+
+/* ─── KNOWLEDGE CHECK ─── */
+.kc-section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.kc-section h4 { font-family: 'Fraunces', serif; font-size: 18px; color: var(--navy); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+.quiz-item { margin-bottom: 18px; }
+.quiz-q { font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+.quiz-opts { display: flex; flex-direction: column; gap: 6px; }
+.quiz-opt {
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  font-size: 13px;
+  color: var(--body);
+  cursor: pointer;
+  transition: all .15s;
+  background: var(--white);
+}
+.quiz-opt:hover { border-color: var(--teal); background: var(--teal-light); }
+.quiz-opt.correct { border-color: #059669; background: #ecfdf5; color: #065f46; font-weight: 600; }
+.quiz-opt.wrong { border-color: #dc2626; background: #fef2f2; color: #991b1b; }
+.quiz-feedback { margin-top: 6px; font-size: 12.5px; display: none; padding: 8px 12px; border-radius: 6px; line-height: 1.5; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.ok { background: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
+.quiz-feedback.no { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+
+@media (max-width: 880px) {
+  body { flex-direction: column; }
+  #sidebar { position: relative; width: 100%; height: auto; }
+  #main { margin-left: 0; padding: 0 20px 60px; }
+  .phase-cards { grid-template-columns: 1fr 1fr; }
+  .cell-grid { grid-template-columns: 1fr 1fr; }
+  .compare-2, .wt-grid, .stall-compare, .tool-grid, .failure-grid { grid-template-columns: 1fr; }
+  .factors-grid { grid-template-columns: 1fr 1fr; }
+  .burden-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <span class="sb-tag">MR Training Program</span>
+    <h2>Epithrive®</h2>
+    <p>Module 1 — Wound Biology</p>
+  </div>
+  <div class="sb-cat">Contents</div>
+  <div class="sb-nav">
+    <a href="#s1" class="active"><span class="sb-dot"></span>What Is a Wound?</a>
+    <a href="#s2"><span class="sb-dot"></span>The 4 Healing Phases</a>
+    <a href="#s3"><span class="sb-dot"></span>Key Cells in Healing</a>
+    <a href="#s4"><span class="sb-dot"></span>What Makes Wounds Stall</a>
+    <a href="#s5"><span class="sb-dot"></span>Wound Types & Staging</a>
+    <a href="#s6"><span class="sb-dot"></span>The Indian Wound Burden</a>
+    <a href="#s7"><span class="sb-dot"></span>The Nutritional Gap</a>
+    <a href="#s8"><span class="sb-dot"></span>Assessment Tools</a>
+    <a href="#s9"><span class="sb-dot"></span>Knowledge Check</a>
+  </div>
+  <div class="sb-progress">
+    <span class="sp-label">Program Progress</span>
+    <div class="sp-bar"><div class="sp-fill"></div></div>
+    <div class="sp-text">Module 1 of 8 · Foundational</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="ph-pretag">Module 1 of 8</div>
+    <h1>Wound <em>Biology</em></h1>
+    <p class="ph-sub">Before you can sell a wound nutrition product, you must understand wound healing at a cellular level. This module gives you the biology — so every doctor conversation starts from knowledge, not a script.</p>
+    <div class="ph-chips">
+      <div class="ph-chip"><strong>4</strong> Healing Phases</div>
+      <div class="ph-chip"><strong>6</strong> Key Cell Types</div>
+      <div class="ph-chip"><strong>6</strong> Wound Types with Staging</div>
+      <div class="ph-chip"><strong>5</strong> Assessment Tools</div>
+      <div class="ph-chip"><strong>Knowledge Quiz</strong> at the end</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: WHAT IS A WOUND? -->
+  <section class="section" id="s1">
+    <div class="sec-hd">
+      <div class="sec-num">1</div>
+      <div>
+        <h2>What Is a Wound?</h2>
+        <div class="sh-sub">Definition, acute vs. chronic, and why the distinction matters</div>
+      </div>
+    </div>
+
+    <div class="callout teal" style="margin-bottom:20px">
+      <strong>Clinical definition:</strong> A wound is the disruption in the physical continuity of functional tissue — skin, muscle, blood vessels, or underlying structures — caused by injury, disease, surgery, or pressure.
+    </div>
+
+    <p style="font-size:14px;margin-bottom:16px;line-height:1.7;color:var(--body)">The human body has a remarkable built-in repair system. When tissue is damaged, a cascade of highly coordinated biological events begins within seconds — summoning cells, building new vessels, manufacturing collagen, and closing the gap. In healthy individuals with adequate nutrition, this system works flawlessly. In your patients — diabetics, the elderly, the malnourished — it breaks down. Understanding <em>why</em> is your competitive advantage.</p>
+
+    <div class="compare-2">
+      <div class="c2-card acute">
+        <h4>✓ Acute Wound — Normal Healing</h4>
+        <ul>
+          <li>Cause: Surgical incision, laceration, trauma</li>
+          <li>Orderly progression through all 4 phases</li>
+          <li>Closes within days to weeks</li>
+          <li>Adequate blood flow, normal immune response</li>
+          <li>Adequate nutritional reserves</li>
+          <li>Examples: Clean surgical cut, minor laceration</li>
+        </ul>
+      </div>
+      <div class="c2-card chronic">
+        <h4>✗ Chronic Wound — Stalled Healing</h4>
+        <ul>
+          <li>Duration: No significant progress in <strong>2+ weeks</strong></li>
+          <li>Stuck in the inflammatory phase — cannot progress</li>
+          <li>Excessive MMP activity destroys ECM as fast as it forms</li>
+          <li>Impaired blood flow — hypoxic wound bed</li>
+          <li>Nutritional depletion — substrates for repair are exhausted</li>
+          <li>Examples: DFU, pressure ulcer, venous leg ulcer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <strong>The key insight for every MR:</strong> A chronic wound is not just a wound that hasn't healed yet. It is a wound where the biological repair machinery has failed due to one or more systemic deficits — most commonly nutritional depletion, impaired circulation, or persistent infection. Local wound dressing manages the environment. <strong>Systemic nutrition restores the machinery.</strong>
+    </div>
+  </section>
+
+  <!-- SECTION 2: THE 4 PHASES -->
+  <section class="section" id="s2">
+    <div class="sec-hd">
+      <div class="sec-num">2</div>
+      <div>
+        <h2>The 4 Phases of Wound Healing</h2>
+        <div class="sh-sub">Sequential, overlapping, substrate-hungry — and reversible in chronic wounds</div>
+      </div>
+    </div>
+
+    <div class="phase-timeline">
+      <div class="timeline-track">
+        <div class="tt-seg p1"></div>
+        <div class="tt-seg p2"></div>
+        <div class="tt-seg p3"></div>
+        <div class="tt-seg p4"></div>
+      </div>
+      <div class="timeline-labels">
+        <div class="tl-label p1">Phase 1</div>
+        <div class="tl-label p2">Phase 2</div>
+        <div class="tl-label p3">Phase 3</div>
+        <div class="tl-label p4">Phase 4</div>
+      </div>
+      <div class="phase-cards">
+
+        <div class="phase-card p1">
+          <div class="pc-head">
+            <div class="ph-num">Phase 1</div>
+            <h4>Hemostasis</h4>
+            <div class="ph-time">Minutes → Hours</div>
+          </div>
+          <div class="pc-body">
+            <ul>
+              <li>Blood vessel constriction (vasoconstriction) limits bleeding</li>
+              <li>Platelets aggregate at wound site — activated by exposed collagen</li>
+              <li>Fibrin clot forms — temporary scaffold and physical barrier</li>
+              <li>Platelets release growth factors (PDGF, TGF-β) — signal to immune cells</li>
+              <li>Complement cascade activated</li>
+            </ul>
+            <div class="pc-key">🔴 The clot is not just a plug — it is the alarm signal that launches everything that follows.</div>
+          </div>
+        </div>
+
+        <div class="phase-card p2">
+          <div class="pc-head">
+            <div class="ph-num">Phase 2</div>
+            <h4>Inflammation</h4>
+            <div class="ph-time">Day 0 → Day 5</div>
+          </div>
+          <div class="pc-body">
+            <ul>
+              <li>Vasodilation — wound becomes red, warm, swollen (classic signs)</li>
+              <li>Neutrophils arrive first (within hours) — kill bacteria, clear debris</li>
+              <li>Macrophages arrive Day 2–3 — engulf debris, release cytokines and growth factors</li>
+              <li>Cytokines (IL-1, TNF-α, IL-6) recruit fibroblasts and endothelial cells</li>
+              <li>Arginine → Nitric Oxide → vasodilation → better cell delivery</li>
+            </ul>
+            <div class="pc-key">🟠 This phase MUST resolve. Persistent inflammation = chronic wound. Redness that never decreases is a red flag.</div>
+          </div>
+        </div>
+
+        <div class="phase-card p3">
+          <div class="pc-head">
+            <div class="ph-num">Phase 3</div>
+            <h4>Proliferation</h4>
+            <div class="ph-time">Day 3 → Day 21</div>
+          </div>
+          <div class="pc-body">
+            <ul>
+              <li>Angiogenesis: new blood vessels grow into the wound bed</li>
+              <li>Fibroblasts migrate in and start producing collagen III (initial scaffold)</li>
+              <li>Granulation tissue forms — the pink/red healthy tissue you want to see</li>
+              <li>Re-epithelialization: keratinocytes migrate across the wound surface</li>
+              <li>Wound contraction begins — edges pull together (myofibroblasts)</li>
+            </ul>
+            <div class="pc-key">🟢 Healthy granulation tissue is bright red/pink, moist, and granular. Pale/yellow tissue = problem.</div>
+          </div>
+        </div>
+
+        <div class="phase-card p4">
+          <div class="pc-head">
+            <div class="ph-num">Phase 4</div>
+            <h4>Remodeling</h4>
+            <div class="ph-time">Day 21 → 2 Years</div>
+          </div>
+          <div class="pc-body">
+            <ul>
+              <li>Collagen III replaced by stronger, organised Collagen I</li>
+              <li>Matrix metalloproteinases (MMPs) regulate ECM breakdown/rebuilding</li>
+              <li>Cross-linking of collagen fibres (via Copper + lysyl oxidase)</li>
+              <li>Tensile strength builds to 80–85% of normal tissue</li>
+              <li>Excess vessels regress; scar matures and flattens</li>
+            </ul>
+            <div class="pc-key">🔵 Scar is permanent but tensile strength improves for months. HMB preserves muscle mass throughout this phase.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="callout navy" style="margin-top:4px">
+      <strong>Critical teaching point:</strong> These phases are sequential but overlapping — they don't have clean start/end dates. A wound can be in Phase 2 and Phase 3 simultaneously in different zones. More importantly, in chronic wounds, they are <strong>not linear</strong> — the wound can regress from Phase 3 back to Phase 2 if infection occurs or nutrition deteriorates. Healing is not a one-way door.
+    </div>
+  </section>
+
+  <!-- SECTION 3: KEY CELLS -->
+  <section class="section" id="s3">
+    <div class="sec-hd">
+      <div class="sec-num">3</div>
+      <div>
+        <h2>Key Cells in Wound Healing</h2>
+        <div class="sh-sub">Six cell types — what they do, when they arrive, and what happens when they fail</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--body);line-height:1.7;margin-bottom:20px">Wound healing is a highly choreographed cellular performance. Each cell type has a precise role and arrives at a specific time. When nutrition is depleted, these cells lose their fuel and the performance degrades. As an MR, knowing these cells by name and function elevates every clinical conversation.</p>
+
+    <div class="cell-grid">
+
+      <div class="cell-card platelets">
+        <div class="cell-icon">🩸</div>
+        <h4>Platelets</h4>
+        <div class="cell-role">First Responders · Signal Senders</div>
+        <p>Activated by exposed collagen when injury occurs. Aggregate to form the initial clot, stop bleeding, and release a surge of growth factors (PDGF, TGF-β, VEGF) that recruit every other cell in the cascade. The platelet is the starting gun of wound repair.</p>
+        <div class="cell-timing">Arrive: Seconds to Minutes</div>
+      </div>
+
+      <div class="cell-card neutrophils">
+        <div class="cell-icon">🛡️</div>
+        <h4>Neutrophils</h4>
+        <div class="cell-role">Bacteria Killers · Debris Clearers</div>
+        <p>First immune cells to arrive. Phagocytose (engulf and destroy) bacteria and cellular debris. Release proteases and ROS (reactive oxygen species) to sterilise the wound. Glutamine is the primary fuel for neutrophil activity — depletion directly compromises early infection control.</p>
+        <div class="cell-timing">Arrive: Hours 2–48</div>
+      </div>
+
+      <div class="cell-card macrophages">
+        <div class="cell-icon">🧹</div>
+        <h4>Macrophages</h4>
+        <div class="cell-role">Orchestrators · Phase Transition Managers</div>
+        <p>Arrive after neutrophils, continue cleanup, and critically, release the cytokines and growth factors that transition the wound from inflammation to proliferation. Without functional macrophages, the wound cannot progress past Phase 2. Glutamine is their primary fuel. Impaired macrophage function = stalled wound.</p>
+        <div class="cell-timing">Arrive: Day 2–5</div>
+      </div>
+
+      <div class="cell-card fibroblasts">
+        <div class="cell-icon">🏗️</div>
+        <h4>Fibroblasts</h4>
+        <div class="cell-role">Collagen Factories · Granulation Builders</div>
+        <p>The primary collagen-producing cells. Migrate into the wound bed and begin synthesising Collagen III to form the initial scaffold (granulation tissue). Later produce Collagen I for tensile strength. Fuelled by Glutamine; require Arginine (→ Proline → Collagen), Vitamin C (hydroxylation), Copper (cross-linking), and Zinc (proliferation).</p>
+        <div class="cell-timing">Active: Day 3–21+</div>
+      </div>
+
+      <div class="cell-card keratinocytes">
+        <div class="cell-icon">🧬</div>
+        <h4>Keratinocytes</h4>
+        <div class="cell-role">Skin Closers · Surface Restorers</div>
+        <p>Epithelial cells that migrate across the wound surface from wound edges (and hair follicle remnants). They "close the roof" of the wound through re-epithelialization. Vitamin A drives keratinocyte differentiation; Zinc supports their proliferation. Without adequate Vitamin A and Zinc, re-epithelialization is delayed and the wound surface stays open.</p>
+        <div class="cell-timing">Active: Day 4–21</div>
+      </div>
+
+      <div class="cell-card endothelial">
+        <div class="cell-icon">🩹</div>
+        <h4>Endothelial Cells</h4>
+        <div class="cell-role">New Vessel Builders · Angiogenesis Drivers</div>
+        <p>Form the walls of new blood vessels growing into the wound (angiogenesis). Without new vessel formation, the wound bed cannot receive oxygen, nutrients, or immune cells. Arginine → Nitric Oxide drives endothelial activation and new vessel growth. Impaired NO production in diabetics directly explains why DFU wounds are hypoxic and slow to heal.</p>
+        <div class="cell-timing">Active: Day 5–14</div>
+      </div>
+
+    </div>
+
+    <div class="callout teal" style="margin-top:16px">
+      <strong>Pitch point:</strong> When you tell a doctor that Epithrive® provides 7g L-Glutamine — you can now explain that this directly fuels neutrophils and macrophages (infection control) and fibroblasts (collagen production). That's not a marketing claim. That's cell biology. Doctors respond to that.
+    </div>
+  </section>
+
+  <!-- SECTION 4: WHY WOUNDS STALL -->
+  <section class="section" id="s4">
+    <div class="sec-hd">
+      <div class="sec-num">4</div>
+      <div>
+        <h2>What Makes Wounds Stall</h2>
+        <div class="sh-sub">The biology of failure — and where nutrition fits in</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.7;color:var(--body);margin-bottom:18px">A chronic wound is not a slow healing wound. It is a <strong>biologically arrested</strong> wound — stuck in a self-perpetuating cycle of inflammation and destruction. Understanding this cycle is the intellectual foundation for recommending Epithrive®.</p>
+
+    <div class="stall-compare">
+      <div class="sc-card normal">
+        <h4>✓ Normal Wound — Phase Progression</h4>
+        <div class="phase-bar-wrap">
+          <div class="pb-label">Hemostasis</div>
+          <div class="pb-bar"><div class="pb-fill p1" style="width:100%"></div></div>
+        </div>
+        <div class="phase-bar-wrap" style="margin-top:6px">
+          <div class="pb-label">Inflammation</div>
+          <div class="pb-bar"><div class="pb-fill p2" style="width:100%"></div></div>
+        </div>
+        <div class="phase-bar-wrap" style="margin-top:6px">
+          <div class="pb-label">Proliferation</div>
+          <div class="pb-bar"><div class="pb-fill p3" style="width:100%"></div></div>
+        </div>
+        <div class="phase-bar-wrap" style="margin-top:6px">
+          <div class="pb-label">Remodeling</div>
+          <div class="pb-bar"><div class="pb-fill p4" style="width:100%"></div></div>
+        </div>
+        <p style="margin-top:12px;font-size:12.5px;color:#059669;font-weight:600">All phases complete. Wound closes in days to weeks.</p>
+      </div>
+      <div class="sc-card chronic">
+        <h4>✗ Chronic Wound — Phase Arrest</h4>
+        <div class="phase-bar-wrap">
+          <div class="pb-label">Hemostasis</div>
+          <div class="pb-bar"><div class="pb-fill p1" style="width:100%"></div></div>
+        </div>
+        <div class="phase-bar-wrap" style="margin-top:6px">
+          <div class="pb-label">Inflammation — STUCK HERE ⚠️</div>
+          <div class="pb-bar">
+            <div class="pb-fill p2" style="width:100%;animation:pulse 1.5s ease-in-out infinite alternate"></div>
+          </div>
+        </div>
+        <div class="phase-bar-wrap" style="margin-top:6px">
+          <div class="pb-label">Proliferation</div>
+          <div class="pb-bar"><div class="pb-fill p3" style="width:20%;opacity:.3"></div></div>
+        </div>
+        <div class="phase-bar-wrap" style="margin-top:6px">
+          <div class="pb-label">Remodeling</div>
+          <div class="pb-bar"><div class="pb-fill p4" style="width:5%;opacity:.2"></div></div>
+        </div>
+        <p style="margin-top:12px;font-size:12.5px;color:#dc2626;font-weight:600">Trapped in inflammation. Local care alone cannot break the cycle.</p>
+      </div>
+    </div>
+
+    <div class="fail-arrow">
+      <span class="fa-icon">🔄</span>
+      <span>The Vicious Cycle: Persistent infection → elevated MMPs → ECM destroyed → growth factors destroyed → angiogenesis fails → hypoxia → more necrosis → more infection → loop continues</span>
+    </div>
+
+    <div class="failure-grid">
+      <div class="fail-card" style="border-left-color:#dc2626">
+        <div class="fail-num">1</div>
+        <h4>MMP Overexpression</h4>
+        <p>Matrix metalloproteinases — the enzymes that remodel ECM — become chronically overactive in stalled wounds. They degrade collagen, growth factors, and new granulation tissue <strong>faster than it can be laid down</strong>. The wound is simultaneously building and being destroyed. Zinc regulates MMP activity; zinc deficiency amplifies this problem.</p>
+      </div>
+      <div class="fail-card" style="border-left-color:#e67e22">
+        <div class="fail-num">2</div>
+        <h4>Impaired Angiogenesis</h4>
+        <p>The wound bed cannot recruit new blood vessels because Nitric Oxide production is impaired (especially in diabetics — reduced eNOS activity). Without new vessels, the wound is hypoxic. Hypoxia impairs fibroblast activity, collagen synthesis, and immune cell function. <strong>A hypoxic wound is a stalled wound</strong>. Arginine → NO reverses this.</p>
+      </div>
+      <div class="fail-card" style="border-left-color:#9b59b6">
+        <div class="fail-num">3</div>
+        <h4>Fibroblast Senescence</h4>
+        <p>In chronic wound environments, fibroblasts lose their ability to divide and produce collagen — they become "old" and unresponsive. This is driven by oxidative stress, elevated TGF-β, and nutritional deficiency. Senescent fibroblasts <strong>cannot build granulation tissue</strong> even if the substrates are supplied — which is why early nutritional intervention matters more than late intervention.</p>
+      </div>
+      <div class="fail-card" style="border-left-color:#3498db">
+        <div class="fail-num">4</div>
+        <h4>Bacterial Biofilm</h4>
+        <p>Chronic wounds frequently harbour bacterial biofilm — a protective polysaccharide matrix that shields bacteria from antibiotics and the immune system. Biofilm bacteria release collagen-degrading enzymes and produce toxins that destroy growth factors. This explains why antibiotics alone often fail and <strong>why immune competence (Glutamine) is essential</strong> alongside local care.</p>
+      </div>
+      <div class="fail-card" style="border-left-color:#2ecc71">
+        <div class="fail-num">5</div>
+        <h4>Nutritional Substrate Depletion</h4>
+        <p>The single most correctable cause of wound stalling. Wound healing is metabolically demanding — consuming Arginine (for NO and collagen), Glutamine (for immune cells), Zinc, Vitamin C, and Copper at rates far exceeding normal dietary intake. When these substrates are exhausted, the biological machinery simply stops. <strong>This is the exact gap Epithrive® fills.</strong></p>
+      </div>
+      <div class="fail-card" style="border-left-color:#e74c3c">
+        <div class="fail-num">6</div>
+        <h4>Catabolism & Muscle Wasting</h4>
+        <p>Chronic illness triggers a catabolic state where the body breaks down muscle protein to fuel the inflammatory response and immune system. Patients lose lean mass, become immobile, and are at risk of developing new pressure injuries. Immobility impairs tissue perfusion and further slows wound healing. <strong>Ca-HMB specifically interrupts this catabolic cycle</strong>, preserving the muscle mass required for recovery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: WOUND TYPES -->
+  <section class="section" id="s5">
+    <div class="sec-hd">
+      <div class="sec-num">5</div>
+      <div>
+        <h2>Wound Types & Staging Systems</h2>
+        <div class="sh-sub">Know every wound your doctor treats — its classification, its specific biology, and its nutritional vulnerability</div>
+      </div>
+    </div>
+
+    <div class="wt-grid">
+
+      <!-- DFU -->
+      <div class="wt-card wt-dfu">
+        <div class="wt-head">
+          <div class="wt-icon">🦶</div>
+          <div>
+            <h4>Diabetic Foot Ulcer (DFU)</h4>
+            <div class="wt-sub">Wagner Classification System</div>
+          </div>
+        </div>
+        <div class="wt-body">
+          <p>The most critical wound type in India. DFU results from the combination of <strong>peripheral neuropathy</strong> (loss of protective sensation — patient can't feel injury) and <strong>peripheral vascular disease</strong> (impaired blood flow). The diabetic environment also impairs endothelial NO production, macrophage function, and collagen synthesis — creating a triple deficit.</p>
+          <h5>Wagner Grading System</h5>
+          <div class="wagner-grid">
+            <div class="w-grade wg0"><span class="wg-num">0</span><div class="wg-desc">Intact skin, high risk</div></div>
+            <div class="w-grade wg1"><span class="wg-num">1</span><div class="wg-desc">Superficial ulcer</div></div>
+            <div class="w-grade wg2"><span class="wg-num">2</span><div class="wg-desc">Deep, tendon/joint</div></div>
+            <div class="w-grade wg3"><span class="wg-num">3</span><div class="wg-desc">Abscess, osteomyelitis</div></div>
+            <div class="w-grade wg4"><span class="wg-num">4</span><div class="wg-desc">Partial gangrene</div></div>
+            <div class="w-grade wg5"><span class="wg-num">5</span><div class="wg-desc">Full gangrene</div></div>
+          </div>
+          <div class="wt-tags">
+            <span class="wt-tag">Epithrive® target: Grade 1–3</span>
+            <span class="wt-tag danger">Grade 4–5: Surgical priority</span>
+          </div>
+          <p style="margin-top:10px;font-size:12px;color:var(--muted)">⚠️ 40–70% of all non-traumatic lower limb amputations occur in diabetic patients. DFU is the single most important wound type in the Indian market.</p>
+        </div>
+      </div>
+
+      <!-- PRESSURE INJURY -->
+      <div class="wt-card wt-press">
+        <div class="wt-head">
+          <div class="wt-icon">🛏️</div>
+          <div>
+            <h4>Pressure Injury (Bedsore)</h4>
+            <div class="wt-sub">NPUAP/EPUAP Staging System</div>
+          </div>
+        </div>
+        <div class="wt-body">
+          <p>Caused by sustained pressure and shear forces on bony prominences — sacrum, heels, hips. Pressure exceeding capillary pressure (~32 mmHg) cuts off blood supply, causing ischaemic necrosis. Common in ICU patients, stroke patients, and the elderly. Malnutrition is the single largest modifiable risk factor.</p>
+          <h5>NPUAP Staging</h5>
+          <div class="pressure-stages">
+            <div class="ps-stage ps1"><span class="pss-num">I</span><div class="pss-desc">Non-blanching redness. Skin intact</div></div>
+            <div class="ps-stage ps2"><span class="pss-num">II</span><div class="pss-desc">Partial thickness loss. Shallow open wound</div></div>
+            <div class="ps-stage ps3"><span class="pss-num">III</span><div class="pss-desc">Full thickness tissue loss. Subcutaneous tissue visible</div></div>
+            <div class="ps-stage ps4"><span class="pss-num">IV</span><div class="pss-desc">Full thickness, exposed bone/tendon/muscle</div></div>
+          </div>
+          <div class="wt-tags">
+            <span class="wt-tag">Epithrive® target: Stage II–IV</span>
+            <span class="wt-tag danger">Stage IV: Often surgical</span>
+          </div>
+          <p style="margin-top:10px;font-size:12px;color:var(--muted)">⚠️ Prevalence in Indian ICU settings: 8–40%. Each Stage III–IV ulcer costs ₹1–3 lakh in direct treatment costs.</p>
+        </div>
+      </div>
+
+      <!-- POST-SURGICAL -->
+      <div class="wt-card wt-surg">
+        <div class="wt-head">
+          <div class="wt-icon">🔬</div>
+          <div>
+            <h4>Post-Surgical Wound</h4>
+            <div class="wt-sub">Dehiscence, Infection, High-Risk Closures</div>
+          </div>
+        </div>
+        <div class="wt-body">
+          <p>Surgical wounds should heal within 2–3 weeks. When they don't — <strong>wound dehiscence</strong> (re-opening of a sutured wound) is one of the most feared post-operative complications. High-risk patients: malnourished, diabetic, elderly, obese, on corticosteroids, or post-major abdominal surgery. Pre-operative nutritional optimisation significantly reduces dehiscence rates.</p>
+          <h5>Key Risk Indicators</h5>
+          <p style="font-size:12.5px">Albumin &lt;3.5 g/dL · Pre-albumin &lt;15 mg/dL · BMI &lt;18.5 or &gt;35 · HbA1c &gt;8% · Age &gt;70 · Immunosuppression</p>
+          <div class="wt-tags">
+            <span class="wt-tag">Pre-op: 5–7 days Epithrive®</span>
+            <span class="wt-tag">Post-op: Start within 48 hrs</span>
+          </div>
+          <p style="margin-top:10px;font-size:12px;color:var(--muted)">⚠️ Surgical wound dehiscence doubles hospital stay and multiplies cost. Arginine+Gln+HMB supplementation reduces post-surgical complications in malnourished patients (Barbul et al.)</p>
+        </div>
+      </div>
+
+      <!-- BURNS -->
+      <div class="wt-card wt-burn">
+        <div class="wt-head">
+          <div class="wt-icon">🔥</div>
+          <div>
+            <h4>Burns</h4>
+            <div class="wt-sub">Partial vs. Full Thickness</div>
+          </div>
+        </div>
+        <div class="wt-body">
+          <p>Burns create the most extreme nutritional demand of any wound type. The burn injury triggers <strong>hypermetabolism</strong> — metabolic rate rises 150–200% above normal. Massive protein catabolism occurs as the body tries to fuel the immune response and repair. Without aggressive nutritional support, burn patients deteriorate rapidly. Glutamine is particularly critical — it is the most depleted amino acid in burns.</p>
+          <h5>Classification</h5>
+          <p style="font-size:12.5px;margin-bottom:8px"><strong>Superficial (1st degree):</strong> Epidermis only — redness, no blisters. Heals spontaneously in 3–5 days.<br>
+          <strong>Partial thickness (2nd degree):</strong> Epidermis + dermis. Blistering. Heals 10–21 days.<br>
+          <strong>Full thickness (3rd degree):</strong> All skin layers destroyed. Requires grafting. Massive nutritional deficit.</p>
+          <div class="wt-tags">
+            <span class="wt-tag">Nutritional support: Day 1–2 post-burn</span>
+            <span class="wt-tag danger">2nd–3rd degree: Critical indication</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VENOUS LEG ULCER -->
+      <div class="wt-card wt-vlu">
+        <div class="wt-head">
+          <div class="wt-icon">🦵</div>
+          <div>
+            <h4>Venous Leg Ulcer (VLU)</h4>
+            <div class="wt-sub">Most common chronic wound globally</div>
+          </div>
+        </div>
+        <div class="wt-body">
+          <p>Caused by chronic venous insufficiency — failure of venous valves leads to blood pooling in the lower legs, fluid leakage into tissues (oedema), and progressive tissue hypoxia. The hypoxic, oedematous environment impairs all phases of wound healing. VLUs have a recurrence rate of 70%+ without correction of underlying venous disease. Nutrition supports healing even though the primary cause is mechanical.</p>
+          <h5>Clinical Features</h5>
+          <p style="font-size:12.5px">Location: Medial lower leg (gaiter area) · Shallow, irregular wound · Weeping, exudative · Surrounded by lipodermatosclerosis (firm, brown skin) · Typically painless unless infected</p>
+          <div class="wt-tags">
+            <span class="wt-tag">Primary Rx: Compression therapy</span>
+            <span class="wt-tag">Epithrive®: Nutritional adjunct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHRONIC/NON-HEALING -->
+      <div class="wt-card wt-chronic">
+        <div class="wt-head">
+          <div class="wt-icon">⏱️</div>
+          <div>
+            <h4>Chronic Non-Healing Wound</h4>
+            <div class="wt-sub">Any wound stalled for 2+ weeks</div>
+          </div>
+        </div>
+        <div class="wt-body">
+          <p>A clinical designation — not a cause. Any wound that has failed to demonstrate measurable progress in 2+ weeks despite standard care is classified as chronic. The underlying cause may be any of the above, compounded by systemic factors. The defining biology is <strong>persistent inflammation with ECM destruction exceeding rebuilding</strong>. These patients often have multiple overlapping risk factors: malnutrition + diabetes + poor circulation + infection.</p>
+          <h5>The SNAP Rule for Patient Identification</h5>
+          <p style="font-size:12.5px"><strong>S</strong>talled wound · <strong>N</strong>utrition risk · <strong>A</strong>lbumin low · <strong>P</strong>ressure/Diabetic/Surgical/Burn type</p>
+          <div class="wt-tags">
+            <span class="wt-tag">Any SNAP criteria met → Epithrive®</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 6: INDIA BURDEN -->
+  <section class="section" id="s6">
+    <div class="sec-hd">
+      <div class="sec-num">6</div>
+      <div>
+        <h2>The Indian Wound Burden</h2>
+        <div class="sh-sub">The market context — why wound nutrition is a critical unmet need in India</div>
+      </div>
+    </div>
+
+    <div class="burden-grid">
+      <div class="burden-stat">
+        <div class="bs-num">77M</div>
+        <div class="bs-label">Diabetics in India<br>2nd largest globally</div>
+      </div>
+      <div class="burden-stat">
+        <div class="bs-num">25%</div>
+        <div class="bs-label">of diabetics develop a foot ulcer in their lifetime</div>
+      </div>
+      <div class="burden-stat">
+        <div class="bs-num">70%</div>
+        <div class="bs-label">of non-traumatic amputations occur in diabetic patients</div>
+      </div>
+      <div class="burden-stat">
+        <div class="bs-num">50%</div>
+        <div class="bs-label">malnutrition rate in surgical & elderly hospital patients</div>
+      </div>
+    </div>
+
+    <div class="burden-flow">
+      <h4>The DFU Patient Journey in India — Without Nutritional Support</h4>
+      <div class="bf-chain">
+        <div class="bf-step">Minor foot injury</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">Patient can't feel it (neuropathy)</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">Wound develops</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">Local care begins</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">No nutrition support</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">Wound stalls</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">Infection sets in</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">Hospital admission</div>
+        <div class="bf-arr">→</div>
+        <div class="bf-step">Surgery / possible amputation</div>
+      </div>
+      <div style="margin-top:14px;font-size:12.5px;color:var(--muted)">Average cost to reach amputation point: ₹3–5 lakh. Average DFU healing time in India without nutritional support: 6–9 months. With Arg+Gln+HMB formula: reduced to 2–3 months in literature studies.</div>
+    </div>
+
+    <div class="factors-grid">
+      <div class="factor-card bad">
+        <div class="fc-icon">🏥</div>
+        <h4>₹10,000–₹15,000</h4>
+        <p>Estimated savings per patient from faster healing — reduced dressings, shorter stay, fewer readmissions</p>
+      </div>
+      <div class="factor-card bad">
+        <div class="fc-icon">📅</div>
+        <h4>40% Fewer Dressings</h4>
+        <p>Clinical observation with Arg+Gln+HMB nutritional support vs. standard care alone</p>
+      </div>
+      <div class="factor-card bad">
+        <div class="fc-icon">📉</div>
+        <h4>3–4 Days Less</h4>
+        <p>Estimated reduction in hospital stay with nutritional wound support (Williams 2002; global literature)</p>
+      </div>
+      <div class="factor-card bad">
+        <div class="fc-icon">🧬</div>
+        <h4>Zero Digital Competitors</h4>
+        <p>No established Indian wound nutrition brand exists online — first-mover advantage for Epithrive®</p>
+      </div>
+      <div class="factor-card bad">
+        <div class="fc-icon">💊</div>
+        <h4>Systemic Malnutrition</h4>
+        <p>30–50% of Indian surgical patients are malnourished at admission — the key substrate deficit that Epithrive® addresses</p>
+      </div>
+      <div class="factor-card bad">
+        <div class="fc-icon">📊</div>
+        <h4>&lt;2% of Total Cost</h4>
+        <p>Epithrive® cost over 25 days was less than 2% of total wound expenditure per case study patient</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: NUTRITIONAL GAP -->
+  <section class="section" id="s7">
+    <div class="sec-hd">
+      <div class="sec-num">7</div>
+      <div>
+        <h2>The Nutritional Gap</h2>
+        <div class="sh-sub">Why the body can't heal without the right substrates — and what Epithrive® provides</div>
+      </div>
+    </div>
+
+    <div class="callout navy" style="margin-bottom:20px">
+      <strong>Core principle:</strong> Wound healing is a systemic biological event. It runs on substrates — specific amino acids, micronutrients, and metabolites — at rates far exceeding what a normal diet provides, especially in the setting of illness. When substrates are exhausted, healing stops regardless of how good the dressing is.
+    </div>
+
+    <table class="gap-table">
+      <thead>
+        <tr>
+          <th>Substrate Needed</th>
+          <th>What Happens Without It (The Deficit)</th>
+          <th>Epithrive® Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>L-Arginine</td>
+          <td>NO production fails → wound is hypoxic. Collagen synthesis stalls (no Proline). Angiogenesis does not initiate. Macrophages cannot activate fully.</td>
+          <td>7g L-Arginine → restores NO pathway → vasodilation → blood flow to wound → collagen scaffold initiated</td>
+        </tr>
+        <tr>
+          <td>L-Glutamine</td>
+          <td>Immune cells (neutrophils, macrophages) lose their fuel → infection risk ↑. Fibroblasts cannot proliferate. Gut barrier breaks down → bacterial translocation risk.</td>
+          <td>7g L-Glutamine → fuels immune system → controls infection → enables fibroblast proliferation → protects gut barrier</td>
+        </tr>
+        <tr>
+          <td>Collagen Precursors</td>
+          <td>ECM formation is slow and structurally weak. Granulation tissue is poor. Wound closes but re-opens under stress (dehiscence).</td>
+          <td>2.5g Marine Collagen Peptides → direct ECM substrate → fibroblast stimulation → Vitamin C + Copper → stable cross-linked collagen</td>
+        </tr>
+        <tr>
+          <td>Anti-Catabolic Support</td>
+          <td>Muscle breakdown accelerates → immobility → pressure injury risk on other sites → impaired oxygen delivery everywhere.</td>
+          <td>1.5g Ca-HMB → inhibits ubiquitin-proteasome pathway → muscle mass preserved → mobility supported → O₂ delivery maintained</td>
+        </tr>
+        <tr>
+          <td>Zinc</td>
+          <td>DNA polymerase fails → cell division slows. MMP regulation lost → collagen destroyed faster than built. Epithelialization delayed.</td>
+          <td>13mg Zinc → cofactor for DNA polymerase → epithelialization → MMP regulation in remodeling phase</td>
+        </tr>
+        <tr>
+          <td>Vitamin C</td>
+          <td>Collagen triple helix cannot be hydroxylated → structurally unstable → wound re-opens. Even mild deficiency impairs collagen formation dramatically.</td>
+          <td>60mg Vitamin C → prolyl/lysyl hydroxylase cofactor → stable, tensile collagen fibres</td>
+        </tr>
+        <tr>
+          <td>Copper</td>
+          <td>Collagen fibres deposited but not cross-linked → weak scaffold → wound looks healed but breaks open easily.</td>
+          <td>1.3mg Copper → lysyl oxidase → collagen cross-linking → structural wound integrity</td>
+        </tr>
+        <tr>
+          <td>Antioxidants (Vit E + Selenium)</td>
+          <td>Oxidative stress from inflammation damages healthy peri-wound tissue → wound edge cell death → effective wound size grows, not shrinks.</td>
+          <td>7.5mg Vit E + 30mcg Selenium → ROS neutralised → peri-wound tissue protected → wound edges viable for closure</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="bridge-block">
+      <h3>🔗 The Bridge: Biology → Epithrive®</h3>
+      <p>You have now learned the four phases of wound healing, the six key cells, the five reasons wounds stall, and the eight critical substrates the body needs to repair itself. Every single item in that substrate list maps directly to an ingredient in Epithrive®.</p>
+      <p>This is not coincidence. Epithrive® was designed around the biology — not the other way around. When a doctor asks why the product contains this combination, you are now able to give a cellular-level answer. That is the difference between an MR who takes orders and a clinical advisor who earns trust.</p>
+      <div class="bridge-pills">
+        <div class="bridge-pill">Arginine → NO → Angiogenesis</div>
+        <div class="bridge-pill">Glutamine → Immune Cells → Infection Control</div>
+        <div class="bridge-pill">Collagen → ECM Scaffold</div>
+        <div class="bridge-pill">HMB → Muscle Preservation</div>
+        <div class="bridge-pill">Zinc → Cell Division + MMP Regulation</div>
+        <div class="bridge-pill">Vitamin C → Collagen Stability</div>
+        <div class="bridge-pill">Copper → Cross-Linking</div>
+        <div class="bridge-pill">Antioxidants → Tissue Protection</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: ASSESSMENT TOOLS -->
+  <section class="section" id="s8">
+    <div class="sec-hd">
+      <div class="sec-num">8</div>
+      <div>
+        <h2>Assessment Tools MR Must Know</h2>
+        <div class="sh-sub">You don't need to calculate these — you need to know they exist and what they trigger</div>
+      </div>
+    </div>
+
+    <div class="tool-grid">
+
+      <div class="tool-card">
+        <div class="tool-head">
+          <h4>MUST Score</h4>
+          <p>Malnutrition Universal Screening Tool — the Epithrive® trigger</p>
+        </div>
+        <div class="tool-body">
+          <p>A simple 3-step screening tool used by nurses and dietitians. <strong>MUST ≥2 is the nutritional trigger for Epithrive® recommendation</strong>. When a doctor or dietitian says a patient has a MUST score of 2 or above, that patient is an Epithrive® candidate.</p>
+          <table class="must-table">
+            <thead><tr><th>Parameter</th><th>Score 0</th><th>Score 1</th><th>Score 2</th></tr></thead>
+            <tbody>
+              <tr><td>BMI</td><td>&gt;20</td><td>18.5–20</td><td>&lt;18.5</td></tr>
+              <tr><td>Weight Loss (3–6 months)</td><td>&lt;5%</td><td>5–10%</td><td>&gt;10%</td></tr>
+              <tr><td>Acute illness effect</td><td>None</td><td>—</td><td>No food &gt;5 days</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="score-badge low">Score 0: Low risk</span>
+            <span class="score-badge mid">Score 1: Medium risk</span>
+            <span class="score-badge high">Score ≥2: HIGH RISK → Epithrive®</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-head">
+          <h4>Wagner Grading (DFU)</h4>
+          <p>Diabetic foot ulcer depth and severity classification</p>
+        </div>
+        <div class="tool-body">
+          <p>The most widely used DFU classification in India. Grades 1–3 are the primary target for nutritional intervention alongside standard care. Grade 4–5 require urgent surgical assessment — Epithrive® is adjunctive, not primary.</p>
+          <table class="must-table">
+            <thead><tr><th>Grade</th><th>Description</th><th>Epithrive®</th></tr></thead>
+            <tbody>
+              <tr><td>0</td><td>Intact skin, high risk foot</td><td>Preventive consideration</td></tr>
+              <tr><td>1</td><td>Superficial ulcer, no depth</td><td><span class="score-badge low">Yes — 1 sachet</span></td></tr>
+              <tr><td>2</td><td>Deep, to tendon/capsule</td><td><span class="score-badge mid">Yes — 1–2 sachets</span></td></tr>
+              <tr><td>3</td><td>Deep with abscess/osteomyelitis</td><td><span class="score-badge mid">Yes + antibiotic</span></td></tr>
+              <tr><td>4</td><td>Partial gangrene of foot</td><td>Post-surgical adjunct</td></tr>
+              <tr><td>5</td><td>Full foot gangrene</td><td>Surgical priority</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-head">
+          <h4>NPUAP Pressure Ulcer Staging</h4>
+          <p>National Pressure Ulcer Advisory Panel classification</p>
+        </div>
+        <div class="tool-body">
+          <p>Four-stage system describing the depth and severity of pressure injury. Stage II–IV are active healing indications for Epithrive®. Stage I is a preventive indication in high-risk malnourished patients.</p>
+          <table class="must-table">
+            <thead><tr><th>Stage</th><th>Tissue Involvement</th><th>Epithrive®</th></tr></thead>
+            <tbody>
+              <tr><td>I</td><td>Non-blanching redness. Skin intact</td><td>Preventive in high-risk</td></tr>
+              <tr><td>II</td><td>Partial thickness. Open shallow wound</td><td><span class="score-badge low">Yes — 1 sachet</span></td></tr>
+              <tr><td>III</td><td>Full thickness. Subcutaneous tissue visible</td><td><span class="score-badge mid">Yes — 2 sachets</span></td></tr>
+              <tr><td>IV</td><td>Bone, tendon, or muscle exposed</td><td><span class="score-badge high">Yes — 2 sachets + surgical</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-head">
+          <h4>Serum Albumin & Pre-Albumin</h4>
+          <p>Biochemical nutrition markers — quick screening</p>
+        </div>
+        <div class="tool-body">
+          <p>Both are markers of nutritional status routinely measured in hospitalised patients. Key thresholds to know:</p>
+          <table class="must-table">
+            <thead><tr><th>Marker</th><th>Normal</th><th>Epithrive® Trigger</th></tr></thead>
+            <tbody>
+              <tr><td>Serum Albumin</td><td>3.5–5.0 g/dL</td><td><span class="score-badge high">&lt;3.5 g/dL</span></td></tr>
+              <tr><td>Pre-Albumin</td><td>15–40 mg/dL</td><td><span class="score-badge high">&lt;15 mg/dL</span></td></tr>
+              <tr><td>BMI</td><td>18.5–25</td><td><span class="score-badge high">&lt;18.5 or &gt;5% loss</span></td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:10px;font-size:12.5px;color:var(--muted)">Note: Albumin is slow to change (reflects 20-day status). Pre-albumin reflects more recent nutritional state (2–3 day). Both are useful to reference when discussing patient candidacy with a dietitian or physician.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout teal">
+      <strong>MR tip:</strong> You are not expected to calculate MUST scores or grade wounds yourself. Your job is to know the thresholds — so when a doctor mentions them, you can immediately connect the patient profile to Epithrive®. When a surgeon says "this patient's albumin is 2.8," you should respond: "That's below the 3.5 threshold — this patient has a documented nutritional deficit that could be slowing wound recovery. Would you consider Epithrive® as a daily adjunct?"
+    </div>
+  </section>
+
+  <!-- SECTION 9: KNOWLEDGE CHECK -->
+  <section class="section" id="s9">
+    <div class="sec-hd">
+      <div class="sec-num">9</div>
+      <div>
+        <h2>Knowledge Check</h2>
+        <div class="sh-sub">Test your understanding before moving to Module 2 — tap an answer to check</div>
+      </div>
+    </div>
+
+    <div class="kc-section">
+      <h4>🧠 Quick Quiz — Module 1</h4>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Q1. A wound is classified as "chronic" when it has shown no measurable progress for how long?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. 1 week is too short — normal wounds can take up to 10–14 days to show early progress.')">A) 1 week</div>
+          <div class="quiz-opt" onclick="checkAns(this,'correct','Correct. Any wound with no measurable progress in 2+ weeks despite standard care is classified as chronic — this is the key SNAP Rule criterion.')">B) 2 weeks</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. By 4 weeks, significant intervention is already late. The 2-week mark is the clinical threshold.')">C) 4 weeks</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. 1 month is too long to wait before acting. The clinical standard is 2 weeks.')">D) 1 month</div>
+        </div>
+        <div class="quiz-feedback" id="fb_0"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Q2. Which cell type is the PRIMARY fuel consumer of L-Glutamine in wound healing?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Partly correct — fibroblasts do use Glutamine, but they are not the primary consumers. Immune cells (macrophages and neutrophils) are the primary fuel consumers.')">A) Fibroblasts</div>
+          <div class="quiz-opt" onclick="checkAns(this,'correct','Correct! Macrophages and neutrophils (immune cells) are the primary Glutamine consumers. This is why Glutamine deficiency → immune failure → infection risk ↑ in wound patients.')">B) Macrophages & Neutrophils</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. Platelets use energy from glucose/ATP, not Glutamine as their primary fuel.')">C) Platelets</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. Keratinocytes use multiple fuel sources but are not the primary Glutamine consumers.')">D) Keratinocytes</div>
+        </div>
+        <div class="quiz-feedback" id="fb_1"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Q3. What is the MUST score threshold that triggers Epithrive® recommendation?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. MUST Score 0 indicates low nutritional risk — no intervention required.')">A) MUST ≥ 0</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. MUST Score 1 is medium risk — monitoring recommended, but ≥2 is the active intervention threshold.')">B) MUST ≥ 1</div>
+          <div class="quiz-opt" onclick="checkAns(this,'correct','Correct. MUST ≥ 2 is the HIGH RISK threshold — this patient has documented malnutrition and is a primary Epithrive® candidate, especially if they have an active wound.')">C) MUST ≥ 2</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. There is no MUST ≥ 3 threshold in the standard tool. The scale goes 0, 1, and ≥2.')">D) MUST ≥ 3</div>
+        </div>
+        <div class="quiz-feedback" id="fb_2"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Q4. In a diabetic foot ulcer, which Wagner Grade marks the primary target zone for nutritional intervention?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. Grade 0 is intact skin with high risk — preventive consideration, not active wound intervention.')">A) Grade 0 only</div>
+          <div class="quiz-opt" onclick="checkAns(this,'correct','Correct! Wagner Grade 1–3 represents active ulcers where nutritional intervention alongside standard care has the highest impact. Grade 4–5 require surgical priority — Epithrive® is adjunctive post-surgery.')">B) Grade 1–3</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. Grade 4–5 have partial or full gangrene — surgical management is the priority. Epithrive® can be used post-surgery but is not the primary intervention at this stage.')">C) Grade 4–5 only</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. Not all grades are equally appropriate. Grade 4–5 require surgery first.')">D) All grades equally</div>
+        </div>
+        <div class="quiz-feedback" id="fb_3"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Q5. Which enzyme system, when chronically overactive in a wound, destroys the extracellular matrix faster than it can be rebuilt — keeping the wound in a chronic, stalled state?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. Lysyl oxidase cross-links collagen — it is beneficial in wound healing, not destructive.')">A) Lysyl oxidase</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. Glutathione peroxidase is an antioxidant enzyme that protects cells — it is protective, not destructive.')">B) Glutathione peroxidase</div>
+          <div class="quiz-opt" onclick="checkAns(this,'correct','Correct! Matrix metalloproteinases (MMPs) — when chronically overactivated in the chronic wound environment — degrade collagen, growth factors, and granulation tissue faster than fibroblasts can build new ECM. Zinc helps regulate MMP activity.')">C) Matrix metalloproteinases (MMPs)</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. DNA polymerase synthesises DNA in dividing cells — it supports wound healing, not stalling.')">D) DNA polymerase</div>
+        </div>
+        <div class="quiz-feedback" id="fb_4"></div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">Q6. What percentage of Indian surgical and elderly patients are estimated to be malnourished at hospital admission?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. 10% significantly underestimates the problem. Indian malnutrition rates in hospitalised patients are substantially higher.')">A) ~10%</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. 20% is still too low. The data from Indian hospital studies consistently shows a higher proportion.')">B) ~20%</div>
+          <div class="quiz-opt" onclick="checkAns(this,'correct','Correct. 30–50% of surgical and elderly patients in Indian hospitals are malnourished at admission — this is the substrate deficit that Epithrive® directly addresses and is your strongest justification for recommendation.')">C) 30–50%</div>
+          <div class="quiz-opt" onclick="checkAns(this,'wrong','Incorrect. 60–80% would overstate the problem. The consistent finding is 30–50% in published Indian hospital data.')">D) 60–80%</div>
+        </div>
+        <div class="quiz-feedback" id="fb_5"></div>
+      </div>
+
+    </div>
+
+    <div class="callout teal">
+      <strong>Module 1 complete.</strong> You now understand the biology of wound healing — the four phases, the six cells, why wounds stall, the six wound types and their staging systems, the Indian wound burden, and the nutritional gap that Epithrive® fills. This knowledge is the foundation for every clinical conversation you will have in the field. <strong>Proceed to Module 2: Wound Care Fundamentals</strong> when ready.
+    </div>
+  </section>
+
+</main>
+
+<style>
+@keyframes pulse { from { opacity:.6; } to { opacity:1; } }
+</style>
+
+<script>
+// Sidebar active on scroll
+const navLinks = document.querySelectorAll('.sb-nav a');
+const sections = document.querySelectorAll('.section');
+
+function setActive() {
+  let curr = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) curr = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + curr);
+  });
+}
+window.addEventListener('scroll', setActive);
+setActive();
+
+navLinks.forEach(l => {
+  l.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(l.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Quiz logic
+let answered = {};
+function checkAns(el, result, feedback) {
+  const item = el.closest('.quiz-item');
+  const idx = Array.from(document.querySelectorAll('.quiz-item')).indexOf(item);
+  if (answered[idx]) return;
+  answered[idx] = true;
+
+  item.querySelectorAll('.quiz-opt').forEach(o => {
+    o.style.pointerEvents = 'none';
+    o.style.opacity = '0.6';
+  });
+
+  if (result === 'correct') {
+    el.classList.add('correct');
+    el.style.opacity = '1';
+  } else {
+    el.classList.add('wrong');
+    el.style.opacity = '1';
+    // Highlight correct option
+    item.querySelectorAll('.quiz-opt').forEach(o => {
+      if (o.getAttribute('onclick') && o.getAttribute('onclick').includes("'correct'")) {
+        o.classList.add('correct');
+        o.style.opacity = '1';
+      }
+    });
+  }
+
+  const fb = document.getElementById('fb_' + idx);
+  if (fb) {
+    fb.textContent = (result === 'correct' ? '✓ ' : '✗ ') + feedback;
+    fb.className = 'quiz-feedback show ' + (result === 'correct' ? 'ok' : 'no');
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 5 — Sales Skills & Objection Handling</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#F4811F; --orange-d:#d46b0e; --orange-light:#fef3e8; --orange-mid:#fbd9b5;
+  --teal:#0E8FA8; --teal-light:#e5f4f8; --teal-mid:#b5dce8;
+  --navy:#0f1e2c; --navy-mid:#1a3045;
+  --charcoal:#1e2d3d; --slate:#2d4255;
+  --body:#263545; --muted:#60778a; --border:#dce6ed;
+  --bg:#f2ede8; --card:#fff;
+  --green:#0a7a40; --green-bg:#edfaf3; --green-bd:#7ddba8;
+  --red:#c0291a; --red-bg:#fdf2f1; --red-bd:#f5a9a3;
+  --amber:#b45309; --amber-bg:#fffbeb; --amber-bd:#fcd34d;
+  --purple:#6527a8; --purple-bg:#f5f0fc;
+  --sidebar-w:256px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--body);display:flex;min-height:100vh;font-size:14px;line-height:1.65}
+
+/* ── SIDEBAR ── */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--navy);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+#sidebar::-webkit-scrollbar{width:3px}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+.sb-brand{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-tag{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:5px}
+.sb-brand h2{font-family:'Fraunces',serif;color:#fff;font-size:18px;font-weight:600}
+.sb-brand p{color:rgba(255,255,255,.38);font-size:11px;margin-top:3px}
+.sb-cat{padding:16px 20px 6px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.22)}
+.sb-nav a{display:flex;align-items:center;gap:9px;padding:8px 20px;color:rgba(255,255,255,.52);text-decoration:none;font-size:12px;font-weight:500;border-left:3px solid transparent;transition:all .18s}
+.sb-nav a:hover,.sb-nav a.active{color:#fff;background:rgba(255,255,255,.05);border-left-color:var(--orange)}
+.sb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0}
+.sb-nav a:hover .sb-dot,.sb-nav a.active .sb-dot{background:var(--orange)}
+.sb-stat{margin:16px 20px;padding:12px 14px;background:rgba(244,129,31,.12);border:1px solid rgba(244,129,31,.28);border-radius:8px;font-size:11px;color:rgba(255,255,255,.55);line-height:1.55}
+.sb-stat strong{color:#fbbf88}
+
+/* ── MAIN ── */
+#main{margin-left:var(--sidebar-w);flex:1;padding:0 44px 100px;max-width:1020px}
+
+/* ── HEADER ── */
+.page-header{background:linear-gradient(145deg,#0f1e2c 0%,#1a3045 45%,#7c3005 100%);margin:0 -44px 52px;padding:52px 44px 48px;position:relative;overflow:hidden;border-bottom:3px solid var(--orange)}
+.page-header::before{content:'';position:absolute;top:-50px;right:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(244,129,31,.18) 0%,transparent 70%)}
+.ph-pretag{display:inline-flex;align-items:center;gap:8px;background:rgba(244,129,31,.2);border:1px solid rgba(244,129,31,.4);border-radius:4px;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fbbf88;margin-bottom:14px}
+.page-header h1{font-family:'Fraunces',serif;color:#fff;font-size:38px;font-weight:700;line-height:1.1;margin-bottom:10px}
+.page-header h1 em{color:#fbbf88;font-style:normal}
+.page-header .ph-sub{color:rgba(255,255,255,.48);font-size:14.5px;max-width:580px;line-height:1.65}
+.ph-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.ph-chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,.6)}
+.ph-chip strong{color:#fff}
+
+/* ── SECTIONS ── */
+.section{margin-bottom:60px;scroll-margin-top:24px}
+.sec-hd{display:flex;align-items:center;gap:12px;margin-bottom:26px;padding-bottom:14px;border-bottom:2px solid var(--border)}
+.sec-num{width:34px;height:34px;background:var(--orange);color:#fff;border-radius:6px;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-hd h2{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--navy)}
+.sec-hd .sh-sub{font-size:12.5px;color:var(--muted);margin-top:1px}
+
+/* ── CALLOUTS ── */
+.callout{border-radius:8px;padding:14px 18px;margin-bottom:16px;font-size:13.5px;line-height:1.65}
+.callout.orange{background:var(--orange-light);border:1px solid var(--orange-mid)}.callout.orange strong{color:var(--orange-d)}
+.callout.teal{background:var(--teal-light);border:1px solid var(--teal-mid)}.callout.teal strong{color:var(--teal)}
+.callout.navy{background:var(--navy);color:rgba(255,255,255,.72)}.callout.navy strong{color:#fbbf88}
+.callout.green{background:var(--green-bg);border:1px solid var(--green-bd)}.callout.green strong{color:var(--green)}
+
+/* ── MINDSET GRID ── */
+.mindset-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+.ms-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.ms-card .ms-icon{font-size:32px;margin-bottom:10px}
+.ms-card h4{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.ms-card p{font-size:12.5px;color:var(--muted);line-height:1.5}
+.ms-card.highlight{background:var(--orange);border-color:var(--orange-d)}
+.ms-card.highlight h4{color:#fff}.ms-card.highlight p{color:rgba(255,255,255,.75)}
+
+/* ── SEGMENT CARDS ── */
+.segment-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.seg-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.seg-head{padding:14px 18px;display:flex;align-items:center;gap:12px}
+.seg-emoji{font-size:24px;flex-shrink:0}
+.seg-head h4{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#fff;line-height:1.2}
+.seg-head p{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
+.seg-priority{display:inline-block;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.pri-a{background:rgba(255,255,255,.25);color:#fff}
+.pri-b{background:rgba(255,255,255,.15);color:rgba(255,255,255,.75)}
+.seg-s1{background:linear-gradient(135deg,#143a5a,#1e5c8a)}
+.seg-s2{background:linear-gradient(135deg,#4a0d2e,#7b1245)}
+.seg-s3{background:linear-gradient(135deg,#0d3a2e,#145c47)}
+.seg-s4{background:linear-gradient(135deg,#3a2d00,#6b5200)}
+.seg-s5{background:linear-gradient(135deg,#1a1a2e,#2d2d5a)}
+.seg-s6{background:linear-gradient(135deg,#3b1515,#6b2020)}
+.seg-body{padding:16px 18px}
+.seg-row{display:flex;gap:8px;margin-bottom:7px;font-size:13px}
+.seg-label{font-weight:700;color:var(--navy);min-width:80px;flex-shrink:0;font-size:12px}
+.seg-val{color:var(--body);line-height:1.5}
+.seg-entry{margin-top:10px;background:var(--orange-light);border-left:3px solid var(--orange);border-radius:0 6px 6px 0;padding:9px 12px;font-size:12.5px;color:var(--charcoal);line-height:1.55;font-style:italic}
+
+/* ── PRECBAC CALL STRUCTURE ── */
+.precbac-steps{counter-reset:step}
+.step-block{display:flex;gap:0;margin-bottom:12px}
+.step-num{width:52px;background:var(--orange);color:#fff;border-radius:12px 0 0 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 8px;flex-shrink:0;text-align:center}
+.step-num .sn-letter{font-family:'Fraunces',serif;font-size:28px;font-weight:700;line-height:1;color:rgba(255,255,255,.35)}
+.step-num .sn-word{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px}
+.step-content{flex:1;background:var(--card);border:1px solid var(--border);border-left:none;border-radius:0 12px 12px 0;padding:14px 18px}
+.step-content h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.step-content .sc-time{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.step-content p{font-size:13px;color:var(--body);line-height:1.6;margin-bottom:6px}
+.step-script{margin-top:8px;background:var(--bg);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--charcoal);line-height:1.6;border-left:2px solid var(--orange)}
+.step-script strong{color:var(--orange-d)}
+
+/* ── PITCH TABS ── */
+.pitch-tabs{display:flex;gap:0;margin-bottom:0;border-bottom:2px solid var(--border)}
+.pitch-tab{padding:10px 18px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .18s;white-space:nowrap}
+.pitch-tab:hover{color:var(--navy)}
+.pitch-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.pitch-panels{background:var(--card);border:1px solid var(--border);border-radius:0 12px 12px 12px;overflow:hidden}
+.pitch-panel{display:none;padding:24px}
+.pitch-panel.active{display:block}
+.pitch-panel h4{font-family:'Fraunces',serif;font-size:19px;color:var(--navy);margin-bottom:4px}
+.pitch-panel .pp-meta{font-size:11.5px;color:var(--muted);margin-bottom:16px}
+.pitch-script{background:var(--orange-light);border:1.5px solid var(--orange-mid);border-radius:10px;padding:18px 20px;font-size:13.5px;line-height:1.8;color:var(--charcoal);font-style:italic;margin-bottom:12px;position:relative}
+.pitch-script::before{content:'💬';position:absolute;top:-14px;left:16px;font-size:20px;font-style:normal}
+.pitch-breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pb-item{background:var(--bg);border-radius:8px;padding:10px;text-align:center}
+.pb-item .pbi-label{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.pb-item .pbi-text{font-size:12px;color:var(--navy);font-weight:600;line-height:1.3}
+
+/* ── OBJECTION CARDS ── */
+.obj-cat-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin:24px 0 10px;display:flex;align-items:center;gap:10px}
+.obj-cat-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.obj-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.obj-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer}
+.obj-tag{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex-shrink:0}
+.tag-price{background:#fef9c3;color:#713f12}
+.tag-evidence{background:var(--teal-light);color:var(--teal)}
+.tag-compete{background:var(--purple-bg);color:var(--purple)}
+.tag-timing{background:var(--green-bg);color:var(--green)}
+.tag-practical{background:var(--orange-light);color:var(--orange-d)}
+.tag-patient{background:#fce4ec;color:#880e4f}
+.obj-q{font-size:13.5px;font-weight:600;color:var(--navy);flex:1;line-height:1.35}
+.obj-chevron{font-size:18px;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.obj-card.open .obj-chevron{transform:rotate(90deg);color:var(--orange)}
+.obj-body{display:none;padding:0 18px 16px;border-top:1px solid var(--border)}
+.obj-card.open .obj-body{display:block}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.obj-col h5{font-size:9.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.obj-col.what h5{color:var(--muted)}
+.obj-col.say h5{color:var(--orange-d)}
+.obj-col p,.obj-col li{font-size:13px;color:var(--body);line-height:1.65}
+.obj-col ul{padding-left:16px}
+.obj-col li{margin-bottom:4px}
+.obj-script{margin-top:12px;background:var(--orange-light);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:12px 14px;font-size:13px;line-height:1.7;color:var(--charcoal);font-style:italic}
+.obj-script strong{font-style:normal;color:var(--orange-d)}
+.obj-close{margin-top:10px;background:var(--green-bg);border-radius:6px;padding:9px 12px;font-size:12.5px;color:var(--green);font-weight:600}
+.obj-close::before{content:'🎯 Closing move: '}
+
+/* ── WHATSAPP ── */
+.wa-layout{display:grid;grid-template-columns:200px 1fr;gap:20px;margin-bottom:20px}
+.wa-nav{display:flex;flex-direction:column;gap:8px}
+.wa-tab{padding:10px 14px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--muted);border:1px solid var(--border);background:var(--card);transition:all .15s;text-align:left}
+.wa-tab:hover{border-color:var(--orange);color:var(--navy)}
+.wa-tab.active{background:var(--orange);color:#fff;border-color:var(--orange-d)}
+.wa-panels{flex:1}
+.wa-panel{display:none}
+.wa-panel.active{display:block}
+.wa-phone{background:var(--navy);border-radius:16px;padding:16px;max-width:380px}
+.wa-phone-top{background:#075e54;border-radius:10px 10px 0 0;padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:0}
+.wa-phone-top .avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.wa-phone-top h5{color:#fff;font-size:14px;font-weight:600}
+.wa-phone-top p{color:rgba(255,255,255,.6);font-size:11px}
+.wa-messages{background:#e5ddd5;border-radius:0 0 10px 10px;padding:12px;min-height:180px;display:flex;flex-direction:column;gap:8px}
+.wa-msg{max-width:80%;border-radius:8px;padding:8px 12px;font-size:12.5px;line-height:1.5;position:relative}
+.wa-msg.sent{background:#dcf8c6;align-self:flex-end;color:#1a1a1a}
+.wa-msg.recv{background:#fff;align-self:flex-start;color:#1a1a1a}
+.wa-msg .wa-time{font-size:10px;color:rgba(0,0,0,.4);margin-top:3px;text-align:right}
+.wa-rules{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.wa-rule{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px}
+.wa-rule h5{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.wa-rule.do h5{color:var(--green)}
+.wa-rule.dont h5{color:var(--red)}
+.wa-rule li{font-size:12.5px;color:var(--body);margin-bottom:4px;padding-left:14px;list-style:none;position:relative;line-height:1.5}
+.wa-rule.do li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800}
+.wa-rule.dont li::before{content:'✗';position:absolute;left:0;color:var(--red);font-weight:800}
+
+/* ── TERRITORY MATRIX ── */
+.matrix-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px}
+.matrix-wrap h4{font-family:'Fraunces',serif;font-size:18px;color:var(--navy);margin-bottom:16px}
+.matrix-grid{display:grid;grid-template-columns:80px 1fr 1fr;grid-template-rows:32px 1fr 1fr;gap:4px}
+.mx-empty{background:transparent}
+.mx-col-label{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.mx-row-label{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)}
+.mx-cell{border-radius:10px;padding:16px;min-height:110px}
+.mx-cell h5{font-size:12px;font-weight:700;margin-bottom:8px}
+.mx-cell ul{padding-left:14px}
+.mx-cell li{font-size:11.5px;margin-bottom:3px;line-height:1.4}
+.mx-a1{background:#fff3e0;border:1.5px solid #fcd34d}.mx-a1 h5{color:var(--amber)}
+.mx-a2{background:#fff9f5;border:1.5px solid var(--orange-mid)}.mx-a2 h5{color:var(--muted)}
+.mx-b1{background:#e8fdf2;border:1.5px solid var(--green-bd)}.mx-b1 h5{color:var(--green)}
+.mx-b2{background:#f8fafc;border:1.5px solid var(--border)}.mx-b2 h5{color:var(--muted)}
+
+/* ── WEEKLY PLANNER ── */
+.planner-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
+.plan-day{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.plan-day-head{padding:10px 12px;text-align:center;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff}
+.pd-mon{background:#0f4c75}.pd-tue{background:#1a6b4a}.pd-wed{background:#6b1a3a}.pd-thu{background:#4a3a00}.pd-fri{background:var(--orange-d)}
+.plan-day-body{padding:10px 12px}
+.plan-item{font-size:11.5px;color:var(--body);margin-bottom:5px;padding-left:10px;position:relative;line-height:1.4}
+.plan-item::before{content:'·';position:absolute;left:0;color:var(--orange);font-weight:900;font-size:14px}
+
+/* ── FIELD CHECKLIST ── */
+.checklist-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.cl-block{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.cl-head{padding:12px 16px}
+.cl-head h4{font-size:13px;font-weight:700;color:#fff}
+.cl-head p{font-size:10px;color:rgba(255,255,255,.6);margin-top:2px}
+.cl-before{background:var(--navy-mid)}.cl-during{background:#1a4e35}.cl-after{background:#5a2200}
+.cl-body{padding:12px 16px}
+.cl-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+.cl-box{width:16px;height:16px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:1px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:transparent}
+.cl-box:hover{border-color:var(--orange)}
+.cl-box.checked{background:var(--orange);border-color:var(--orange-d);color:#fff}
+.cl-item .cl-text{font-size:12px;color:var(--body);line-height:1.5}
+
+/* ── ROLE PLAY ── */
+.roleplay-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.rp-head{padding:14px 18px;display:flex;gap:14px;align-items:center;background:#fafbfc;cursor:pointer}
+.rp-badge{background:var(--orange);color:#fff;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.rp-title{font-size:14px;font-weight:600;color:var(--navy)}
+.rp-diff{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px}
+.diff-easy{background:var(--green-bg);color:var(--green)}
+.diff-med{background:var(--amber-bg);color:var(--amber)}
+.diff-hard{background:var(--red-bg);color:var(--red)}
+.rp-chevron{margin-left:auto;font-size:18px;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.roleplay-card.open .rp-chevron{transform:rotate(90deg);color:var(--orange)}
+.rp-body{display:none;padding:0 18px 18px;border-top:1px solid var(--border)}
+.roleplay-card.open .rp-body{display:block}
+.rp-scene{margin-top:14px;background:var(--bg);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--body);margin-bottom:14px}
+.rp-scene strong{color:var(--navy);display:block;margin-bottom:4px}
+.rp-dialog{display:flex;flex-direction:column;gap:10px}
+.rp-line{display:flex;gap:10px}
+.rp-speaker{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;min-width:36px;padding-top:8px;flex-shrink:0}
+.rp-speaker.dr{color:var(--red)}
+.rp-speaker.mr{color:var(--teal)}
+.rp-bubble{flex:1;padding:9px 13px;border-radius:8px;font-size:13px;line-height:1.6}
+.rp-line .dr~.rp-bubble{background:#fff0f2;color:var(--body)}
+.rp-line .mr~.rp-bubble{background:var(--teal-light);color:var(--body)}
+.rp-tip{margin-top:12px;background:var(--orange-light);border-radius:8px;padding:10px 13px;font-size:12px;color:#6e3a10}
+.rp-tip strong{color:var(--orange-d)}
+
+@media(max-width:860px){
+  body{flex-direction:column}
+  #sidebar{position:relative;width:100%;height:auto}
+  #main{margin-left:0;padding:0 20px 60px}
+  .mindset-grid,.segment-grid,.pitch-breakdown,.obj-grid,.wa-layout,.wa-rules,.matrix-grid,.planner-grid,.checklist-3{grid-template-columns:1fr}
+  .wa-layout{grid-template-columns:1fr}
+  .matrix-grid{grid-template-columns:1fr;display:flex;flex-direction:column}
+  .pitch-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-brand">
+    <span class="sb-tag">🎯 MR Training Program</span>
+    <h2>Epithrive®</h2>
+    <p>Module 5 — Sales Skills</p>
+  </div>
+  <div class="sb-cat">Contents</div>
+  <div class="sb-nav">
+    <a href="#s1" class="active"><span class="sb-dot"></span>The Sales Mindset</a>
+    <a href="#s2"><span class="sb-dot"></span>Customer Segments</a>
+    <a href="#s3"><span class="sb-dot"></span>The PRECBAC Call</a>
+    <a href="#s4"><span class="sb-dot"></span>30-Second Pitch Library</a>
+    <a href="#s5"><span class="sb-dot"></span>Objection Handling</a>
+    <a href="#s6"><span class="sb-dot"></span>WhatsApp Channel</a>
+    <a href="#s7"><span class="sb-dot"></span>Territory Management</a>
+    <a href="#s8"><span class="sb-dot"></span>Role-Play Scenarios</a>
+    <a href="#s9"><span class="sb-dot"></span>Field Readiness Checklist</a>
+  </div>
+  <div class="sb-stat">
+    <strong>The Conversion Sequence:</strong><br>
+    Credibility → Curiosity → Consideration → Commitment → Conversation.<br><br>
+    Every technique in this module serves one of these five stages.
+  </div>
+</nav>
+
+<main id="main">
+
+<div class="page-header">
+  <div class="ph-pretag">🎯 Module 5 of 8</div>
+  <h1>Sales Skills &<br><em>Objection Handling</em></h1>
+  <p class="ph-sub">The knowledge from Modules 1–4 means nothing until it converts into doctor recommendations. This module gives you the structure, the scripts, and the tools to turn clinical credibility into consistent field performance.</p>
+  <div class="ph-chips">
+    <div class="ph-chip"><strong>PRECBAC</strong> 7-step call structure</div>
+    <div class="ph-chip"><strong>6</strong> speciality-tuned elevator pitches</div>
+    <div class="ph-chip"><strong>20+</strong> objection handling scripts</div>
+    <div class="ph-chip"><strong>WhatsApp</strong> template library</div>
+    <div class="ph-chip"><strong>6</strong> role-play scenarios</div>
+  </div>
+</div>
+
+<!-- S1: MINDSET -->
+<section class="section" id="s1">
+  <div class="sec-hd">
+    <div class="sec-num">1</div>
+    <div><h2>The Medical Sales Mindset</h2><div class="sh-sub">The difference between an MR who is tolerated and one who is trusted</div></div>
+  </div>
+  <p style="font-size:14px;line-height:1.75;margin-bottom:20px">The most effective medical representatives are not salespeople — they are clinical advisors who happen to represent a product. Every technique in this module is built on that foundation. Doctors see dozens of MRs every week. The ones they remember, respect, and act on are the ones who come with knowledge, not just a catalogue.</p>
+  <div class="mindset-grid">
+    <div class="ms-card">
+      <div class="ms-icon">🎓</div>
+      <h4>Clinical Advisor</h4>
+      <p>You know wound biology (Module 1), wound care (Module 2), formulation science (Module 3), and evidence (Module 4). Lead with this. A doctor who sees you as knowledgeable will listen to what you say next.</p>
+    </div>
+    <div class="ms-card highlight">
+      <div class="ms-icon" style="color:#fff">🔑</div>
+      <h4>Solve Their Problem</h4>
+      <p>You are not here to sell Epithrive®. You are here to solve the problem of wound patients who aren't healing despite good local care. The product is the solution — but the problem is the conversation starter.</p>
+    </div>
+    <div class="ms-card">
+      <div class="ms-icon">🤝</div>
+      <h4>Long-term Relationship</h4>
+      <p>One recommendation from a trusted doctor generates 5–15 patients. One engaged doctor who writes "Epithrive® for wound nutrition support" on every applicable discharge slip is worth more than 50 one-time interactions.</p>
+    </div>
+  </div>
+  <div class="callout navy">
+    <strong>The conversion mindset shift:</strong> Stop thinking "how do I close this doctor today?" Start thinking "how do I earn the right to be trusted as their wound nutrition resource?" Trust leads to recommendation. Recommendation leads to patient outcomes. Patient outcomes lead to more recommendations. The call is the beginning — not the transaction.
+  </div>
+</section>
+
+<!-- S2: SEGMENTS -->
+<section class="section" id="s2">
+  <div class="sec-hd">
+    <div class="sec-num">2</div>
+    <div><h2>Customer Segments</h2><div class="sh-sub">7 HCP types — their priority, their pain point, and your entry strategy</div></div>
+  </div>
+  <div class="segment-grid">
+
+    <div class="seg-card">
+      <div class="seg-head seg-s1">
+        <div class="seg-emoji">🦴</div>
+        <div><h4>Orthopaedic Surgeon</h4><p>DFU, post-debridement, trauma</p><div class="seg-priority pri-a">Priority A — Highest Volume</div></div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row"><span class="seg-label">Pain Point</span><span class="seg-val">Post-debridement stalling, malnourished patients who delay surgical recovery</span></div>
+        <div class="seg-row"><span class="seg-label">Best Visit</span><span class="seg-val">OPD mornings (8–10am) or post-lunch. Pre-OT rounds 7–8am for surgical indications.</span></div>
+        <div class="seg-row"><span class="seg-label">Leave Behind</span><span class="seg-val">Doctor A4 summary + case study card showing 15-day DFU closure</span></div>
+        <div class="seg-entry">"Doctor, I know your post-debridement patients often stall despite good dressing. Our India study showed 72.4% wound area reduction when Epithrive® was added to standard care — PI was Dr. Bhanegaonkar, MS Ortho."</div>
+      </div>
+    </div>
+
+    <div class="seg-card">
+      <div class="seg-head seg-s2">
+        <div class="seg-emoji">🩸</div>
+        <div><h4>Diabetologist / Endocrinologist</h4><p>DFU, neuropathy, amputation prevention</p><div class="seg-priority pri-a">Priority A — DFU Primary Channel</div></div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row"><span class="seg-label">Pain Point</span><span class="seg-val">DFU that won't close, amputation risk, impaired NO production in diabetic microvasculature</span></div>
+        <div class="seg-row"><span class="seg-label">Best Visit</span><span class="seg-val">Between OPD sessions (typically 10am–12pm or 5–7pm evening OPD)</span></div>
+        <div class="seg-row"><span class="seg-label">Leave Behind</span><span class="seg-val">Formulation explainer (Arginine-NO pathway in diabetics) + India study summary</span></div>
+        <div class="seg-entry">"In diabetics, endothelial NO production is chronically impaired. Epithrive® provides 7g Arginine daily — restoring the NO pathway that's broken in your DFU patients. No added sugar. Safe alongside insulin."</div>
+      </div>
+    </div>
+
+    <div class="seg-card">
+      <div class="seg-head seg-s3">
+        <div class="seg-emoji">🏥</div>
+        <div><h4>ICU / Critical Care Physician</h4><p>Pressure injuries, burns, sepsis patients</p><div class="seg-priority pri-a">Priority A — Institutional Value</div></div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row"><span class="seg-label">Pain Point</span><span class="seg-val">Pressure injuries in ventilated patients, Glutamine depletion, hospital-acquired infections, LOS</span></div>
+        <div class="seg-row"><span class="seg-label">Best Visit</span><span class="seg-val">Post-morning rounds (10am–12pm). Ward rounds 6–7am only if you have senior access.</span></div>
+        <div class="seg-row"><span class="seg-label">Leave Behind</span><span class="seg-val">Institutional cost-benefit one-pager + Wischmeyer reference (45% infection reduction)</span></div>
+        <div class="seg-entry">"For any ICU patient who can take oral fluids — Glutamine is the most depleted substrate in critical illness. Wischmeyer showed 45% fewer ICU infections with Glutamine supplementation. One sachet per day alongside enteral/oral feeding."</div>
+      </div>
+    </div>
+
+    <div class="seg-card">
+      <div class="seg-head seg-s4">
+        <div class="seg-emoji">🥗</div>
+        <div><h4>Clinical Dietitian</h4><p>Nutritional prescriber, protocol authority</p><div class="seg-priority pri-a">Priority A — Protocol Gatekeeper</div></div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row"><span class="seg-label">Pain Point</span><span class="seg-val">General ONS don't meet wound-specific needs, MUST ≥2 patients with no targeted wound nutrition option</span></div>
+        <div class="seg-row"><span class="seg-label">Best Visit</span><span class="seg-val">Dietetics department mid-morning. Ask reception for "Wound Dietitian" or "Clinical Nutrition Team".</span></div>
+        <div class="seg-row"><span class="seg-label">Leave Behind</span><span class="seg-val">Full formulation explainer + ESPEN/EPUAP guideline reference sheet</span></div>
+        <div class="seg-entry">"You know EPUAP recommends Arginine, Zinc, and Vitamin C specifically for pressure injury patients. Epithrive® delivers all of these plus Glutamine, HMB, and Marine Collagen in a single sachet — not a generic protein supplement."</div>
+      </div>
+    </div>
+
+    <div class="seg-card">
+      <div class="seg-head seg-s5">
+        <div class="seg-emoji">🩺</div>
+        <div><h4>Wound Care Nurse / Sister</h4><p>Daily wound care, dressings, caregiver education</p><div class="seg-priority pri-b">Priority B — Influencer &amp; Educator</div></div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row"><span class="seg-label">Pain Point</span><span class="seg-val">Wounds that don't respond to dressings, frequent dressing changes, caregiver non-compliance</span></div>
+        <div class="seg-row"><span class="seg-label">Best Visit</span><span class="seg-val">Nursing station 9–11am or 3–5pm. Ask for Sister-in-Charge for wound patients.</span></div>
+        <div class="seg-row"><span class="seg-label">Leave Behind</span><span class="seg-val">Case study card (before/after photos) + simple "1 sachet a day" usage card</span></div>
+        <div class="seg-entry">"Sister, when a wound isn't responding despite good dressings, it's usually a systemic nutrition problem. Epithrive® is one sachet per day — orange flavour, easy for patients to take. We've seen granulation tissue starting within 10–12 days."</div>
+      </div>
+    </div>
+
+    <div class="seg-card">
+      <div class="seg-head seg-s6">
+        <div class="seg-emoji">💊</div>
+        <div><h4>Pharmacist / Medical Store</h4><p>Retail recommendation, caregiver queries</p><div class="seg-priority pri-b">Priority B — Last-Mile Conversion</div></div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row"><span class="seg-label">Pain Point</span><span class="seg-val">No wound nutrition product to recommend when caregivers ask, margin, product knowledge</span></div>
+        <div class="seg-row"><span class="seg-label">Best Visit</span><span class="seg-val">Late morning (11am–1pm) or early evening (5–7pm) — avoid lunch rush.</span></div>
+        <div class="seg-row"><span class="seg-label">Leave Behind</span><span class="seg-val">Product trifold + price card + WhatsApp ordering card for caregivers</span></div>
+        <div class="seg-entry">"When a family member comes in with a chronic wound patient — diabetic or bedsore — you now have something to recommend: Epithrive®, India's first targeted wound nutrition. ₹3,995 per 10-sachet box. Order for them via WhatsApp +91 99708 43254."</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S3: PRECBAC CALL STRUCTURE -->
+<section class="section" id="s3">
+  <div class="sec-hd">
+    <div class="sec-num">3</div>
+    <div><h2>The PRECBAC Call Structure</h2><div class="sh-sub">7 steps — from pre-call planning to post-call follow-up. Master this sequence cold.</div></div>
+  </div>
+  <p style="font-size:13.5px;line-height:1.75;margin-bottom:20px">Every high-performing doctor call follows a structure — whether the MR knows it or not. PRECBAC makes that structure explicit and repeatable. A 15-minute doctor call, executed well using this framework, is more effective than an hour of unstructured conversation.</p>
+
+  <div class="step-block">
+    <div class="step-num"><div class="sn-letter">P</div><div class="sn-word">Pre-Call</div></div>
+    <div class="step-content">
+      <span class="sc-time">⏱ 10–15 min before the call</span>
+      <h4>Pre-Call Planning</h4>
+      <p>Research the doctor: specialty, patient profile, OPD days, previous interactions, what leave-behinds have been shared. Define your objective for this specific call — not "to sell" but a specific, concrete outcome.</p>
+      <div class="step-script"><strong>Define your call objective:</strong> "Today I want to introduce the India study to Dr. Sharma and leave the doctor summary. I want him to try Epithrive® on his next DFU patient with albumin &lt;3.5."</div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num"><div class="sn-letter">R</div><div class="sn-word">Rapport</div></div>
+    <div class="step-content">
+      <span class="sc-time">⏱ 30–60 seconds</span>
+      <h4>Rapport Opening — Clinical, Not Social</h4>
+      <p>Do not open with "Good morning Doctor, how are you?" — this is what every other MR says. Open with a clinical observation or question relevant to their specialty. Shows you did your homework. Earns their attention in the first 10 seconds.</p>
+      <div class="step-script"><strong>Opening for an Orthopaedic Surgeon:</strong> "Doctor, I've been seeing a lot of cases where the wound stalls after debridement — clean bed but no granulation. I wanted to understand what you're seeing in your post-debridement DFU patients before I share something."</div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num"><div class="sn-letter">E</div><div class="sn-word">Explore</div></div>
+    <div class="step-content">
+      <span class="sc-time">⏱ 2–3 minutes</span>
+      <h4>Explore — Needs Assessment Before Pitching</h4>
+      <p>Ask before you tell. The doctor's answer will tell you which angle to take. Never pitch before you understand their specific pain. One well-placed question is worth ten minutes of monologue.</p>
+      <div class="step-script">
+        <strong>Power questions to ask:</strong><br>
+        "How many DFU / pressure ulcer patients do you see per week who are taking longer than expected to heal?"<br>
+        "When a wound stalls despite good dressings, what's your current next step?"<br>
+        "Do you routinely check albumin or do a nutritional screen on your wound patients?"
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num"><div class="sn-letter">C</div><div class="sn-word">Connect</div></div>
+    <div class="step-content">
+      <span class="sc-time">⏱ 1–2 minutes</span>
+      <h4>Connect — Bridge from Their Problem to Your Solution</h4>
+      <p>Link what the doctor just told you directly to what Epithrive® addresses. This is where your Modules 1–3 knowledge earns its pay. The bridge should feel logical, not salesy — a natural consequence of the problem they described.</p>
+      <div class="step-script"><strong>Bridge:</strong> "So you're seeing 3–4 DFU patients per week where the wound has stalled despite standard care. That's exactly the scenario where the systemic nutritional substrate is the limiting factor — not the local wound management. What the body needs to form granulation tissue — Arginine, Glutamine, Collagen precursors — is typically depleted in your diabetic, elderly patients. That's precisely what Epithrive® was formulated to restore."</div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num"><div class="sn-letter">B</div><div class="sn-word">Build</div></div>
+    <div class="step-content">
+      <span class="sc-time">⏱ 3–5 minutes</span>
+      <h4>Build — Evidence Delivery (Calibrated to This Doctor)</h4>
+      <p>Present only the 1–2 most relevant evidence points for this doctor's specialty and concern. Do not dump all the evidence at once — select and calibrate. Leave the rest for follow-up calls.</p>
+      <div class="step-script">
+        <strong>For a surgeon on their first call:</strong> Lead with the India study (72.4% vs 52.1%, p=0.004). Name the PI (Dr. Bhanegaonkar, MS Ortho). Leave the A4 summary.<br><br>
+        <strong>For a skeptical diabetologist:</strong> Lead with Tatti 2012 (DFU healing time 247→83 days). Follow with the Arginine-NO pathway in diabetic endothelium.<br><br>
+        <strong>For a dietitian:</strong> Lead with ESPEN/EPUAP guidelines recommending Arg+Zn+VitC. Then show how Epithrive® exceeds those recommendations by adding Glutamine, HMB, and Marine Collagen.
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num"><div class="sn-letter">A</div><div class="sn-word">Ask</div></div>
+    <div class="step-content">
+      <span class="sc-time">⏱ 30–60 seconds</span>
+      <h4>Ask for Action — Specific, Small, Achievable</h4>
+      <p>Never leave without asking for something specific. Not "please recommend Epithrive®" — that's too abstract. Ask for the smallest concrete action that moves the relationship forward. Small commitments lead to larger ones.</p>
+      <div class="step-script">
+        <strong>First call closes:</strong><br>
+        "Doctor, could you try Epithrive® on your next DFU patient whose albumin is below 3.5 or whose wound hasn't shown 30% reduction in 4 weeks? Just one patient — I'd love to share the outcome."<br><br>
+        <strong>Second call close:</strong> "Could I ask you to write 'wound nutrition support — Epithrive®' on the discharge slip for any patient with a stalled wound this month?"
+      </div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-num"><div class="sn-letter">C</div><div class="sn-word">Continue</div></div>
+    <div class="step-content">
+      <span class="sc-time">⏱ Within 24–48 hours post-call</span>
+      <h4>Continue — Follow-Up That Earns the Next Conversation</h4>
+      <p>The call ends in the clinic. The relationship continues on WhatsApp. A timely, relevant follow-up message that references something specific from the conversation is what separates an MR who gets a second meeting from one who doesn't.</p>
+      <div class="step-script">
+        <strong>WhatsApp follow-up template:</strong><br>
+        "Dr. Sharma, thank you for your time today. As discussed — the India study comparing Epithrive® + standard care vs standard care alone is attached. Key finding: 72.4% vs 52.1% wound area reduction at Week 8 (p=0.004). Would be glad to discuss further. [Attach: Doctor Summary PDF]<br>
+        Disclaimer: Dietary supplement. Not intended to diagnose, treat, cure, or prevent any disease."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4: PITCH LIBRARY -->
+<section class="section" id="s4">
+  <div class="sec-hd">
+    <div class="sec-num">4</div>
+    <div><h2>30-Second Elevator Pitch Library</h2><div class="sh-sub">6 speciality-tuned scripts — memorise the one for each doctor you're visiting today</div></div>
+  </div>
+  <p style="font-size:13.5px;line-height:1.7;margin-bottom:14px">These are not templates to be paraphrased — they are precision-crafted scripts that have been built around each HCP's specific concern, vocabulary, and evidence reference. Memorise yours before every call. Deliver it naturally, not robotically.</p>
+
+  <div class="pitch-tabs">
+    <div class="pitch-tab active" onclick="switchPitch(0)">🦴 Surgeon</div>
+    <div class="pitch-tab" onclick="switchPitch(1)">🩸 Diabetologist</div>
+    <div class="pitch-tab" onclick="switchPitch(2)">🏥 ICU Physician</div>
+    <div class="pitch-tab" onclick="switchPitch(3)">🥗 Dietitian</div>
+    <div class="pitch-tab" onclick="switchPitch(4)">🩺 Wound Nurse</div>
+    <div class="pitch-tab" onclick="switchPitch(5)">💊 Pharmacist</div>
+  </div>
+
+  <div class="pitch-panels">
+    <div class="pitch-panel active">
+      <h4>For the Orthopaedic / General Surgeon</h4>
+      <div class="pp-meta">Ideal for: First call · Post-debridement wound patients · DFU Wagner 1–3 · Malnourished surgical patients</div>
+      <div class="pitch-script">
+        "Doctor, I work with Nuin Wellness on Epithrive® — India's first targeted wound nutrition formula. We've completed a prospective Indian study comparing Epithrive® plus standard care versus standard care alone in DFU, pressure injury, and post-surgical wound patients. The Epithrive® arm showed 72.4% wound area reduction versus 52.1% at Week 8 — p=0.004. The PI was Dr. Praful Bhanegaonkar, MS Ortho. It's one sachet per day — 7g Arginine, 7g Glutamine, HMB, and Marine Collagen. Would you try it on your next malnourished patient post-debridement?"
+      </div>
+      <div class="pitch-breakdown">
+        <div class="pb-item"><div class="pbi-label">Hook</div><div class="pbi-text">India-specific study</div></div>
+        <div class="pb-item"><div class="pbi-label">Key Stat</div><div class="pbi-text">72.4% vs 52.1%, p=0.004</div></div>
+        <div class="pb-item"><div class="pbi-label">Credibility</div><div class="pbi-text">MS Ortho PI (peer credibility)</div></div>
+        <div class="pb-item"><div class="pbi-label">Close</div><div class="pbi-text">Try on malnourished patient</div></div>
+      </div>
+    </div>
+
+    <div class="pitch-panel">
+      <h4>For the Diabetologist / Endocrinologist</h4>
+      <div class="pp-meta">Ideal for: DFU patients with HbA1c >7.5 · Stalled neuropathic ulcers · High amputation-risk patients</div>
+      <div class="pitch-script">
+        "Doctor, the reason DFU wounds in diabetics stall isn't just local — it's that endothelial NO production is impaired, so the wound bed is hypoxic. Arginine is the precursor to NO. Epithrive® delivers 7 grams daily — the therapeutic dose proven in global literature to restore microcirculation in diabetic wounds. A study by Tatti et al. showed healing time for DFU dropped from 247 days to 83 days with this formulation class. Our India study showed 72.4% wound area reduction at Week 8 (p=0.004). No added sugar — safe with insulin. Can we try it on your next DFU patient whose wound hasn't moved in 4 weeks?"
+      </div>
+      <div class="pitch-breakdown">
+        <div class="pb-item"><div class="pbi-label">Hook</div><div class="pbi-text">NO pathway in diabetics</div></div>
+        <div class="pb-item"><div class="pbi-label">Mechanism</div><div class="pbi-text">Arginine → NO → microcirculation</div></div>
+        <div class="pb-item"><div class="pbi-label">Evidence</div><div class="pbi-text">Tatti: 247→83 days; India study</div></div>
+        <div class="pb-item"><div class="pbi-label">Safety</div><div class="pbi-text">No added sugar</div></div>
+      </div>
+    </div>
+
+    <div class="pitch-panel">
+      <h4>For the ICU / Critical Care Physician</h4>
+      <div class="pp-meta">Ideal for: Mechanically ventilated patients · Stage II–IV pressure injuries · Malnourished ICU patients who can take oral fluids</div>
+      <div class="pitch-script">
+        "Doctor, Glutamine is the most depleted amino acid in critical illness — and it's the primary fuel for the immune cells preventing wound infection in your ICU patients. Wischmeyer 2003 showed 45% fewer ICU infections with Glutamine supplementation. For any patient who can take oral fluids, Epithrive® delivers 7g Glutamine, 7g Arginine, HMB, and Collagen in one sachet per day — alongside their enteral nutrition. Kisil and Gimelfarb showed pressure ulcer healing time dropped from 218 to 170 days in elderly complex patients with HMB+Arg+Gln. For less than ₹400 per day, this is your lowest-cost nutritional intervention for pressure injury patients."
+      </div>
+      <div class="pitch-breakdown">
+        <div class="pb-item"><div class="pbi-label">Hook</div><div class="pbi-text">Glutamine depletion in ICU</div></div>
+        <div class="pb-item"><div class="pbi-label">Evidence</div><div class="pbi-text">Wischmeyer (45% less infections)</div></div>
+        <div class="pb-item"><div class="pbi-label">Outcome</div><div class="pbi-text">218→170 days PU healing</div></div>
+        <div class="pb-item"><div class="pbi-label">Cost</div><div class="pbi-text">&lt;₹400/day value anchor</div></div>
+      </div>
+    </div>
+
+    <div class="pitch-panel">
+      <h4>For the Clinical Dietitian</h4>
+      <div class="pp-meta">Ideal for: Hospital nutrition teams · MUST ≥2 wound patients · Protocol committee discussions</div>
+      <div class="pitch-script">
+        "You know the EPUAP guidelines formally recommend Arginine, Zinc, and Vitamin C supplementation for pressure injury healing — and ESPEN recommends protein and ONS for any wound patient at nutritional risk. The problem is no standard ONS actually delivers these in therapeutic doses alongside a full wound-specific micronutrient stack. Epithrive® does — 7g Arginine, 7g Glutamine, 1.5g HMB, 2.5g Marine Collagen, plus 10 micronutrients including 13mg Zinc and 60mg Vitamin C, in a single no-added-sugar sachet. Our India study showed 72.4% vs 52.1% wound area reduction at Week 8 (p=0.004). This is what the guidelines are asking for — in a clinically practical format."
+      </div>
+      <div class="pitch-breakdown">
+        <div class="pb-item"><div class="pbi-label">Hook</div><div class="pbi-text">EPUAP guideline language</div></div>
+        <div class="pb-item"><div class="pbi-label">Gap</div><div class="pbi-text">ONS don't deliver therapeutic doses</div></div>
+        <div class="pb-item"><div class="pbi-label">Proof</div><div class="pbi-text">Full formulation detail</div></div>
+        <div class="pb-item"><div class="pbi-label">Evidence</div><div class="pbi-text">India study p=0.004</div></div>
+      </div>
+    </div>
+
+    <div class="pitch-panel">
+      <h4>For the Wound Care Nurse</h4>
+      <div class="pp-meta">Ideal for: Ward nurses, community nurses, wound care sister · Practical emphasis · Patient compliance focus</div>
+      <div class="pitch-script">
+        "Sister, when you're doing everything right with the dressing and the wound still isn't progressing — granulation not forming, edges not advancing — it's often because the body doesn't have the raw materials to build new tissue. Epithrive® is one sachet per day in water — orange flavour, no sugar, takes 1 minute for the patient to take. It gives the body Arginine for blood flow, Glutamine for immune protection, and Collagen building blocks for the tissue your dressing is trying to support. In our study, patients on Epithrive® alongside standard care showed 39% better wound healing at Week 8. It can be ordered by the family directly via WhatsApp — no prescription needed."
+      </div>
+      <div class="pitch-breakdown">
+        <div class="pb-item"><div class="pbi-label">Hook</div><div class="pbi-text">When dressings aren't enough</div></div>
+        <div class="pb-item"><div class="pbi-label">Simple</div><div class="pbi-text">1 sachet/day, 1 minute, orange</div></div>
+        <div class="pb-item"><div class="pbi-label">Mechanism</div><div class="pbi-text">Plain language biology</div></div>
+        <div class="pb-item"><div class="pbi-label">Access</div><div class="pbi-text">WhatsApp, no prescription</div></div>
+      </div>
+    </div>
+
+    <div class="pitch-panel">
+      <h4>For the Pharmacist</h4>
+      <div class="pp-meta">Ideal for: Medical stores near surgical/diabetic clinics, hospital pharmacy · Focus on recommendation and reorder</div>
+      <div class="pitch-script">
+        "When a patient's family comes in asking about wound care, they usually buy dressings and maybe a multivitamin. But they don't know that the wound is stalling because of what the body can't build internally — not just what's on the outside. Epithrive® is the only wound nutrition formula in India addressing this. One sachet per day in water. ₹3,995 per 10-sachet box. No prescription needed — family can order directly via WhatsApp: +91 99708 43254, or from epithrive.com. When any caregiver mentions a diabetic wound or bedsore that isn't healing, this is what you tell them."
+      </div>
+      <div class="pitch-breakdown">
+        <div class="pb-item"><div class="pbi-label">Hook</div><div class="pbi-text">Family at the counter scenario</div></div>
+        <div class="pb-item"><div class="pbi-label">Problem</div><div class="pbi-text">Internal gap, not just topical</div></div>
+        <div class="pb-item"><div class="pbi-label">Price</div><div class="pbi-text">₹3,995 / 10-sachet box</div></div>
+        <div class="pb-item"><div class="pbi-label">Access</div><div class="pbi-text">WhatsApp + website ordering</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: OBJECTION HANDLING -->
+<section class="section" id="s5">
+  <div class="sec-hd">
+    <div class="sec-num">5</div>
+    <div><h2>Objection Handling</h2><div class="sh-sub">20+ objections across 6 categories — understand the real concern behind each word</div></div>
+  </div>
+
+  <div class="callout orange"><strong>The objection mindset:</strong> An objection is not a rejection — it is a question in disguise. When a doctor says "it's too expensive," they're asking "is this worth it?" When they say "there's no evidence," they're asking "how do I know this works?" Your job is to hear the question behind the words and answer that.</div>
+
+  <!-- CATEGORY A: PRICE -->
+  <div class="obj-cat-label" style="color:#713f12">💰 Category A — Price & Value Objections<span></span></div>
+
+  <div class="obj-card open">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-price">Price</span>
+      <span class="obj-q">"My patients can't afford ₹3,995."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>What They Really Mean</h5><p>The price sounds high compared to a box of dressings. They don't yet see the total cost picture or the value relative to the problem.</p></div>
+        <div class="obj-col say"><h5>Your Response Strategy</h5><p>Reframe from cost to cost-per-day and cost vs. outcome. Then offer the trial pack as a lower-risk entry point.</p></div>
+      </div>
+      <div class="obj-script">
+        "Doctor, ₹3,995 for a 10-sachet box is ₹400 per day — that's less than a single dressing change in most wound care protocols. Your patient is already spending ₹500–1,000 per day on dressings and clinic visits. A case we documented had a patient who spent ₹3.5 lakh before starting Epithrive®. The 25-day course cost less than 2% of that total. <strong>Faster healing means fewer dressing changes, fewer clinic visits, and lower overall cost.</strong> For families dealing with a chronic wound, ₹400/day for faster recovery is not expensive — it's an investment with a measurable return."
+      </div>
+      <div class="obj-close">Offer a trial pack for first-time patients. "Let's start with a trial — if the family sees early progress, the commitment follows."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-price">Price</span>
+      <span class="obj-q">"Insurance won't cover a nutraceutical. My patient has to pay out of pocket."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Doctor is concerned about patient affordability and the friction of recommending something the patient has to self-pay for.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Validate — then flip to cost-outcome. The doctor's patients are already paying out of pocket for dressings, consultations, and antibiotics.</p></div>
+      </div>
+      <div class="obj-script">
+        "You're right — and that's true for most dressings and many antibiotics beyond the basic formulary too. The question is whether the out-of-pocket cost delivers value. <strong>₹400/day for Epithrive® vs. ₹3,000–8,000/day in hospitalisation costs</strong> — if it shortens the wound journey by even 2 weeks, the family has saved significantly. The India study showed 39% better healing at Week 8. That translates into fewer clinic visits, fewer dressings, and potentially avoiding a surgical re-intervention."
+      </div>
+      <div class="obj-close">Propose: "For your admitted patients — consider recommending it as part of the discharge plan. Families at discharge are motivated to invest in faster recovery."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-price">Price</span>
+      <span class="obj-q">"What's the cost per month? The family is already spending a lot."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Family budget fatigue — chronic wound patients have often been spending heavily for months. Concern about adding another recurring cost.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Reframe as a time-limited investment, not an indefinite recurring cost. Epithrive® is used until wound closure — not forever.</p></div>
+      </div>
+      <div class="obj-script">
+        "The good news is this is not a lifetime supplement — it's used until wound closure. For a moderate wound, that's typically 4–6 weeks: 4–5 boxes maximum, ₹16,000–20,000 total. <strong>Compare that to the ₹3.5 lakh this family may have already spent</strong> on hospitalisation, surgery, and dressings before starting targeted nutrition. The question is not 'can they afford it?' — it's 'can they afford the wound staying open for another two months?'"
+      </div>
+      <div class="obj-close">Anchor to wound duration: "If we can accelerate closure by 3–4 weeks, what does that save them in dressings and clinic visits?"</div>
+    </div>
+  </div>
+
+  <!-- CATEGORY B: EVIDENCE -->
+  <div class="obj-cat-label" style="color:var(--teal)">🔬 Category B — Evidence & Data Objections<span></span></div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-evidence">Evidence</span>
+      <span class="obj-q">"There's no randomised controlled trial for Epithrive® specifically."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>High evidentiary standard. Doctor is distinguishing between formulation-class evidence and product-specific RCT evidence. This is a legitimate and sophisticated objection.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Acknowledge the point precisely. Then explain the two-level evidence structure: product-level (India study) + formulation class (global RCTs). This is how all clinical nutrition products launch.</p></div>
+      </div>
+      <div class="obj-script">
+        "That's a fair and precise distinction — and you're right. Epithrive® has a prospective Indian comparative study (n=60, p=0.004), not an RCT. <strong>The RCT evidence is at the formulation-class level:</strong> Williams and Barbul (2002, Annals of Surgery) — double-blind RCT, collagen deposition in elderly volunteers; Cereda et al. — RCT, 2× faster pressure ulcer healing vs standard ONS. A 2021 meta-analysis of 44 human studies confirmed significant effects. Every new clinical nutrition product follows this path — formulation-class evidence first, product-specific RCT as the evidence base matures. We're actively working toward publication of the India study. Would you consider a trial in selected patients while that process continues?"
+      </div>
+      <div class="obj-close">Offer the full CSR document. "The complete clinical study report is available if you'd like to review the methodology in detail."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-evidence">Evidence</span>
+      <span class="obj-q">"The Armstrong 2014 RCT on this formulation class showed no significant difference."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Doctor has read the literature carefully. This shows engagement — not hostility. Treat this as an opportunity to demonstrate clinical depth.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Acknowledge the study correctly. The Armstrong primary endpoint was negative — but subgroup analysis showed benefit specifically in malnourished patients. That subgroup IS Epithrive®'s target.</p></div>
+      </div>
+      <div class="obj-script">
+        "You're right to raise Armstrong — and it's exactly the right study to understand carefully. The primary outcome (wound closure in the overall population at 16 weeks) showed no significant difference. <strong>But the subgroup analysis told a different story:</strong> patients with pre-albumin ≤17 mg/dL and poor limb perfusion — the nutritionally compromised group — showed meaningful benefit. That is precisely our target patient: malnourished, slow-healing wound with stalled biology. The lesson from Armstrong is that whole-population effects are diluted when you include patients who don't have a nutritional deficit. Our India study deliberately focused on wound patients — and showed p=0.004."
+      </div>
+      <div class="obj-close">Follow-up: "For your patients with albumin under 3.5 — that's the Armstrong-proven subgroup. That's where Epithrive® is most appropriate."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-evidence">Evidence</span>
+      <span class="obj-q">"n=60 is too small. I need larger data."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Statistical power concern. Valid — smaller studies can be underpowered, producing spurious findings.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Validate, then redirect to the global body of evidence which is far larger — and consistent in direction with the India study.</p></div>
+      </div>
+      <div class="obj-script">
+        "You're right that n=60 is a pilot-scale study — and that's exactly how we position it: an Indian pilot generating localised data for an already well-evidenced formulation class. <strong>Behind the India study is a meta-analysis of 44 human studies</strong> (Arribaslopez 2021), multiple RCTs by Barbul, Cereda, and Oesser, and specific DFU data from Tatti et al. — all consistent with our India finding. A p=0.004 in a 60-patient study is actually a strong signal — it means the effect size is large enough to be clearly visible in a small sample."
+      </div>
+      <div class="obj-close">Offer: "I can share the meta-analysis reference if that's useful alongside the India study."</div>
+    </div>
+  </div>
+
+  <!-- CATEGORY C: COMPETITION -->
+  <div class="obj-cat-label" style="color:var(--purple)">⚡ Category C — Competition & Category Objections<span></span></div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-compete">Compete</span>
+      <span class="obj-q">"I already recommend Ensure / Fresubin. Why change?"</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Inertia + lack of awareness of the differentiation. Doctor is not switching — they're adding. Ensure and Epithrive® are not substitutes.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Never disparage Ensure. Position Epithrive® as additive, not competitive. Ensure does one job; Epithrive® does a different, specific job.</p></div>
+      </div>
+      <div class="obj-script">
+        "Ensure is excellent for general caloric and protein repletion — that's exactly what it's designed for. <strong>Epithrive® does something Ensure cannot:</strong> it delivers wound-specific substrates in therapeutic doses. L-Arginine at 7g (Ensure has &lt;1g), L-Glutamine at 7g (absent in Ensure), Ca-HMB (absent in Ensure), and Marine Collagen Peptides (absent in Ensure). Ensure fuels the patient. Epithrive® gives the wound biology what it specifically needs to repair tissue. They are not competing — they are complementary. Your patients on Ensure can add Epithrive® without any interaction concern."
+      </div>
+      <div class="obj-close">Propose coexistence: "Many of our patients are on Ensure alongside Epithrive®. One for caloric needs, one for wound-specific substrates."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-compete">Compete</span>
+      <span class="obj-q">"My patient is already on a protein supplement from the gym."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Doctor/patient believes protein is protein. Doesn't understand the wound-specific formulation difference.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Differentiate on specificity. Whey protein is for muscle building. Epithrive® is for wound repair. Two entirely different biological processes.</p></div>
+      </div>
+      <div class="obj-script">
+        "A sports protein supplement — even a good one — will not address what a stalling wound needs. It provides general protein, but no therapeutic Arginine for NO production, no Glutamine for immune cell fuelling, no HMB to counteract the catabolic destruction of chronic illness, and no Collagen Peptides for ECM scaffold. <strong>This is like giving a construction crew bricks but no cement, wiring, or plumbing.</strong> The material exists but the specific building components are missing. Epithrive® is the complete wound-specific kit."
+      </div>
+      <div class="obj-close">Use the "orchestra vs one instrument" analogy: "Whey protein gives one musician. Epithrive® gives the full orchestra."</div>
+    </div>
+  </div>
+
+  <!-- CATEGORY D: TIMING -->
+  <div class="obj-cat-label" style="color:var(--green)">⏱️ Category D — Timing & Urgency Objections<span></span></div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-timing">Timing</span>
+      <span class="obj-q">"I'll think about it." / "Let me see."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Soft no. Doctor is not yet convinced enough to commit. No specific objection — just insufficient urgency or unresolved uncertainty.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Don't accept the vague defer. Create specificity by asking what would help them decide and suggesting a micro-commitment.</p></div>
+      </div>
+      <div class="obj-script">
+        "Absolutely — and I want to make it easy for you to form an opinion rather than just take my word for it. <strong>Is there one patient you have right now</strong> — a DFU or pressure ulcer patient who has been stalling for 3–4 weeks despite good care — who you'd be willing to try Epithrive® on? Not a commitment to recommend broadly — just one patient, so we can see what happens. If the family reports early granulation and reduced inflammation, you'll have your own clinical data. If they don't, I'll come back and we'll discuss why."
+      </div>
+      <div class="obj-close">Micro-commitment: "Which patient would you want to start with — the DFU patient, or the Stage III pressure ulcer in Bed 12?"</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-timing">Timing</span>
+      <span class="obj-q">"My patient's wound is improving already. I'll wait and see."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>No perceived urgency. Wound is on a positive trajectory — doctor doesn't want to add complexity.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Validate the progress. Then shift to the remodeling phase argument — Epithrive® supports long-term closure strength, not just initial healing speed.</p></div>
+      </div>
+      <div class="obj-script">
+        "That's great news — early progress is encouraging. <strong>The reason to start Epithrive® even in a progressing wound</strong> is the remodeling phase. The wound may be closing, but the new tissue needs Collagen I cross-linking (Copper + Zinc), tensile strength building (Arginine → Proline → Collagen), and anti-catabolic support (HMB) to close durably and not re-open. Wounds that close quickly on the surface but lack nutritional substrate for deep ECM maturation are at high risk of dehiscence. Starting now supports the final closure quality, not just speed."
+      </div>
+      <div class="obj-close">Durability argument: "We want the closure to hold — not just happen. That's the remodeling phase argument for continuing Epithrive® through full wound maturation."</div>
+    </div>
+  </div>
+
+  <!-- CATEGORY E: PRACTICAL -->
+  <div class="obj-cat-label" style="color:var(--orange-d)">🔧 Category E — Practical & Clinical Objections<span></span></div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-practical">Practical</span>
+      <span class="obj-q">"My patient is on dialysis / has CKD. Can they take this?"</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Safety concern — CKD patients have restricted amino acid intake due to renal handling of nitrogen. Legitimate clinical concern.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Stage-specific answer. CKD 1–3: safe. CKD 4: use with monitoring. CKD 5/dialysis: caution, nephrology clearance needed. Reference the Sipahi study — Epithrive®'s formulation class was used in dialysis patients.</p></div>
+      </div>
+      <div class="obj-script">
+        "The answer depends on CKD stage. <strong>Stage 1–3 (eGFR &gt;30): safe at standard dosing.</strong> Stage 4: use 1 sachet/day with monitoring of serum urea and creatinine. Stage 5/dialysis: not recommended without nephrology clearance — the 14g combined amino acid load needs careful management in ESRD. Interestingly, Sipahi et al. (BMC Nephrology 2013) used this formulation class specifically in diabetic haemodialysis patients — 63.6% showed wound depth improvement in 4 weeks. If your patient is on dialysis, loop in the nephrologist and frame it as: 'wound healing is impaired without these substrates — can we trial it with close monitoring?'"
+      </div>
+      <div class="obj-close">Offer the Sipahi reference: "I can share the BMC Nephrology paper — it's the most relevant evidence for dialysis patients with wounds."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-practical">Practical</span>
+      <span class="obj-q">"My patient is on antibiotics for wound infection. Can they take it simultaneously?"</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Drug-nutrient interaction concern. Specifically about Zinc and tetracycline/quinolone absorption.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Yes — but with a timing adjustment for specific antibiotic classes. Simple 2–3 hour separation solves the interaction completely.</p></div>
+      </div>
+      <div class="obj-script">
+        "Yes, absolutely — and this is important for active wound infections, where Glutamine is most needed for immune support. <strong>One timing consideration:</strong> Zinc in Epithrive® can reduce absorption of tetracyclines and quinolones (like ciprofloxacin) if taken simultaneously. The solution is simple: take the antibiotic first on an empty stomach, wait 2–3 hours, then take Epithrive®. In practice, antibiotics are typically morning/evening — Epithrive® can be taken midday or at a different time. The wound healing benefit of maintaining Epithrive® through antibiotic treatment far outweighs the minor scheduling adjustment."
+      </div>
+      <div class="obj-close">Practical tip: "Suggest the family note on the sachet — morning antibiotic, afternoon Epithrive®. Simple, no interaction."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-practical">Practical</span>
+      <span class="obj-q">"My patients are elderly and don't comply with supplements. They'll stop taking it."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Compliance fatigue in elderly patients with multiple medications. Legitimate — elderly patients often struggle with multiple supplements.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Address the compliance barriers directly. One sachet vs. multiple tablets. Orange flavour. Caregiver-driven administration.</p></div>
+      </div>
+      <div class="obj-script">
+        "Compliance is exactly why we chose a sachet format over capsules or tablets. <strong>One sachet, dissolved in a glass of water, orange flavour — 30 seconds.</strong> No pill burden. Can be chilled for palatability. No taste of medicine. For elderly patients who resist supplements, the caregiver can mix it into water or a cold drink — they often don't even notice they're taking it. The key insight is that the person administering Epithrive® is the caregiver — and caregivers of wound patients are highly motivated. They've watched their family member suffer with a non-healing wound. One sachet per day is not a compliance challenge when the caregiver understands what it's doing."
+      </div>
+      <div class="obj-close">Caregiver angle: "Reach the caregiver, not the patient. The caregiver is the compliance engine for wound nutrition."</div>
+    </div>
+  </div>
+
+  <!-- CATEGORY F: PATIENT/CAREGIVER -->
+  <div class="obj-cat-label" style="color:#880e4f">👨‍👩‍👧 Category F — Patient / Caregiver Objections<span></span></div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-patient">Caregiver</span>
+      <span class="obj-q">"The doctor didn't recommend it — why should I buy it?"</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Caregiver needs doctor validation. They rely on their doctor's authority — and rightly so. This is about trust and authority hierarchy.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Never bypass the doctor. Instead, give them language to take back to the doctor. Strengthen the doctor's awareness rather than circumventing it.</p></div>
+      </div>
+      <div class="obj-script">
+        "That's absolutely the right instinct — always ask your doctor first. <strong>What I'd suggest is asking your doctor specifically:</strong> 'Is there anything we can do nutritionally to support the healing? I read about something called Epithrive® — a wound nutrition supplement.' Many doctors aren't aware of wound-specific nutrition yet. Your doctor may not have recommended it simply because they haven't encountered it — not because they'd object. Show them this material [leave the doctor summary] and ask what they think. If they're satisfied with the evidence, you'll have their endorsement."
+      </div>
+      <div class="obj-close">Equip the caregiver: "Take this A4 sheet to your doctor and ask specifically about wound nutrition support."</div>
+    </div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-head" onclick="toggleObj(this)">
+      <span class="obj-tag tag-patient">Caregiver</span>
+      <span class="obj-q">"We've tried everything. Nothing works. I don't believe this will either."</span>
+      <span class="obj-chevron">›</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-grid">
+        <div class="obj-col what"><h5>The Real Concern</h5><p>Caregiver exhaustion and broken trust after a long, frustrating wound journey. Emotional objection, not a clinical one. Requires empathy first.</p></div>
+        <div class="obj-col say"><h5>Response Strategy</h5><p>Acknowledge the struggle first — never jump straight to the pitch. Then offer a new frame: everything tried has been local care; this addresses a different problem entirely.</p></div>
+      </div>
+      <div class="obj-script">
+        "I completely understand — a wound that doesn't heal despite months of care is exhausting for the entire family. <strong>What I want you to consider</strong> is that everything you've tried — dressings, antibiotics, debridement — has been addressing the wound from the outside. What hasn't been addressed is whether the body has the raw materials internally to build new tissue. That's not a failure of local care — it's a gap that local care can't fill. A case we documented: a diabetic with a wound for over a year. Standard care was being done well. We added Epithrive® — and the family saw granulation tissue forming within 12 days. Not because dressings changed. Because the biological engine started running on fuel."
+      </div>
+      <div class="obj-close">Offer a trial: "Start with just 10 sachets — one box. If you see no change at all by Day 10, we'll talk. Most families notice something within the first two weeks."</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- S6: WHATSAPP -->
+<section class="section" id="s6">
+  <div class="sec-hd">
+    <div class="sec-num">6</div>
+    <div><h2>WhatsApp as a Professional Channel</h2><div class="sh-sub">Templates, rules, and the caregiver conversion funnel</div></div>
+  </div>
+
+  <div class="wa-layout">
+    <div class="wa-nav">
+      <button class="wa-tab active" onclick="switchWa(0)">Post-Call Doctor Follow-up</button>
+      <button class="wa-tab" onclick="switchWa(1)">Caregiver First Contact</button>
+      <button class="wa-tab" onclick="switchWa(2)">Case Study Share</button>
+      <button class="wa-tab" onclick="switchWa(3)">Reorder Reminder</button>
+      <button class="wa-tab" onclick="switchWa(4)">Evidence Share to Doctor</button>
+    </div>
+    <div class="wa-panels">
+
+      <div class="wa-panel active">
+        <div class="wa-phone">
+          <div class="wa-phone-top">
+            <div class="avatar">👨‍⚕️</div>
+            <div><h5>Dr. Sharma</h5><p>MS Ortho · Visited today</p></div>
+          </div>
+          <div class="wa-messages">
+            <div class="wa-msg sent">
+              <div>Dr. Sharma, thank you for your time today. As discussed — attached is the clinical study summary for Epithrive® (CSR-ETH-2025-001). Key finding: 72.4% vs 52.1% wound area reduction at Week 8 (p=0.004). PI: Dr. Bhanegaonkar, MS Ortho.</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>For your next post-debridement DFU patient with albumin &lt;3.5 — this would be the ideal first trial. The formulation explainer is also attached if you'd like more ingredient detail. Happy to answer any questions.</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>Disclaimer: Dietary supplement — not intended to diagnose, treat, cure, or prevent any disease.</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wa-panel">
+        <div class="wa-phone">
+          <div class="wa-phone-top">
+            <div class="avatar">👨‍👩‍👦</div>
+            <div><h5>Caregiver / Family</h5><p>Referred by Doctor</p></div>
+          </div>
+          <div class="wa-messages">
+            <div class="wa-msg recv">
+              <div>Hello, Dr. Mehta said I should WhatsApp you about something called Epithrive for my father's wound?</div>
+              <div class="wa-time">2:14 PM</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>Hello! Yes — Epithrive® is a wound healing nutrition supplement that supports the body's ability to repair tissue from the inside. It's one sachet per day dissolved in water, orange flavour, no sugar.</div>
+              <div class="wa-time">2:16 PM · ✓✓</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>May I ask — what type of wound does your father have, and how long has it been present? This will help me share the most relevant information for his situation.</div>
+              <div class="wa-time">2:16 PM · ✓✓</div>
+            </div>
+            <div class="wa-msg recv">
+              <div>He's diabetic. Foot wound. About 3 months. Doctor has been dressing it but it's not improving.</div>
+              <div class="wa-time">2:19 PM</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>A 3-month diabetic foot wound that isn't improving is exactly the patient Epithrive® was designed for. The wound may be stalling due to nutritional deficits. I'll send you a product information document and a case study of a similar patient. 📎</div>
+              <div class="wa-time">2:21 PM · ✓✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wa-panel">
+        <div class="wa-phone">
+          <div class="wa-phone-top">
+            <div class="avatar">👨‍⚕️</div>
+            <div><h5>Dr. Patil</h5><p>Diabetologist</p></div>
+          </div>
+          <div class="wa-messages">
+            <div class="wa-msg sent">
+              <div>Dr. Patil, sharing a documented Epithrive® case you may find relevant — 66-year-old diabetic with a Grade II–III pressure ulcer present for over 1 year. Near-complete epithelialisation in 15 days alongside standard care. 📎 [Case Study PDF]</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>The mechanism: Arginine → NO → restored microcirculation in the diabetic wound bed. This is the pathway that's chronically impaired in your DFU patients. Happy to discuss if useful.</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>*Case data shared for educational purposes. Dietary supplement — not intended to diagnose, treat, cure, or prevent any disease. Individual results vary.*</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wa-panel">
+        <div class="wa-phone">
+          <div class="wa-phone-top">
+            <div class="avatar">👨‍👩‍👦</div>
+            <div><h5>Mrs. Kulkarni</h5><p>Caregiver — Week 2</p></div>
+          </div>
+          <div class="wa-messages">
+            <div class="wa-msg sent">
+              <div>Mrs. Kulkarni, checking in — your father-in-law has been on Epithrive® for 10 days now. How is the wound looking? Has the doctor noted any change in the wound bed?</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+            <div class="wa-msg recv">
+              <div>Yes! Doctor said yesterday that there's some pink tissue forming. He said it looks cleaner. We're very happy!</div>
+              <div class="wa-time">Now</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>That's excellent — pink granulation tissue is exactly what we want to see. That's the wound's healing machinery starting to run. Please continue for the full course. When is the next box needed? I can help arrange it. 🎯</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wa-panel">
+        <div class="wa-phone">
+          <div class="wa-phone-top">
+            <div class="avatar">🥗</div>
+            <div><h5>Dt. Priya Nair</h5><p>Clinical Dietitian</p></div>
+          </div>
+          <div class="wa-messages">
+            <div class="wa-msg sent">
+              <div>Dt. Nair, sharing the Arribaslopez et al. 2021 systematic review and meta-analysis on Arginine and Glutamine supplementation in wound healing — 44 human studies, significant effects confirmed on hydroxyproline, nitrogen balance, IL-6, TNF-α, and LOS. 📎 [Journal Reference PDF]</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+            <div class="wa-msg sent">
+              <div>This aligns with the EPUAP recommendation for Arg + Zinc + Vit C in pressure injury patients. Epithrive® delivers this combination plus Glutamine, HMB, and Marine Collagen — in one daily sachet. Happy to discuss protocol integration at your convenience.</div>
+              <div class="wa-time">Now · ✓✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wa-rules">
+    <div class="wa-rule do">
+      <h5>✓ WhatsApp Best Practice</h5>
+      <ul>
+        <li>Use a professional profile photo and name (not personal)</li>
+        <li>Always attach company-approved PDFs — never self-made summaries</li>
+        <li>Always include the mandatory disclaimer in any message discussing outcomes</li>
+        <li>Respond within 2 hours to caregiver messages — urgency matters to families</li>
+        <li>Reference the specific doctor conversation in follow-up: "As discussed with Dr. X..."</li>
+        <li>Use voice notes sparingly and only for warm, established doctor relationships</li>
+        <li>Keep a saved templates folder — saves time, ensures compliance</li>
+      </ul>
+    </div>
+    <div class="wa-rule dont">
+      <h5>✗ WhatsApp Pitfalls</h5>
+      <ul>
+        <li>Never share non-company content (screenshots, forwards) about Epithrive®</li>
+        <li>Never make disease treatment claims in any message</li>
+        <li>Never share patient photos or wound images on WhatsApp</li>
+        <li>Never send follow-up messages on Sundays or late evenings (&gt;9pm)</li>
+        <li>Never add doctors to broadcast lists without explicit permission</li>
+        <li>Never promise outcomes in writing: "this will heal in 2 weeks"</li>
+        <li>Never send more than 2 follow-up messages without a response — respect the boundary</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- S7: TERRITORY MANAGEMENT -->
+<section class="section" id="s7">
+  <div class="sec-hd">
+    <div class="sec-num">7</div>
+    <div><h2>Territory Management</h2><div class="sh-sub">Doctor prioritisation, weekly call planning, and Maharashtra market focus</div></div>
+  </div>
+
+  <div class="matrix-wrap">
+    <h4>Doctor Prioritisation Matrix — Place Every Doctor in One Quadrant</h4>
+    <div class="matrix-grid">
+      <div class="mx-empty"></div>
+      <div class="mx-col-label">Low Wound Patient Volume</div>
+      <div class="mx-col-label">High Wound Patient Volume</div>
+      <div class="mx-row-label">High Receptiveness</div>
+      <div class="mx-cell mx-a1">
+        <h5>⚡ Build Fast — Secondary Priority</h5>
+        <ul>
+          <li>Receptive but fewer wound patients</li>
+          <li>Build relationship now — volume will grow</li>
+          <li>Monthly visit, educational focus</li>
+          <li>Potential future influencer</li>
+        </ul>
+      </div>
+      <div class="mx-cell mx-b1">
+        <h5>🎯 TOP PRIORITY — Maximum Focus</h5>
+        <ul>
+          <li>High wound volume + willing to listen</li>
+          <li>Weekly calls, leave all materials</li>
+          <li>Target for trial patient request</li>
+          <li>Convert to regular recommender ASAP</li>
+          <li>Invest in relationship deeply</li>
+        </ul>
+      </div>
+      <div class="mx-row-label">Low Receptiveness</div>
+      <div class="mx-cell mx-a2">
+        <h5>🕐 Low Priority — Minimal Investment</h5>
+        <ul>
+          <li>Not worth significant time investment</li>
+          <li>Quarterly visit, leave a brochure</li>
+          <li>Reassess in 6 months</li>
+        </ul>
+      </div>
+      <div class="mx-cell mx-b2">
+        <h5>🔑 Long Game — Persistence Pays</h5>
+        <ul>
+          <li>High potential — just hard to crack</li>
+          <li>Bi-weekly visits, different angles each time</li>
+          <li>Try different evidence, different entry line</li>
+          <li>Find their nurse or dietitian as an alternate entry</li>
+          <li>Patience — they're worth the effort</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-family:'Fraunces',serif;font-size:18px;color:var(--navy);margin-bottom:14px">Maharashtra Territory — Weekly Call Planning Template</h4>
+  <div class="planner-grid">
+    <div class="plan-day">
+      <div class="plan-day-head pd-mon">Monday</div>
+      <div class="plan-day-body">
+        <div class="plan-item">Pune HCP calls × 6</div>
+        <div class="plan-item">Ortho OPD morning visits 8–10am</div>
+        <div class="plan-item">Diabetology clinic 11am–1pm</div>
+        <div class="plan-item">Pharmacy visits 5–7pm</div>
+        <div class="plan-item">Post-call WhatsApp follow-ups</div>
+      </div>
+    </div>
+    <div class="plan-day">
+      <div class="plan-day-head pd-tue">Tuesday</div>
+      <div class="plan-day-body">
+        <div class="plan-item">Pune hospital institutional call</div>
+        <div class="plan-item">ICU physician / Dietitian visit</div>
+        <div class="plan-item">Ward nursing staff education</div>
+        <div class="plan-item">Wound care nurse engagement</div>
+        <div class="plan-item">Reorder follow-up calls</div>
+      </div>
+    </div>
+    <div class="plan-day">
+      <div class="plan-day-head pd-wed">Wednesday</div>
+      <div class="plan-day-body">
+        <div class="plan-item">Nashik territory (day trip)</div>
+        <div class="plan-item">4–5 HCP calls + 3 pharmacy visits</div>
+        <div class="plan-item">New doctor introductions</div>
+        <div class="plan-item">Train return — call planning for Thur</div>
+      </div>
+    </div>
+    <div class="plan-day">
+      <div class="plan-day-head pd-thu">Thursday</div>
+      <div class="plan-day-body">
+        <div class="plan-item">Mumbai metro HCPs (alternating weeks)</div>
+        <div class="plan-item">OR: Aurangabad territory</div>
+        <div class="plan-item">Specialist hospital calls</div>
+        <div class="plan-item">Pharmacy network expansion</div>
+      </div>
+    </div>
+    <div class="plan-day">
+      <div class="plan-day-head pd-fri">Friday</div>
+      <div class="plan-day-body">
+        <div class="plan-item">Nagpur / Pune wrap-up calls</div>
+        <div class="plan-item">Weekly reporting to AM</div>
+        <div class="plan-item">WhatsApp caregiver follow-ups</div>
+        <div class="plan-item">Next week call planning</div>
+        <div class="plan-item">Materials restocking</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout teal"><strong>Call target:</strong> 6–8 meaningful HCP interactions per day. "Meaningful" = conversation beyond product handoff — at least 2 minutes of clinical discussion. Pharmacy visits count separately. Track every call with: Doctor name · Date · Stage reached in PRECBAC · Next action · Material left.</div>
+</section>
+
+<!-- S8: ROLE-PLAY -->
+<section class="section" id="s8">
+  <div class="sec-hd">
+    <div class="sec-num">8</div>
+    <div><h2>Role-Play Scenarios</h2><div class="sh-sub">6 field situations with full scripted responses — practise before you go live</div></div>
+  </div>
+
+  <div class="roleplay-card open">
+    <div class="rp-head" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 1</span>
+      <span class="rp-title">First call on a skeptical Orthopaedic Surgeon</span>
+      <span class="rp-diff diff-med">Medium</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-scene"><strong>Setting:</strong> First call. Surgeon has 2 minutes between OPD patients. Has not heard of Epithrive®. Generally skeptical of "supplement" companies.</div>
+      <div class="rp-dialog">
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Doctor, I know you're busy — I'll take 90 seconds. I work with Nuin Wellness on Epithrive®. We've completed an Indian clinical study in DFU and post-surgical wound patients — the Epithrive® arm showed 72.4% wound area reduction versus 52.1% with standard care at Week 8, p=0.004. The PI was Dr. Bhanegaonkar, MS Ortho. I have a one-page summary — may I leave it?</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">How many patients? 60 is nothing. And it's open-label — that's biased.</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Fair points — and you're right on both. N=60 is a pilot study, not a large RCT. Open-label is a design limitation. That's why we position it alongside the global evidence — Williams and Barbul's double-blind RCT in Annals of Surgery, Cereda's pressure ulcer RCT, and a 2021 meta-analysis of 44 human studies. The India study adds Indian-population relevance to an established formulation class. At p=0.004, the effect was large enough to be clearly visible in 60 patients. Would you consider trying it on your next malnourished DFU patient — just one case?</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">I'll have a look at the paper.</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Perfect. I'll WhatsApp the full reference list tonight. One last thing — when you have a DFU patient whose albumin is below 3.5 and the wound hasn't moved in 4 weeks, that's the profile where this makes the most sense. I'll follow up in a week. Thank you, Doctor.</div></div>
+      </div>
+      <div class="rp-tip"><strong>Key technique:</strong> Handle the objection precisely (don't defend the study design — acknowledge it and reframe to the larger evidence). End with a specific patient profile trigger, not a vague request to "recommend." A specific trigger makes action easier.</div>
+    </div>
+  </div>
+
+  <div class="roleplay-card">
+    <div class="rp-head" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 2</span>
+      <span class="rp-title">Diabetologist who already prescribes Ensure</span>
+      <span class="rp-diff diff-easy">Easy</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-scene"><strong>Setting:</strong> Second call. Doctor has heard of Epithrive® but says "I'm already giving my DFU patients Ensure — that's enough."</div>
+      <div class="rp-dialog">
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">I'm already giving my patients Ensure. They don't need another supplement.</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">I completely agree that Ensure is excellent for general nutritional support — and your patients should continue it. Epithrive® is not a replacement — it addresses something Ensure cannot. Your DFU patients need three things that Ensure doesn't provide in therapeutic doses: 7g Arginine to restore nitric oxide production in their diabetic endothelium — Ensure has less than 1g. 7g Glutamine for immune function — absent in Ensure. And HMB to stop the muscle breakdown that's worsening their prognosis. These aren't duplicate ingredients — they're missing ones. Ensure fuels the patient. Epithrive® specifically fuels wound repair.</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">That makes sense actually. How long do they need to take it?</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Until wound closure — minimum 4–6 weeks for moderate DFU. One sachet per day alongside their existing supplements. No interaction with Ensure, no added sugar. Safe with insulin.</div></div>
+      </div>
+      <div class="rp-tip"><strong>Key technique:</strong> Never make Ensure the enemy — make it the context. "Alongside, not instead of" removes the switching friction entirely. The doctor doesn't have to change anything — they just add one thing.</div>
+    </div>
+  </div>
+
+  <div class="roleplay-card">
+    <div class="rp-head" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 3</span>
+      <span class="rp-title">Caregiver at pharmacy — exhausted, sceptical</span>
+      <span class="rp-diff diff-hard">Hard — Emotional</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-scene"><strong>Setting:</strong> A daughter at the pharmacy counter. Her father has a chronic DFU for 8 months. She's spent heavily. She asks the pharmacist about Epithrive® — the pharmacist calls you.</div>
+      <div class="rp-dialog">
+        <div class="rp-line"><span class="rp-speaker dr">FAM</span><div class="rp-bubble">We've spent so much on dressings, medicines, hospitals. Nothing is working. Why would this be different?</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Eight months — that must have been incredibly hard for your entire family. I understand why you're exhausted and why trust is difficult. I'm not going to promise you anything — that's not fair. What I will tell you is this: everything you've tried has been working on the wound from the outside — the dressing, the cleaning, the antibiotics. What hasn't been addressed is whether your father's body has the raw materials to build new tissue from within. That's what Epithrive® provides — Arginine, Glutamine, Collagen building blocks. Think of it as fuel for the healing machinery, not a cure.</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">FAM</span><div class="rp-bubble">How do I know it's safe?</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">It's a dietary supplement registered under FSSAI. No added sugar — safe for diabetics. One sachet per day in water. The side effects are very mild — some people notice mild bloating in the first couple of days, which settles. I'd suggest starting with one box, showing your father's doctor the ingredient sheet, and watching the wound bed over 10–12 days. If nothing changes, you've lost very little. If granulation tissue starts forming — and in our documented case of a similar patient, it started within 12 days — you'll know it's working.</div></div>
+      </div>
+      <div class="rp-tip"><strong>Key technique:</strong> Empathy first — always. Never rush into the pitch with an emotionally exhausted caregiver. Acknowledge the journey, then reframe the problem (outside vs. inside approach). Offer a low-risk trial entry. Be honest about uncertainty — it builds trust faster than false promises.</div>
+    </div>
+  </div>
+
+  <div class="roleplay-card">
+    <div class="rp-head" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 4</span>
+      <span class="rp-title">ICU physician — "We already do enteral feeding"</span>
+      <span class="rp-diff diff-med">Medium</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-scene"><strong>Setting:</strong> ICU physician, post-morning rounds. Has malnourished pressure ulcer patients on Fresubin enteral nutrition. Says nutritional needs are "covered."</div>
+      <div class="rp-dialog">
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">My patients are already on Fresubin through NG tube. Their nutrition is covered.</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Fresubin handles caloric and protein repletion beautifully — and it should continue. What it doesn't provide is the wound-specific substrate layer: Glutamine at 7g per day is absent in standard enteral formulas — it's stripped out because it's unstable in liquid form at scale. But Glutamine is the primary fuel for the macrophages fighting infection in your pressure ulcer patients. Wischmeyer showed 45% fewer ICU infections with Glutamine supplementation. Epithrive® as an oral sachet delivers this alongside the enteral feed — complementary, not competing. For any patient who can take anything orally or via NG flush, it's a straightforward addition.</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Interesting. Does it go through NG?</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Yes — dissolve in 100mL water and flush through. It's been used this way in published pressure ulcer studies. I can share the reference from Kisil and Gimelfarb — elderly complex patients with multiple comorbidities, healing time dropped from 218 to 170 days.</div></div>
+      </div>
+      <div class="rp-tip"><strong>Key technique:</strong> Acknowledge Fresubin as doing its job correctly, then identify the specific gap it doesn't fill (Glutamine). NG tube administration removes the oral compliance barrier entirely for ICU patients. Always have the institutional use reference ready.</div>
+    </div>
+  </div>
+
+  <div class="roleplay-card">
+    <div class="rp-head" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 5</span>
+      <span class="rp-title">Doctor converting from one-time user to regular recommender</span>
+      <span class="rp-diff diff-easy">Easy — Harvesting</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-scene"><strong>Setting:</strong> Third call. Doctor tried Epithrive® on one patient 3 weeks ago. The patient has shown early granulation. Doctor is impressed but hasn't yet systematically recommended it.</div>
+      <div class="rp-dialog">
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">The patient you suggested it for — the DFU patient — the family said they're seeing some improvement. Wound looks cleaner. Not dramatic but positive.</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">That's exactly what we expect to see at 3 weeks — cleaner wound bed, early granulation, reduced inflammation. The full effect builds over 6–8 weeks. I'm glad it's tracking positively. Can I ask — do you have other patients in your current OPD panel where the wound has been stalling for 4+ weeks, or where the albumin is below 3.5? Those patients would benefit from the same approach.</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Yes, I have 3–4 like that actually.</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Would you be willing to add "wound nutrition support — Epithrive® 1 sachet/day" to those discharge summaries as a standard note? The families can order directly via WhatsApp at +91 99708 43254 — no prescription needed. I'll make sure they're supported. That way, every stalled wound patient goes home with the nutritional piece in place alongside their dressings.</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">DR</span><div class="rp-bubble">Yes, I think that's reasonable. Send me those 3–4 patient profiles you mentioned — which ones specifically?</div></div>
+      </div>
+      <div class="rp-tip"><strong>Key technique:</strong> The third call is the most important in the conversion journey. The doctor has a positive outcome — this is your window to propose a systematic behaviour change (discharge note → standard recommendation). Be specific about the mechanic (WhatsApp ordering, no prescription) so the barrier to action is as low as possible.</div>
+    </div>
+  </div>
+
+  <div class="roleplay-card">
+    <div class="rp-head" onclick="toggleRp(this)">
+      <span class="rp-badge">Scenario 6</span>
+      <span class="rp-title">Pharmacist who has never heard of Epithrive®</span>
+      <span class="rp-diff diff-easy">Easy — Education</span>
+      <span class="rp-chevron">›</span>
+    </div>
+    <div class="rp-body">
+      <div class="rp-scene"><strong>Setting:</strong> Medical store near a surgical hospital. Pharmacist asks "What is this product? Why would anyone need it?"</div>
+      <div class="rp-dialog">
+        <div class="rp-line"><span class="rp-speaker dr">PH</span><div class="rp-bubble">I've never heard of wound nutrition before. People buy dressings — why would they need a sachet?</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">Great question. When a diabetic wound or bedsore isn't healing, the problem is usually not the dressing — it's that the body doesn't have the raw materials to build new tissue. A wound needs Arginine for blood flow to the wound, Glutamine to fight infection from inside, and Collagen building blocks for new tissue. Dressings manage the outside. Epithrive® supplies the inside. It's one sachet per day in water — no prescription needed.</div></div>
+        <div class="rp-line"><span class="rp-speaker dr">PH</span><div class="rp-bubble">Who buys it?</div></div>
+        <div class="rp-line"><span class="rp-speaker mr">MR</span><div class="rp-bubble">The caregiver — usually the son, daughter, or spouse of the patient. When they come in buying dressings and asking "is there anything else?" — that's your moment. You say: "There's a wound nutrition supplement the doctor may want to add — it supports the body's healing from inside. It's called Epithrive®. ₹3,995 for 10 sachets." They can ask their doctor, or order directly via WhatsApp. Here's the product card and the WhatsApp number.</div></div>
+      </div>
+      <div class="rp-tip"><strong>Key technique:</strong> Teach the pharmacist a trigger moment and a script — don't just leave a brochure. "When someone buys dressings and asks what else they can do" is the moment. Equip the pharmacist to convert that moment. The WhatsApp ordering number removes all friction.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S9: FIELD CHECKLIST -->
+<section class="section" id="s9">
+  <div class="sec-hd">
+    <div class="sec-num">9</div>
+    <div><h2>Field Readiness Checklist</h2><div class="sh-sub">Run through these before, during, and after every call</div></div>
+  </div>
+
+  <div class="checklist-3">
+    <div class="cl-block">
+      <div class="cl-head cl-before"><h4>📋 Before Every Call</h4><p>Preparation determines 60% of outcomes</p></div>
+      <div class="cl-body">
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Know the doctor's specialty, usual patient profile, and past interactions</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Define a specific call objective (not "sell" — an action you'll ask for)</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Select the 1–2 evidence points most relevant to this doctor's specialty</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Prepare the 30-second elevator pitch for this doctor type</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Pack the right leave-behinds (Doctor Summary, Case Study, or Formulation Explainer)</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Review any previous call notes — what did they say last time?</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Compliance check: know what you can and cannot say for this channel</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Prepare 2 power questions to open with (needs assessment)</div></div>
+      </div>
+    </div>
+
+    <div class="cl-block">
+      <div class="cl-head cl-during"><h4>🎯 During the Call</h4><p>Execute the PRECBAC framework</p></div>
+      <div class="cl-body">
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Open with a clinical observation, not a social pleasantry</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Ask 1–2 needs assessment questions before pitching</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Calibrate your pitch to what they told you — adapt in real time</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Present only 1–2 evidence points — not everything at once</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Use compliant language — "in the study, the Epithrive® arm showed..."</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Handle objections — hear the real question behind the words</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Ask for a specific, small, achievable close</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Leave the appropriate materials — not all of them at once</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Confirm the follow-up plan before leaving the room</div></div>
+      </div>
+    </div>
+
+    <div class="cl-block">
+      <div class="cl-head cl-after"><h4>📱 After Every Call</h4><p>The follow-through that builds the relationship</p></div>
+      <div class="cl-body">
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Note call outcome, objections raised, and next action in your tracker</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">WhatsApp follow-up within 24 hours — reference the specific conversation</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Attach only company-approved PDFs — include the mandatory disclaimer</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Update the doctor's priority quadrant if needed — did anything change?</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Escalate any adverse event or clinical question you couldn't answer</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Plan the next call objective based on where this call ended</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Follow up with referred caregivers within 2 hours</div></div>
+        <div class="cl-item"><div class="cl-box" onclick="toggleCheck(this)">✓</div><div class="cl-text">Report outcomes to Area Manager — track conversion progress</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <strong>Module 5 complete.</strong> You now have the mindset, the structure (PRECBAC), the pitches (6 speciality-tuned scripts), the objection arsenal (20+ handlers across 6 categories), the WhatsApp playbook, the territory matrix, 6 fully scripted role-play scenarios, and a field checklist for every call. Apply this in the field — and come back after your first 10 calls to review what worked and what to adjust. Sales skill is built through iteration, not just study.
+  </div>
+</section>
+
+</main>
+
+<script>
+// Sidebar active
+const navLinks=document.querySelectorAll('.sb-nav a');
+const sections=document.querySelectorAll('.section');
+function setActive(){
+  let c='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.id});
+  navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+c));
+}
+window.addEventListener('scroll',setActive);setActive();
+navLinks.forEach(l=>l.addEventListener('click',e=>{
+  e.preventDefault();
+  document.querySelector(l.getAttribute('href'))?.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+
+// Pitch tabs
+function switchPitch(idx){
+  document.querySelectorAll('.pitch-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.pitch-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+}
+
+// WhatsApp tabs
+function switchWa(idx){
+  document.querySelectorAll('.wa-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.wa-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+}
+
+// Objection accordion
+function toggleObj(header){
+  const card=header.closest('.obj-card');
+  const wasOpen=card.classList.contains('open');
+  card.classList.toggle('open',!wasOpen);
+}
+
+// Role-play accordion
+function toggleRp(header){
+  const card=header.closest('.roleplay-card');
+  card.classList.toggle('open');
+}
+
+// Checklist
+function toggleCheck(box){
+  box.classList.toggle('checked');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epithrive® | Module 6 — Compliance, Ethics & Regulatory</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1b2a;
+  --navy-mid: #1a2e42;
+  --teal: #0E8FA8;
+  --teal-light: #e5f4f7;
+  --teal-mid: #b5dce6;
+  --orange: #F4811F;
+  --orange-light: #fef3e8;
+  --amber: #b45309;
+  --amber-bg: #fffbeb;
+  --amber-border: #fcd34d;
+  --green: #15803d;
+  --green-bg: #f0fdf4;
+  --green-border: #86efac;
+  --red: #b91c1c;
+  --red-bg: #fef2f2;
+  --red-border: #fca5a5;
+  --body: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #f1ede8;
+  --white: #ffffff;
+  --sidebar-w: 260px;
+  --rule-green: #16a34a;
+  --rule-red: #dc2626;
+  --rule-amber: #d97706;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--body);
+  display: flex;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ─── SIDEBAR ─── */
+#sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+#sidebar::-webkit-scrollbar { width: 3px; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); }
+
+.sb-brand { padding: 22px 20px 16px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.sb-tag { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+.sb-brand h2 { font-family: 'Fraunces', serif; color: #fff; font-size: 18px; font-weight: 600; }
+.sb-brand p { color: rgba(255,255,255,.38); font-size: 11px; margin-top: 3px; }
+.sb-cat { padding: 16px 20px 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.22); }
+.sb-nav a { display: flex; align-items: center; gap: 9px; padding: 8px 20px; color: rgba(255,255,255,.52); text-decoration: none; font-size: 12px; font-weight: 500; border-left: 3px solid transparent; transition: all .18s; }
+.sb-nav a:hover, .sb-nav a.active { color: #fff; background: rgba(255,255,255,.05); border-left-color: var(--amber); }
+.sb-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.15); flex-shrink: 0; }
+.sb-nav a:hover .sb-dot, .sb-nav a.active .sb-dot { background: var(--amber); }
+.sb-warn { margin: 14px 20px; padding: 12px 14px; background: rgba(180,83,9,.15); border: 1px solid rgba(180,83,9,.35); border-radius: 8px; font-size: 11px; color: rgba(255,255,255,.6); line-height: 1.5; }
+.sb-warn strong { color: #fbbf24; }
+
+/* ─── MAIN ─── */
+#main { margin-left: var(--sidebar-w); flex: 1; padding: 0 44px 100px; max-width: 1020px; }
+
+/* ─── HEADER ─── */
+.page-header {
+  background: linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #7c3005 100%);
+  margin: 0 -44px 52px;
+  padding: 52px 44px 48px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 3px solid var(--amber);
+}
+.page-header::before { content: ''; position: absolute; top: -50px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(180,83,9,.2) 0%, transparent 70%); }
+.ph-pretag { display: inline-flex; align-items: center; gap: 8px; background: rgba(180,83,9,.2); border: 1px solid rgba(180,83,9,.4); border-radius: 4px; padding: 4px 12px; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #fcd34d; margin-bottom: 14px; font-family: 'JetBrains Mono', monospace; }
+.page-header h1 { font-family: 'Fraunces', serif; color: #fff; font-size: 38px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+.page-header h1 em { color: #fcd34d; font-style: normal; }
+.page-header .ph-sub { color: rgba(255,255,255,.48); font-size: 14.5px; max-width: 580px; line-height: 1.65; }
+.ph-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.ph-chip { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 6px; padding: 7px 14px; font-size: 12px; color: rgba(255,255,255,.6); }
+.ph-chip strong { color: #fff; }
+
+/* ─── SECTION HEADERS ─── */
+.section { margin-bottom: 60px; scroll-margin-top: 24px; }
+.sec-hd { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+.sec-num { width: 34px; height: 34px; background: var(--amber); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+.sec-hd h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: var(--navy); }
+.sec-hd .sh-sub { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+
+/* ─── CALLOUTS ─── */
+.callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; font-size: 13.5px; line-height: 1.65; }
+.callout.teal { background: var(--teal-light); border: 1px solid var(--teal-mid); }
+.callout.teal strong { color: var(--teal); }
+.callout.amber { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+.callout.amber strong { color: var(--amber); }
+.callout.red { background: var(--red-bg); border: 1px solid var(--red-border); }
+.callout.red strong { color: var(--red); }
+.callout.navy { background: var(--navy); color: rgba(255,255,255,.72); }
+.callout.navy strong { color: #fcd34d; }
+.callout.green { background: var(--green-bg); border: 1px solid var(--green-border); }
+.callout.green strong { color: var(--green); }
+
+/* ─── BIG WARNING BANNER ─── */
+.big-warn {
+  background: var(--red-bg);
+  border: 2px solid var(--red-border);
+  border-left: 6px solid var(--red);
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.big-warn .bw-icon { font-size: 28px; flex-shrink: 0; }
+.big-warn h4 { font-size: 15px; font-weight: 700; color: var(--red); margin-bottom: 6px; }
+.big-warn p { font-size: 13.5px; color: var(--body); line-height: 1.65; }
+
+/* ─── REGULATORY STATUS CARDS ─── */
+.reg-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.reg-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.reg-card-head { padding: 14px 18px; }
+.reg-card-head.active { background: var(--green-bg); border-bottom: 2px solid var(--green-border); }
+.reg-card-head.pending { background: var(--amber-bg); border-bottom: 2px solid var(--amber-border); }
+.reg-card-head .rch-status { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; margin-bottom: 4px; }
+.reg-card-head.active .rch-status { color: var(--green); }
+.reg-card-head.pending .rch-status { color: var(--amber); }
+.reg-card-head h4 { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--navy); }
+.reg-card-body { padding: 16px 18px; }
+.reg-card-body p { font-size: 13px; color: var(--body); line-height: 1.6; margin-bottom: 10px; }
+.reg-card-body ul { padding-left: 16px; }
+.reg-card-body li { font-size: 12.5px; color: var(--body); margin-bottom: 4px; line-height: 1.5; }
+
+/* ─── REGULATORY DETAILS TABLE ─── */
+.reg-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; font-size: 13px; margin-bottom: 20px; }
+.reg-table th { background: var(--navy); color: rgba(255,255,255,.6); padding: 10px 16px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+.reg-table td { padding: 11px 16px; border-bottom: 1px solid #f1f5f9; vertical-align: top; line-height: 1.5; }
+.reg-table tr:last-child td { border-bottom: none; }
+.reg-table tr:nth-child(even) td { background: #fafbfc; }
+.reg-table td:first-child { font-weight: 600; color: var(--navy); width: 200px; }
+
+/* ─── CATEGORY COMPARISON ─── */
+.cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+.cat-col { border-right: 1px solid var(--border); }
+.cat-col:last-child { border-right: none; }
+.cat-head { padding: 14px 16px; }
+.cat-head.nutra { background: var(--teal); }
+.cat-head.fsmp { background: var(--amber); }
+.cat-head.drug { background: var(--navy-mid); }
+.cat-head h4 { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.cat-head p { color: rgba(255,255,255,.65); font-size: 11px; }
+.cat-body { padding: 14px 16px; background: var(--white); }
+.cat-body ul { padding-left: 0; list-style: none; }
+.cat-body li { font-size: 12px; color: var(--body); margin-bottom: 6px; line-height: 1.4; padding-left: 14px; position: relative; }
+.cat-body li::before { content: '•'; position: absolute; left: 0; color: var(--muted); }
+.cat-current { background: var(--teal-light); border-top: 2px solid var(--teal); padding: 10px 16px; font-size: 11px; font-weight: 700; color: var(--teal); text-align: center; letter-spacing: .5px; text-transform: uppercase; }
+
+/* ─── CLAIMS FRAMEWORK ─── */
+.claims-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+.claims-table th { background: var(--navy); color: rgba(255,255,255,.6); padding: 10px 16px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+.claims-table td { padding: 13px 16px; border-bottom: 1px solid #f1f5f9; font-size: 13px; vertical-align: top; line-height: 1.55; }
+.claims-table tr:last-child td { border-bottom: none; }
+.claims-table td:first-child { font-weight: 600; width: 160px; }
+.ct-ok { color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.ct-no { color: var(--red); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.ct-warn { color: var(--amber); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+/* ─── PHRASE-BY-PHRASE ─── */
+.phrase-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.phrase-topic { padding: 10px 16px; background: #f8fafc; border-bottom: 1px solid var(--border); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.phrase-rows { display: grid; grid-template-columns: 1fr 1fr; }
+.phrase-side { padding: 14px 16px; }
+.phrase-side:first-child { border-right: 1px solid var(--border); background: #fef2f2; }
+.phrase-side:last-child { background: #f0fdf4; }
+.phrase-label { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+.phrase-side:first-child .phrase-label { color: var(--red); }
+.phrase-side:last-child .phrase-label { color: var(--green); }
+.phrase-text { font-size: 13px; color: var(--body); line-height: 1.6; font-style: italic; }
+.phrase-note { font-size: 11.5px; color: var(--muted); margin-top: 6px; font-style: normal; }
+
+/* ─── DIGITAL COMPLIANCE ─── */
+.channel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.channel-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.channel-head { padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+.channel-icon { font-size: 22px; flex-shrink: 0; }
+.channel-head h4 { font-size: 14px; font-weight: 600; color: var(--navy); }
+.channel-head p { font-size: 11px; color: var(--muted); }
+.channel-head.wa { background: #f0fdf4; border-bottom: 2px solid #86efac; }
+.channel-head.print { background: var(--teal-light); border-bottom: 2px solid var(--teal-mid); }
+.channel-head.social { background: #faf5ff; border-bottom: 2px solid #d8b4fe; }
+.channel-head.verbal { background: var(--amber-bg); border-bottom: 2px solid var(--amber-border); }
+.channel-body { padding: 14px 16px; }
+.channel-rule { display: flex; gap: 8px; margin-bottom: 8px; font-size: 12.5px; line-height: 1.5; }
+.cr-icon { flex-shrink: 0; width: 18px; }
+
+/* ─── AE REPORTING ─── */
+.ae-flow { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.ae-flow h4 { font-family: 'Fraunces', serif; font-size: 17px; color: var(--navy); margin-bottom: 16px; }
+.ae-chain { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin-bottom: 16px; }
+.ae-step { background: var(--teal-light); border: 1.5px solid var(--teal-mid); border-radius: 8px; padding: 10px 14px; font-size: 12.5px; font-weight: 600; color: var(--navy); text-align: center; }
+.ae-step small { display: block; font-size: 10px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.ae-arr { color: var(--amber); font-size: 18px; font-weight: 700; padding: 0 8px; }
+.ae-types { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ae-type { padding: 12px 14px; border-radius: 8px; font-size: 13px; }
+.ae-type.must { background: var(--red-bg); border: 1px solid var(--red-border); }
+.ae-type.monitor { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+.ae-type h5 { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+.ae-type.must h5 { color: var(--red); }
+.ae-type.monitor h5 { color: var(--amber); }
+.ae-type ul { padding-left: 14px; }
+.ae-type li { font-size: 12.5px; color: var(--body); margin-bottom: 4px; line-height: 1.5; }
+
+/* ─── ETHICS & HCP ─── */
+.ethics-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.ethics-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+.ethics-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.ethics-card ul { padding-left: 14px; }
+.ethics-card li { font-size: 12.5px; color: var(--body); margin-bottom: 5px; line-height: 1.5; }
+.ec-ok { border-top: 4px solid var(--green); }
+.ec-no { border-top: 4px solid var(--red); }
+.ec-ok h4 { color: var(--green); }
+.ec-no h4 { color: var(--red); }
+
+/* ─── SCENARIO TEST ─── */
+.scenario-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.scenario-q { padding: 16px 18px; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; }
+.sq-num { width: 26px; height: 26px; border-radius: 6px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+.sq-text { flex: 1; }
+.sq-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.sq-q { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+.scenario-opts { padding: 0 18px 0 56px; }
+.sc-opt { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 7px; border: 1.5px solid var(--border); font-size: 13px; color: var(--body); cursor: pointer; transition: all .15s; margin-bottom: 7px; background: var(--white); width: 100%; text-align: left; }
+.sc-opt:hover { border-color: var(--teal); background: var(--teal-light); }
+.sc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #15803d; font-weight: 600; }
+.sc-opt.wrong { border-color: var(--red); background: var(--red-bg); color: #b91c1c; }
+.sc-opt.correct::before { content: '✓'; font-weight: 700; color: var(--green); min-width: 16px; }
+.sc-opt.wrong::before { content: '✗'; font-weight: 700; color: var(--red); min-width: 16px; }
+.sc-opt:not(.correct):not(.wrong)::before { content: '○'; color: var(--muted); min-width: 16px; }
+.sc-feedback { display: none; margin: 0 18px 14px 56px; padding: 10px 14px; border-radius: 7px; font-size: 13px; line-height: 1.6; }
+.sc-feedback.show { display: block; }
+.sc-feedback.ok { background: var(--green-bg); border: 1px solid var(--green-border); color: #14532d; }
+.sc-feedback.no { background: var(--red-bg); border: 1px solid var(--red-border); color: #7f1d1d; }
+
+/* ─── POCKET CARD ─── */
+.pocket-card {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 30px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(251,191,36,.3);
+}
+.pocket-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(180,83,9,.2) 0%, transparent 70%); }
+.pocket-card h3 { font-family: 'Fraunces', serif; color: #fcd34d; font-size: 20px; margin-bottom: 20px; }
+.pocket-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pocket-col h5 { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; margin-bottom: 10px; }
+.pocket-col.yes h5 { color: #6ee7b7; }
+.pocket-col.no h5 { color: #fca5a5; }
+.pocket-col li { font-size: 12.5px; color: rgba(255,255,255,.7); margin-bottom: 6px; padding-left: 16px; list-style: none; position: relative; line-height: 1.5; }
+.pocket-col.yes li::before { content: '✓'; position: absolute; left: 0; color: #6ee7b7; font-weight: 700; }
+.pocket-col.no li::before { content: '✗'; position: absolute; left: 0; color: #fca5a5; font-weight: 700; }
+.pocket-disclaimer { margin-top: 20px; padding: 14px 16px; border: 1px dashed rgba(251,191,36,.4); border-radius: 8px; font-size: 12.5px; color: rgba(255,255,255,.55); line-height: 1.6; font-style: italic; }
+.pocket-disclaimer strong { color: #fcd34d; font-style: normal; }
+
+@media (max-width: 860px) {
+  body { flex-direction: column; }
+  #sidebar { position: relative; width: 100%; height: auto; }
+  #main { margin-left: 0; padding: 0 20px 60px; }
+  .reg-status-grid, .cat-grid, .ae-types, .channel-grid, .ethics-grid, .pocket-grid, .phrase-rows { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <span class="sb-tag">⚖ MR Training Program</span>
+    <h2>Epithrive®</h2>
+    <p>Module 6 — Compliance</p>
+  </div>
+  <div class="sb-cat">Contents</div>
+  <div class="sb-nav">
+    <a href="#s1" class="active"><span class="sb-dot"></span>Why Compliance Is Mandatory</a>
+    <a href="#s2"><span class="sb-dot"></span>Regulatory Status</a>
+    <a href="#s3"><span class="sb-dot"></span>The FSSAI Framework</a>
+    <a href="#s4"><span class="sb-dot"></span>The Claims Rules</a>
+    <a href="#s5"><span class="sb-dot"></span>Phrase-by-Phrase Guide</a>
+    <a href="#s6"><span class="sb-dot"></span>Digital & Print Rules</a>
+    <a href="#s7"><span class="sb-dot"></span>Adverse Event Reporting</a>
+    <a href="#s8"><span class="sb-dot"></span>Ethics & HCP Interaction</a>
+    <a href="#s9"><span class="sb-dot"></span>Compliance Scenario Test</a>
+    <a href="#s10"><span class="sb-dot"></span>Field Pocket Card</a>
+  </div>
+  <div class="sb-warn">
+    <strong>Non-negotiable:</strong> Compliance violations can result in FSSAI action against the company and personal liability for the MR. There are no exceptions to these rules.
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="ph-pretag">⚖ Module 6 of 8 — Legal &amp; Ethical Rules</div>
+    <h1>Compliance, Ethics<br>&amp; <em>Regulatory</em></h1>
+    <p class="ph-sub">The rules that protect you, protect the company, and protect the patient. This is the one module where there is no grey area — only what is permitted and what is not.</p>
+    <div class="ph-chips">
+      <div class="ph-chip"><strong>Zero-tolerance</strong> prohibited claim rules</div>
+      <div class="ph-chip"><strong>FSSAI</strong> regulatory framework</div>
+      <div class="ph-chip"><strong>Phrase-by-phrase</strong> claim guide</div>
+      <div class="ph-chip"><strong>Digital + print</strong> channel rules</div>
+      <div class="ph-chip"><strong>10 scenario</strong> compliance test</div>
+    </div>
+  </div>
+
+  <!-- S1: WHY COMPLIANCE IS MANDATORY -->
+  <section class="section" id="s1">
+    <div class="sec-hd">
+      <div class="sec-num">01</div>
+      <div>
+        <h2>Why Compliance Is Non-Negotiable</h2>
+        <div class="sh-sub">The stakes — what happens when things go wrong</div>
+      </div>
+    </div>
+
+    <div class="big-warn">
+      <div class="bw-icon">⚠️</div>
+      <div>
+        <h4>This Module Carries Legal Weight</h4>
+        <p>Making an unlawful claim about a food or nutraceutical product in India is a violation of the Food Safety and Standards Act, 2006 (FSSAI). Penalties include product seizure, licence suspension, fines, and in serious cases criminal prosecution. As an MR, you are the human interface between the product and the market. What you say in a doctor's chamber, in a WhatsApp message, or in printed materials is your personal responsibility — and the company's legal exposure.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px;border-top:4px solid var(--red)">
+        <div style="font-size:26px;margin-bottom:8px">🏛️</div>
+        <h4 style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">Regulatory Risk</h4>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.5">FSSAI can issue notices, demand product recall, suspend licences, and impose fines if prohibited claims are found in marketing materials or sales presentations.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px;border-top:4px solid var(--amber)">
+        <div style="font-size:26px;margin-bottom:8px">👤</div>
+        <h4 style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">Personal Liability</h4>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.5">MRs who make prohibited claims are not shielded by the company — they bear personal responsibility. WhatsApp messages, printed materials, and verbal statements can all be used as evidence.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px;border-top:4px solid var(--teal)">
+        <div style="font-size:26px;margin-bottom:8px">🤝</div>
+        <h4 style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">Doctor Trust</h4>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.5">Overclaiming destroys credibility. A doctor who hears you say "Epithrive® heals wounds" immediately knows you're making an illegal claim — and questions your credibility on everything else.</p>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <strong>The right framing:</strong> Compliance is not a constraint on your effectiveness — it is your protection. An MR who communicates within compliance rules is an MR who can be trusted, given more responsibility, and who builds a sustainable field career. Non-compliant MRs become liabilities.
+    </div>
+  </section>
+
+  <!-- S2: REGULATORY STATUS -->
+  <section class="section" id="s2">
+    <div class="sec-hd">
+      <div class="sec-num">02</div>
+      <div>
+        <h2>Epithrive®'s Regulatory Status</h2>
+        <div class="sh-sub">What is approved, what is pending, and what this means for every claim you make</div>
+      </div>
+    </div>
+
+    <div class="reg-status-grid">
+      <div class="reg-card">
+        <div class="reg-card-head active">
+          <div class="rch-status">✓ Currently Active</div>
+          <h4>Nutraceutical — FSSAI Licensed</h4>
+        </div>
+        <div class="reg-card-body">
+          <p>Epithrive® is currently classified and licensed as a <strong>nutraceutical</strong> under the Food Safety and Standards Act. This is the current, active regulatory status under which all sales, marketing, and distribution operate.</p>
+          <ul>
+            <li>FSSAI Licence No.: <strong>11524998000214</strong></li>
+            <li>Valid: 16 February 2025 → 15 February 2030</li>
+            <li>Renewed January 2025 (Central Licensing Authority)</li>
+            <li>TM Registration No.: <strong>6248396</strong></li>
+            <li>Classified under: Food Supplements (Category 13.6)</li>
+            <li>Product descriptor: SOI-L-ARGININE + L-GLUTAMINE + MARINE COLLAGEN + CA-HMB (ORANGE FLAVOUR) (NUTRA)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reg-card">
+        <div class="reg-card-head pending">
+          <div class="rch-status">⏳ Pending Approval</div>
+          <h4>FSMP — Food for Special Medical Purposes</h4>
+        </div>
+        <div class="reg-card-body">
+          <p>An FSMP application is currently in progress. FSMP is a higher regulatory category that would allow specific medical nutrition claims. <strong>FSMP approval has NOT yet been granted.</strong></p>
+          <ul>
+            <li>FSMP status: Application submitted — under review</li>
+            <li>Timeline: Not confirmed — do not speculate to doctors</li>
+            <li><strong>Critical rule:</strong> Do NOT use "FSMP" or "Food for Special Medical Purposes" in any communication until approval is granted and you receive official notification from management</li>
+            <li>Once approved, all materials will need updating — you will be informed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <table class="reg-table">
+      <thead>
+        <tr>
+          <th>Registration Detail</th>
+          <th>Details</th>
+          <th>What It Means for You</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FSSAI Licence No.</td>
+          <td>11524998000214</td>
+          <td>Can be cited to doctors to confirm regulatory registration. Valid, current, centrally issued.</td>
+        </tr>
+        <tr>
+          <td>Licence Validity</td>
+          <td>16 Feb 2025 → 15 Feb 2030</td>
+          <td>Renewed for 5 years. No expiry concerns. Long-term stability.</td>
+        </tr>
+        <tr>
+          <td>Licence Category</td>
+          <td>Nutraceutical / Food Supplement (Category 13.6)</td>
+          <td>This determines what claims are permitted. Nutraceutical rules apply — NOT drug rules.</td>
+        </tr>
+        <tr>
+          <td>Trademark Registration</td>
+          <td>TM Reg. No. 6248396</td>
+          <td>Epithrive® name and mark are protected. Do not use the ® symbol incorrectly on any unofficial material.</td>
+        </tr>
+        <tr>
+          <td>GST Registration</td>
+          <td>27AAHCN1312Q2Z7</td>
+          <td>For institutional procurement discussions. Confirms legal trading entity.</td>
+        </tr>
+        <tr>
+          <td>Manufacturer FSSAI</td>
+          <td>Vital Nutraceuticals Pvt. Ltd. — Lic. No. 11517022000653</td>
+          <td>Manufacturer is separately licensed. ISO 22000:2018, cGMP, HACCP certified.</td>
+        </tr>
+        <tr>
+          <td>Manufacturing Standards</td>
+          <td>ISO 22000:2018 (IRQS/230600787) · GMP (IRQS/2360-C0789) · HACCP</td>
+          <td>Can be cited when doctors ask about manufacturing quality and product safety standards.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout amber">
+      <strong>The FSMP boundary — memorise this:</strong> Until you receive official written notification from Nuin Wellness management that FSMP approval has been granted, treat FSMP as a forbidden term in every communication. If a doctor asks "is this an FSMP?", the correct answer is: "Epithrive® is currently registered as a nutraceutical under FSSAI. An FSMP application is in progress, but approval has not yet been received. The product operates under nutraceutical regulations."
+    </div>
+  </section>
+
+  <!-- S3: FSSAI FRAMEWORK -->
+  <section class="section" id="s3">
+    <div class="sec-hd">
+      <div class="sec-num">03</div>
+      <div>
+        <h2>The FSSAI Regulatory Framework</h2>
+        <div class="sh-sub">Three categories — and which one governs Epithrive® right now</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.7;color:var(--body);margin-bottom:18px">India's Food Safety and Standards Authority of India (FSSAI) governs all food and nutrition products. Understanding where Epithrive® sits in the regulatory landscape is essential — it determines what claims are legally permissible. Three categories are relevant to Epithrive®.</p>
+
+    <div class="cat-grid">
+      <div class="cat-col">
+        <div class="cat-head nutra">
+          <h4>Nutraceutical / Food Supplement</h4>
+          <p>Category 13.6 · Current status</p>
+        </div>
+        <div class="cat-body">
+          <ul>
+            <li>Regulated under FSSAI Nutraceuticals Regulations</li>
+            <li>No prescription required</li>
+            <li>May make nutritional/function claims about ingredients</li>
+            <li>Cannot make disease treatment/prevention claims</li>
+            <li>Mandatory disclaimer: "Not a drug / Dietary supplement"</li>
+            <li>Must not imply therapeutic equivalence to medicines</li>
+            <li>Can reference clinical evidence framed as nutritional outcomes</li>
+          </ul>
+        </div>
+        <div class="cat-current">✓ EPITHRIVE® IS HERE NOW</div>
+      </div>
+      <div class="cat-col">
+        <div class="cat-head fsmp">
+          <h4>Food for Special Medical Purposes (FSMP)</h4>
+          <p>Pending FSSAI approval</p>
+        </div>
+        <div class="cat-body">
+          <ul>
+            <li>Regulated under FSSR — FSMP Regulations</li>
+            <li>Higher standard for manufacturing, clinical evidence</li>
+            <li>Permits condition-specific nutritional claims (e.g., "for dietary management of wound healing")</li>
+            <li>Still NOT a medicine — cannot claim "treats" or "cures"</li>
+            <li>May be recommended by HCPs for specific conditions</li>
+            <li>Typically used under medical supervision</li>
+            <li>Requires FSSAI FSMP-specific approval — separate from nutraceutical</li>
+          </ul>
+        </div>
+        <div style="background:var(--amber-bg);border-top:2px solid var(--amber-border);padding:10px 16px;font-size:11px;font-weight:700;color:var(--amber);text-align:center;letter-spacing:.5px;text-transform:uppercase">⏳ DO NOT USE "FSMP" YET</div>
+      </div>
+      <div class="cat-col">
+        <div class="cat-head drug">
+          <h4>Drug / Pharmaceutical</h4>
+          <p>Requires CDSCO approval</p>
+        </div>
+        <div class="cat-body">
+          <ul>
+            <li>Regulated by CDSCO under Drugs and Cosmetics Act</li>
+            <li>Can legally claim to "treat", "cure", or "prevent" diseases</li>
+            <li>Requires prescription in most cases</li>
+            <li>Clinical trial requirements are far more rigorous</li>
+            <li>Manufacturing under drug GMP standards</li>
+            <li>Epithrive® is NOT a drug and will never use drug-level claims</li>
+            <li>Using drug-level claims for a nutraceutical is a serious regulatory violation</li>
+          </ul>
+        </div>
+        <div style="background:var(--red-bg);border-top:2px solid var(--red-border);padding:10px 16px;font-size:11px;font-weight:700;color:var(--red);text-align:center;letter-spacing:.5px;text-transform:uppercase">✗ NOT APPLICABLE TO EPITHRIVE®</div>
+      </div>
+    </div>
+
+    <div class="callout teal" style="margin-top:16px">
+      <strong>The key implication for MRs:</strong> Because Epithrive® is a nutraceutical, it operates between "general food" and "drug" in the regulatory hierarchy. This means you can reference clinical evidence and nutritional mechanisms — but you cannot say the product treats, cures, or prevents any disease. The language you use must always frame Epithrive® as providing nutritional support, not medical treatment.
+    </div>
+  </section>
+
+  <!-- S4: CLAIMS FRAMEWORK -->
+  <section class="section" id="s4">
+    <div class="sec-hd">
+      <div class="sec-num">04</div>
+      <div>
+        <h2>The Claims Rules — What Is and Isn't Permitted</h2>
+        <div class="sh-sub">The complete framework — memorise every category</div>
+      </div>
+    </div>
+
+    <table class="claims-table">
+      <thead>
+        <tr>
+          <th>Claim Type</th>
+          <th>Status</th>
+          <th>Examples Permitted</th>
+          <th>Examples Prohibited</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nutritional content claims</td>
+          <td><span class="ct-ok">✓ Permitted</span></td>
+          <td>"Contains 7g L-Arginine per sachet." "Provides 2.5g Marine Collagen Peptides."</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Nutrient function claims</td>
+          <td><span class="ct-ok">✓ Permitted</span></td>
+          <td>"Arginine is a precursor to nitric oxide, which supports blood vessel function." "Vitamin C contributes to collagen formation."</td>
+          <td>"Arginine heals diabetic foot ulcers."</td>
+        </tr>
+        <tr>
+          <td>Clinical study reference</td>
+          <td><span class="ct-ok">✓ Permitted with attribution</span></td>
+          <td>"In the clinical study CSR-ETH-2025-001, patients in the Epithrive® arm showed 72.4% wound area reduction at Week 8 (p=0.004)."</td>
+          <td>"Epithrive® is proven to reduce wounds by 72%." (No attribution, makes product the subject of a treatment claim)</td>
+        </tr>
+        <tr>
+          <td>Adjunct / support claims</td>
+          <td><span class="ct-ok">✓ Permitted</span></td>
+          <td>"Supports wound healing as an adjunct to standard wound care." "Provides nutritional support for tissue repair."</td>
+          <td>"Replaces wound dressing." "Is the primary treatment for DFU."</td>
+        </tr>
+        <tr>
+          <td>Disease treatment claims</td>
+          <td><span class="ct-no">✗ Prohibited</span></td>
+          <td>—</td>
+          <td>"Treats diabetic wounds." "Heals pressure sores." "Cures venous ulcers." "Prevents infection." "Reduces the need for antibiotics."</td>
+        </tr>
+        <tr>
+          <td>Disease prevention claims</td>
+          <td><span class="ct-no">✗ Prohibited</span></td>
+          <td>—</td>
+          <td>"Prevents amputation." "Prevents wound infection." "Stops bedsores from forming."</td>
+        </tr>
+        <tr>
+          <td>Prescription equivalence</td>
+          <td><span class="ct-no">✗ Prohibited</span></td>
+          <td>—</td>
+          <td>"Works like a medicine." "Equivalent to drug treatment." "Your doctor should prescribe this."</td>
+        </tr>
+        <tr>
+          <td>FSMP designation</td>
+          <td><span class="ct-no">✗ Prohibited until approved</span></td>
+          <td>—</td>
+          <td>"This is a Food for Special Medical Purposes." "FSMP-grade nutrition." Any use of the acronym "FSMP".</td>
+        </tr>
+        <tr>
+          <td>Guaranteed outcome claims</td>
+          <td><span class="ct-no">✗ Prohibited</span></td>
+          <td>—</td>
+          <td>"Guaranteed to close the wound in 4 weeks." "Will definitely reduce hospital stay." "Ensures faster healing."</td>
+        </tr>
+        <tr>
+          <td>Comparative superiority to drugs</td>
+          <td><span class="ct-no">✗ Prohibited</span></td>
+          <td>—</td>
+          <td>"Better than antibiotics for wound healing." "More effective than standard dressings." "Outperforms existing wound treatments."</td>
+        </tr>
+        <tr>
+          <td>Testimonial / patient outcome claims</td>
+          <td><span class="ct-warn">△ Permitted with framing</span></td>
+          <td>"This documented case showed near-complete closure in 15 days alongside standard care." (With case study disclaimer)</td>
+          <td>"Our patients always heal in 15 days." "Every patient with DFU who takes Epithrive® gets better."</td>
+        </tr>
+        <tr>
+          <td>Institutional cost-benefit</td>
+          <td><span class="ct-ok">✓ Permitted with attribution</span></td>
+          <td>"Literature estimates 3–4 days reduced hospital stay with Arg+Gln+HMB supplementation (Williams 2002)."</td>
+          <td>"Epithrive® will save your hospital ₹15,000 per patient." (Stated as a guarantee)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- S5: PHRASE-BY-PHRASE GUIDE -->
+  <section class="section" id="s5">
+    <div class="sec-hd">
+      <div class="sec-num">05</div>
+      <div>
+        <h2>Phrase-by-Phrase Compliance Guide</h2>
+        <div class="sh-sub">Every critical claim — the wrong version and the right version, side by side</div>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;line-height:1.7;color:var(--body);margin-bottom:18px">These are the specific phrases that come up in field conversations. Memorise the compliant versions until they come out automatically. The non-compliant versions in red are what your instincts might want to say — the compliant versions in green are what you must say.</p>
+
+    <div class="phrase-card">
+      <div class="phrase-topic">The Core Product Claim</div>
+      <div class="phrase-rows">
+        <div class="phrase-side">
+          <div class="phrase-label">✗ Non-Compliant</div>
+          <div class="phrase-text">"Epithrive® heals diabetic wounds and bedsores."</div>
+          <div class="phrase-note">Prohibited: makes a disease treatment claim. "Heals" is a drug-level action claim.</div>
+        </div>
+        <div class="phrase-side">
+          <div class="phrase-label">✓ Compliant</div>
+          <div class="phrase-text">"Epithrive® provides targeted nutritional support for wound healing as an adjunct to standard wound care."</div>
+          <div class="phrase-note">Correct: frames the product as nutritional support, not a treatment.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phrase-card">
+      <div class="phrase-topic">Presenting the Clinical Study Finding</div>
+      <div class="phrase-rows">
+        <div class="phrase-side">
+          <div class="phrase-label">✗ Non-Compliant</div>
+          <div class="phrase-text">"Epithrive® is proven to heal wounds 39% faster."</div>
+          <div class="phrase-note">Prohibited: "proven to heal" is a drug-level efficacy claim. No attribution to specific study.</div>
+        </div>
+        <div class="phrase-side">
+          <div class="phrase-label">✓ Compliant</div>
+          <div class="phrase-text">"In our clinical study (CSR-ETH-2025-001), the Epithrive® arm showed 72.4% wound area reduction at Week 8 versus 52.1% in the standard care arm — p=0.004."</div>
+          <div class="phrase-note">Correct: cites the specific study, frames as study finding not a product claim, attributable.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phrase-card">
+      <div class="phrase-topic">Referring to the Regulatory Category</div>
+      <div class="phrase-rows">
+        <div class="phrase-side">
+          <div class="phrase-label">✗ Non-Compliant</div>
+          <div class="phrase-text">"This is an FSMP — a Food for Special Medical Purposes approved for wound patients."</div>
+          <div class="phrase-note">Prohibited: FSMP approval not yet granted. Never use until official notice received.</div>
+        </div>
+        <div class="phrase-side">
+          <div class="phrase-label">✓ Compliant</div>
+          <div class="phrase-text">"Epithrive® is a nutraceutical registered under FSSAI (Licence No. 11524998000214) — a dietary supplement formulated specifically to provide wound healing nutritional support."</div>
+          <div class="phrase-note">Correct: accurate regulatory designation, no FSMP claim.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phrase-card">
+      <div class="phrase-topic">Presenting the Healing Timeframe</div>
+      <div class="phrase-rows">
+        <div class="phrase-side">
+          <div class="phrase-label">✗ Non-Compliant</div>
+          <div class="phrase-text">"Your patient's wound will close in 15 days on Epithrive®."</div>
+          <div class="phrase-note">Prohibited: guaranteed outcome claim. You cannot guarantee individual patient results.</div>
+        </div>
+        <div class="phrase-side">
+          <div class="phrase-label">✓ Compliant</div>
+          <div class="phrase-text">"We have a documented case where a diabetic patient with a chronic ulcer experienced near-complete closure in 15 days alongside standard care. Individual outcomes vary based on wound type, baseline nutrition, and comorbidities."</div>
+          <div class="phrase-note">Correct: case study framed as individual documentation with appropriate caveat.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phrase-card">
+      <div class="phrase-topic">Infection and Complication Reduction</div>
+      <div class="phrase-rows">
+        <div class="phrase-side">
+          <div class="phrase-label">✗ Non-Compliant</div>
+          <div class="phrase-text">"Epithrive® prevents wound infection and reduces the need for antibiotics."</div>
+          <div class="phrase-note">Prohibited: disease prevention claim. Reduces antibiotic need is a drug-level claim.</div>
+        </div>
+        <div class="phrase-side">
+          <div class="phrase-label">✓ Compliant</div>
+          <div class="phrase-text">"L-Glutamine supports immune cell function, which is essential for the body's natural defence in the wound environment. Wischmeyer (2003) found 45% fewer ICU infections with Glutamine supplementation."</div>
+          <div class="phrase-note">Correct: mechanism claim for ingredient + attributed study finding, not a product claim.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phrase-card">
+      <div class="phrase-topic">Hospital Stay and Cost Savings</div>
+      <div class="phrase-rows">
+        <div class="phrase-side">
+          <div class="phrase-label">✗ Non-Compliant</div>
+          <div class="phrase-text">"Epithrive® will reduce your patients' hospital stay by 3–4 days and save the hospital ₹15,000 per patient."</div>
+          <div class="phrase-note">Prohibited: guaranteed outcome claim stated as a product promise without attribution.</div>
+        </div>
+        <div class="phrase-side">
+          <div class="phrase-label">✓ Compliant</div>
+          <div class="phrase-text">"Williams and Barbul (2002, Annals of Surgery) found a 3.5-day reduction in hospital stay with Arg+HMB+Gln supplementation in trauma patients. Faster healing generally correlates with fewer dressing changes and shorter stays — the literature estimates ₹10,000–₹15,000 savings per patient."</div>
+          <div class="phrase-note">Correct: attributed to literature, framed as general correlation not a guarantee.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phrase-card">
+      <div class="phrase-topic">Describing What the Product Is</div>
+      <div class="phrase-rows">
+        <div class="phrase-side">
+          <div class="phrase-label">✗ Non-Compliant</div>
+          <div class="phrase-text">"Epithrive® is a medicine / drug / treatment for wound healing."</div>
+          <div class="phrase-note">Prohibited: positions a nutraceutical as a pharmaceutical. Serious regulatory violation.</div>
+        </div>
+        <div class="phrase-side">
+          <div class="phrase-label">✓ Compliant</div>
+          <div class="phrase-text">"Epithrive® is India's first targeted wound-healing nutrition formula — a dietary supplement that provides the specific amino acids, collagen peptides, and micronutrients the body needs to support the healing process alongside standard wound care."</div>
+          <div class="phrase-note">Correct: clearly identifies as nutrition / dietary supplement, emphasises "alongside" standard care.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout amber" style="margin-top:16px">
+      <strong>The mandatory disclaimer — say it or print it wherever outcomes are discussed:</strong> "Dietary supplement. Not intended to diagnose, treat, cure, or prevent any disease. For nutritional support as an adjunct to standard wound care." This single disclaimer correctly positions Epithrive® and provides legal protection for every outcome claim made in context.
+    </div>
+  </section>
+
+  <!-- S6: DIGITAL & PRINT RULES -->
+  <section class="section" id="s6">
+    <div class="sec-hd">
+      <div class="sec-num">06</div>
+      <div>
+        <h2>Digital &amp; Print Communication Rules</h2>
+        <div class="sh-sub">What you can send, share, post, and print — and what you cannot</div>
+      </div>
+    </div>
+
+    <div class="channel-grid">
+      <div class="channel-card">
+        <div class="channel-head wa">
+          <div class="channel-icon">💬</div>
+          <div>
+            <h4>WhatsApp Messages</h4>
+            <p>Primary MR-to-doctor communication channel</p>
+          </div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Send approved clinical study summary (doctor A4 leave-behind) as a PDF attachment</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Send case study documents (company-approved PDFs only)</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Write: "Here is the clinical data on Epithrive® — wound area reduction 72.4% vs 52.1% at Week 8 (p=0.004)"</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Include the mandatory disclaimer in any message that discusses outcomes</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not send unofficial screenshots, personal summaries, or any text you composed yourself with outcome claims</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not use disease treatment language in any WhatsApp message — it is a documented record</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not forward non-company WhatsApp messages about Epithrive® without review</span></div>
+        </div>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-head print">
+          <div class="channel-icon">📄</div>
+          <div>
+            <h4>Printed Materials (Leave-Behinds)</h4>
+            <p>Doctor summary, clinical dossier, case study cards</p>
+          </div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Only leave company-approved, officially printed materials — never self-printed unofficial sheets</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Approved materials: Doctor A4 Summary, Formulation Explainer, Case Study Document, Clinical Study Report (on request)</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Every piece of printed material must carry the mandatory disclaimer and FSSAI licence number</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not write on approved materials or add handwritten outcome claims</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not design or print your own one-pagers, posters, or data sheets — even if they look professional</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not use any non-company branded materials in a doctor's office</span></div>
+        </div>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-head social">
+          <div class="channel-icon">📱</div>
+          <div>
+            <h4>Social Media (Personal Accounts)</h4>
+            <p>Facebook, Instagram, LinkedIn, Twitter/X</p>
+          </div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Share official company-posted content from the Epithrive® or Nuin Wellness accounts — no modification</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Tag Epithrive® in shares of approved educational content</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not post patient photos, wound photos, or before/after images — privacy violation + potential regulatory issue</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not make any product claims on your personal social accounts</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not run paid ads for Epithrive® from personal accounts</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not write posts like "Epithrive® saved my patient's leg" — this is both a prohibited claim and a patient confidentiality breach</span></div>
+        </div>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-head verbal">
+          <div class="channel-icon">🗣️</div>
+          <div>
+            <h4>Verbal Communication (Doctor Calls)</h4>
+            <p>In-clinic, phone calls, conferences, CME events</p>
+          </div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Use only compliant claim language — assume every conversation could be recorded</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>State the study finding precisely: "72.4% vs 52.1% at Week 8, p=0.004" — not paraphrased versions</span></div>
+          <div class="channel-rule"><span class="cr-icon">✓</span><span>Verbally include disclaimer when discussing any outcome: "As a dietary supplement, results vary by patient..."</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not adjust your story when you think no one is listening — consistency is your protection</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not make verbal promises about outcomes that differ from what the written materials say</span></div>
+          <div class="channel-rule"><span class="cr-icon" style="color:var(--red)">✗</span><span>Do not imply that the product has drug approval or is under CDSCO regulation</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7: ADVERSE EVENT REPORTING -->
+  <section class="section" id="s7">
+    <div class="sec-hd">
+      <div class="sec-num">07</div>
+      <div>
+        <h2>Adverse Event Reporting</h2>
+        <div class="sh-sub">What to do when a patient reports a problem — your legal and ethical obligation</div>
+      </div>
+    </div>
+
+    <div class="ae-flow">
+      <h4>The Adverse Event Reporting Chain</h4>
+      <div class="ae-chain">
+        <div class="ae-step">Patient / Doctor<br>reports issue<small>You learn of a problem</small></div>
+        <div class="ae-arr">→</div>
+        <div class="ae-step">MR documents<br>immediately<small>Date, patient details, nature of complaint</small></div>
+        <div class="ae-arr">→</div>
+        <div class="ae-step">Escalate to<br>Area Manager<small>Within 24 hours of learning</small></div>
+        <div class="ae-arr">→</div>
+        <div class="ae-step">Area Manager<br>to Company Medical<small>Nuin Wellness team notified</small></div>
+        <div class="ae-arr">→</div>
+        <div class="ae-step">Company review<br>& FSSAI reporting<small>If required under FSSAI regulations</small></div>
+      </div>
+
+      <div class="ae-types">
+        <div class="ae-type must">
+          <h5>🚨 Mandatory Immediate Escalation</h5>
+          <ul>
+            <li>Severe allergic reaction (anaphylaxis, throat swelling, breathing difficulty)</li>
+            <li>Patient hospitalisation attributable to the product</li>
+            <li>Death (any case where product use is in the history)</li>
+            <li>Unexpected serious adverse event not listed in known profile</li>
+            <li>Significant organ impairment (liver, kidney) with temporal link to product use</li>
+          </ul>
+        </div>
+        <div class="ae-type monitor">
+          <h5>⚠️ Document & Escalate Within 48 Hours</h5>
+          <ul>
+            <li>Persistent GI discomfort beyond first week (bloating, nausea)</li>
+            <li>Metallic taste complained about for more than 5 days</li>
+            <li>Persistent flushing or headache beyond 3 days</li>
+            <li>Patient stops taking product due to a side effect</li>
+            <li>Any symptom the patient or doctor attributes to the product</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout red">
+      <strong>Critical rule on adverse events:</strong> You are not authorised to tell a patient or doctor that a reported symptom is "not from Epithrive®" or to minimise a report. Document everything and escalate. Never advise a patient to continue taking the product after a serious adverse event — tell them to stop use and consult their doctor immediately while you escalate through the chain.
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px">
+      <h4 style="font-family:'Fraunces',serif;font-size:17px;color:var(--navy);margin-bottom:12px">What to Document (Minimum Requirements)</h4>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div style="background:#fafbfc;border-radius:8px;padding:12px;font-size:12.5px"><strong style="display:block;color:var(--navy);margin-bottom:4px">Patient Information</strong>Age, sex, relevant medical history. Do NOT record full name or ID without consent — anonymise where possible.</div>
+        <div style="background:#fafbfc;border-radius:8px;padding:12px;font-size:12.5px"><strong style="display:block;color:var(--navy);margin-bottom:4px">Product Details</strong>Batch number (from sachet), dose being taken, duration of use before complaint.</div>
+        <div style="background:#fafbfc;border-radius:8px;padding:12px;font-size:12.5px"><strong style="display:block;color:var(--navy);margin-bottom:4px">Event Details</strong>Nature of complaint, date of onset, severity, what action was taken, outcome if known.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S8: ETHICS & HCP -->
+  <section class="section" id="s8">
+    <div class="sec-hd">
+      <div class="sec-num">08</div>
+      <div>
+        <h2>Ethics &amp; HCP Interaction Rules</h2>
+        <div class="sh-sub">What you may and may not offer doctors — and how to build trust without crossing lines</div>
+      </div>
+    </div>
+
+    <div class="ethics-grid">
+      <div class="ethics-card ec-ok">
+        <h4>✓ You MAY provide</h4>
+        <ul>
+          <li>Company-approved clinical detailing materials (printed)</li>
+          <li>Clinical Study Report (CSR) or doctor summary — on request</li>
+          <li>Formulation explainer document</li>
+          <li>Case study documentation (company printed)</li>
+          <li>Product samples authorised by your Area Manager</li>
+          <li>Factual answers to clinical questions (within your knowledge)</li>
+          <li>CME-related educational content when approved by company</li>
+        </ul>
+      </div>
+      <div class="ethics-card ec-no">
+        <h4>✗ You may NOT provide</h4>
+        <ul>
+          <li>Cash payments of any kind — per-prescription incentives are illegal</li>
+          <li>Gifts of monetary value (above token — no electronics, travel, hospitality)</li>
+          <li>Promise of return business or referrals in exchange for recommendations</li>
+          <li>Misleading comparative data against competitors</li>
+          <li>Any information you know to be false or exaggerated</li>
+          <li>Product samples beyond authorised quantities</li>
+          <li>Clinical opinions beyond your role as MR (do not diagnose or advise clinical treatment)</li>
+        </ul>
+      </div>
+      <div class="ethics-card" style="border-top:4px solid var(--amber)">
+        <h4 style="color:var(--amber)">△ Context-Dependent</h4>
+        <ul>
+          <li>Branded merchandise (pens, notepads) — permitted if nominal value, branded clearly, not payment for recommendation</li>
+          <li>Product-related meals during presentations — follow company policy; document</li>
+          <li>Educational event sponsorship — must go through company approval, never direct MR-funded</li>
+          <li>Responding to clinical questions outside your expertise — answer within known facts, escalate complex questions to Medical Affairs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <strong>The "would I be comfortable if my manager saw this?" test:</strong> Before giving anything to a doctor — a document, a statement, a gift, a promise — ask yourself if you would be comfortable with your Area Manager, and then the company's Medical Affairs team, seeing exactly what you did. If the answer is no — don't do it.
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:16px">
+      <h4 style="font-family:'Fraunces',serif;font-size:17px;color:var(--navy);margin-bottom:12px">Escalation Protocol — Questions You Cannot Answer</h4>
+      <p style="font-size:13.5px;color:var(--body);line-height:1.65;margin-bottom:12px">Knowing the limits of your role is compliance. If a doctor asks a question you are not sure about — regulatory, clinical, or legal — the correct answer is to escalate, not guess.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div style="background:#fafbfc;border-radius:8px;padding:12px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Clinical Question</div>
+          <p style="font-size:12.5px;color:var(--body);line-height:1.5">"Can I give this to my Stage 5 CKD patient?" → Say: "Let me confirm this with our Medical Affairs team and get back to you today." Escalate to AM → Medical Affairs → response to doctor.</p>
+        </div>
+        <div style="background:#fafbfc;border-radius:8px;padding:12px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Regulatory Question</div>
+          <p style="font-size:12.5px;color:var(--body);line-height:1.5">"Can you list this on your hospital formulary?" → Say: "That's something our institutional team handles — let me connect you with the right person." Do not quote process you don't know.</p>
+        </div>
+        <div style="background:#fafbfc;border-radius:8px;padding:12px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Adverse Event Question</div>
+          <p style="font-size:12.5px;color:var(--body);line-height:1.5">"My patient had X after starting Epithrive®" → Document immediately. Do NOT diagnose or minimise. Say: "Thank you for telling me — I'll document this and escalate to our medical team today."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S9: SCENARIO TEST -->
+  <section class="section" id="s9">
+    <div class="sec-hd">
+      <div class="sec-num">09</div>
+      <div>
+        <h2>Compliance Scenario Test</h2>
+        <div class="sh-sub">10 real-field situations — choose the compliant response</div>
+      </div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">1</div>
+        <div class="sq-text">
+          <div class="sq-label">Claim Language</div>
+          <div class="sq-q">A surgeon asks: "So what does Epithrive® actually do?" What is the compliant opening response?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. "Heals wounds" is a prohibited disease treatment claim — exactly what nutraceutical regulations forbid.')">A) "It heals diabetic wounds and bedsores."</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. This frames Epithrive® as nutritional support, identifies the formulation class, positions it as an adjunct, and avoids any disease treatment claim.')">B) "It provides targeted nutritional support for wound healing — specifically L-Arginine, Glutamine, Marine Collagen Peptides, and HMB in clinical doses, as an adjunct to standard wound care."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. "FSMP" may not be used — FSMP approval has not yet been received. This would be a regulatory misrepresentation.')">C) "It's an FSMP — a Food for Special Medical Purposes designed for wound patients."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Describing a nutraceutical as a medicine is a serious regulatory violation.')">D) "It's a medicine that accelerates wound repair."</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_0"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">2</div>
+        <div class="sq-text">
+          <div class="sq-label">FSMP Term Usage</div>
+          <div class="sq-q">A hospital dietitian asks: "Is Epithrive® an FSMP?" What do you say?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. You cannot confirm FSMP status — it has not been approved yet.')">A) "Yes, it has FSMP classification."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Saying the application was recently approved is false — you have not received notification.')">B) "Yes, we recently received FSMP approval."</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. This accurately states the current status (nutraceutical), acknowledges the pending FSMP application without confirming approval, and gives no false information.')">C) "Epithrive® is currently registered as a nutraceutical under FSSAI. An FSMP application is in progress, but approval has not yet been received."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. You must not fabricate uncertainty when the facts are clear — the product IS registered as a nutraceutical, which is not nothing.')">D) "We don't really know — it depends on how FSSAI classifies it."</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_1"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">3</div>
+        <div class="sq-text">
+          <div class="sq-label">Outcome Claims</div>
+          <div class="sq-q">You want to tell a doctor about the clinical study result. Which version is compliant?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. "Proved to heal" is a drug-level claim. No attribution. Prohibited.')">A) "Epithrive® is clinically proved to heal wounds 39% faster."</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. Specific study attribution, precise numbers, statistical significance stated, framed as a study finding not a product promise.')">B) "In our Indian clinical study (CSR-ETH-2025-001), the Epithrive® arm showed 72.4% wound area reduction versus 52.1% with standard care alone at Week 8 — p=0.004."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. "Guaranteed" is never permissible. Individual outcomes cannot be guaranteed.')">C) "Epithrive® is guaranteed to reduce wound area by 72% in 8 weeks."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Rounded to "about 70%" loses precision that makes the claim verifiable, and "we found" is informal — study attribution is cleaner.')">D) "Our study found it reduces wounds by about 70%."</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_2"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">4</div>
+        <div class="sq-text">
+          <div class="sq-label">Adverse Event</div>
+          <div class="sq-q">A doctor calls to say their patient had severe itching and mild facial swelling after starting Epithrive®. What do you do first?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. You are not authorised to diagnose or reassure about safety. Minimising an AE report is a serious breach.')">A) Tell the doctor it's probably just the Arginine causing vasodilation and is not serious.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. You must escalate immediately — not wait. Facial swelling could indicate an allergic reaction, which is a serious AE.')">B) Note it down for the monthly report.</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. Advise stopping, escalate immediately, document details. This is a potentially serious AE (allergic reaction) that requires immediate reporting.')">C) Advise the doctor to stop the product immediately, document all details (patient age, dose, batch number, symptoms, timeline), and escalate to your Area Manager within the hour.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Do not substitute your own clinical advice. The doctor is the clinician — your role is escalation and documentation.')">D) Tell the doctor to give the patient an antihistamine and monitor.</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_3"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">5</div>
+        <div class="sq-text">
+          <div class="sq-label">Gift & Ethics</div>
+          <div class="sq-q">A doctor has been prescribing Epithrive® regularly. You want to thank them. What is appropriate?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Monetary gifts to doctors in exchange for prescribing are illegal under Indian law and MCI guidelines. This is a bribe.')">A) Give a ₹2,000 gift voucher as a thank-you.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Paid dinner for a family is a gift of significant monetary value — prohibited regardless of framing.')">B) Invite them and their family to a paid dinner.</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. Branded stationery of nominal value is permitted. The verbal thank-you is always appropriate. Updating them on new evidence maintains a professional, educational relationship.')">C) Leave branded Epithrive® notepad and pen (nominal value), thank them verbally, and share a new clinical reference you think they'd find interesting.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Do not commit to higher commissions or discounts as a reward for prescribing — this is pay-for-prescription, which is illegal.')">D) Promise a higher distributor discount on their next order as a loyalty reward.</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_4"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">6</div>
+        <div class="sq-text">
+          <div class="sq-label">Digital Communication</div>
+          <div class="sq-q">A patient's family messages you on WhatsApp asking if Epithrive® will "definitely heal" their father's diabetic wound. What do you reply?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. "Will definitely heal" is a prohibited guaranteed outcome claim. Never make this statement — to a doctor, patient, or family.')">A) "Yes, Epithrive® will definitely help heal your father's wound."</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. This is factual, supported by evidence, framed as nutritional support (not treatment), and appropriately caveated. It also keeps the doctor in the loop — correct for clinical decisions.')">B) "Epithrive® is a dietary supplement that provides targeted nutritional support for wound healing as an adjunct to your father's current treatment. In our clinical study, patients using Epithrive® alongside standard care showed significantly better wound outcomes. I would encourage you to discuss this with his treating doctor. Dietary supplement — not intended to diagnose, treat, cure, or prevent any disease."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Ignoring a family query is poor practice and a missed opportunity to communicate compliantly.')">C) Ignore the message and direct them to the website.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. "Guarantee" is never permissible. Personalised outcome promises carry significant liability.')">D) "I can guarantee you will see improvement within 2 weeks."</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_5"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">7</div>
+        <div class="sq-text">
+          <div class="sq-label">Printed Materials</div>
+          <div class="sq-q">You want to give a doctor a one-pager summarising Epithrive®'s benefits. You designed it yourself in Canva. What should you do?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Self-designed materials — even if they look professional — are not company-approved. They may contain non-compliant claims or missing disclaimers, creating regulatory and personal liability.')">A) Leave it — it looks professional and has the right information.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Even with the disclaimer added, unapproved materials are not permitted to be left with HCPs.')">B) Add the mandatory disclaimer and leave it.</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. Only company-approved materials may be left with HCPs. Submit your design to management as a suggestion — they may officially approve and produce it.')">C) Do not leave the self-designed material. Use only company-approved leave-behinds. If you think the content is valuable, submit it to your Area Manager as a suggestion for an official material.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Removing your name doesn\'t make it compliant — the issue is that it\'s not company-approved, regardless of attribution.')">D) Remove your name from it and leave it anonymously.</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_6"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">8</div>
+        <div class="sq-text">
+          <div class="sq-label">Social Media</div>
+          <div class="sq-q">You witness a dramatic wound healing in a patient using Epithrive®. The doctor takes before/after photos. You want to post about it on LinkedIn to promote the product. What is correct?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Even with face blurred, posting a patient\'s wound photos without their formal written consent is a privacy violation — and the outcome framing may breach compliance rules.')">A) Post the before/after photos with the patient's face blurred.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. The doctor\'s permission is about their property of the photo — not the patient\'s consent to have their medical images shared publicly.')">B) Post with the doctor's permission since they took the photos.</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. Patient consent, company approval, and compliant framing are all required. Only company-channel content, not personal posts.')">C) Do not post. Patient case images require explicit written patient consent, company Medical Affairs approval, and must only appear on company-managed channels — never personal social accounts.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Posting on your company\'s account still requires patient consent and company approval before any case images go anywhere.')">D) Post on the company's social account instead of your personal one.</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_7"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">9</div>
+        <div class="sq-text">
+          <div class="sq-label">Regulatory Limit</div>
+          <div class="sq-q">A pharmacist asks you: "Can I tell customers that Epithrive® treats their bedsores?" What do you say?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. You cannot authorise a pharmacist to make prohibited claims — and agreeing with an impermissible claim request makes you complicit.')">A) "Yes, that's what it does — go ahead."</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. You explain the compliant framing, give the pharmacist accurate language, and protect both the pharmacist and the company from regulatory exposure.')">B) "Epithrive® is a dietary supplement — the correct way to describe it to customers is that it provides nutritional support for wound healing as an adjunct to their doctor's treatment. We cannot say it treats or cures bedsores. Here is the approved language: 'Epithrive® supports the body's healing nutrition alongside wound care.'"</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Avoidance is not compliance training — it\'s an opportunity to educate the pharmacist on correct communication.')">C) Say nothing and hope the pharmacist figures it out.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Lying about the product\'s regulatory category is a serious violation.')">D) "Tell them it's an approved medicine for wound care."</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_8"></div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-q">
+        <div class="sq-num">10</div>
+        <div class="sq-text">
+          <div class="sq-label">Full Scenario — Doctor Visit</div>
+          <div class="sq-q">During a doctor call, the doctor says: "I'm impressed — can you write 'Proven to heal chronic wounds' on the leave-behind for my patients?" What do you do?</div>
+        </div>
+      </div>
+      <div class="scenario-opts">
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Writing prohibited claims on materials — at a doctor\'s request or anyone else\'s — is a regulatory violation. The doctor\'s enthusiasm doesn\'t change the legal position.')">A) Write it in — the doctor asked and it's their clinic.</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Handwriting on approved materials creates non-compliant materials and voids the company's approved status of those documents.')">B) Write it in pencil so it can be erased later.</button>
+        <button class="sc-opt" onclick="checkSc(this,'correct','Correct. You decline clearly but without offending — you validate the doctor\'s enthusiasm, explain the regulatory constraint briefly, offer the compliant alternative, and propose escalating their feedback.')">C) "Thank you for your confidence in the product — I'd love to include that. However, as a nutraceutical under FSSAI, I can't write disease treatment claims on the materials. The approved language is 'Provides nutritional support for wound healing as an adjunct to standard care' — which reflects the study evidence accurately. I'll pass your feedback to our team about what wording would be most useful."</button>
+        <button class="sc-opt" onclick="checkSc(this,'wrong','Incorrect. Asking your manager isn\'t wrong in principle, but you already know the answer — you don\'t need manager approval to decline a prohibited claim. Delay suggests uncertainty about the rule.')">D) Say you'll ask your manager and come back.</button>
+      </div>
+      <div class="sc-feedback" id="fb_sc_9"></div>
+    </div>
+  </section>
+
+  <!-- S10: FIELD POCKET CARD -->
+  <section class="section" id="s10">
+    <div class="sec-hd">
+      <div class="sec-num">10</div>
+      <div>
+        <h2>Field Pocket Card</h2>
+        <div class="sh-sub">The at-a-glance compliance reference — memorise this before every call</div>
+      </div>
+    </div>
+
+    <div class="pocket-card">
+      <h3>🗂️ Epithrive® Compliance Pocket Reference</h3>
+      <div class="pocket-grid">
+        <div class="pocket-col yes">
+          <h5>✓ You CAN Say</h5>
+          <ul>
+            <li>"Supports wound healing as an adjunct to standard wound care"</li>
+            <li>"Provides nutritional support for tissue repair"</li>
+            <li>"In the clinical study (CSR-ETH-2025-001), the Epithrive® arm showed 72.4% wound area reduction vs. 52.1% at Week 8 — p=0.004"</li>
+            <li>"Contains clinically researched doses of L-Arginine (7g), L-Glutamine (7g), Ca-HMB (1.5g), Marine Collagen Peptides (2.5g)"</li>
+            <li>"India's first targeted wound-healing nutrition formula"</li>
+            <li>"Nutraceutical registered under FSSAI — Licence No. 11524998000214"</li>
+            <li>"Literature estimates 3–4 days reduced hospital stay with this formulation class (Williams 2002)"</li>
+            <li>"Formulated without added sugar — appropriate for diabetic patients"</li>
+          </ul>
+        </div>
+        <div class="pocket-col no">
+          <h5>✗ Never Say</h5>
+          <ul>
+            <li>"Epithrive® heals / treats / cures wounds"</li>
+            <li>"FSMP" or "Food for Special Medical Purposes" (not yet approved)</li>
+            <li>"This is a medicine / drug"</li>
+            <li>"Guaranteed to close the wound in X weeks"</li>
+            <li>"Prevents amputation / infection / gangrene"</li>
+            <li>"Works better than antibiotics or dressings"</li>
+            <li>"Replaces standard wound care"</li>
+            <li>"Your patient will definitely improve"</li>
+            <li>Any claim not in approved company materials</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pocket-disclaimer">
+        <strong>Mandatory Disclaimer (say it or print it whenever discussing outcomes):</strong><br>
+        "Dietary supplement. Not intended to diagnose, treat, cure, or prevent any disease. For nutritional support as an adjunct to standard wound care."<br><br>
+        <strong>Product regulatory status:</strong> Nutraceutical · FSSAI Licence 11524998000214 · Valid to 15 Feb 2030 · FSMP approval pending — do not use FSMP until official management notification.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Sidebar nav active
+const navLinks = document.querySelectorAll('.sb-nav a');
+const sections = document.querySelectorAll('.section');
+function setActive() {
+  let curr = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) curr = s.id; });
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + curr));
+}
+window.addEventListener('scroll', setActive);
+setActive();
+navLinks.forEach(l => {
+  l.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(l.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Scenario quiz
+const answered = {};
+function checkSc(el, result, feedback) {
+  const card = el.closest('.scenario-card');
+  const idx = [...document.querySelectorAll('.scenario-card')].indexOf(card);
+  if (answered[idx]) return;
+  answered[idx] = true;
+  card.querySelectorAll('.sc-opt').forEach(o => { o.disabled = true; o.style.cursor = 'default'; });
+  if (result === 'correct') {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    card.querySelectorAll('.sc-opt').forEach(o => {
+      if (o.getAttribute('onclick')?.includes("'correct'")) o.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById('fb_sc_' + idx);
+  if (fb) {
+    fb.textContent = (result === 'correct' ? '✓ ' : '✗ ') + feedback;
+    fb.className = 'sc-feedback show ' + (result === 'correct' ? 'ok' : 'no');
+  }
+}
+</script>
+</body>
+</html>

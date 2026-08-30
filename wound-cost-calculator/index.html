@@ -1,1 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wound-Care Cost Comparator · Epithrive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --teal:#0097B2; --teal2:#00768C; --orange:#F7941E; --orange2:#E67C00;
+    --d1:#16303A; --d2:#0A3D52; --d3:#0E2E3B;
+    --t1:#EAF7FA; --t2:#EEF6F8; --t3:#F4FAFB;
+    --ink:#16303A; --muted:#5b7480; --line:#dbe8ec;
+    --shadow:0 6px 24px rgba(10,61,82,.08);
+    --shadow2:0 10px 40px rgba(10,61,82,.12);
+    --r:12px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Manrope',system-ui,sans-serif;color:var(--ink);
+    background:linear-gradient(180deg,var(--t3),#fff 320px);-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.head{font-family:'Plus Jakarta Sans',sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 60px}
 
+  /* header */
+  header{background:linear-gradient(120deg,var(--d2),var(--teal2));color:#fff;
+    padding:26px 0 30px;box-shadow:var(--shadow)}
+  .hd{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;
+    justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:40px;height:40px;border-radius:10px;background:#fff;display:grid;place-items:center;flex:none}
+  .logo svg{width:26px;height:26px}
+  .brand b{font-family:'Plus Jakarta Sans';font-weight:800;font-size:19px;letter-spacing:-.3px}
+  .brand span{display:block;font-size:11.5px;color:#bfe6ee;font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+  .tagline{max-width:520px}
+  .tagline h1{margin:0 0 4px;font-size:22px;font-weight:800;letter-spacing:-.4px}
+  .tagline p{margin:0;font-size:13.5px;color:#cdeef4;line-height:1.5}
+
+  /* layout */
+  .grid{display:grid;grid-template-columns:360px 1fr;gap:22px;margin-top:26px;align-items:start}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+  .card .pad{padding:20px}
+  .panel-title{font-weight:800;font-size:15px;letter-spacing:-.2px;margin:0 0 2px;color:var(--d1)}
+  .panel-sub{font-size:12px;color:var(--muted);margin:0 0 16px}
+
+  .field{margin-bottom:16px}
+  .field:last-child{margin-bottom:0}
+  label.lab{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;
+    font-weight:700;color:var(--d1);margin-bottom:7px}
+  label.lab small{font-weight:600;color:var(--teal);font-size:12.5px;font-family:'Plus Jakarta Sans'}
+  select,input[type=number]{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:9px;
+    font-family:'Manrope';font-size:14px;font-weight:600;color:var(--ink);background:#fff;outline:none}
+  select:focus,input[type=number]:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,151,178,.12)}
+  input[type=range]{width:100%;accent-color:var(--teal);margin-top:2px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .hint{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.4}
+  .divider{height:1px;background:var(--line);margin:18px 0}
+  .epi-field label.lab small{color:var(--orange)}
+  .epi-field input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(247,148,30,.14)}
+
+  /* results */
+  .hero-num{background:linear-gradient(120deg,var(--teal),var(--teal2));color:#fff;border-radius:var(--r);
+    padding:24px 26px;box-shadow:var(--shadow2);position:relative;overflow:hidden}
+  .hero-num:after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;
+    border-radius:50%;background:rgba(247,148,30,.22)}
+  .hero-num .k{font-size:12.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#c9edf3;margin:0}
+  .hero-num .v{font-family:'Plus Jakarta Sans';font-weight:800;font-size:46px;line-height:1.05;margin:6px 0 2px;letter-spacing:-1px}
+  .hero-num .sub{font-size:13px;color:#dff4f8;margin:0;position:relative;max-width:78%}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  @media(max-width:620px){.stats{grid-template-columns:1fr 1fr}}
+  .stat{background:var(--t2);border:1px solid var(--line);border-radius:11px;padding:14px}
+  .stat .n{font-family:'Plus Jakarta Sans';font-weight:800;font-size:22px;color:var(--d2);letter-spacing:-.5px}
+  .stat .l{font-size:11px;color:var(--muted);font-weight:600;margin-top:2px;line-height:1.3}
+  .stat.orange .n{color:var(--orange2)}
+
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+  @media(max-width:760px){.charts{grid-template-columns:1fr}}
+  .chart-box{position:relative;height:300px;margin-top:6px}
+  .cap{font-size:11.5px;color:var(--muted);margin:10px 2px 0;line-height:1.45}
+
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+  th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:700}
+  td.num{text-align:right;font-weight:700;font-family:'Plus Jakarta Sans'}
+  tr.total td{border-bottom:none;border-top:2px solid var(--d2);font-weight:800;color:var(--d1);padding-top:12px}
+  .pill{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:7px;vertical-align:middle}
+
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .btn{font-family:'Plus Jakarta Sans';font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:9px;
+    border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+  .btn.print{background:var(--orange);color:#fff}
+  .btn.print:hover{background:var(--orange2)}
+  .btn.share{background:#25D366;color:#fff}
+  .btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--d2)}
+
+  .disclaimer{background:var(--t1);border:1px solid var(--line);border-left:4px solid var(--teal);
+    border-radius:10px;padding:16px 18px;margin-top:26px;font-size:12px;color:#4a6773;line-height:1.6}
+  .disclaimer b{color:var(--d1)}
+
+  footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:26px;line-height:1.6}
+  footer a{color:var(--teal);text-decoration:none;font-weight:600}
+
+  @media print{
+    header{background:#fff!important;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .card-inputs,.actions{display:none!important}
+    .grid{grid-template-columns:1fr}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-6.5-4.35-9-8.5C1.5 9.5 3 5.5 6.8 5.5c2 0 3.4 1.2 4.2 2.6.9-1.4 2.2-2.6 4.2-2.6C19 5.5 20.5 9.5 21 12.5c-2.5 4.15-9 8.5-9 8.5Z" stroke="#0097B2" stroke-width="1.7" stroke-linejoin="round"/><path d="M4.5 12h3l1.3-2.4 2 4.4 1.4-3.2 1 1.2h6" stroke="#F7941E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <b>Epithrive<sup style="font-size:9px">®</sup></b>
+        <span>Care Circle · Partner Tool</span>
+      </div>
+    </div>
+    <div class="tagline">
+      <h1>Wound-Care Cost Comparator</h1>
+      <p>See how the cost of managing a wound adds up week after week — and how a shorter, nutrition-supported course compares.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <!-- INPUTS -->
+    <div class="card card-inputs">
+      <div class="pad">
+        <h3 class="panel-title">Set the scenario</h3>
+        <p class="panel-sub">Adjust to the patient's wound and your region's rates.</p>
+
+        <div class="field">
+          <label class="lab" for="wtype">Wound type</label>
+          <select id="wtype">
+            <option value="pressure">Pressure ulcer / bedsore</option>
+            <option value="diabetic">Diabetic foot ulcer</option>
+            <option value="venous">Venous leg ulcer</option>
+            <option value="surgical">Surgical wound</option>
+            <option value="burn">Burn wound</option>
+            <option value="chronic">Chronic / non-healing</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="lab" for="dcost">Cost per dressing change <small id="dcostV">₹1,500</small></label>
+          <input type="range" id="dcost" min="500" max="3000" step="100" value="1500">
+          <div class="hint">Typically ₹1,000–₹2,000 per session, depending on region and materials.</div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label class="lab" for="dpw">Dressings / week</label>
+            <input type="number" id="dpw" min="1" max="14" step="1" value="3">
+          </div>
+          <div class="field">
+            <label class="lab" for="other">Other weekly ₹</label>
+            <input type="number" id="other" min="0" max="10000" step="50" value="500">
+          </div>
+        </div>
+        <div class="hint" style="margin-top:-6px">"Other" = antibiotics, ointments, consumables, clinic visits.</div>
+
+        <div class="divider"></div>
+
+        <div class="row2">
+          <div class="field">
+            <label class="lab" for="weeksA">Extended course (weeks)</label>
+            <input type="number" id="weeksA" min="2" max="52" step="1" value="12">
+          </div>
+          <div class="field">
+            <label class="lab" for="weeksB">Supported course (weeks)</label>
+            <input type="number" id="weeksB" min="1" max="52" step="1" value="4">
+          </div>
+        </div>
+        <div class="hint" style="margin-top:-6px">Both timelines are illustrative — you choose them for demonstration.</div>
+
+        <div class="divider"></div>
+
+        <div class="field epi-field">
+          <label class="lab" for="epi">Epithrive cost / day <small id="epiV">₹249</small></label>
+          <input type="number" id="epi" min="0" max="1000" step="1" value="249">
+          <div class="hint">1 sachet/day. Box of 10 = ₹2,499. Applied only during the supported course.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div>
+      <div class="hero-num">
+        <p class="k">Potential cost difference</p>
+        <div class="v" id="saveV">₹0</div>
+        <p class="sub">Between an extended wound-care course and a shorter, nutrition-supported one, based on the timelines you entered.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="n" id="totA">₹0</div><div class="l">Extended course total</div></div>
+        <div class="stat"><div class="n" id="totB">₹0</div><div class="l">Supported course total</div></div>
+        <div class="stat"><div class="n" id="wksSaved">0</div><div class="l">Fewer weeks of dressings</div></div>
+        <div class="stat orange"><div class="n" id="drAvoided">0</div><div class="l">Fewer dressing changes</div></div>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <div class="pad">
+          <div class="charts">
+            <div>
+              <h3 class="panel-title">How cost builds over time</h3>
+              <div class="chart-box"><canvas id="lineChart"></canvas></div>
+              <p class="cap">The extended course keeps climbing every week the wound stays open. The supported course levels off once care ends.</p>
+            </div>
+            <div>
+              <h3 class="panel-title">Total cost, side by side</h3>
+              <div class="chart-box"><canvas id="barChart"></canvas></div>
+              <p class="cap">Orange shows the Epithrive nutrition cost — small next to the weeks of dressings in a longer course.</p>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <table>
+            <thead><tr><th>Cost breakdown</th><th style="text-align:right">Extended</th><th style="text-align:right">Supported</th></tr></thead>
+            <tbody>
+              <tr><td><span class="pill" style="background:#00768C"></span>Dressings &amp; wound-care</td><td class="num" id="tbA1">₹0</td><td class="num" id="tbB1">₹0</td></tr>
+              <tr><td><span class="pill" style="background:#F7941E"></span>Epithrive (adjunct nutrition)</td><td class="num">—</td><td class="num" id="tbB2">₹0</td></tr>
+              <tr class="total"><td>Total</td><td class="num" id="tbAT">₹0</td><td class="num" id="tbBT">₹0</td></tr>
+            </tbody>
+          </table>
+
+          <div class="actions">
+            <button class="btn print" onclick="window.print()">🖨 Print / Save PDF</button>
+            <a class="btn share" id="waBtn" target="_blank" rel="noopener">Share on WhatsApp</a>
+            <button class="btn ghost" onclick="resetAll()">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <b>Illustrative estimate only.</b> Figures are based entirely on the durations and rates you enter and are for demonstration purposes. <b>Epithrive is a nutritional supplement taken as an adjunct to standard wound care</b> — it supports nutrition during recovery and does not replace dressings, medication, or professional medical care. It is not a treatment for any wound or condition, and it does not treat, cure, heal, or prevent disease. Healing timelines and costs vary between individuals. Always consult a qualified healthcare professional.
+      </div>
+
+      <footer>
+        Epithrive<sup>®</sup> · Nuin Wellness Pvt. Ltd. &nbsp;·&nbsp; <a href="https://www.epithrive.in" target="_blank">epithrive.in</a> &nbsp;·&nbsp; FSSAI 11524998000214
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+
+// wound-type presets nudge dressing frequency
+const presets = { pressure:3, diabetic:3, venous:2, surgical:2, burn:3, chronic:3 };
+
+let lineChart, barChart;
+
+function read(){
+  return {
+    dcost:+$('dcost').value,
+    dpw:+$('dpw').value,
+    other:+$('other').value,
+    weeksA:+$('weeksA').value,
+    weeksB:+$('weeksB').value,
+    epi:+$('epi').value
+  };
+}
+
+function compute(v){
+  const weeklyCare = v.dpw * v.dcost + v.other;
+  const weeklyEpi  = v.epi * 7;
+  const careA = weeklyCare * v.weeksA;
+  const careB = weeklyCare * v.weeksB;
+  const epiB  = weeklyEpi * v.weeksB;
+  const totA  = careA;
+  const totB  = careB + epiB;
+  return {
+    weeklyCare, weeklyEpi, careA, careB, epiB, totA, totB,
+    saving: totA - totB,
+    wksSaved: Math.max(0, v.weeksA - v.weeksB),
+    drAvoided: Math.max(0, (v.weeksA - v.weeksB) * v.dpw),
+    boxesB: Math.ceil((v.weeksB*7)/10)
+  };
+}
+
+function render(){
+  const v = read();
+  const c = compute(v);
+
+  $('dcostV').textContent = inr(v.dcost);
+  $('epiV').textContent   = inr(v.epi);
+
+  $('saveV').textContent  = inr(Math.max(0,c.saving));
+  $('totA').textContent   = inr(c.totA);
+  $('totB').textContent   = inr(c.totB);
+  $('wksSaved').textContent = c.wksSaved;
+  $('drAvoided').textContent = c.drAvoided;
+
+  $('tbA1').textContent = inr(c.careA);
+  $('tbB1').textContent = inr(c.careB);
+  $('tbB2').textContent = inr(c.epiB) + ' (\u2248' + c.boxesB + ' box' + (c.boxesB>1?'es':'') + ')';
+  $('tbAT').textContent = inr(c.totA);
+  $('tbBT').textContent = inr(c.totB);
+
+  // WhatsApp share text
+  const msg = `Epithrive wound-care cost estimate:\n\nExtended course (${v.weeksA} wks): ${inr(c.totA)}\nSupported course (${v.weeksB} wks): ${inr(c.totB)}\nPotential difference: ${inr(Math.max(0,c.saving))}\n\n(Illustrative estimate. Epithrive is a nutritional adjunct to standard wound care.)`;
+  $('waBtn').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+
+  drawLine(v, c);
+  drawBar(c);
+}
+
+function weekLabels(n){ return Array.from({length:n+1}, (_,i)=>'W'+i); }
+
+function drawLine(v,c){
+  const maxW = Math.max(v.weeksA, v.weeksB);
+  const labels = weekLabels(maxW);
+  const A=[], B=[];
+  for(let w=0; w<=maxW; w++){
+    A.push(Math.min(w, v.weeksA) * c.weeklyCare);
+    const wb = Math.min(w, v.weeksB);
+    B.push(wb * (c.weeklyCare + c.weeklyEpi));
+  }
+  const ctx = $('lineChart');
+  if(lineChart) lineChart.destroy();
+  lineChart = new Chart(ctx,{
+    type:'line',
+    data:{labels,datasets:[
+      {label:'Extended course',data:A,borderColor:'#00768C',backgroundColor:'rgba(0,118,140,.08)',
+        fill:true,tension:.25,borderWidth:3,pointRadius:0,pointHoverRadius:5},
+      {label:'Supported course',data:B,borderColor:'#F7941E',backgroundColor:'rgba(247,148,30,.10)',
+        fill:true,tension:.25,borderWidth:3,pointRadius:0,pointHoverRadius:5}
+    ]},
+    options:baseOpts(true)
+  });
+}
+
+function drawBar(c){
+  const ctx = $('barChart');
+  if(barChart) barChart.destroy();
+  barChart = new Chart(ctx,{
+    type:'bar',
+    data:{labels:['Extended','Supported'],datasets:[
+      {label:'Dressings & care',data:[c.careA,c.careB],backgroundColor:'#00768C',
+        borderRadius:6,barPercentage:.6,categoryPercentage:.7},
+      {label:'Epithrive',data:[0,c.epiB],backgroundColor:'#F7941E',
+        borderRadius:6,barPercentage:.6,categoryPercentage:.7}
+    ]},
+    options:baseOpts(false,true)
+  });
+}
+
+function baseOpts(isLine, stacked){
+  return {
+    responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{
+      legend:{display:true,position:'bottom',labels:{font:{family:'Manrope',size:12,weight:'600'},
+        color:'#16303A',usePointStyle:true,pointStyle:'rectRounded',padding:16,boxWidth:10}},
+      tooltip:{backgroundColor:'#0A3D52',titleFont:{family:'Plus Jakarta Sans',weight:'700'},
+        bodyFont:{family:'Manrope'},padding:11,cornerRadius:8,
+        callbacks:{label:ctx=>' '+ctx.dataset.label+': '+inr(ctx.parsed.y)}}
+    },
+    scales:{
+      x:{stacked:!!stacked,grid:{display:false},ticks:{font:{family:'Manrope',size:11},color:'#5b7480'}},
+      y:{stacked:!!stacked,grid:{color:'#eef3f5'},ticks:{font:{family:'Manrope',size:11},color:'#5b7480',
+        callback:v=>'₹'+(v>=1000?(v/1000)+'k':v)},beginAtZero:true}
+    }
+  };
+}
+
+function resetAll(){
+  $('wtype').value='pressure'; $('dcost').value=1500; $('dpw').value=3;
+  $('other').value=500; $('weeksA').value=12; $('weeksB').value=4; $('epi').value=249;
+  render();
+}
+
+// wound type sets a sensible default frequency (still editable)
+$('wtype').addEventListener('change', e=>{ $('dpw').value = presets[e.target.value] || 3; render(); });
+['dcost','dpw','other','weeksA','weeksB','epi'].forEach(id=>{
+  $(id).addEventListener('input', render);
+});
+
+render();
+</script>
+</body>
+</html>

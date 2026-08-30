@@ -1,1 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Care Circle — Earnings Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0097B2; --teal2:#00768C; --orange:#F7941E; --orange-hi:#E67C00;
+    --d1:#16303A; --d2:#0A3D52; --d3:#0E2E3B;
+    --t1:#EAF7FA; --t2:#EEF6F8; --t3:#F4FAFB; --line:#D6E7ED;
+    --muted:#5b7480;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:'Manrope',system-ui,sans-serif;background:var(--t2);color:var(--d3);
+    -webkit-font-smoothing:antialiased;padding:0 0 calc(30px + env(safe-area-inset-bottom));}
+  .wrap{max-width:470px;margin:0 auto;padding:0 16px;}
 
+  header.top{background:linear-gradient(120deg,var(--d2),var(--teal2));color:#fff;
+    padding:22px 20px 20px;border-radius:0 0 18px 18px;margin-bottom:18px;position:relative;}
+  header.top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--orange);}
+  header.top .wrap{padding:0;}
+  .kicker{font-size:10px;letter-spacing:2.4px;text-transform:uppercase;font-weight:700;color:var(--t1);}
+  header.top h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;margin:5px 0 3px;}
+  header.top p{margin:0;font-size:12.5px;color:rgba(255,255,255,.8);line-height:1.5;}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 16px;
+    box-shadow:0 8px 24px rgba(10,61,82,.05);margin-bottom:16px;}
+  .card h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:var(--teal2);
+    margin:0 0 14px;letter-spacing:.01em;}
+
+  .hero{background:linear-gradient(120deg,var(--teal),var(--teal2));color:#fff;border:none;text-align:center;}
+  .hero .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.82);}
+  .hero .big{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:42px;line-height:1.05;margin:6px 0 2px;}
+  .hero .sub{font-size:13px;color:rgba(255,255,255,.9);font-weight:600;}
+  .hero .permo{margin-top:10px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2);font-size:13px;color:rgba(255,255,255,.92);}
+  .hero .permo b{font-weight:800;color:#fff;}
+
+  .tierhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .badge{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13px;padding:6px 14px;border-radius:20px;}
+  .badge.Starter{background:var(--t1);color:var(--teal2);}
+  .badge.Growth{background:#FFF1DD;color:var(--orange-hi);}
+  .badge.Elite{background:var(--d3);color:#fff;}
+  .tiertrack{height:10px;background:var(--t2);border-radius:6px;overflow:hidden;border:1px solid var(--line);}
+  .tierfill{height:100%;background:linear-gradient(90deg,var(--teal),var(--orange));border-radius:6px;transition:width .25s;}
+  .ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-weight:600;margin-top:6px;}
+  .tiermsg{margin-top:12px;font-size:13px;line-height:1.5;background:var(--t3);border:1px solid var(--line);border-radius:10px;padding:11px 13px;}
+  .tiermsg b{color:var(--d3);font-weight:800;}
+  .tiermsg .push{color:var(--orange-hi);font-weight:800;}
+
+  label{display:block;font-weight:700;font-size:12.5px;color:var(--d2);margin-bottom:7px;}
+  .sliderrow{display:flex;align-items:center;gap:12px;}
+  input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:4px;
+    background:linear-gradient(90deg,var(--teal) var(--pct,20%),var(--t2) var(--pct,20%));outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--orange);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer;}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid #fff;cursor:pointer;}
+  .numbox{width:78px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;text-align:center;
+    padding:9px 6px;border:1.5px solid var(--line);border-radius:10px;color:var(--d3);background:var(--t3);}
+  .numbox:focus{outline:none;border-color:var(--teal);background:#fff;}
+  .unit{text-align:center;font-size:11px;color:var(--muted);font-weight:600;margin-top:8px;}
+
+  .netgrid{display:grid;grid-template-columns:1fr auto auto;gap:9px 10px;align-items:center;}
+  .netgrid .hdr{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;text-align:center;line-height:1.25;}
+  .netgrid .lv{font-weight:700;font-size:12.5px;color:var(--d2);}
+  .netgrid .lv small{display:block;font-weight:600;font-size:10.5px;color:var(--muted);}
+  .sm{width:62px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;text-align:center;
+    padding:8px 4px;border:1.5px solid var(--line);border-radius:9px;color:var(--d3);background:var(--t3);}
+  .sm:focus{outline:none;border-color:var(--teal);background:#fff;}
+
+  .stack{display:flex;height:14px;border-radius:7px;overflow:hidden;margin-bottom:14px;background:var(--t2);}
+  .stack span{height:100%;}
+  .seg-personal{background:var(--teal);}
+  .seg-l1{background:var(--orange);}
+  .seg-l2{background:#F6B65C;}
+  .seg-l3{background:#FBD9A6;}
+  .brow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--t2);font-size:13px;}
+  .brow:last-child{border-bottom:none;}
+  .brow .k{display:flex;align-items:center;gap:8px;color:var(--d2);font-weight:600;}
+  .dot{width:10px;height:10px;border-radius:3px;flex:none;}
+  .brow .v{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--d3);}
+  .brow small{color:var(--muted);font-weight:600;font-size:11px;}
+  .gatewarn{background:#FFF7EC;border:1px solid #F7D9A8;border-left:3px solid var(--orange);border-radius:10px;
+    padding:10px 12px;font-size:12px;color:#7a5518;line-height:1.5;margin-top:12px;}
+  .gatewarn b{color:#7a5518;}
+
+  details.assume{margin-bottom:16px;}
+  details.assume summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--teal2);padding:12px 14px;
+    background:#fff;border:1px solid var(--line);border-radius:12px;list-style:none;}
+  details.assume summary::-webkit-details-marker{display:none;}
+  details.assume[open] summary{border-radius:12px 12px 0 0;}
+  .assumebody{background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;padding:14px;font-size:12px;color:var(--muted);line-height:1.6;}
+  .assumebody .prow{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .assumebody label{margin:0;font-size:12px;color:var(--d2);}
+  .assumebody b{color:var(--d3);}
+
+  .btn{display:block;width:100%;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;
+    border:none;border-radius:13px;padding:15px;cursor:pointer;background:var(--orange);color:#fff;transition:background .15s;}
+  .btn:hover{background:var(--orange-hi);}
+  .btn:active{transform:translateY(1px);}
+
+  .foot{text-align:center;font-size:11px;color:var(--muted);line-height:1.6;margin-top:16px;padding:0 6px;}
+  .foot b{color:var(--teal2);}
+
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(18px);background:var(--d3);color:#fff;
+    font-weight:600;font-size:13px;padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:50;}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <div class="kicker">Epithrive Care Circle</div>
+    <h1>Earnings Calculator</h1>
+    <p>See what you could earn each month — from your own sales and your team.</p>
+  </div></header>
+
+  <div class="wrap">
+
+    <div class="card hero">
+      <div class="lbl">Estimated earnings / month</div>
+      <div class="big" id="r-month">₹0</div>
+      <div class="sub" id="r-tierline">Starter tier · 10%</div>
+      <div class="permo">≈ <b id="r-qtr">₹0</b> per quarter (3 months)</div>
+    </div>
+
+    <div class="card">
+      <div class="tierhead">
+        <h2 style="margin:0;">Your tier</h2>
+        <span class="badge Starter" id="r-badge">Starter</span>
+      </div>
+      <div class="tiertrack"><div class="tierfill" id="r-fill" style="width:8%"></div></div>
+      <div class="ticks"><span>10%</span><span>17%</span><span>25%</span></div>
+      <div class="tiermsg" id="r-tiermsg"></div>
+    </div>
+
+    <div class="card">
+      <h2>Your own sales</h2>
+      <label>Boxes you sell per month</label>
+      <div class="sliderrow">
+        <input type="range" id="boxes" min="0" max="100" step="1" value="4">
+        <input type="number" id="boxesN" class="numbox" min="0" value="4">
+      </div>
+      <div class="unit">boxes per month</div>
+    </div>
+
+    <div class="card">
+      <h2>Your team (network overrides)</h2>
+      <div class="netgrid">
+        <div></div><div class="hdr">People</div><div class="hdr">Boxes each<br>/ month</div>
+        <div class="lv">Level 1 <small>you invited · 6%</small></div>
+        <input type="number" id="l1n" class="sm" min="0" value="0">
+        <input type="number" id="l1a" class="sm" min="0" value="0">
+        <div class="lv">Level 2 <small>their invites · 4%</small></div>
+        <input type="number" id="l2n" class="sm" min="0" value="0">
+        <input type="number" id="l2a" class="sm" min="0" value="0">
+        <div class="lv">Level 3 <small>next level · 1%</small></div>
+        <input type="number" id="l3n" class="sm" min="0" value="0">
+        <input type="number" id="l3a" class="sm" min="0" value="0">
+      </div>
+      <div class="gatewarn" id="r-gate" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+      <h2>Where it comes from (per month)</h2>
+      <div class="stack" id="r-stack"></div>
+      <div class="brow"><div class="k"><span class="dot seg-personal"></span>Your commission</div><div class="v" id="r-personal">₹0</div></div>
+      <div class="brow"><div class="k"><span class="dot seg-l1"></span>Level 1 override <small>6%</small></div><div class="v" id="r-l1">₹0</div></div>
+      <div class="brow"><div class="k"><span class="dot seg-l2"></span>Level 2 override <small>4%</small></div><div class="v" id="r-l2">₹0</div></div>
+      <div class="brow"><div class="k"><span class="dot seg-l3"></span>Level 3 override <small>1%</small></div><div class="v" id="r-l3">₹0</div></div>
+    </div>
+
+    <details class="assume">
+      <summary>Assumptions &amp; settings</summary>
+      <div class="assumebody">
+        <div class="prow">
+          <label for="price">Price per box (₹)</label>
+          <input type="number" id="price" class="sm" style="width:82px" min="1" value="2499">
+        </div>
+        Enter your <b>typical monthly volume</b> — the calculator handles the quarterly maths for you.
+        Your commission tier is based on sales over the 3-month cycle, which works out to roughly
+        <b>2 boxes/month</b> for 17% and <b>6 boxes/month</b> for 25%. Both your boxes and your team's
+        "boxes each" are <b>per month</b>. Team overrides (6% / 4% / 1% of their sales) require you to
+        personally sell at least <b>2 boxes a month</b>.
+      </div>
+    </details>
+
+    <button class="btn" id="share">Copy shareable link</button>
+
+    <div class="foot">
+      <b>Estimates only.</b> Earnings depend on actual delivered, non-returned orders and are not guaranteed.
+      For Epithrive Care Circle members.
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+<script>
+function computeEarnings(i){
+  const price=i.price;
+  const bands=[
+    {from:0,to:13500,rate:0.10,name:'Starter'},
+    {from:13500,to:41000,rate:0.17,name:'Growth'},
+    {from:41000,to:Infinity,rate:0.25,name:'Elite'}];
+  const OV={l1:0.06,l2:0.04,l3:0.01}, GATE_MONTH=2, Q=3;
+  const m=Math.max(0,i.boxes);                 // personal boxes / MONTH
+  const qSales=m*Q*price;                       // quarter sales value
+
+  // progressive banding over the quarter
+  let commQ=0;
+  for(const b of bands){const inB=Math.max(0,Math.min(qSales,b.to)-b.from);commQ+=inB*b.rate;}
+
+  // tier reached this quarter
+  let tier=bands[0];for(const b of bands)if(qSales>=b.from)tier=b;
+
+  // next tier + MONTHLY target/gap
+  let nextTier=null,targetM=0,addM=0;const idx=bands.indexOf(tier);
+  if(idx<bands.length-1){nextTier=bands[idx+1];targetM=Math.ceil(nextTier.from/(Q*price));addM=Math.max(0,targetM-m);}
+
+  // overrides — per month
+  const lvl=(p,a,r)=>{const bm=Math.max(0,p)*Math.max(0,a);const s=bm*price;return{boxes:bm,sales:s,income:s*r};};
+  const l1=lvl(i.l1n,i.l1a,OV.l1),l2=lvl(i.l2n,i.l2a,OV.l2),l3=lvl(i.l3n,i.l3a,OV.l3);
+  const overrideM=l1.income+l2.income+l3.income;
+  const gateMet=m>=GATE_MONTH, effOverrideM=gateMet?overrideM:0;
+
+  const commM=commQ/Q;
+  const totalM=commM+effOverrideM;
+  return{price,m,qSales,commM,commQ,tier:tier.name,tierRate:tier.rate,
+    nextTier:nextTier?nextTier.name:null,nextRate:nextTier?nextTier.rate:null,targetM,addM,
+    l1,l2,l3,overrideM,gateMet,effOverrideM,totalM,totalQ:totalM*Q,
+    effRate:qSales>0?commQ/qSales:0,gateNeed:Math.max(0,GATE_MONTH-m)};
+}
+
+const $=id=>document.getElementById(id);
+const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const IDS=['boxes','l1n','l1a','l2n','l2a','l3n','l3a','price'];
+const PARAM={boxes:'b',l1n:'l1n',l1a:'l1a',l2n:'l2n',l2a:'l2a',l3n:'l3n',l3a:'l3a',price:'p'};
+
+function readInputs(){
+  return {
+    boxes:+$('boxesN').value||0, price:+$('price').value||2499,
+    l1n:+$('l1n').value||0, l1a:+$('l1a').value||0,
+    l2n:+$('l2n').value||0, l2a:+$('l2a').value||0,
+    l3n:+$('l3n').value||0, l3a:+$('l3a').value||0,
+  };
+}
+function buildParams(i){
+  const p=new URLSearchParams();
+  for(const id of IDS){const v=id==='boxes'?i.boxes:i[id];if(v)p.set(PARAM[id],v);}
+  return p.toString();
+}
+function syncURL(i){ try{ history.replaceState(null,'','?'+buildParams(i)); }catch(e){} }
+
+function render(){
+  const i=readInputs(), r=computeEarnings(i);
+
+  const mx=+$('boxes').max;
+  const pct=Math.min(100,(Math.min(i.boxes,mx)/mx)*100);
+  $('boxes').style.setProperty('--pct',pct+'%');
+  if(document.activeElement!==$('boxesN')) $('boxesN').value=i.boxes;
+  if(document.activeElement!==$('boxes')) $('boxes').value=Math.min(i.boxes,mx);
+
+  $('r-month').textContent=inr(r.totalM);
+  $('r-qtr').textContent=inr(r.totalQ);
+  $('r-tierline').textContent=r.tier+' tier · '+Math.round(r.tierRate*100)+'%';
+
+  const badge=$('r-badge'); badge.textContent=r.tier; badge.className='badge '+r.tier;
+  const fillPct=Math.max(6,Math.min(100,(r.qSales/41000)*100));
+  $('r-fill').style.width=fillPct+'%';
+
+  if(r.nextTier){
+    const n=r.addM<=0?1:r.addM;
+    $('r-tiermsg').innerHTML='Sell <span class="push">'+n+' more box'+(n===1?'':'es')+' a month</span>'+
+      ' to reach <b>'+r.nextTier+'</b> and earn <b>'+Math.round(r.nextRate*100)+'%</b>.';
+  }else{
+    $('r-tiermsg').innerHTML='🎉 You\u2019ve reached <b>Elite</b> — the top tier at <b>25%</b>. Keep going!';
+  }
+
+  $('r-personal').textContent=inr(r.commM);
+  $('r-l1').textContent=inr(r.gateMet?r.l1.income:0);
+  $('r-l2').textContent=inr(r.gateMet?r.l2.income:0);
+  $('r-l3').textContent=inr(r.gateMet?r.l3.income:0);
+
+  const parts=[['personal',r.commM],['l1',r.gateMet?r.l1.income:0],['l2',r.gateMet?r.l2.income:0],['l3',r.gateMet?r.l3.income:0]];
+  const tot=r.totalM||1;
+  $('r-stack').innerHTML=parts.map(p=>'<span class="seg-'+p[0]+'" style="width:'+(p[1]/tot*100)+'%"></span>').join('');
+
+  const g=$('r-gate');
+  if(r.overrideM>0 && !r.gateMet){
+    g.style.display='block';
+    g.innerHTML='Team income shows as ₹0 until you sell at least <b>2 boxes a month</b>. Sell '+r.gateNeed+' more a month to unlock it.';
+  }else{ g.style.display='none'; }
+
+  syncURL(i);
+}
+
+function prefill(){
+  const p=new URLSearchParams(location.search);
+  for(const id of IDS){const v=p.get(PARAM[id]);if(v!==null&&v!=='')$(id).value=v;}
+  const b=p.get('b'); if(b!==null&&b!=='') $('boxesN').value=b; else $('boxesN').value=$('boxes').value;
+  $('boxes').value=Math.min(+$('boxesN').value||0,+$('boxes').max);
+}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2000);}
+
+prefill();
+render();
+IDS.filter(id=>id!=='boxes').forEach(id=>$(id).addEventListener('input',render));
+$('boxes').addEventListener('input',()=>{ $('boxesN').value=$('boxes').value; render(); });
+$('boxesN').addEventListener('input',render);
+$('share').addEventListener('click',()=>{
+  let url;
+  try{ url=location.origin+location.pathname+'?'+buildParams(readInputs()); }catch(e){ url=location.href; }
+  if(!/^https?:/i.test(url)) url=location.href;
+  navigator.clipboard.writeText(url).then(()=>toast('Link copied — share it anywhere')).catch(()=>toast('Copy failed'));
+});
+</script>
+</body>
+</html>

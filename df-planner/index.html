@@ -1,1 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Debt-Free Planner — Internal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0097B2;--teal-d:#00768C;--orange:#F7941E;--orange-h:#E67C00;
+  --dark:#16303A;--dark2:#0A3D52;--tint:#EAF7FA;--tint2:#F4FAFB;
+  --line:#DCEAEF;--muted:#5B7480;--green:#25D366;--red:#C2453D;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--tint2);color:var(--dark);
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.big,.mega .num,.stat b,.pill,.paceRow b,table{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:26px 18px 56px}
 
+header{margin-bottom:20px}
+.pill{display:inline-block;background:var(--tint);color:var(--teal-d);font-size:11px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+h1{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:-.01em}
+header p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;
+  margin-bottom:18px;box-shadow:0 1px 2px rgba(10,61,82,.04)}
+.card h2{margin:0 0 15px;font-size:12px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--teal-d)}
+.card h2.mt{margin-top:24px}
+
+.grid{display:grid;gap:13px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.grid+.grid{margin-top:13px}
+label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px}
+input,select{width:100%;font:inherit;font-size:15px;font-weight:600;color:var(--dark);
+  padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;background:#fff;outline:none;
+  transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,151,178,.13)}
+.split{display:grid;grid-template-columns:1fr 106px;gap:8px}
+.hint{font-size:11px;color:var(--muted);margin-top:5px;font-weight:500}
+
+.note{border-radius:11px;padding:13px 16px;margin-bottom:15px;font-size:12.5px;font-weight:500;
+  color:var(--muted);background:var(--tint);border:1px solid #CFE9F0}
+.note b{color:var(--dark);font-weight:700;font-family:'Plus Jakarta Sans',sans-serif}
+.note.warn{background:#FDF0EF;border-color:#F2C9C6}
+.note.warn b{color:var(--red)}
+
+.mega{background:linear-gradient(135deg,var(--orange) 0%,var(--orange-h) 100%);color:#fff;
+  border-radius:14px;padding:24px;text-align:center;margin-bottom:14px;box-shadow:0 6px 20px rgba(247,148,30,.26)}
+.mega span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;opacity:.9;margin-bottom:7px}
+.mega .num{font-size:62px;font-weight:800;line-height:.98;letter-spacing:-.03em}
+.mega .unit{font-size:15px;font-weight:700;opacity:.95;margin-top:4px}
+.mega .ln{font-size:13.5px;font-weight:600;opacity:.93;margin-top:12px;padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.3)}
+
+.headline{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-bottom:16px}
+.hero{border-radius:12px;padding:19px}
+.hero.a{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-d) 100%);color:#fff}
+.hero.b{background:var(--dark2);color:#fff}
+.hero span{display:block;font-size:11px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;opacity:.78;margin-bottom:6px}
+.big{font-size:32px;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.hero small{display:block;margin-top:7px;font-size:12.5px;opacity:.85;font-weight:500}
+
+.stats{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;grid-template-columns:repeat(auto-fit,minmax(148px,1fr))}
+.stat{background:#fff;padding:14px 15px}
+.stat span{display:block;font-size:10.5px;font-weight:700;color:var(--muted);
+  letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px}
+.stat b{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.stat.hi b{color:var(--orange)}
+.stat.bad b{color:var(--red)}
+
+.band{margin-top:15px;background:var(--tint);border-radius:12px;padding:16px 18px}
+.band h3{margin:0 0 12px;font-size:11.5px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--teal-d)}
+.paceRow{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+.paceRow div span{display:block;font-size:10.5px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.paceRow div b{font-size:18px;font-weight:700}
+
+.bar{height:11px;background:var(--line);border-radius:99px;overflow:hidden;margin:9px 0 7px}
+.bar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--teal),var(--green));transition:width .35s ease}
+.barTop{display:flex;justify-content:space-between;font-size:12px;font-weight:700}
+.barTop em{font-style:normal;color:var(--muted)}
+
+svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:11px;font-size:12px;font-weight:600}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--muted);padding:0 9px 9px 0;border-bottom:1px solid var(--line)}
+td{padding:10px 9px 10px 0;border-bottom:1px solid var(--line);font-weight:600}
+tr:last-child td{border-bottom:none}
+tr.fin td{color:var(--orange);font-weight:800}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+button{font-family:'Plus Jakarta Sans',sans-serif;font-size:13.5px;font-weight:700;padding:11px 18px;
+  border-radius:9px;border:none;cursor:pointer;transition:background .15s,transform .06s}
+button:active{transform:translateY(1px)}
+.bWa{background:var(--green);color:#fff}.bWa:hover{background:#1eb955}
+.bGh{background:#fff;color:var(--teal-d);border:1.5px solid var(--line)}.bGh:hover{background:var(--tint)}
+
+.assume{font-size:12.5px;color:var(--muted);margin-top:15px;padding-top:13px;border-top:1px solid var(--line)}
+.assume b{color:var(--dark);font-weight:700}
+footer{font-size:11.5px;color:var(--muted);line-height:1.6;border-left:3px solid var(--orange);
+  padding:3px 0 3px 12px;margin-top:26px}
+@media(max-width:600px){.headline{grid-template-columns:1fr}.mega .num{font-size:48px}}
+@media print{body{background:#fff}.btns{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="pill">Internal planning tool</div>
+  <h1>Debt-Free Planner</h1>
+  <p>Enter what you owe and when you want it gone. The tool works backwards to the monthly sales target — solo or split across a team you pay a share to.</p>
+</header>
+
+<div class="card">
+  <h2>Your numbers</h2>
+  <div class="grid">
+    <div>
+      <label for="debt">Debt amount (₹)</label>
+      <input id="debt" type="number" min="0" step="1000" value="500000" inputmode="numeric">
+    </div>
+    <div>
+      <label for="period">Clear it in</label>
+      <div class="split">
+        <input id="period" type="number" min="1" step="1" value="12" inputmode="numeric">
+        <select id="unit"><option value="months" selected>Months</option><option value="years">Years</option></select>
+      </div>
+    </div>
+    <div>
+      <label for="sold">Boxes already sold</label>
+      <input id="sold" type="number" min="0" step="1" value="0" inputmode="numeric">
+      <div class="hint">Counts toward the target</div>
+    </div>
+  </div>
+
+  <h2 class="mt">Unit economics</h2>
+  <div class="grid">
+    <div>
+      <label for="price">Selling price / box (₹)</label>
+      <input id="price" type="number" min="1" step="1" value="2500" inputmode="numeric">
+    </div>
+    <div>
+      <label for="margin">Your margin (%)</label>
+      <input id="margin" type="number" min="1" max="100" step="0.5" value="25" inputmode="decimal">
+    </div>
+    <div>
+      <label for="bpp">Boxes per patient</label>
+      <input id="bpp" type="number" min="1" step="1" value="2" inputmode="numeric">
+    </div>
+  </div>
+
+  <h2 class="mt">Team</h2>
+  <div class="grid">
+    <div>
+      <label for="team">Team members recruited</label>
+      <input id="team" type="number" min="0" step="1" value="10" inputmode="numeric">
+      <div class="hint">0 = you sell alone</div>
+    </div>
+    <div>
+      <label for="share">Their share of your margin (%)</label>
+      <input id="share" type="number" min="0" max="100" step="1" value="75" inputmode="numeric">
+      <div class="hint">You keep the rest on their sales</div>
+    </div>
+    <div>
+      <label for="isell">Do you sell too?</label>
+      <select id="isell">
+        <option value="1" selected>Yes — I sell alongside them</option>
+        <option value="0">No — team sells everything</option>
+      </select>
+    </div>
+    <div>
+      <label for="mysh">Your share of the boxes (%)</label>
+      <input id="mysh" type="number" min="0" max="100" step="1" value="" placeholder="auto" inputmode="numeric">
+      <div class="hint">Blank = equal split</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>The monthly target</h2>
+
+  <div id="noteBox"></div>
+
+  <div class="mega">
+    <span>Boxes to sell every month</span>
+    <div class="num" id="mBoxes">—</div>
+    <div class="unit" id="mUnit">boxes per month</div>
+    <div class="ln" id="mSub">&nbsp;</div>
+  </div>
+
+  <div class="headline">
+    <div class="hero a">
+      <span>Debt free by</span>
+      <div class="big" id="oDate">—</div>
+      <small id="oDateSub">&nbsp;</small>
+    </div>
+    <div class="hero b">
+      <span>New patients / month</span>
+      <div class="big" id="oPM">—</div>
+      <small id="oPMSub">&nbsp;</small>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span>Full margin / box</span><b id="oPB">—</b></div>
+    <div class="stat"><span>You keep on team sale</span><b id="oKeep">—</b></div>
+    <div class="stat"><span>Blended margin / box</span><b id="oBlend">—</b></div>
+    <div class="stat"><span>Total boxes</span><b id="oTB">—</b></div>
+    <div class="stat hi"><span>Your margin / month</span><b id="oMM">—</b></div>
+  </div>
+
+  <div class="band" id="teamBand" style="display:none">
+    <h3>How the units divide — <span id="tCount"></span></h3>
+    <div class="paceRow">
+      <div><span>Your boxes / month</span><b id="tMine">—</b></div>
+      <div><span>Team boxes / month</span><b id="tTeam">—</b></div>
+      <div><span>Per member / month</span><b id="tPer">—</b></div>
+      <div><span>Per member / week</span><b id="tPerWk">—</b></div>
+      <div><span>Patients / member / mo</span><b id="tPerPat">—</b></div>
+    </div>
+    <div class="paceRow" style="margin-top:14px;padding-top:14px;border-top:1px solid #CFE9F0">
+      <div><span>Member earns / box</span><b id="tEarnBox">—</b></div>
+      <div><span>Member earns / month</span><b id="tEarnMo">—</b></div>
+      <div><span>Total paid to team / mo</span><b id="tPaid">—</b></div>
+      <div><span>Paid to team over plan</span><b id="tPaidAll">—</b></div>
+    </div>
+  </div>
+
+  <div class="band" id="progBand" style="display:none">
+    <h3>Progress so far</h3>
+    <div class="barTop"><b id="pTxt">—</b><em id="pPct">0%</em></div>
+    <div class="bar"><i id="pFill" style="width:0%"></i></div>
+    <div class="hint" id="pLeft">—</div>
+  </div>
+
+  <div class="assume" id="oAssume">—</div>
+</div>
+
+<div class="card" id="cmpCard">
+  <h2>Solo vs with a team</h2>
+  <div id="chartCmp"></div>
+  <div class="legend">
+    <span><i style="background:#F7941E"></i>Total boxes needed</span>
+    <span><i style="background:#0097B2"></i>Boxes per person per month</span>
+  </div>
+  <div class="hint" style="margin-top:10px" id="cmpNote">—</div>
+</div>
+
+<div class="card" id="mixCard">
+  <h2>Where each box's margin goes</h2>
+  <div id="chartMix"></div>
+  <div class="legend">
+    <span><i style="background:#F7941E"></i>You keep</span>
+    <span><i style="background:#0097B2"></i>Paid to team member</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Debt burn-down</h2>
+  <div id="chart1"></div>
+</div>
+
+<div class="card">
+  <h2>What each timeline demands</h2>
+  <div id="chart2"></div>
+  <div class="hint" style="margin-top:10px">Your chosen timeline is highlighted. A shorter deadline means a steeper monthly target.</div>
+</div>
+
+<div class="card">
+  <h2>Milestones</h2>
+  <table>
+    <thead><tr><th>Milestone</th><th>By</th><th>Boxes sold</th><th>Patients</th><th>Debt cleared</th></tr></thead>
+    <tbody id="msBody"></tbody>
+  </table>
+  <div class="btns">
+    <button class="bWa" id="btnCopy">Copy plan for WhatsApp</button>
+    <button class="bGh" id="btnPrint">Print / save PDF</button>
+    <button class="bGh" id="btnLink">Copy shareable link</button>
+  </div>
+</div>
+
+<footer>
+  <b>Internal use only.</b> This is a planning calculator, not a forecast or an earnings
+  projection. Figures are arithmetic outputs of the assumptions entered above and do not
+  represent expected, typical or guaranteed income for you or for any team member. Actual
+  margin varies with discounts, commissions, GST and TDS treatment, shipping, COD returns
+  and reorder behaviour. Not for distribution to customers or prospective recruits.
+</footer>
+
+</div>
+
+<script>
+(function(){
+var F=['debt','period','unit','sold','price','margin','bpp','team','share','isell','mysh'];
+function $(i){return document.getElementById(i);}
+function num(i){var v=parseFloat($(i).value);return isFinite(v)?v:0;}
+function N(v){return Math.round(v).toLocaleString('en-IN');}
+function N1(v){return (Math.round(v*10)/10).toLocaleString('en-IN');}
+function INR(v){return '₹'+Math.round(v).toLocaleString('en-IN');}
+function shortINR(v){
+  if(v>=1e7)return '₹'+(v/1e7).toFixed(1)+'Cr';
+  if(v>=1e5)return '₹'+(v/1e5).toFixed(1)+'L';
+  if(v>=1000)return '₹'+Math.round(v/1000)+'k';
+  return '₹'+Math.round(v);
+}
+function addM(m){var d=new Date();d.setDate(1);d.setMonth(d.getMonth()+Math.round(m));return d;}
+function fmtD(d){return d.toLocaleDateString('en-IN',{month:'short',year:'numeric'});}
+
+var S={};
+
+function read(){
+  S.debt=Math.max(0,num('debt'));
+  S.price=Math.max(0,num('price'));
+  S.marginPct=Math.max(0,num('margin'));
+  S.bpp=Math.max(1,num('bpp'));
+  S.sold=Math.max(0,Math.round(num('sold')));
+  S.team=Math.max(0,Math.round(num('team')));
+  S.sharePct=Math.min(100,Math.max(0,num('share')));
+  S.iSell=$('isell').value==='1';
+  var p=Math.max(0,num('period'));
+  S.months=Math.max(1,Math.round($('unit').value==='years'?p*12:p));
+
+  S.pBox=S.price*S.marginPct/100;            // full margin on a box you sell
+  S.payBox=S.pBox*S.sharePct/100;            // what a member earns per box
+  S.keepBox=S.pBox-S.payBox;                 // what you keep on a member's box
+
+  if(S.team<1){ S.iSell=true; S.sellers=1; S.myFrac=1; }
+  else{
+    S.sellers=S.team+(S.iSell?1:0);
+    var mv=$('mysh').value.trim();
+    if(S.iSell && mv!=='' && isFinite(parseFloat(mv))){
+      S.myFrac=Math.min(1,Math.max(0,parseFloat(mv)/100));
+    } else {
+      S.myFrac=S.iSell?1/S.sellers:0;
+    }
+  }
+  S.teamFrac=1-S.myFrac;
+
+  S.blend=S.pBox*S.myFrac + S.keepBox*S.teamFrac;
+  S.viable=S.blend>0;
+
+  S.totBoxes=S.viable?Math.ceil(S.debt/S.blend):0;
+  S.soloBoxes=S.pBox>0?Math.ceil(S.debt/S.pBox):0;
+  S.soldCap=Math.min(S.sold,S.totBoxes);
+  S.leftBoxes=Math.max(0,S.totBoxes-S.soldCap);
+  S.totPat=Math.ceil(S.totBoxes/S.bpp);
+  S.leftPat=Math.ceil(S.leftBoxes/S.bpp);
+  S.leftDebt=S.leftBoxes*S.blend;
+
+  S.bpm=Math.ceil(S.leftBoxes/S.months);
+  S.ppm=Math.ceil(S.leftPat/S.months);
+  S.mineM=S.bpm*S.myFrac;
+  S.teamM=S.bpm*S.teamFrac;
+  S.perMemM=S.team>0?S.teamM/S.team:0;
+  S.paidM=S.teamM*S.payBox;
+  S.paidAll=S.leftBoxes*S.teamFrac*S.payBox;
+  S.memEarnM=S.perMemM*S.payBox;
+  S.mm=S.bpm*S.blend;
+
+  S.soloPerPerson=S.soloBoxes/S.months;
+  S.teamPerPerson=S.sellers>0?S.bpm/S.sellers:S.bpm;
+  S.pct=S.totBoxes>0?(S.soldCap/S.totBoxes*100):0;
+  S.extra=S.totBoxes-S.soloBoxes;
+}
+
+function noteBox(){
+  if(!S.viable){
+    return '<div class="note warn"><b>This plan cannot clear the debt.</b> '
+      +'You are giving away 100% of the margin on every box and selling none yourself, '
+      +'so no margin comes back to you. Lower the team share, or sell some boxes yourself.</div>';
+  }
+  if(S.team<1){
+    return '<div class="note"><b>Solo plan.</b> You keep the full '+INR(S.pBox)
+      +' margin on every box. Add team members above to see how the load splits.</div>';
+  }
+  return '<div class="note"><b>'+S.team+' members at '+S.sharePct+'% share.</b> '
+    +'On a box a member sells, they earn '+INR(S.payBox)+' and you keep '+INR(S.keepBox)
+    +'. That means the team needs to move <b>'+N(S.extra)+' more boxes</b> than you would alone — '
+    +'but each person only carries <b>'+N1(S.teamPerPerson)+' boxes a month</b> '
+    +'instead of '+N1(S.soloPerPerson)+'.</div>';
+}
+
+function render(){
+  read();
+  $('mysh').disabled=!S.iSell||S.team<1;
+  $('noteBox').innerHTML=noteBox();
+
+  $('mBoxes').textContent=S.viable?N(S.bpm):'—';
+  $('mUnit').textContent=S.bpm===1?'box per month':'boxes per month';
+  $('mSub').textContent=S.viable
+    ? (S.team>0
+        ? N1(S.mineM)+' by you + '+N1(S.teamM)+' by the team  ·  '+N1(S.perMemM)+' per member  ·  '+INR(S.mm)+' to you a month'
+        : '≈ '+N1(S.bpm/4.345)+' a week  ·  ≈ '+N1(S.bpm/26)+' a working day  ·  '+INR(S.mm)+' a month')
+    : 'Adjust the team share to make this work';
+
+  var d=addM(S.months);
+  $('oDate').textContent=S.viable?fmtD(d):'—';
+  $('oDateSub').textContent=N(S.months)+(S.months===1?' month':' months')+' from now';
+  $('oPM').textContent=S.viable?N(S.ppm):'—';
+  $('oPMSub').textContent=S.bpp+'-box course each · '+INR(S.pBox*S.bpp)+' full margin per patient';
+
+  $('oPB').textContent=INR(S.pBox);
+  $('oKeep').textContent=S.team>0?INR(S.keepBox):'—';
+  $('oBlend').textContent=S.viable?INR(S.blend):'₹0';
+  $('oTB').textContent=S.viable?N(S.totBoxes):'—';
+  $('oMM').textContent=S.viable?INR(S.mm):'—';
+  $('oBlend').parentNode.className=S.viable?'stat':'stat bad';
+
+  if(S.team>0&&S.viable){
+    $('teamBand').style.display='';
+    $('tCount').textContent=S.team+' members'+(S.iSell?' + you':'');
+    $('tMine').textContent=N1(S.mineM);
+    $('tTeam').textContent=N1(S.teamM);
+    $('tPer').textContent=N1(S.perMemM);
+    $('tPerWk').textContent=N1(S.perMemM/4.345);
+    $('tPerPat').textContent=N1(S.perMemM/S.bpp);
+    $('tEarnBox').textContent=INR(S.payBox);
+    $('tEarnMo').textContent=INR(S.memEarnM);
+    $('tPaid').textContent=INR(S.paidM);
+    $('tPaidAll').textContent=INR(S.paidAll);
+  } else $('teamBand').style.display='none';
+
+  if(S.sold>0&&S.viable){
+    $('progBand').style.display='';
+    $('pTxt').textContent=N(S.soldCap)+' of '+N(S.totBoxes)+' boxes done';
+    $('pPct').textContent=S.pct.toFixed(1)+'%';
+    $('pFill').style.width=Math.min(100,S.pct)+'%';
+    $('pLeft').textContent=S.leftBoxes===0?'Target reached — the debt is covered.'
+      :N(S.leftBoxes)+' boxes left · '+INR(S.leftDebt)+' still to clear';
+  } else $('progBand').style.display='none';
+
+  $('oAssume').innerHTML='Assumes <b>'+INR(S.price)+'</b> per box at <b>'+S.marginPct
+    +'%</b> margin ('+INR(S.pBox)+'), <b>'+S.bpp+' boxes</b> per patient course'
+    +(S.team>0?', team keeping <b>'+S.sharePct+'%</b> of margin on their own sales':'')
+    +'. Working-day figure uses 26 days. All box counts rounded up.';
+
+  $('cmpCard').style.display=(S.team>0&&S.viable)?'':'none';
+  $('mixCard').style.display=(S.team>0)?'':'none';
+  if(S.team>0&&S.viable){ $('chartCmp').innerHTML=cmp(); cmpNote(); }
+  if(S.team>0){ $('chartMix').innerHTML=mix(); }
+  $('chart1').innerHTML=burn();
+  $('chart2').innerHTML=pace();
+  milestones();
+}
+
+function cmpNote(){
+  $('cmpNote').textContent='Alone you would need '+N(S.soloBoxes)+' boxes ('
+    +N1(S.soloPerPerson)+' a month, all on you). With '+S.team+' members you need '
+    +N(S.totBoxes)+' boxes, but the monthly load per person drops to '
+    +N1(S.teamPerPerson)+'. You give up '+INR(S.paidAll)+' in margin to buy that reach.';
+}
+
+function cmp(){
+  var rows=[
+    {l:'Solo',  tot:S.soloBoxes, per:S.soloPerPerson},
+    {l:'With team', tot:S.totBoxes, per:S.teamPerPerson}
+  ];
+  var maxT=Math.max(rows[0].tot,rows[1].tot)||1;
+  var maxP=Math.max(rows[0].per,rows[1].per)||1;
+  var W=720,LB=92,RB=118,gh=64,H=rows.length*gh+16,bw=W-LB-RB;
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" font-family="Manrope,sans-serif">';
+  rows.forEach(function(r,i){
+    var y=i*gh+10;
+    s+='<text x="'+(LB-12)+'" y="'+(y+24)+'" text-anchor="end" font-size="13" font-weight="800" '
+      +'fill="#16303A" font-family="Plus Jakarta Sans,sans-serif">'+r.l+'</text>';
+    var w1=Math.max(3,(r.tot/maxT)*bw);
+    s+='<rect x="'+LB+'" y="'+y+'" width="'+bw+'" height="20" rx="5" fill="#EEF6F8"/>';
+    s+='<rect x="'+LB+'" y="'+y+'" width="'+w1.toFixed(1)+'" height="20" rx="5" fill="#F7941E"/>';
+    s+='<text x="'+(LB+w1+9).toFixed(1)+'" y="'+(y+15)+'" font-size="12" font-weight="800" '
+      +'fill="#16303A" font-family="Plus Jakarta Sans,sans-serif">'+N(r.tot)+' boxes</text>';
+    var y2=y+26, w2=Math.max(3,(r.per/maxP)*bw);
+    s+='<rect x="'+LB+'" y="'+y2+'" width="'+bw+'" height="20" rx="5" fill="#EEF6F8"/>';
+    s+='<rect x="'+LB+'" y="'+y2+'" width="'+w2.toFixed(1)+'" height="20" rx="5" fill="#0097B2"/>';
+    s+='<text x="'+(LB+w2+9).toFixed(1)+'" y="'+(y2+15)+'" font-size="12" font-weight="700" '
+      +'fill="#00768C" font-family="Plus Jakarta Sans,sans-serif">'+N1(r.per)+'/person/mo</text>';
+  });
+  return s+'</svg>';
+}
+
+function mix(){
+  var W=720,H=92;
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" font-family="Manrope,sans-serif">';
+  if(S.pBox<=0){
+    s+='<rect x="0" y="20" width="'+W+'" height="44" rx="8" fill="#EEF6F8"/>';
+    return s+'</svg>';
+  }
+  var kf=S.keepBox/S.pBox, wK=kf*W, wP=W-wK;
+  s+='<text x="0" y="13" font-size="11" font-weight="700" fill="#5B7480">'
+    +'ON A BOX A TEAM MEMBER SELLS — '+INR(S.pBox)+' TOTAL MARGIN</text>';
+  if(wK>2) s+='<rect x="0" y="22" width="'+Math.max(1,wK-2).toFixed(1)+'" height="44" rx="6" fill="#F7941E"/>';
+  if(wP>2) s+='<rect x="'+wK.toFixed(1)+'" y="22" width="'+Math.max(1,wP-2).toFixed(1)
+    +'" height="44" rx="6" fill="#0097B2"/>';
+  if(wK>78){
+    s+='<text x="'+(wK/2).toFixed(1)+'" y="42" text-anchor="middle" font-size="13" font-weight="800" '
+      +'fill="#fff" font-family="Plus Jakarta Sans,sans-serif">'+INR(S.keepBox)+'</text>';
+    s+='<text x="'+(wK/2).toFixed(1)+'" y="57" text-anchor="middle" font-size="10.5" font-weight="600" '
+      +'fill="#fff" opacity=".92">you · '+(kf*100).toFixed(0)+'%</text>';
+  }
+  if(wP>78){
+    s+='<text x="'+(wK+wP/2).toFixed(1)+'" y="42" text-anchor="middle" font-size="13" font-weight="800" '
+      +'fill="#fff" font-family="Plus Jakarta Sans,sans-serif">'+INR(S.payBox)+'</text>';
+    s+='<text x="'+(wK+wP/2).toFixed(1)+'" y="57" text-anchor="middle" font-size="10.5" font-weight="600" '
+      +'fill="#fff" opacity=".92">member · '+S.sharePct+'%</text>';
+  }
+  s+='<text x="0" y="84" font-size="12" font-weight="600" fill="#5B7480">'
+    +'Across the whole plan the team is paid '+INR(S.paidAll)+' out of '
+    +INR(S.leftBoxes*S.pBox)+' of gross margin generated.</text>';
+  return s+'</svg>';
+}
+
+function burn(){
+  var W=720,H=250,L=62,R=18,T=18,B=34,pw=W-L-R,ph=H-T-B;
+  var M=S.months,D=Math.max(S.leftDebt,1);
+  var X=function(m){return L+(m/M)*pw;},Y=function(v){return T+(1-v/D)*ph;};
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" font-family="Manrope,sans-serif">';
+  s+='<defs><linearGradient id="bgF" x1="0" y1="0" x2="0" y2="1">'
+    +'<stop offset="0%" stop-color="#0097B2" stop-opacity=".28"/>'
+    +'<stop offset="100%" stop-color="#0097B2" stop-opacity=".02"/></linearGradient></defs>';
+  var i,v,yy;
+  for(i=0;i<=4;i++){
+    v=D*i/4; yy=Y(v);
+    s+='<line x1="'+L+'" y1="'+yy.toFixed(1)+'" x2="'+(L+pw)+'" y2="'+yy.toFixed(1)
+      +'" stroke="#DCEAEF" stroke-width="1"/>';
+    s+='<text x="'+(L-9)+'" y="'+(yy+4).toFixed(1)+'" text-anchor="end" font-size="11" '
+      +'font-weight="600" fill="#5B7480">'+shortINR(v)+'</text>';
+  }
+  s+='<path d="M'+X(0)+' '+Y(D)+' L'+X(M)+' '+Y(0)+' L'+X(0)+' '+Y(0)+' Z" fill="url(#bgF)"/>';
+  s+='<line x1="'+X(0)+'" y1="'+Y(D)+'" x2="'+X(M)+'" y2="'+Y(0)
+    +'" stroke="#0097B2" stroke-width="3" stroke-linecap="round"/>';
+  [.25,.5,.75].forEach(function(f){
+    s+='<circle cx="'+X(M*f).toFixed(1)+'" cy="'+Y(D*(1-f)).toFixed(1)
+      +'" r="4.5" fill="#fff" stroke="#0097B2" stroke-width="2.5"/>';
+  });
+  s+='<circle cx="'+X(M)+'" cy="'+Y(0)+'" r="6" fill="#F7941E"/>';
+  s+='<text x="'+(X(M)-6)+'" y="'+(Y(0)-13)+'" text-anchor="end" font-size="12" font-weight="800" '
+    +'fill="#F7941E" font-family="Plus Jakarta Sans,sans-serif">DEBT FREE</text>';
+  var ticks=Math.min(M,6),k;
+  for(k=0;k<=ticks;k++){
+    var mm=Math.round(M*k/ticks);
+    s+='<text x="'+X(mm).toFixed(1)+'" y="'+(H-11)+'" text-anchor="middle" font-size="11" '
+      +'font-weight="600" fill="#5B7480">'+(mm===0?'Now':fmtD(addM(mm)))+'</text>';
+  }
+  s+='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(L+pw)+'" y2="'+(T+ph)+'" stroke="#16303A" stroke-width="1.5"/>';
+  return s+'</svg>';
+}
+
+function pace(){
+  var o=[6,12,18,24,36,60];
+  if(o.indexOf(S.months)<0) o.push(S.months);
+  o.sort(function(a,b){return a-b;});
+  var rows=o.map(function(m){
+    return {m:m,b:Math.ceil(S.leftBoxes/m),p:S.sellers>0?Math.ceil(S.leftBoxes/m)/S.sellers:0};
+  });
+  var max=Math.max.apply(null,rows.map(function(r){return r.b;}))||1;
+  var W=720,LB=92,RB=150,rh=36,H=rows.length*rh+14,bw=W-LB-RB;
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" font-family="Manrope,sans-serif">';
+  rows.forEach(function(r,i){
+    var y=i*rh+8,on=(r.m===S.months),w=Math.max(3,(r.b/max)*bw);
+    s+='<text x="'+(LB-11)+'" y="'+(y+18)+'" text-anchor="end" font-size="12.5" font-weight="'
+      +(on?'800':'600')+'" fill="'+(on?'#F7941E':'#5B7480')+'">'+r.m+' mo</text>';
+    s+='<rect x="'+LB+'" y="'+y+'" width="'+bw+'" height="24" rx="6" fill="#EEF6F8"/>';
+    s+='<rect x="'+LB+'" y="'+y+'" width="'+w.toFixed(1)+'" height="24" rx="6" fill="'
+      +(on?'#F7941E':'#0097B2')+'" opacity="'+(on?'1':'.55')+'"/>';
+    s+='<text x="'+(LB+w+9).toFixed(1)+'" y="'+(y+17)+'" font-size="12.5" font-weight="'
+      +(on?'800':'700')+'" fill="'+(on?'#F7941E':'#16303A')
+      +'" font-family="Plus Jakarta Sans,sans-serif">'+N(r.b)+'/mo'
+      +(S.sellers>1?'  ('+N1(r.p)+' each)':'')+'</text>';
+  });
+  return s+'</svg>';
+}
+
+function milestones(){
+  var rows=[[.25,'25% cleared'],[.5,'Halfway'],[.75,'75% cleared'],[1,'Debt free']];
+  $('msBody').innerHTML=rows.map(function(r){
+    var f=r[0],m=Math.ceil(S.months*f),bx=Math.ceil(S.leftBoxes*f)+S.soldCap;
+    return '<tr'+(f===1?' class="fin"':'')+'><td>'+r[1]+'</td><td>'+fmtD(addM(m))
+      +'</td><td>'+N(bx)+'</td><td>'+N(Math.ceil(bx/S.bpp))+'</td><td>'+INR(S.debt*f)+'</td></tr>';
+  }).join('');
+}
+
+function planText(){
+  var t='EPITHRIVE — DEBT-FREE PLAN\n--------------------------------\n'
+    +'Debt: '+INR(S.debt)+'\n'
+    +'Timeline: '+S.months+' months (debt free by '+fmtD(addM(S.months))+')\n\n'
+    +'TARGET: '+N(S.bpm)+' boxes every month\n'
+    +'= '+N(S.ppm)+' new patients a month\n';
+  if(S.team>0){
+    t+='\nTEAM OF '+S.team+(S.iSell?' + you':'')+' at '+S.sharePct+'% share\n'
+      +'Your boxes: '+N1(S.mineM)+'/mo · Team boxes: '+N1(S.teamM)+'/mo\n'
+      +'Each member: '+N1(S.perMemM)+' boxes/mo ('+N1(S.perMemM/4.345)+' a week)\n'
+      +'Member earns: '+INR(S.payBox)+'/box · '+INR(S.memEarnM)+'/month\n'
+      +'Paid to team over the plan: '+INR(S.paidAll)+'\n';
+  } else {
+    t+='= '+N1(S.bpm/4.345)+' boxes a week\n';
+  }
+  t+='\nMargin you keep per box: '+INR(S.blend)+' (blended)\n'
+    +'Your margin per month: '+INR(S.mm)+'\n'
+    +'Total boxes to sell: '+N(S.totBoxes)+' ('+N(S.totPat)+' patients)\n\n'
+    +'Internal planning estimate only. Not a guarantee of income.';
+  return t;
+}
+
+function copy(t,btn,ok){
+  var done=function(){var o=btn.textContent;btn.textContent=ok;
+    setTimeout(function(){btn.textContent=o;},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText)
+    navigator.clipboard.writeText(t).then(done,function(){fb(t,done);});
+  else fb(t,done);
+}
+function fb(t,cb){
+  var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';
+  document.body.appendChild(a);a.select();try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(a);
+}
+
+$('btnCopy').addEventListener('click',function(){copy(planText(),this,'Copied ✓');});
+$('btnPrint').addEventListener('click',function(){window.print();});
+$('btnLink').addEventListener('click',function(){
+  var q=F.map(function(f){return f+'='+encodeURIComponent($(f).value);}).join('&');
+  copy(location.origin+location.pathname+'#'+q,this,'Link copied ✓');
+});
+if(location.hash){
+  location.hash.slice(1).split('&').forEach(function(p){
+    var kv=p.split('='); if(F.indexOf(kv[0])>-1&&$(kv[0])) $(kv[0]).value=decodeURIComponent(kv[1]||'');
+  });
+}
+F.forEach(function(f){$(f).addEventListener('input',render);$(f).addEventListener('change',render);});
+render();
+})();
+</script>
+</body>
+</html>

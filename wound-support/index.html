@@ -1,1 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Wound-Care Nutrition Guides for Caregivers | Epithrive</title>
+<meta name="description" content="Free, practical nutrition guides for people looking after a wound at home. What to offer, what to watch for, and when to see a doctor. No sign-up, no cost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0097B2; --teal-deep:#00768C; --ink:#16303A; --ink-soft:#0A3D52;
+    --ink-quiet:#0E2E3B; --tint:#EAF7FA; --tint-2:#EEF6F8; --paper:#F4FAFB;
+    --orange:#F7941E; --orange-hover:#E67C00; --line:#D6E9EE; --wa:#25D366;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#fff;color:var(--ink-soft);font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.62;}
+  .et-wl-skip{position:absolute;left:-9999px;top:0;background:var(--teal);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:10;}
+  .et-wl-skip:focus{left:0;}
+  a{color:var(--teal-deep);}
+  .et-wl-wrap{max-width:680px;margin:0 auto;padding:0 22px;}
 
+  /* header */
+  .et-wl-top{border-bottom:1px solid var(--line);}
+  .et-wl-top .et-wl-wrap{display:flex;align-items:baseline;gap:12px;padding-top:18px;padding-bottom:18px;}
+  .et-wl-brand{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-.01em;}
+  .et-wl-kicker{font-size:14px;color:var(--ink-soft);opacity:.75;}
+
+  /* hero */
+  .et-wl-hero{background:linear-gradient(180deg,var(--paper) 0%,#fff 100%);border-bottom:1px solid var(--line);}
+  .et-wl-hero .et-wl-wrap{padding-top:52px;padding-bottom:48px;}
+  .et-wl-h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:var(--ink);
+    font-size:clamp(30px,6vw,42px);line-height:1.12;letter-spacing:-.02em;margin:0 0 18px;}
+  .et-wl-lede{font-size:19px;color:var(--ink-soft);margin:0 0 26px;max-width:34ch;}
+  .et-wl-jump{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;
+    color:var(--teal-deep);text-decoration:none;border-bottom:2px solid var(--teal);padding-bottom:3px;}
+  .et-wl-jump:hover{color:var(--teal);}
+
+  /* generic section rhythm */
+  main section{padding:44px 0;}
+  main section + section{border-top:1px solid var(--line);}
+  .et-wl-h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:24px;color:var(--ink);
+    line-height:1.25;margin:0 0 16px;letter-spacing:-.01em;}
+  .et-wl-p{margin:0 0 16px;}
+  .et-wl-p:last-child{margin-bottom:0;}
+
+  /* resource index — editorial list, not cards */
+  .et-wl-index{list-style:none;margin:8px 0 0;padding:0;}
+  .et-wl-item{padding:20px 0;border-top:1px solid var(--line);}
+  .et-wl-item:first-child{border-top:none;}
+  .et-wl-item a{text-decoration:none;color:inherit;display:block;}
+  .et-wl-item a:hover .et-wl-it-title{color:var(--teal-deep);}
+  .et-wl-it-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18.5px;color:var(--ink);margin:0 0 4px;}
+  .et-wl-it-desc{font-size:15.5px;color:var(--ink-soft);opacity:.9;margin:0;}
+  .et-wl-soon{display:inline-block;font-size:12px;font-weight:600;color:var(--teal-deep);
+    background:var(--tint);border-radius:99px;padding:3px 10px;margin-top:8px;}
+
+  /* doctor / red-flag panel */
+  .et-wl-flag{background:var(--tint-2);border:1px solid var(--line);border-left:4px solid var(--teal-deep);border-radius:12px;padding:26px 24px;}
+  .et-wl-flag h2{margin-top:0;}
+  .et-wl-flag ul{margin:0 0 14px;padding-left:20px;}
+  .et-wl-flag li{margin:7px 0;}
+  .et-wl-flag .et-wl-p{color:var(--ink);}
+
+  /* product section */
+  .et-wl-prod{background:var(--paper);}
+  .et-wl-note{font-size:14px;color:var(--ink-soft);opacity:.8;margin:14px 0 0;}
+  .et-wl-code{background:#fff;border:1px dashed var(--teal);border-radius:12px;padding:16px 18px;margin:0 0 20px;}
+  .et-wl-code p{margin:0;font-size:15.5px;color:var(--ink);}
+  .et-wl-code strong{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.06em;color:var(--teal-deep);font-size:18px;}
+  .et-wl-buy{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;padding:14px 26px;border-radius:12px;}
+  .et-wl-buy:hover{background:var(--orange-hover);}
+
+  /* whatsapp */
+  .et-wl-wa a{display:inline-flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;text-decoration:none;}
+  .et-wl-wa .et-wl-dot{width:11px;height:11px;border-radius:50%;background:var(--wa);display:inline-block;}
+  .et-wl-wa a:hover{color:var(--teal-deep);}
+
+  /* footer */
+  .et-wl-foot{background:var(--ink);color:#cfe4ea;}
+  .et-wl-foot .et-wl-wrap{padding:34px 22px;}
+  .et-wl-foot .et-wl-brand{color:#fff;}
+  .et-wl-disc{font-size:13px;line-height:1.6;color:#9fc0ca;margin:14px 0 0;}
+  .et-wl-foot a{color:#eaf7fa;}
+
+  :focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<a class="et-wl-skip" href="#guides">Skip to the guides</a>
+
+<header class="et-wl-top">
+  <div class="et-wl-wrap">
+    <span class="et-wl-brand">Epithrive</span>
+    <span class="et-wl-kicker">Wound-care nutrition guides</span>
+  </div>
+</header>
+
+<main>
+
+  <section class="et-wl-hero">
+    <div class="et-wl-wrap">
+      <h1 class="et-wl-h1">When a wound is slow to close, food is one thing you can help with.</h1>
+      <p class="et-wl-lede">Free, practical nutrition guides for anyone looking after a wound at home. No sign-up, no cost.</p>
+      <a class="et-wl-jump" href="#guides">Browse the guides</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="et-wl-wrap">
+      <p class="et-wl-p">The body needs extra protein, and certain vitamins and minerals, to rebuild skin and tissue. When someone isn't eating well, recovery can slow down, and a wound can stay open longer than it should.</p>
+      <p class="et-wl-p">These guides explain what to offer, in plain language, so you can support the person you're caring for while their doctor or nurse manages the wound itself.</p>
+    </div>
+  </section>
+
+  <section id="guides">
+    <div class="et-wl-wrap">
+      <h2 class="et-wl-h2">The guides</h2>
+      <!-- To publish a guide: point href at its page (e.g. "./foods-that-help/")
+           and delete the <span class="et-wl-soon"> line for that item.
+           To add a new guide: copy one <li> block. -->
+      <ul class="et-wl-index">
+
+        <li class="et-wl-item">
+          <a href="#">
+            <p class="et-wl-it-title">Foods that give the body what it needs to repair</p>
+            <p class="et-wl-it-desc">The everyday foods that carry protein, zinc, and vitamin C, and simple ways to fit more of them in.</p>
+            <span class="et-wl-soon">Coming soon</span>
+          </a>
+        </li>
+
+        <li class="et-wl-item">
+          <a href="#">
+            <p class="et-wl-it-title">A 30-day nutrition tracker you can print</p>
+            <p class="et-wl-it-desc">A simple daily sheet to keep track of meals, fluids, and protein while a wound is recovering.</p>
+            <span class="et-wl-soon">Coming soon</span>
+          </a>
+        </li>
+
+        <li class="et-wl-item">
+          <a href="#">
+            <p class="et-wl-it-title">What to eat after surgery</p>
+            <p class="et-wl-it-desc">How eating changes in the weeks after an operation, and what helps the body get back on track.</p>
+            <span class="et-wl-soon">Coming soon</span>
+          </a>
+        </li>
+
+        <li class="et-wl-item">
+          <a href="#">
+            <p class="et-wl-it-title">Signs a wound may be stalling</p>
+            <p class="et-wl-it-desc">A short checklist of what a slow-recovering wound can look like, and what to raise with the doctor.</p>
+            <span class="et-wl-soon">Coming soon</span>
+          </a>
+        </li>
+
+        <li class="et-wl-item">
+          <a href="#">
+            <p class="et-wl-it-title">Nutrition for bedsores and pressure sores</p>
+            <p class="et-wl-it-desc">Why people who spend long periods in bed need particular attention to food and fluids.</p>
+            <span class="et-wl-soon">Coming soon</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="et-wl-wrap">
+      <div class="et-wl-flag">
+        <h2 class="et-wl-h2">When to see a doctor or nurse</h2>
+        <p class="et-wl-p">These guides are about nutrition. They are not a substitute for professional medical care. Please get the wound checked promptly if you notice any of these:</p>
+        <ul>
+          <li>the wound getting larger, deeper, or more painful</li>
+          <li>redness, warmth, or swelling spreading around it</li>
+          <li>pus, fluid, or a bad smell</li>
+          <li>a fever, or the person feeling generally unwell</li>
+          <li>the skin around the wound turning dark</li>
+          <li>any foot wound in someone with diabetes</li>
+        </ul>
+        <p class="et-wl-p">When in doubt, get it looked at. It is always better to ask early.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="et-wl-prod">
+    <div class="et-wl-wrap">
+      <h2 class="et-wl-h2">Where Epithrive fits</h2>
+      <p class="et-wl-p">Epithrive is a once-a-day nutrition drink mix. It gives the body a concentrated dose of the protein, vitamins, and minerals, such as arginine, zinc, and vitamin C, that it draws on while rebuilding tissue.</p>
+      <p class="et-wl-p">It is a nutritional supplement, not a medicine. It works alongside your doctor's care, not instead of it, so it's worth mentioning to them before you start.</p>
+
+      <div class="et-wl-code" id="et-wl-code" hidden>
+        <p>You have a reader code from your nurse: <strong id="et-wl-code-val"></strong>. When you're ready, it saves &#8377;100 on your first order. No rush.</p>
+      </div>
+
+      <a class="et-wl-buy" id="et-wl-buy" href="https://epithrive.in/products/epithrive">See Epithrive</a>
+      <p class="et-wl-note">Contains fish-derived collagen. Not suitable for anyone with a fish allergy. Speak to your doctor if the person you're caring for has a kidney condition, is pregnant, or is on a restricted diet.</p>
+    </div>
+  </section>
+
+  <section class="et-wl-wa">
+    <div class="et-wl-wrap">
+      <h2 class="et-wl-h2">Have a question?</h2>
+      <p class="et-wl-p">If anything here is unclear, or you're not sure what to offer, send us a message and a real person will help.</p>
+      <a href="https://wa.me/919326121131?text=Hi%2C%20I%20have%20a%20question%20about%20wound-care%20nutrition."><span class="et-wl-dot" aria-hidden="true"></span>Message us on WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="et-wl-foot">
+  <div class="et-wl-wrap">
+    <span class="et-wl-brand">Epithrive</span>
+    <p class="et-wl-disc">Epithrive is a nutraceutical (dietary supplement) by Nuin Wellness Pvt. Ltd. The information on this page is general and educational. It is not medical advice and not a substitute for professional medical care. Always follow the guidance of the treating doctor or nurse. Questions: <a href="mailto:info@zenfitra.com">info@zenfitra.com</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PRODUCT_URL   = 'https://epithrive.in/products/epithrive';
+  var DISCOUNT_BASE = 'https://epithrive.in/discount/';
+  var STORE_KEY     = 'et_reader_code';
+
+  function clean(v){ return (v || '').toUpperCase().replace(/[^A-Z0-9_-]/g, ''); }
+
+  var params = new URLSearchParams(window.location.search);
+  var code = clean(params.get('c'));
+
+  /* remember the code for this reader; fall back to a stored one on a later visit */
+  try {
+    if (code) { localStorage.setItem(STORE_KEY, code); }
+    else { code = clean(localStorage.getItem(STORE_KEY)); }
+  } catch (e) {}
+
+  var wrap = document.getElementById('et-wl-code');
+  var val  = document.getElementById('et-wl-code-val');
+  var buy  = document.getElementById('et-wl-buy');
+
+  if (code) {
+    if (val)  val.textContent = code;
+    if (wrap) wrap.hidden = false;
+    if (buy)  { buy.href = DISCOUNT_BASE + encodeURIComponent(code) + '?redirect=/products/epithrive';
+                buy.textContent = 'Get Epithrive with \u20B9100 off'; }
+  } else if (buy) {
+    buy.href = PRODUCT_URL;
+    buy.textContent = 'See Epithrive';
+  }
+})();
+</script>
+</body>
+</html>

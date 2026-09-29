@@ -113,7 +113,7 @@
   <div class="wrap">
     <header class="top">
       <div class="kicker">Care Circle</div>
-      <h1>Make your patient QR card</h1>
+      <h1>Make your QR card</h1>
       <p>Paste your unique link and code. Your branded card is ready to show or send in seconds.</p>
     </header>
 
@@ -123,9 +123,10 @@
         <input id="f-name" type="text" autocomplete="name" placeholder="e.g. Sister Meena">
       </div>
       <div class="field">
-        <label for="f-link">Your referral link</label>
+        <label for="f-link">Your link</label>
         <input id="f-link" type="url" inputmode="url" autocapitalize="off" spellcheck="false"
                placeholder="Paste your unique link">
+        <p id="mode-note" style="margin:8px 2px 0;font-size:13px;color:#00768C;font-weight:600;"></p>
       </div>
       <div class="field">
         <label for="f-code">Coupon code <span class="opt">(optional &mdash; only if you have one)</span></label>
@@ -2463,18 +2464,61 @@ var qrcode = function() {
    layout logic and normally needs no changes.
    ========================================================================= */
 const CONFIG = {
-  brand:        "Epithrive\u00AE",              // wordmark
-  tagline:      "WOUND-CARE NUTRITION",         // under the wordmark
-  heading:      "Scan to order online",         // main call to action
-  helper:       "Point your phone camera at the code",
-  couponLabel:  "USE THIS CODE AT CHECKOUT",    // small line, shown ONLY when a code is entered
-  noCouponLabel:"HOW TO USE",                 // small line, shown when NO code is entered
-  noCouponText: "Scan above \u00B7 FOR INFORMATION,  // big line in that case
-  siteUrl:      "www.epithrive.in",             // footer site
-  whatsapp:     "+91 93261 21131",              // footer contact
-  disclaimer:   "Oral nutritional supplement. Use alongside standard wound care as advised by your doctor.",
-  fallbackUrl:  "https://www.epithrive.in"      // QR target used only in the empty-state preview
+  brand:       "Epithrive\u00AE",
+  tagline:     "WOUND-CARE NUTRITION",
+  siteUrl:     "www.epithrive.in",
+  whatsapp:    "+91 93261 21131",
+  fallbackUrl: "https://www.epithrive.in",
+
+  /* One layout, three copy sets. The mode is picked automatically from the
+     pasted link (see detectMode) so the card never promises something the
+     QR doesn't deliver. */
+  modes: {
+    guide: {   // learn.epithrive.in, /wound-support, guide pages
+      note:        "Free guides card",
+      byline:      "Shared by ",
+      heading:     "Free wound-care guides",
+      helper:      "Scan with your phone camera to read",
+      stripLabel:  "FREE FOR PATIENTS & FAMILIES",
+      stripText:   "Nutrition tips for wound recovery",
+      couponLabel: "IF YOU CHOOSE TO ORDER, USE CODE",
+      disclaimer:  "Educational information only. Talk to your doctor before starting any supplement."
+    },
+    shop: {    // epithrive.in/products, /cart, /collections
+      note:        "Product card",
+      byline:      "Recommended by ",
+      heading:     "Scan to order online",
+      helper:      "Point your phone camera at the code",
+      stripLabel:  "HOW TO USE",
+      stripText:   "Scan above \u00B7 order online",
+      couponLabel: "USE THIS CODE AT CHECKOUT",
+      disclaimer:  "Oral nutritional supplement. Use alongside standard wound care as advised by your doctor."
+    },
+    general: { // anything else: homepage, wa.me, unknown
+      note:        "General card",
+      byline:      "Shared by ",
+      heading:     "Scan to learn more",
+      helper:      "Point your phone camera at the code",
+      stripLabel:  "WOUND-CARE NUTRITION",
+      stripText:   "Guides \u00B7 Product info \u00B7 WhatsApp help",
+      couponLabel: "YOUR CODE",
+      disclaimer:  "Oral nutritional supplement. Use alongside standard wound care as advised by your doctor."
+    }
+  }
 };
+
+/* Decide which copy set fits the pasted link */
+function detectMode(link) {
+  if (!link) return "general";
+  let u;
+  try { u = new URL(/^https?:\/\//i.test(link) ? link : "https://" + link); }
+  catch (e) { return "general"; }
+  const host = u.hostname.toLowerCase().replace(/^www\./, "");
+  const path = u.pathname.toLowerCase();
+  if (host.startsWith("learn.") || /wound-support|guide/.test(path)) return "guide";
+  if (/\/(products|cart|collections|checkouts?)(\/|$)/.test(path)) return "shop";
+  return "general";
+}
 
 /* Brand tokens (locked — matches the Shopify store) */
 const C = {
@@ -2570,6 +2614,10 @@ function drawBanner() {
   const link = document.getElementById("f-link").value.trim();
   const code = document.getElementById("f-code").value.trim().toUpperCase();
   const hasLink = link.length > 0;
+  const mode = detectMode(link);
+  const M = CONFIG.modes[mode];
+  const mn = document.getElementById("mode-note");
+  if (mn) mn.textContent = hasLink ? "Card style: " + M.note + " (auto-detected from your link)" : "";
 
   ctx.clearRect(0, 0, W, H);
 
@@ -2604,7 +2652,7 @@ function drawBanner() {
   /* recommended-by pill */
   if (name) {
     ctx.font = "700 30px 'Manrope', sans-serif";
-    const label = "Recommended by " + name;
+    const label = M.byline + name;
     const fitted = fitText(ctx, label, W - 260);
     const pw = ctx.measureText(fitted).width + 64;
     const px = W / 2 - pw / 2, py = 256, ph = 58;
@@ -2620,11 +2668,11 @@ function drawBanner() {
   ctx.fillStyle = C.dark3;
   ctx.font = "800 56px 'Plus Jakarta Sans', sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText(CONFIG.heading, W / 2, 452);
+  ctx.fillText(M.heading, W / 2, 452);
 
   ctx.fillStyle = C.teal;
   ctx.font = "500 30px 'Manrope', sans-serif";
-  ctx.fillText(CONFIG.helper, W / 2, 500);
+  ctx.fillText(M.helper, W / 2, 500);
 
   const tileSize = 600;
   const tileX = (W - tileSize) / 2;
@@ -2679,7 +2727,7 @@ function drawBanner() {
   ctx.textAlign = "center";
   ctx.fillStyle = "rgba(255,255,255,0.92)";
   ctx.font = "700 26px 'Manrope', sans-serif";
-  centredSpaced(ctx, hasCode ? CONFIG.couponLabel : CONFIG.noCouponLabel, W / 2, coupTop + 66, 4);
+  centredSpaced(ctx, hasCode ? M.couponLabel : M.stripLabel, W / 2, coupTop + 66, 4);
 
   ctx.fillStyle = C.white;
   if (hasCode) {
@@ -2692,10 +2740,10 @@ function drawBanner() {
   } else {
     let ff = 48;
     ctx.font = "800 " + ff + "px 'Plus Jakarta Sans', sans-serif";
-    while (ctx.measureText(CONFIG.noCouponText).width > W - 96 && ff > 30) {
+    while (ctx.measureText(M.stripText).width > W - 96 && ff > 30) {
       ff -= 3; ctx.font = "800 " + ff + "px 'Plus Jakarta Sans', sans-serif";
     }
-    ctx.fillText(CONFIG.noCouponText, W / 2, coupTop + 138);
+    ctx.fillText(M.stripText, W / 2, coupTop + 138);
   }
 
   /* ---------- footer ---------- */
@@ -2710,7 +2758,7 @@ function drawBanner() {
 
   ctx.fillStyle = "rgba(234,247,250,0.62)";
   ctx.font = "400 22px 'Manrope', sans-serif";
-  ctx.fillText(CONFIG.disclaimer, W / 2, footTop + 108);
+  ctx.fillText(M.disclaimer, W / 2, footTop + 108);
 
   /* ---------- toggle actions ---------- */
   const dl = document.getElementById("btn-download");

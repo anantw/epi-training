@@ -2,252 +2,578 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Wound-Care Nutrition Guides for Caregivers | Epithrive</title>
-<meta name="description" content="Free, practical nutrition guides for people looking after a wound at home. What to offer, what to watch for, and when to see a doctor. No sign-up, no cost.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Wound-Care Nutrition Guides for Families | Epithrive</title>
+<meta name="description" content="Free, practical nutrition guides for anyone caring for a wound at home. What to cook, how much protein, fluids, diabetes, bedsores and more. Read in English or 10 Indian languages. No sign-up, no cost.">
+<meta name="theme-color" content="#00768C">
+<meta property="og:title" content="Free wound-care nutrition guides for families">
+<meta property="og:description" content="What to cook, how much protein, fluids, diabetes, bedsores and more. In English and 10 Indian languages. Free, no sign-up.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --teal:#0097B2; --teal-deep:#00768C; --ink:#16303A; --ink-soft:#0A3D52;
-    --ink-quiet:#0E2E3B; --tint:#EAF7FA; --tint-2:#EEF6F8; --paper:#F4FAFB;
-    --orange:#F7941E; --orange-hover:#E67C00; --line:#D6E9EE; --wa:#25D366;
+    --teal:#0097B2; --teal-deep:#00768C; --ink:#16303A; --ink-soft:#0A3D52; --ink-quiet:#0E2E3B;
+    --tint:#EAF7FA; --tint-2:#EEF6F8; --paper:#F4FAFB; --line:#D6E9EE;
+    --orange:#F7941E; --orange-hover:#E67C00; --wa:#25D366;
+    --green:#3E9B5F; --green-tint:#EAF6EE; --amber-tint:#FFF4E5;
+    --shadow:0 1px 2px rgba(10,61,82,.06),0 6px 20px rgba(10,61,82,.07);
+    --shadow-lift:0 2px 4px rgba(10,61,82,.08),0 14px 34px rgba(10,61,82,.12);
+    --r:18px;
+    --sans:'Manrope',system-ui,-apple-system,"Segoe UI","Noto Sans",sans-serif;
+    --head:'Plus Jakarta Sans','Manrope',system-ui,-apple-system,"Noto Sans",sans-serif;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{margin:0;background:#fff;color:var(--ink-soft);font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.62;}
-  .et-wl-skip{position:absolute;left:-9999px;top:0;background:var(--teal);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:10;}
-  .et-wl-skip:focus{left:0;}
-  a{color:var(--teal-deep);}
-  .et-wl-wrap{max-width:680px;margin:0 auto;padding:0 22px;}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;background:#fff;color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.6;
+    padding-bottom:env(safe-area-inset-bottom,0px)}
+  a{color:var(--teal-deep)}
+  img,svg{display:block}
+  .ws-skip{position:absolute;left:-9999px;top:0;background:var(--teal);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:50}
+  .ws-skip:focus{left:0}
+  .ws-wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .ws-narrow{max-width:720px}
+  :focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:6px}
 
-  /* header */
-  .et-wl-top{border-bottom:1px solid var(--line);}
-  .et-wl-top .et-wl-wrap{display:flex;align-items:baseline;gap:12px;padding-top:18px;padding-bottom:18px;}
-  .et-wl-brand{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:var(--ink);letter-spacing:-.01em;}
-  .et-wl-kicker{font-size:14px;color:var(--ink-soft);opacity:.75;}
+  /* ---------- top bar ---------- */
+  .ws-top{position:absolute;top:0;left:0;right:0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
+  .ws-top .ws-wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
+  .ws-brand{display:flex;align-items:center;gap:9px;font-family:var(--head);font-weight:800;font-size:20px;color:#fff;letter-spacing:-.01em;text-decoration:none}
+  .ws-brand i{width:11px;height:11px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(255,255,255,.18)}
+  .ws-top-wa{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:999px}
+  .ws-top-wa:hover{background:rgba(255,255,255,.22)}
 
-  /* hero */
-  .et-wl-hero{background:linear-gradient(180deg,var(--paper) 0%,#fff 100%);border-bottom:1px solid var(--line);}
-  .et-wl-hero .et-wl-wrap{padding-top:52px;padding-bottom:48px;}
-  .et-wl-h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:var(--ink);
-    font-size:clamp(30px,6vw,42px);line-height:1.12;letter-spacing:-.02em;margin:0 0 18px;}
-  .et-wl-lede{font-size:19px;color:var(--ink-soft);margin:0 0 26px;max-width:34ch;}
-  .et-wl-jump{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;
-    color:var(--teal-deep);text-decoration:none;border-bottom:2px solid var(--teal);padding-bottom:3px;}
-  .et-wl-jump:hover{color:var(--teal);}
+  /* ---------- hero ---------- */
+  .ws-hero{position:relative;overflow:hidden;color:#fff;
+    background:radial-gradient(120% 90% at 100% 0%,#0FB5CF 0%,rgba(15,181,207,0) 55%),
+               linear-gradient(150deg,var(--teal) 0%,var(--teal-deep) 52%,#0A4F63 100%);
+    padding:calc(96px + env(safe-area-inset-top,0px)) 0 150px}
+  .ws-hero:before,.ws-hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+  .ws-hero:before{width:420px;height:420px;right:-140px;top:-120px;background:rgba(255,255,255,.07)}
+  .ws-hero:after{width:260px;height:260px;left:-90px;bottom:-60px;background:rgba(247,148,30,.16)}
+  .ws-hero .ws-wrap{position:relative;z-index:2}
+  .ws-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;color:#FFE2BD;margin:0 0 16px}
+  .ws-eyebrow:before{content:"";width:22px;height:2px;background:var(--orange);border-radius:2px}
+  .ws-h1{font-family:var(--head);font-weight:800;font-size:clamp(32px,6.2vw,54px);line-height:1.08;letter-spacing:-.025em;margin:0 0 18px;max-width:17ch}
+  .ws-lede{font-size:clamp(17px,2.3vw,20px);line-height:1.55;color:#E3F6FA;margin:0 0 26px;max-width:38ch}
+  .ws-trust{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+  .ws-trust li{white-space:nowrap;display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#fff;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:7px 13px;border-radius:999px}
+  .ws-trust svg{width:15px;height:15px;flex:none}
 
-  /* generic section rhythm */
-  main section{padding:44px 0;}
-  main section + section{border-top:1px solid var(--line);}
-  .et-wl-h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:24px;color:var(--ink);
-    line-height:1.25;margin:0 0 16px;letter-spacing:-.01em;}
-  .et-wl-p{margin:0 0 16px;}
-  .et-wl-p:last-child{margin-bottom:0;}
+  /* ---------- language card (overlaps hero) ---------- */
+  .ws-lang{position:relative;z-index:3;margin-top:-110px}
+  .ws-lang-card{background:#fff;border-radius:24px;box-shadow:var(--shadow-lift);padding:24px 22px 22px;border:1px solid var(--line)}
+  .ws-lang-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .ws-lang-ic{flex:none;width:44px;height:44px;border-radius:14px;background:var(--tint);color:var(--teal-deep);display:grid;place-items:center}
+  .ws-lang-ic svg{width:24px;height:24px}
+  .ws-lang-title{font-family:var(--head);font-weight:800;font-size:20px;color:var(--ink);margin:2px 0 3px;letter-spacing:-.01em}
+  .ws-lang-sub{margin:0;font-size:15px;color:var(--ink-soft)}
+  .ws-lang-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  @media (min-width:560px){.ws-lang-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media (min-width:900px){.ws-lang-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+  .ws-lb{appearance:none;-webkit-appearance:none;cursor:pointer;font:inherit;text-align:left;
+    display:flex;flex-direction:column;gap:1px;padding:11px 13px;min-height:58px;border-radius:14px;
+    background:var(--paper);border:1.5px solid var(--line);color:var(--ink);transition:border-color .15s,background .15s,transform .15s}
+  .ws-lb{min-width:0}
+  .ws-lb .n,.ws-lb .e{overflow-wrap:anywhere}
+  .ws-lb:hover{border-color:var(--teal);background:#fff}
+  .ws-lb .n{font-weight:700;font-size:17px;line-height:1.3}
+  .ws-lb .e{font-size:12.5px;color:#5b7480;line-height:1.3}
+  .ws-lb[aria-pressed="true"]{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+  .ws-lb[aria-pressed="true"] .e{color:#CDEFF5}
+  .ws-lang-note{margin:14px 0 0;font-size:14px;color:#51707c;display:flex;gap:8px;align-items:flex-start}
+  .ws-lang-note svg{width:16px;height:16px;flex:none;margin-top:3px;color:var(--teal)}
 
-  /* resource index — editorial list, not cards */
-  .et-wl-index{list-style:none;margin:8px 0 0;padding:0;}
-  .et-wl-item{padding:20px 0;border-top:1px solid var(--line);}
-  .et-wl-item:first-child{border-top:none;}
-  .et-wl-item a{text-decoration:none;color:inherit;display:block;}
-  .et-wl-item a:hover .et-wl-it-title{color:var(--teal-deep);}
-  .et-wl-it-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18.5px;color:var(--ink);margin:0 0 4px;}
-  .et-wl-it-desc{font-size:15.5px;color:var(--ink-soft);opacity:.9;margin:0;}
-  .et-wl-soon{display:inline-block;font-size:12px;font-weight:600;color:var(--teal-deep);
-    background:var(--tint);border-radius:99px;padding:3px 10px;margin-top:8px;}
+  /* ---------- sticky language pill ---------- */
+  .ws-pill{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);z-index:40;
+    display:flex;align-items:center;gap:10px;background:var(--ink-quiet);color:#fff;border-radius:999px;padding:8px 8px 8px 16px;
+    box-shadow:0 10px 30px rgba(14,46,59,.35);font-size:14.5px;transition:transform .25s ease;max-width:calc(100% - 24px)}
+  .ws-pill.show{transform:translate(-50%,0)}
+  .ws-pill b{font-weight:700}
+  .ws-pill a{color:#0E2E3B;background:#fff;text-decoration:none;font-weight:700;font-size:13.5px;padding:7px 13px;border-radius:999px;white-space:nowrap}
 
-  /* doctor / red-flag panel */
-  .et-wl-flag{background:var(--tint-2);border:1px solid var(--line);border-left:4px solid var(--teal-deep);border-radius:12px;padding:26px 24px;}
-  .et-wl-flag h2{margin-top:0;}
-  .et-wl-flag ul{margin:0 0 14px;padding-left:20px;}
-  .et-wl-flag li{margin:7px 0;}
-  .et-wl-flag .et-wl-p{color:var(--ink);}
+  /* ---------- sections ---------- */
+  .ws-sec{padding:56px 0 8px}
+  .ws-sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+  .ws-kick{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-hover);margin:0 0 6px}
+  .ws-h2{font-family:var(--head);font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.15;letter-spacing:-.02em;color:var(--ink);margin:0}
+  .ws-sec-lede{margin:8px 0 0;color:var(--ink-soft);max-width:56ch}
 
-  /* product section */
-  .et-wl-prod{background:var(--paper);}
-  .et-wl-note{font-size:14px;color:var(--ink-soft);opacity:.8;margin:14px 0 0;}
-  .et-wl-code{background:#fff;border:1px dashed var(--teal);border-radius:12px;padding:16px 18px;margin:0 0 20px;}
-  .et-wl-code p{margin:0;font-size:15.5px;color:var(--ink);}
-  .et-wl-code strong{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.06em;color:var(--teal-deep);font-size:18px;}
-  .et-wl-buy{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;
-    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;padding:14px 26px;border-radius:12px;}
-  .et-wl-buy:hover{background:var(--orange-hover);}
+  /* featured cards */
+  .ws-feat{display:grid;gap:14px;grid-template-columns:1fr}
+  @media (min-width:760px){.ws-feat{grid-template-columns:1.25fr 1fr 1fr}}
+  /* regular cards */
+  .ws-grid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media (min-width:640px){.ws-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (min-width:980px){.ws-grid{grid-template-columns:repeat(3,1fr)}}
 
-  /* whatsapp */
-  .et-wl-wa a{display:inline-flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;text-decoration:none;}
-  .et-wl-wa .et-wl-dot{width:11px;height:11px;border-radius:50%;background:var(--wa);display:inline-block;}
-  .et-wl-wa a:hover{color:var(--teal-deep);}
+  .ws-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--r);
+    padding:20px 20px 16px;text-decoration:none;color:inherit;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
+  a.ws-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:#BFE3EC}
+  .ws-card .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px}
+  .ws-card .ic svg{width:24px;height:24px}
+  .t-teal .ic{background:var(--tint);color:var(--teal-deep)}
+  .t-orange .ic{background:var(--amber-tint);color:#C46A00}
+  .t-green .ic{background:var(--green-tint);color:var(--green)}
+  .t-deep .ic{background:#E4F1F4;color:var(--ink-soft)}
+  .ws-card h3{font-family:var(--head);font-weight:700;font-size:18.5px;line-height:1.3;color:var(--ink);margin:0 0 6px;letter-spacing:-.01em}
+  .ws-card p{margin:0 0 16px;font-size:15.5px;line-height:1.55;color:#3E5C68}
+  .ws-card .ft{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px dashed var(--line)}
+  .ws-read{white-space:nowrap;font-weight:700;font-size:14.5px;color:var(--teal-deep);display:inline-flex;align-items:center;gap:6px}
+  .ws-read svg{width:16px;height:16px;transition:transform .18s}
+  a.ws-card:hover .ws-read svg{transform:translateX(3px)}
+  .ws-tag{font-size:12px;font-weight:700;color:var(--teal-deep);background:var(--tint);padding:4px 9px;border-radius:999px;white-space:nowrap}
+  .ws-tag.new{color:#fff;background:var(--orange)}
+  .ws-card.soon{background:var(--paper);box-shadow:none;cursor:default}
+  .ws-card.soon h3{color:#44616C}
+  .ws-card.soon .ws-read{color:#6D8791}
 
-  /* footer */
-  .et-wl-foot{background:var(--ink);color:#cfe4ea;}
-  .et-wl-foot .et-wl-wrap{padding:34px 22px;}
-  .et-wl-foot .et-wl-brand{color:#fff;}
-  .et-wl-disc{font-size:13px;line-height:1.6;color:#9fc0ca;margin:14px 0 0;}
-  .et-wl-foot a{color:#eaf7fa;}
+  /* featured variant */
+  .ws-card.big{padding:24px 24px 18px;color:#fff;border:0;
+    background:linear-gradient(155deg,var(--teal-deep) 0%,#0A4F63 100%)}
+  .ws-card.big .ic{background:rgba(255,255,255,.14);color:#fff}
+  .ws-card.big h3{color:#fff;font-size:21px}
+  .ws-card.big p{color:#D8F0F5}
+  .ws-card.big .ft{border-top-color:rgba(255,255,255,.22)}
+  .ws-card.big .ws-read{color:#fff}
+  .ws-card.big .ws-tag{background:rgba(255,255,255,.16);color:#fff}
+  .ws-card.big .ws-tag.new{background:var(--orange)}
 
-  :focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px;}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  /* ---------- red flags ---------- */
+  .ws-flag{margin-top:56px;background:linear-gradient(180deg,#FFF8EF,#FFFDF9);border:1px solid #F4DDBB;border-radius:24px;padding:26px 22px}
+  .ws-flag-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .ws-flag-ic{flex:none;width:44px;height:44px;border-radius:14px;background:var(--orange);color:#fff;display:grid;place-items:center}
+  .ws-flag-ic svg{width:24px;height:24px}
+  .ws-flag h2{font-family:var(--head);font-weight:800;font-size:22px;color:var(--ink);margin:4px 0 2px}
+  .ws-flag .sub{margin:0;font-size:15px;color:#6B5626}
+  .ws-flag ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:1fr}
+  @media (min-width:700px){.ws-flag ul{grid-template-columns:1fr 1fr}}
+  .ws-flag li{position:relative;background:#fff;border:1px solid #F4E3C9;border-radius:12px;padding:11px 14px 11px 40px;font-size:15.5px;color:var(--ink)}
+  .ws-flag li:before{content:"";position:absolute;left:14px;top:15px;width:14px;height:14px;border-radius:50%;background:var(--orange);
+    box-shadow:0 0 0 4px #FFE9CC}
+  .ws-flag .end{margin:14px 0 0;font-weight:600;color:#54421B;font-size:15.5px}
+
+  /* ---------- product ---------- */
+  .ws-prod{margin-top:56px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ws-prod .ws-wrap{padding-top:52px;padding-bottom:52px}
+  .ws-prod-grid{display:grid;gap:28px;grid-template-columns:1fr;align-items:center}
+  @media (min-width:860px){.ws-prod-grid{grid-template-columns:1.1fr .9fr}}
+  .ws-prod p{margin:0 0 14px}
+  .ws-facts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .ws-facts li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:15.5px;color:var(--ink)}
+  .ws-facts svg{flex:none;width:20px;height:20px;color:var(--teal);margin-top:2px}
+  .ws-code{background:#fff;border:1.5px dashed var(--teal);border-radius:14px;padding:14px 16px;margin:18px 0}
+  .ws-code p{margin:0;font-size:15.5px;color:var(--ink)}
+  .ws-code strong{font-family:var(--head);letter-spacing:.06em;color:var(--teal-deep);font-size:18px}
+  .ws-buy{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;text-decoration:none;font-family:var(--head);
+    font-weight:700;font-size:16.5px;padding:15px 26px;border-radius:14px;box-shadow:0 8px 20px rgba(247,148,30,.28)}
+  .ws-buy:hover{background:var(--orange-hover)}
+  .ws-note{font-size:13.5px;color:#5B7480;margin:14px 0 0}
+
+  /* ---------- whatsapp ---------- */
+  .ws-help{padding:56px 0}
+  .ws-help-card{display:grid;gap:18px;grid-template-columns:1fr;align-items:center;background:var(--ink-quiet);color:#DDEFF3;border-radius:24px;padding:28px 24px;
+    background-image:radial-gradient(90% 120% at 100% 0%,rgba(37,211,102,.16),rgba(37,211,102,0) 60%)}
+  @media (min-width:760px){.ws-help-card{grid-template-columns:1fr auto;padding:34px 36px}}
+  .ws-help-card h2{font-family:var(--head);font-weight:800;font-size:24px;color:#fff;margin:0 0 6px}
+  .ws-help-card p{margin:0;font-size:16px}
+  .ws-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:#073B1E;text-decoration:none;
+    font-family:var(--head);font-weight:800;font-size:16.5px;padding:15px 24px;border-radius:14px;white-space:nowrap}
+  .ws-wa svg{width:22px;height:22px}
+  .ws-wa:hover{filter:brightness(1.05)}
+
+  /* ---------- footer ---------- */
+  .ws-foot{background:#0B2530;color:#9FC0CA}
+  .ws-foot .ws-wrap{padding-top:34px;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .ws-foot .ws-brand{color:#fff;font-size:18px}
+  .ws-foot p{font-size:13px;line-height:1.65;margin:12px 0 0;max-width:80ch}
+  .ws-foot a{color:#EAF7FA}
+
+  @media (max-width:480px){
+    body{font-size:16.5px}
+    .ws-top-wa span{display:none}
+    .ws-top-wa{padding:9px}
+    .ws-hero{padding-bottom:132px}
+    .ws-lang-card{padding:20px 16px 18px;border-radius:20px}
+    .ws-sec{padding-top:44px}
+    .ws-card{padding:18px 18px 14px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
 </style>
 </head>
 <body>
-<a class="et-wl-skip" href="#guides">Skip to the guides</a>
+<a class="ws-skip" href="#guides">Skip to the guides</a>
 
-<header class="et-wl-top">
-  <div class="et-wl-wrap">
-    <span class="et-wl-brand">Epithrive</span>
-    <span class="et-wl-kicker">Wound-care nutrition guides</span>
+<header class="ws-top">
+  <div class="ws-wrap">
+    <a class="ws-brand" href="#top"><i aria-hidden="true"></i>Epithrive</a>
+    <a class="ws-top-wa" href="https://wa.me/919326121131?text=Hi%2C%20I%20have%20a%20question%20about%20wound-care%20nutrition." aria-label="Ask us on WhatsApp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+      <span>Ask a question</span>
+    </a>
   </div>
 </header>
 
-<main>
-
-  <section class="et-wl-hero">
-    <div class="et-wl-wrap">
-      <h1 class="et-wl-h1">When a wound is slow to close, food is one thing you can help with.</h1>
-      <p class="et-wl-lede">Free, practical nutrition guides for anyone looking after a wound at home. No sign-up, no cost.</p>
-      <a class="et-wl-jump" href="#guides">Browse the guides</a>
-    </div>
-  </section>
-
-  <section>
-    <div class="et-wl-wrap">
-      <p class="et-wl-p">The body needs extra protein, and certain vitamins and minerals, to rebuild skin and tissue. When someone isn't eating well, recovery can slow down, and a wound can stay open longer than it should.</p>
-      <p class="et-wl-p">These guides explain what to offer, in plain language, so you can support the person you're caring for while their doctor or nurse manages the wound itself.</p>
-    </div>
-  </section>
-
-  <section id="guides">
-    <div class="et-wl-wrap">
-      <h2 class="et-wl-h2">The guides</h2>
-      <!-- To publish a guide: point href at its page (e.g. "./foods-that-help/")
-           and delete the <span class="et-wl-soon"> line for that item.
-           To add a new guide: copy one <li> block. -->
-      <ul class="et-wl-index">
-
-        <li class="et-wl-item">
-          <a href="#">
-            <p class="et-wl-it-title">Foods that give the body what it needs to repair</p>
-            <p class="et-wl-it-desc">The everyday foods that carry protein, zinc, and vitamin C, and simple ways to fit more of them in.</p>
-            <span class="et-wl-soon">Coming soon</span>
-          </a>
-        </li>
-
-        <li class="et-wl-item">
-          <a href="#">
-            <p class="et-wl-it-title">A 30-day nutrition tracker you can print</p>
-            <p class="et-wl-it-desc">A simple daily sheet to keep track of meals, fluids, and protein while a wound is recovering.</p>
-            <span class="et-wl-soon">Coming soon</span>
-          </a>
-        </li>
-
-        <li class="et-wl-item">
-          <a href="#">
-            <p class="et-wl-it-title">What to eat after surgery</p>
-            <p class="et-wl-it-desc">How eating changes in the weeks after an operation, and what helps the body get back on track.</p>
-            <span class="et-wl-soon">Coming soon</span>
-          </a>
-        </li>
-
-        <li class="et-wl-item">
-          <a href="#">
-            <p class="et-wl-it-title">Signs a wound may be stalling</p>
-            <p class="et-wl-it-desc">A short checklist of what a slow-recovering wound can look like, and what to raise with the doctor.</p>
-            <span class="et-wl-soon">Coming soon</span>
-          </a>
-        </li>
-
-        <li class="et-wl-item">
-          <a href="#">
-            <p class="et-wl-it-title">Nutrition for bedsores and pressure sores</p>
-            <p class="et-wl-it-desc">Why people who spend long periods in bed need particular attention to food and fluids.</p>
-            <span class="et-wl-soon">Coming soon</span>
-          </a>
-        </li>
-
+<main id="top">
+  <section class="ws-hero">
+    <div class="ws-wrap">
+      <p class="ws-eyebrow">Free guides for families</p>
+      <h1 class="ws-h1">Help a wound heal with the food you already cook.</h1>
+      <p class="ws-lede">Simple, practical guides for anyone caring for a wound at home: what to cook, how much protein, how much to drink, and when to call the doctor.</p>
+      <ul class="ws-trust">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free, no sign-up</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg>English + 10 Indian languages</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18M5 11a7 7 0 0 0 14 0M8 7c0-1.5 1-2 1-3.5M12 7c0-1.5 1-2 1-3.5M16 7c0-1.5 1-2 1-3.5"/></svg>Everyday Indian food</li>
       </ul>
     </div>
   </section>
 
-  <section>
-    <div class="et-wl-wrap">
-      <div class="et-wl-flag">
-        <h2 class="et-wl-h2">When to see a doctor or nurse</h2>
-        <p class="et-wl-p">These guides are about nutrition. They are not a substitute for professional medical care. Please get the wound checked promptly if you notice any of these:</p>
-        <ul>
-          <li>the wound getting larger, deeper, or more painful</li>
-          <li>redness, warmth, or swelling spreading around it</li>
-          <li>pus, fluid, or a bad smell</li>
-          <li>a fever, or the person feeling generally unwell</li>
-          <li>the skin around the wound turning dark</li>
-          <li>any foot wound in someone with diabetes</li>
+  <!-- ===== Language picker ===== -->
+  <div class="ws-lang" id="language">
+    <div class="ws-wrap">
+      <div class="ws-lang-card">
+        <div class="ws-lang-head">
+          <div class="ws-lang-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          </div>
+          <div>
+            <h2 class="ws-lang-title">Read in your language</h2>
+            <p class="ws-lang-sub" id="ws-lang-sub">Choose once. Every guide below will open in that language.</p>
+          </div>
+        </div>
+        <div class="ws-lang-grid" role="group" aria-label="Choose a language" id="ws-lang-grid"></div>
+        <p class="ws-lang-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <span>Guides are translated from English. You can switch language again at the top of any guide.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Guides ===== -->
+  <div id="guides">
+    <noscript>
+      <section class="ws-sec"><div class="ws-wrap">
+        <h2 class="ws-h2">The guides</h2>
+        <ul style="line-height:2">
+          <li><a href="https://learn.epithrive.in/foods-that-help-wounds-heal-faster/">Foods that help a wound heal</a></li>
+          <li><a href="https://learn.epithrive.in/protein-for-wound-healing/">How much protein do you need with a wound?</a></li>
+          <li><a href="https://learn.epithrive.in/nutrients-for-wound-healing/">Which nutrients does your body need to heal?</a></li>
+          <li><a href="https://learn.epithrive.in/what-to-eat-after-surgery/">What to eat after surgery</a></li>
+          <li><a href="https://learn.epithrive.in/nutrition-for-bedsores/">What to feed someone with a bedsore</a></li>
+          <li><a href="https://learn.epithrive.in/wound-not-healing/">Why is my wound not healing?</a></li>
+          <li><a href="https://learn.epithrive.in/">All guides, in 11 languages</a></li>
         </ul>
-        <p class="et-wl-p">When in doubt, get it looked at. It is always better to ask early.</p>
+      </div></section>
+    </noscript>
+    <section class="ws-sec">
+      <div class="ws-wrap">
+        <div class="ws-sec-head"><div>
+          <p class="ws-kick">Start here</p>
+          <h2 class="ws-h2">The three guides most families need first</h2>
+        </div></div>
+        <div class="ws-feat" data-group="start"></div>
+      </div>
+    </section>
+
+    <section class="ws-sec">
+      <div class="ws-wrap">
+        <div class="ws-sec-head"><div>
+          <p class="ws-kick">Protein</p>
+          <h2 class="ws-h2">Getting enough protein, on any budget</h2>
+          <p class="ws-sec-lede">New skin is built from protein. A healing wound needs more of it than usual.</p>
+        </div></div>
+        <div class="ws-grid" data-group="protein"></div>
+      </div>
+    </section>
+
+    <section class="ws-sec">
+      <div class="ws-wrap">
+        <div class="ws-sec-head"><div>
+          <p class="ws-kick">Caring at home</p>
+          <h2 class="ws-h2">Everyday problems, practical answers</h2>
+        </div></div>
+        <div class="ws-grid" data-group="home"></div>
+      </div>
+    </section>
+
+    <section class="ws-sec">
+      <div class="ws-wrap">
+        <div class="ws-sec-head"><div>
+          <p class="ws-kick">Specific wounds</p>
+          <h2 class="ws-h2">Bedsores, diabetes, leg ulcers and slow wounds</h2>
+        </div></div>
+        <div class="ws-grid" data-group="wounds"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Red flags ===== -->
+  <section>
+    <div class="ws-wrap">
+      <div class="ws-flag">
+        <div class="ws-flag-head">
+          <div class="ws-flag-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0ZM12 9v4M12 17h.01"/></svg></div>
+          <div>
+            <h2>When to see a doctor or nurse</h2>
+            <p class="sub">These guides are about food. Get the wound checked promptly if you notice any of these:</p>
+          </div>
+        </div>
+        <ul>
+          <li>The wound is getting larger, deeper or more painful</li>
+          <li>Redness, warmth or swelling is spreading around it</li>
+          <li>Pus, more fluid than before, or a bad smell</li>
+          <li>Fever, or the person seems generally unwell</li>
+          <li>The skin around the wound is turning dark or black</li>
+          <li>Any wound on the foot of someone with diabetes</li>
+        </ul>
+        <p class="end">When in doubt, get it looked at. Asking early is always better.</p>
       </div>
     </div>
   </section>
 
-  <section class="et-wl-prod">
-    <div class="et-wl-wrap">
-      <h2 class="et-wl-h2">Where Epithrive fits</h2>
-      <p class="et-wl-p">Epithrive is a once-a-day nutrition drink mix. It gives the body a concentrated dose of the protein, vitamins, and minerals, such as arginine, zinc, and vitamin C, that it draws on while rebuilding tissue.</p>
-      <p class="et-wl-p">It is a nutritional supplement, not a medicine. It works alongside your doctor's care, not instead of it, so it's worth mentioning to them before you start.</p>
-
-      <div class="et-wl-code" id="et-wl-code" hidden>
-        <p>You have a reader code from your nurse: <strong id="et-wl-code-val"></strong>. When you're ready, it saves &#8377;100 on your first order. No rush.</p>
+  <!-- ===== Product ===== -->
+  <section class="ws-prod">
+    <div class="ws-wrap">
+      <div class="ws-prod-grid">
+        <div>
+          <p class="ws-kick">Where Epithrive fits</p>
+          <h2 class="ws-h2" style="margin-bottom:14px">When food alone is hard to manage</h2>
+          <p>Epithrive is a once-a-day nutrition drink mix. It gives the body a concentrated dose of the protein, vitamins and minerals, such as arginine, zinc and vitamin C, that it draws on while rebuilding tissue.</p>
+          <p>It is a nutritional supplement, not a medicine. It works alongside the doctor's care, so mention it to them before you start.</p>
+          <div class="ws-code" id="et-wl-code" hidden>
+            <p>You have a reader code from your nurse: <strong id="et-wl-code-val"></strong>. When you are ready, it saves &#8377;100 on your first order. No rush.</p>
+          </div>
+          <a class="ws-buy" id="et-wl-buy" href="https://epithrive.in/products/epithrive">See Epithrive
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="ws-note">Contains fish-derived collagen, so it is not suitable for anyone with a fish allergy. Speak to the doctor first if the person has a kidney condition, is pregnant, or is on a restricted diet.</p>
+        </div>
+        <ul class="ws-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>One sachet a day, mixed in about 200 ml of water</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Arginine, glutamine, marine collagen peptides and ten micronutrients</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Food supplement (nutraceutical), FSSAI licensed</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Taken alongside normal meals, never in place of them</li>
+        </ul>
       </div>
-
-      <a class="et-wl-buy" id="et-wl-buy" href="https://epithrive.in/products/epithrive">See Epithrive</a>
-      <p class="et-wl-note">Contains fish-derived collagen. Not suitable for anyone with a fish allergy. Speak to your doctor if the person you're caring for has a kidney condition, is pregnant, or is on a restricted diet.</p>
     </div>
   </section>
 
-  <section class="et-wl-wa">
-    <div class="et-wl-wrap">
-      <h2 class="et-wl-h2">Have a question?</h2>
-      <p class="et-wl-p">If anything here is unclear, or you're not sure what to offer, send us a message and a real person will help.</p>
-      <a href="https://wa.me/919326121131?text=Hi%2C%20I%20have%20a%20question%20about%20wound-care%20nutrition."><span class="et-wl-dot" aria-hidden="true"></span>Message us on WhatsApp</a>
+  <!-- ===== WhatsApp ===== -->
+  <section class="ws-help">
+    <div class="ws-wrap">
+      <div class="ws-help-card">
+        <div>
+          <h2>Not sure what to cook, or what to ask the doctor?</h2>
+          <p>Send us a message and a real person will help.</p>
+        </div>
+        <a class="ws-wa" href="https://wa.me/919326121131?text=Hi%2C%20I%20have%20a%20question%20about%20wound-care%20nutrition.">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Message us on WhatsApp</a>
+      </div>
     </div>
   </section>
-
 </main>
 
-<footer class="et-wl-foot">
-  <div class="et-wl-wrap">
-    <span class="et-wl-brand">Epithrive</span>
-    <p class="et-wl-disc">Epithrive is a nutraceutical (dietary supplement) by Nuin Wellness Pvt. Ltd. The information on this page is general and educational. It is not medical advice and not a substitute for professional medical care. Always follow the guidance of the treating doctor or nurse. Questions: <a href="mailto:info@zenfitra.com">info@zenfitra.com</a>.</p>
+<footer class="ws-foot">
+  <div class="ws-wrap">
+    <span class="ws-brand"><i aria-hidden="true" style="width:9px;height:9px;border-radius:50%;background:#F7941E;display:inline-block"></i>Epithrive</span>
+    <p>Epithrive is a nutraceutical (food supplement) by Nuin Wellness Pvt. Ltd., Pune. The information on this page and in the linked guides is general and educational. It is not medical advice and not a substitute for professional medical care. Always follow the guidance of the treating doctor or nurse. Questions: <a href="mailto:info@zenfitra.com">info@zenfitra.com</a> &middot; <a href="https://learn.epithrive.in/">learn.epithrive.in</a></p>
   </div>
 </footer>
 
+<div class="ws-pill" id="ws-pill" aria-live="polite"><span>Reading in <b id="ws-pill-lang">English</b></span><a href="#language">Change</a></div>
+
+<noscript>
+  <style>.ws-lang{display:none}</style>
+</noscript>
+
 <script>
+/* =========================================================================
+   Guides + languages. To add a guide, add one line to GUIDES.
+   `live` is the publish date (IST). Before that date the card shows
+   "New on <date>". On the publish day itself, non-English links fall back
+   to English, because translations are generated shortly after publishing.
+   ========================================================================= */
+var LEARN = 'https://learn.epithrive.in';
+var UTM   = 'utm_source=wound-support&utm_medium=hub';
+
+var LANGS = [
+  ['en','English','English'], ['hi','हिन्दी','Hindi'],   ['mr','मराठी','Marathi'],
+  ['bn','বাংলা','Bengali'],   ['te','తెలుగు','Telugu'],  ['ta','தமிழ்','Tamil'],
+  ['gu','ગુજરાતી','Gujarati'], ['kn','ಕನ್ನಡ','Kannada'], ['ml','മലയാളം','Malayalam'],
+  ['or','ଓଡ଼ିଆ','Odia'],      ['pa','ਪੰਜਾਬੀ','Punjabi']
+];
+
+/* short translated labels for the language UI itself */
+var UI = {
+  en:{read:'Read guide', soon:'New on', sub:'Choose once. Every guide below will open in that language.', pill:'Reading in'},
+  hi:{read:'गाइड पढ़ें', soon:'नया:', sub:'एक बार चुनें। नीचे की हर गाइड इसी भाषा में खुलेगी।', pill:'भाषा'},
+  mr:{read:'मार्गदर्शक वाचा', soon:'नवीन:', sub:'एकदा निवडा. खालील प्रत्येक मार्गदर्शक याच भाषेत उघडेल.', pill:'भाषा'}
+};
+
+/* icon set: plate, protein, rupee, leaf, drop, bowl, clock, bed, foot, leg, search, shield, alert */
+var ICON = {
+  plate:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>',
+  egg:'<path d="M12 3c3.5 0 6.5 5 6.5 9.5a6.5 6.5 0 0 1-13 0C5.5 8 8.5 3 12 3Z"/>',
+  rupee:'<path d="M6 4h12M6 9h12M9 4c6 0 6 10 0 10H7l8 7"/>',
+  leaf:'<path d="M11 20A7 7 0 0 1 4 13c0-6 7-10 16-10 0 9-4 16-10 16M4 20c4-4 7-7 11-11"/>',
+  drop:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0C6 9.5 12 3 12 3Z"/>',
+  bowl:'<path d="M3 11h18a9 9 0 0 1-18 0ZM8 7c0-1.5 1-2 1-3.5M12 7c0-1.5 1-2 1-3.5M16 7c0-1.5 1-2 1-3.5"/>',
+  myth:'<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5M12 17h.01"/>',
+  bed:'<path d="M2 18V6M2 14h20v4M22 14v-2a3 3 0 0 0-3-3h-7v5M6.5 11.5a1.5 1.5 0 1 0 0-.01"/>',
+  sugar:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12h6M12 9v6"/>',
+  leg:'<path d="M10 2v9l-4 9h9l2-4-3-5V2"/>',
+  clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  cut:'<path d="M4 20 20 4M8 4l2 2M4 8l2 2M14 20l2-2M18 16l2-2"/>'
+};
+
+/* g: group, t: tone, i: icon, live: publish date (YYYY-MM-DD, IST) */
+var GUIDES = [
+  {s:'foods-that-help-wounds-heal-faster', g:'start', t:'teal', i:'plate', big:1,
+   h:'Foods that help a wound heal', d:'How much protein, which vitamins and minerals matter, and the everyday Indian foods that supply them.', live:'2026-09-06'},
+  {s:'meal-plan-for-wound-healing', g:'start', t:'orange', i:'bowl',
+   h:'A day of meals for wound healing', d:'Three full-day plans, vegetarian, egg and non-veg, with the protein counted meal by meal.', live:'2026-09-30'},
+  {s:'food-myths-wound-healing', g:'start', t:'green', i:'myth',
+   h:'Eggs, chicken, curd: food myths checked', d:'Do eggs cause pus? Is curd too cold? Nine common beliefs checked, and the food limits that are real.', live:'2026-09-28'},
+
+  {s:'protein-for-wound-healing', g:'protein', t:'teal', i:'egg',
+   h:'How much protein do you need with a wound?', d:'The daily target by body weight, what it looks like on a plate, and when you cannot eat enough.', live:'2026-09-26'},
+  {s:'cheap-protein-foods-wound-healing', g:'protein', t:'orange', i:'rupee',
+   h:'Cheap protein foods, on a budget', d:'Soya, besan, chana and eggs compared by protein per rupee, plus a low-cost day of meals.', live:'2026-10-02'},
+  {s:'nutrients-for-wound-healing', g:'protein', t:'green', i:'leaf',
+   h:'Which nutrients does your body need to heal?', d:'Protein, arginine, vitamin C, zinc, vitamin A and more, and whether food alone is enough.', live:'2026-09-08'},
+
+  {s:'no-appetite-wound-healing', g:'home', t:'orange', i:'bowl',
+   h:'When they will not eat', d:'Small meals, adding protein to food they already accept, soft foods and drinks that are easy to finish.', live:'2026-09-29'},
+  {s:'drinking-water-wound-healing', g:'home', t:'teal', i:'drop',
+   h:'How much should they drink?', d:'Daily fluid by body weight, signs of dehydration, and who needs to drink less, not more.', live:'2026-10-01'},
+  {s:'what-to-eat-after-surgery', g:'home', t:'green', i:'cut',
+   h:'What to eat after surgery', d:'Protein, energy and fluids in the weeks after an operation, and what to do when you feel sick.', live:'2026-09-27'},
+
+  {s:'nutrition-for-bedsores', g:'wounds', t:'deep', i:'bed',
+   h:'What to feed someone with a bedsore', d:'Protein, energy and fluids for a person who is bedbound, and how to help when appetite is low.', live:'2026-09-26'},
+  {s:'what-causes-bedsores', g:'wounds', t:'teal', i:'bed',
+   h:'What causes bedsores, and how to help', d:'Who is at risk, early signs to look for, and how pressure relief and food work together.', live:'2026-09-08'},
+  {s:'diabetes-wound-healing-diet', g:'wounds', t:'orange', i:'sugar',
+   h:'Eating with diabetes when a wound is slow', d:'Steady blood sugar, protein without spikes, safe meal timing and a daily foot-check routine.', live:'2026-10-03'},
+  {s:'why-leg-ulcers-take-long-to-heal', g:'wounds', t:'green', i:'leg',
+   h:'Why leg ulcers take so long to heal', d:'What a leg ulcer is, the main treatment, and how nutrition fits alongside it.', live:'2026-09-08'},
+  {s:'wound-not-healing', g:'wounds', t:'deep', i:'clock',
+   h:'Why is my wound not healing?', d:'Infection, circulation, pressure, diet and other reasons a wound stalls, and when to see a doctor.', live:'2026-09-08'}
+];
+
+/* ---------- pure helpers (kept free of the DOM so they can be tested) ---------- */
+function todayIST(now){
+  try { return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).format(now||new Date()); }
+  catch(e){ var d=new Date((now||new Date()).getTime()+330*60000); return d.toISOString().slice(0,10); }
+}
+function state(g, today){ return today < g.live ? 'soon' : (today === g.live ? 'fresh' : 'live'); }
+function guideURL(g, lang, today){
+  var st = state(g, today);
+  var useLang = (lang && lang !== 'en' && st === 'live') ? lang : 'en';
+  return LEARN + (useLang === 'en' ? '' : '/' + useLang) + '/' + g.s + '/?' + UTM;
+}
+function prettyDate(iso){
+  var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var p=iso.split('-'); return (+p[2]) + ' ' + m[+p[1]-1];
+}
+function validLang(c){ for (var i=0;i<LANGS.length;i++) if (LANGS[i][0]===c) return c; return null; }
+
+/* ---------- DOM ---------- */
 (function(){
+  if (typeof document === 'undefined') return;
+  var KEY='et_lang', today=todayIST();
+  var params=new URLSearchParams(location.search);
+  var lang = validLang((params.get('lang')||'').toLowerCase());
+  try { if (lang) localStorage.setItem(KEY, lang); else lang = validLang(localStorage.getItem(KEY)); } catch(e){}
+  if (!lang) lang = 'en';
+
+  function ui(){ return UI[lang] || UI.en; }
+  function native(c){ for (var i=0;i<LANGS.length;i++) if (LANGS[i][0]===c) return LANGS[i][1]; return 'English'; }
+  function svg(k){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICON[k]+'</svg>'; }
+  var ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  /* language buttons */
+  var grid=document.getElementById('ws-lang-grid');
+  LANGS.forEach(function(L){
+    var b=document.createElement('button');
+    b.type='button'; b.className='ws-lb'; b.setAttribute('data-lang',L[0]); b.setAttribute('lang',L[0]);
+    b.innerHTML='<span class="n">'+L[1]+'</span>'+(L[0]==='en'?'':'<span class="e">'+L[2]+'</span>');
+    b.addEventListener('click',function(){ setLang(L[0], true); });
+    grid.appendChild(b);
+  });
+
+  /* cards */
+  function render(){
+    var U=ui();
+    document.querySelectorAll('[data-group]').forEach(function(box){ box.innerHTML=''; });
+    GUIDES.forEach(function(g){
+      var box=document.querySelector('[data-group="'+g.g+'"]'); if(!box) return;
+      var st=state(g,today), el;
+      var cls='ws-card t-'+g.t+(g.big?' big':'');
+      var body='<div class="ic">'+svg(g.i)+'</div><h3>'+g.h+'</h3><p>'+g.d+'</p>';
+      if (st==='soon'){
+        el=document.createElement('div'); el.className=cls+(g.big?'':' soon');
+        el.innerHTML=body+'<div class="ft"><span class="ws-read">'+U.soon+' '+prettyDate(g.live)+'</span><span class="ws-tag">Coming</span></div>';
+      } else {
+        el=document.createElement('a'); el.className=cls; el.href=guideURL(g,lang,today);
+        var tag = (st==='fresh' || daysSince(g.live)<=6) ? '<span class="ws-tag new">New</span>' : '';
+        el.innerHTML=body+'<div class="ft"><span class="ws-read">'+U.read+' '+ARROW+'</span>'+tag+'</div>';
+      }
+      box.appendChild(el);
+    });
+  }
+  function daysSince(iso){ return Math.round((Date.parse(today)-Date.parse(iso))/86400000); }
+
+  function setLang(c, user){
+    lang=c;
+    try { localStorage.setItem(KEY,c); } catch(e){}
+    document.querySelectorAll('.ws-lb').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-lang')===c ? 'true':'false'); });
+    document.getElementById('ws-lang-sub').textContent = ui().sub;
+    document.getElementById('ws-pill-lang').textContent = native(c);
+    render();
+    if (user){ var t=document.getElementById('guides'); if (t && t.scrollIntoView) t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  }
+  setLang(lang, false);
+
+  /* sticky pill: show once the picker has scrolled away */
+  var pill=document.getElementById('ws-pill'), picker=document.getElementById('language');
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ pill.classList.toggle('show', !e[0].isIntersecting && e[0].boundingClientRect.top<0); }).observe(picker);
+  }
+})();
+
+/* ---------- nurse reader code (unchanged behaviour) ---------- */
+(function(){
+  if (typeof document === 'undefined') return;
   var PRODUCT_URL   = 'https://epithrive.in/products/epithrive';
   var DISCOUNT_BASE = 'https://epithrive.in/discount/';
   var STORE_KEY     = 'et_reader_code';
-
   function clean(v){ return (v || '').toUpperCase().replace(/[^A-Z0-9_-]/g, ''); }
-
   var params = new URLSearchParams(window.location.search);
   var code = clean(params.get('c'));
-
-  /* remember the code for this reader; fall back to a stored one on a later visit */
   try {
     if (code) { localStorage.setItem(STORE_KEY, code); }
     else { code = clean(localStorage.getItem(STORE_KEY)); }
   } catch (e) {}
-
   var wrap = document.getElementById('et-wl-code');
   var val  = document.getElementById('et-wl-code-val');
   var buy  = document.getElementById('et-wl-buy');
-
+  var arrow = buy ? buy.querySelector('svg') : null;
+  function label(t){ if (!buy) return; buy.textContent = t + ' '; if (arrow) buy.appendChild(arrow); }
   if (code) {
     if (val)  val.textContent = code;
     if (wrap) wrap.hidden = false;
     if (buy)  { buy.href = DISCOUNT_BASE + encodeURIComponent(code) + '?redirect=/products/epithrive';
-                buy.textContent = 'Get Epithrive with \u20B9100 off'; }
+                label('Get Epithrive with \u20B9100 off'); }
   } else if (buy) {
     buy.href = PRODUCT_URL;
-    buy.textContent = 'See Epithrive';
+    label('See Epithrive');
   }
 })();
 </script>

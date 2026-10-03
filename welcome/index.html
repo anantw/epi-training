@@ -1,364 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<title>Welcome to the Care Circle · Epithrive®</title>
-<meta name="description" content="Your Epithrive® Care Circle starter kit — get your link, make your QR code, and start sharing.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Your Care Circle kit · Epithrive®</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* Decide before first paint whether this visit carries a personal ref */
+  (function () {
+    var ok = /^[A-Za-z0-9_-]{4,40}$/.test(new URLSearchParams(location.search).get("ref") || "");
+    document.documentElement.classList.add(ok ? "has-kit" : "no-kit");
+  })();
+</script>
 <style>
   :root{
-    --cyan:#0097B2; --teal:#00768C; --orange:#F7941E; --orange-h:#E67C00;
-    --d1:#0A3D52; --d2:#16303A; --d3:#0E2E3B;
-    --wa:#25D366;
-    --tint:#EAF7FA; --tint2:#EEF6F8; --tint3:#F4FAFB;
-    --ink:#16303A; --muted:#5A7480; --line:#DCE9ED;
-    --head:'Plus Jakarta Sans',system-ui,sans-serif;
-    --body:'Manrope',system-ui,sans-serif;
+    --d1:#0A3D52; --d2:#0E2E3B; --teal:#00768C; --cyan:#0097B2;
+    --orange:#F7941E; --orange-h:#E67C00;
+    --paper:#FFFFFF; --tint:#EEF6F8; --tint2:#F6FBFC; --line:#D6E7ED;
+    --ink:#16303A; --muted:#55707C; --soft:#8AA0A9;
+    --wa:#25D366; --wa-ink:#06331A;
+    --ok:#0F7B55; --no:#B4412E;
+    --head:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+    --body:'Manrope',system-ui,-apple-system,sans-serif;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--body);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{width:100%;max-width:1060px;margin:0 auto;padding:0 22px}
-  h1,h2,h3{font-family:var(--head);line-height:1.15;letter-spacing:-.02em}
-
-  /* ---------- Top bar ---------- */
-  .bar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .brand{font-family:var(--head);font-weight:800;font-size:19px;color:var(--d1)}
-  .brand span{color:var(--cyan)}
-  .bar .login{font-family:var(--head);font-weight:700;font-size:14px;background:var(--d1);color:#fff;padding:9px 16px;border-radius:9px}
-
-  /* ---------- Hero ---------- */
-  .hero{position:relative;background:linear-gradient(150deg,var(--d3) 0%,var(--d1) 45%,var(--teal) 100%);color:#fff;overflow:hidden}
-  .hero::after{content:"";position:absolute;right:-160px;top:-160px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(0,151,178,.55),transparent 62%);pointer-events:none}
-  .hero .wrap{position:relative;padding:64px 22px 60px;z-index:1}
-  .kick{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:600;font-size:13px;color:#8fe0ef;background:rgba(255,255,255,.08);border:1px solid rgba(143,224,239,.3);padding:6px 13px;border-radius:100px;margin-bottom:20px}
-  .kick i{width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block}
-  .hero h1{font-size:clamp(30px,5.4vw,50px);font-weight:800;max-width:16ch}
-  .hero p{margin-top:16px;font-size:clamp(16px,2.4vw,19px);color:#cfe6ec;max-width:52ch}
-  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-  .btn{font-family:var(--head);font-weight:700;font-size:15px;padding:14px 24px;border-radius:11px;display:inline-flex;align-items:center;gap:9px;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;border:0;cursor:pointer}
-  .btn-p{background:var(--orange);color:#fff;box-shadow:0 8px 22px -8px rgba(247,148,30,.7)}
-  .btn-p:hover{background:var(--orange-h);transform:translateY(-1px)}
-  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28)}
-  .btn-ghost:hover{background:rgba(255,255,255,.16)}
-  .hero-note{margin-top:22px;font-size:13.5px;color:#a9cdd6}
-
-  /* ---------- Section shell ---------- */
-  section{padding:58px 0}
-  .eyebrow{font-family:var(--head);font-weight:700;font-size:13px;color:var(--cyan);margin-bottom:10px}
-  .sec-h{font-size:clamp(23px,3.6vw,31px);font-weight:800;color:var(--d1);max-width:22ch}
-  .sec-sub{margin-top:10px;color:var(--muted);max-width:58ch;font-size:16px}
-
-  /* ---------- Steps ---------- */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
-  .step{background:var(--tint3);border:1px solid var(--line);border-radius:16px;padding:26px 22px;position:relative}
-  .step .num{font-family:var(--head);font-weight:800;font-size:15px;color:#fff;background:var(--cyan);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-  .step h3{font-size:18px;font-weight:700;color:var(--d1);margin-bottom:7px}
-  .step p{font-size:14.5px;color:var(--muted)}
-  .step a{color:var(--teal);font-weight:700;border-bottom:1.5px solid rgba(0,118,140,.35)}
-
-  /* ---------- Toolkit cards ---------- */
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
-  .card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;transition:border-color .15s ease,box-shadow .15s ease}
-  .card:hover{border-color:var(--cyan);box-shadow:0 14px 30px -18px rgba(10,61,82,.35)}
-  .card .ico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:var(--tint);color:var(--teal);margin-bottom:15px}
-  .card .ico svg{width:23px;height:23px}
-  .card h3{font-size:18.5px;font-weight:700;color:var(--d1);margin-bottom:7px}
-  .card p{font-size:14.5px;color:var(--muted);flex:1}
-  .card .go{margin-top:16px;font-family:var(--head);font-weight:700;font-size:14.5px;color:var(--orange-h);display:inline-flex;align-items:center;gap:6px}
-  .tag{display:inline-block;font-family:var(--head);font-weight:700;font-size:11px;letter-spacing:.02em;padding:3px 9px;border-radius:6px;margin-bottom:13px;width:max-content}
-  .tag-plan{background:#FFF3E2;color:#B96500}
-  .tag-hcp{background:var(--tint);color:var(--teal)}
-  .microcaution{margin-top:12px;font-size:12.5px;color:#94694a;background:#FFF8EE;border:1px solid #F4E3C6;border-radius:9px;padding:9px 12px}
-
-  /* ---------- Compliance ---------- */
-  .comply{background:var(--tint2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .cc{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
-  .cbox{background:#fff;border-radius:14px;padding:22px 24px}
-  .cbox.ok{border:1px solid #BEE7CF}
-  .cbox.no{border:1px solid #F1CBC7}
-  .cbox h3{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
-  .cbox.ok h3{color:#1B7A46}
-  .cbox.no h3{color:#B2382F}
-  .cbox ul{list-style:none;display:flex;flex-direction:column;gap:11px}
-  .cbox li{font-size:14.5px;color:var(--ink);padding-left:26px;position:relative}
-  .cbox li::before{position:absolute;left:0;top:1px;font-family:var(--head);font-weight:800}
-  .cbox.ok li::before{content:"✓";color:#2AA05C}
-  .cbox.no li::before{content:"✕";color:#D7534A}
-
-  /* ---------- Ready messages ---------- */
-  .msg{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;margin-top:18px}
-  .msg .lbl{font-family:var(--head);font-weight:700;font-size:13.5px;color:var(--teal);margin-bottom:11px}
-  .msg .body{font-size:15px;color:var(--ink);background:var(--tint3);border:1px solid var(--line);border-radius:11px;padding:15px 16px;white-space:pre-wrap}
-  .copy{margin-top:12px;font-family:var(--head);font-weight:700;font-size:13.5px;background:var(--wa);color:#053d1a;border:0;border-radius:9px;padding:10px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:opacity .15s}
-  .copy:hover{opacity:.9}
-  .copy.done{background:var(--d1);color:#fff}
-
-  /* ---------- Earnings tiers ---------- */
-  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
-  .tier{border:1px solid var(--line);border-radius:16px;padding:24px 22px;text-align:center;background:#fff}
-  .tier.mid{border-color:var(--cyan);box-shadow:0 16px 34px -20px rgba(0,151,178,.5);position:relative}
-  .tier.mid::before{content:"Most active";position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--cyan);color:#fff;font-family:var(--head);font-weight:700;font-size:11px;padding:3px 11px;border-radius:6px}
-  .tier .nm{font-family:var(--head);font-weight:700;font-size:16px;color:var(--d1)}
-  .tier .pc{font-family:var(--head);font-weight:800;font-size:40px;color:var(--teal);margin:6px 0 2px}
-  .tier .pc span{font-size:18px;color:var(--muted)}
-  .tier .dt{font-size:13.5px;color:var(--muted)}
-  .earn-note{margin-top:20px;font-size:13px;color:var(--muted);text-align:center;max-width:66ch;margin-left:auto;margin-right:auto}
-
-  /* ---------- Support ---------- */
-  .support{background:linear-gradient(140deg,var(--d1),var(--teal));color:#fff;border-radius:20px;padding:40px 34px;margin-top:6px;text-align:center}
-  .support h2{font-size:26px;font-weight:800;color:#fff}
-  .support p{color:#cfe6ec;margin-top:8px;max-width:46ch;margin-left:auto;margin-right:auto}
-  .support .cta-row{justify-content:center}
-  .btn-wa{background:var(--wa);color:#053d1a}
-  .btn-wa:hover{background:#1fbe5c;transform:translateY(-1px)}
-
-  /* ---------- Footer ---------- */
-  footer{background:var(--d2);color:#9fc0ca;padding:34px 0 40px;margin-top:60px;font-size:13px}
-  footer .wrap{display:flex;flex-direction:column;gap:14px}
-  footer .lg{font-family:var(--head);font-weight:800;color:#fff;font-size:16px}
-  footer .lg span{color:var(--cyan)}
-  footer .legal{line-height:1.7}
-  footer .dis{color:#7ea2ad;font-size:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}
-
-  @media(max-width:760px){
-    .steps,.grid,.cc,.tiers{grid-template-columns:1fr}
-    .hero .wrap{padding:48px 22px 46px}
-    section{padding:46px 0}
-    .support{padding:34px 22px}
-    .bar .brand{font-size:17px}
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:16px;}
+  html,body{margin:0;}
+  body{
+    font-family:var(--body);font-size:16px;line-height:1.6;color:var(--ink);
+    background:var(--tint);-webkit-font-smoothing:antialiased;
+    padding-bottom:env(safe-area-inset-bottom);
   }
+  a{color:var(--teal);}
+  :focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px;}
+  .col{max-width:720px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- top bar ---------- */
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:18px 0 6px;}
+  .mark{font-family:var(--head);font-weight:800;font-size:20px;color:var(--d1);letter-spacing:-.2px;}
+  .mark span{font-weight:600;color:var(--teal);font-size:15px;margin-left:8px;}
+  .login{font-weight:700;font-size:14px;text-decoration:none;color:var(--d1);
+    border:1.5px solid var(--line);background:var(--paper);padding:8px 14px;border-radius:999px;}
+  .login:hover{border-color:var(--teal);}
+
+  /* ---------- intro ---------- */
+  .intro{padding:26px 0 8px;}
+  .intro h1{font-family:var(--head);font-weight:800;font-size:clamp(30px,6vw,42px);
+    line-height:1.12;letter-spacing:-.8px;margin:0 0 12px;color:var(--d1);max-width:16ch;}
+  .intro p{margin:0 0 10px;color:var(--muted);max-width:58ch;}
+  .intro .save{font-size:14px;color:var(--teal);font-weight:600;}
+
+  .notice{background:var(--paper);border:1.5px dashed var(--line);border-radius:18px;
+    padding:20px;margin:18px 0 8px;}
+  .notice h2{font-family:var(--head);font-size:19px;margin:0 0 6px;color:var(--d1);}
+  .notice p{margin:0 0 14px;color:var(--muted);}
+
+  html.no-kit [data-kit]{display:none !important;}
+  html.has-kit [data-nokit]{display:none !important;}
+
+  /* ---------- role chooser ---------- */
+  .choose{margin:22px 0 0;border:0;padding:0;}
+  .choose legend{font-family:var(--head);font-weight:700;font-size:18px;color:var(--d1);
+    margin-bottom:10px;padding:0;}
+  .roles{display:grid;gap:10px;grid-template-columns:1fr;}
+  @media (min-width:600px){ .roles{grid-template-columns:1fr 1fr;} }
+  .role{position:relative;display:block;cursor:pointer;background:var(--paper);
+    border:2px solid var(--line);border-radius:16px;padding:16px 16px 16px 50px;
+    transition:border-color .15s, background .15s;}
+  .role input{position:absolute;opacity:0;pointer-events:none;}
+  .role::before{content:"";position:absolute;left:16px;top:19px;width:20px;height:20px;
+    border-radius:50%;border:2px solid var(--soft);background:var(--paper);}
+  .role.on{border-color:var(--teal);background:#F2FAFC;}
+  .role.on::before{border-color:var(--teal);
+    background:radial-gradient(circle,var(--teal) 0 5px,var(--paper) 6px);}
+  .role:has(input:focus-visible){outline:3px solid var(--cyan);outline-offset:2px;}
+  .role b{display:block;font-family:var(--head);font-size:16px;color:var(--d1);line-height:1.3;}
+  .role small{display:block;font-size:14px;color:var(--muted);margin-top:3px;line-height:1.45;}
+
+  /* ---------- the kit (the one bold element) ---------- */
+  .kit{margin:22px 0 0;border-radius:24px;overflow:hidden;background:var(--d1);color:#fff;
+    box-shadow:0 22px 50px -24px rgba(10,61,82,.55);}
+  html:not([data-role]) .kit, html:not([data-role]) .after-kit{display:none;}
+  .kit-top{padding:22px 20px 24px;}
+  .kit-top h2{font-family:var(--head);font-weight:800;font-size:23px;margin:0 0 4px;letter-spacing:-.3px;}
+  .kit-top p{margin:0 0 16px;color:#B9D4DD;font-size:15px;max-width:52ch;}
+  .linkbox{display:block;width:100%;font:600 15px/1.4 var(--body);color:#fff;
+    background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);
+    border-radius:12px;padding:13px 14px;word-break:break-all;user-select:all;margin-bottom:12px;}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{font-family:var(--head);font-weight:700;font-size:15px;border:0;border-radius:12px;
+    padding:13px 18px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;
+    justify-content:center;text-align:center;gap:8px;flex:1 1 150px;min-height:48px;transition:transform .06s, filter .15s;}
+  .btn:active{transform:translateY(1px);}
+  .btn svg{width:18px;height:18px;flex:none;}
+  .btn-light{background:#fff;color:var(--d1);}
+  .btn-wa{background:var(--wa);color:var(--wa-ink);}
+  .btn-wa:hover,.btn-light:hover{filter:brightness(.95);}
+  .btn-orange{background:var(--orange);color:#fff;}
+  .btn-orange:hover{background:var(--orange-h);}
+  .btn-ghost{background:var(--paper);color:var(--d1);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--teal);}
+
+  .coupon{margin-top:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,.14);padding-top:14px;}
+  .coupon .code{font-family:var(--head);font-weight:800;font-size:22px;letter-spacing:1px;color:var(--orange);}
+  .coupon p{margin:0;flex:1 1 220px;font-size:14px;color:#B9D4DD;line-height:1.5;}
+  .coupon[hidden]{display:none;}
+  .coupon button{flex:none;font:700 14px var(--head);background:transparent;color:#fff;
+    border:1.5px solid rgba(255,255,255,.35);border-radius:10px;padding:8px 12px;cursor:pointer;}
+
+  /* perforation between the link and the card, echoing the QR card's strip */
+  .perf{height:22px;background:
+    radial-gradient(circle at 11px 11px,var(--tint) 0 7px,transparent 7.5px) 0 0/22px 22px repeat-x,
+    var(--d1);}
+  .kit-card{background:var(--tint2);color:var(--ink);padding:22px 20px 18px;}
+  .kit-card h3{font-family:var(--head);font-size:19px;margin:0 0 4px;color:var(--d1);}
+  .kit-card > p{margin:0 0 14px;color:var(--muted);font-size:15px;}
+  .namefield label{display:block;font-weight:700;font-size:14px;color:var(--d1);margin-bottom:6px;}
+  .namefield label span{font-weight:500;color:var(--soft);}
+  .namefield input{width:100%;font:16px var(--body);color:var(--ink);padding:12px 14px;
+    border:1.5px solid var(--line);border-radius:12px;background:#fff;margin-bottom:16px;}
+  .namefield input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,151,178,.16);}
+  #qrframe{display:block;width:100%;height:560px;border:0;background:transparent;}
+
+  /* ---------- sections below the kit ---------- */
+  section.s{padding:34px 0 0;}
+  section.s > h2{font-family:var(--head);font-weight:800;font-size:24px;letter-spacing:-.4px;
+    color:var(--d1);margin:0 0 6px;}
+  section.s > p.lead{margin:0 0 16px;color:var(--muted);max-width:60ch;}
+
+  .msg{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;}
+  .msg h3{font-family:var(--head);font-size:15px;margin:0 0 8px;color:var(--teal);}
+  .msg p{margin:0 0 14px;white-space:pre-line;font-size:15px;word-break:break-word;}
+
+  .invite{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;}
+  .invite .linkbox{color:var(--ink);background:var(--tint2);border-color:var(--line);}
+
+  .earn{display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:var(--paper);
+    border-left:5px solid var(--orange);border-radius:6px 16px 16px 6px;padding:18px;}
+  .earn p{margin:0;flex:1 1 260px;color:var(--muted);font-size:15px;}
+  .earn p strong{color:var(--ink);}
+  .earn .btn{flex:0 0 auto;}
+
+  .rules{display:grid;gap:12px;grid-template-columns:1fr;}
+  @media (min-width:640px){ .rules{grid-template-columns:1fr 1fr;} }
+  .rules div{background:var(--paper);border-radius:16px;padding:18px;border-top:4px solid var(--ok);}
+  .rules div.no{border-top-color:var(--no);}
+  .rules h3{font-family:var(--head);font-size:16px;margin:0 0 8px;}
+  .rules ul{margin:0;padding:0;list-style:none;}
+  .rules li{position:relative;padding-left:24px;margin:8px 0;font-size:15px;line-height:1.5;}
+  .rules li::before{content:"✓";position:absolute;left:0;top:0;font-weight:800;color:var(--ok);}
+  .rules .no li::before{content:"✕";color:var(--no);}
+
+  .tools{background:var(--paper);border-radius:16px;border:1px solid var(--line);}
+  .tool{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:center;padding:16px 18px;
+    border-bottom:1px solid var(--line);}
+  .tool:last-child{border-bottom:0;}
+  .tool h3{font-family:var(--head);font-size:16px;margin:0;color:var(--d1);}
+  .tool p{grid-column:1;margin:0;font-size:14.5px;color:var(--muted);line-height:1.5;}
+  .tool .warn{display:block;margin-top:6px;color:#8A5300;font-size:13.5px;}
+  .tool a{grid-column:2;grid-row:1 / span 2;font-weight:700;font-size:14px;text-decoration:none;
+    border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;white-space:nowrap;}
+  .tool a:hover{border-color:var(--teal);}
+
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end;}
+  .tier{background:var(--paper);border-radius:14px;padding:14px 12px;text-align:center;border:1px solid var(--line);}
+  .tier .rate{font-family:var(--head);font-weight:800;color:var(--d1);line-height:1;}
+  .tier:nth-child(1) .rate{font-size:30px;}
+  .tier:nth-child(2) .rate{font-size:36px;}
+  .tier:nth-child(3) .rate{font-size:42px;color:var(--orange-h);}
+  .tier b{display:block;font-family:var(--head);font-size:15px;margin-top:8px;}
+  .tier small{display:block;color:var(--muted);font-size:13px;line-height:1.4;}
+  .fine{font-size:13.5px;color:var(--muted);margin:12px 0 0;}
+
+  .help{display:flex;gap:10px;flex-wrap:wrap;}
+  footer{margin-top:44px;padding:24px 0 36px;border-top:1px solid var(--line);font-size:12.5px;
+    color:var(--soft);line-height:1.6;}
+  footer strong{color:var(--teal);}
+
+  #toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));
+    transform:translateX(-50%) translateY(16px);background:var(--d2);color:#fff;font-weight:700;
+    font-size:14px;padding:11px 18px;border-radius:999px;opacity:0;pointer-events:none;
+    transition:opacity .2s, transform .2s;z-index:20;}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important;} }
 </style>
 </head>
 <body>
+<div class="col">
 
-<!-- Top bar -->
-<div class="bar">
-  <div class="wrap">
-    <div class="brand">Epithrive<span>®</span> · Care Circle</div>
-    <a class="login" href="https://affiliate.epithrive.in" target="_blank" rel="noopener">Dashboard login</a>
+  <header class="bar">
+    <div class="mark">Epithrive®<span>Care Circle</span></div>
+    <a class="login" href="https://affiliate.epithrive.in">Log in</a>
+  </header>
+
+  <!-- ===== intro ===== -->
+  <div class="intro">
+    <h1>Welcome to the Care Circle</h1>
+    <p data-kit>This page is your personal kit. Your link, your QR card and ready-to-send messages are all here, and everything you share from it is credited to you.</p>
+    <p data-kit class="save">Bookmark this page or add it to your home screen. It's yours to come back to anytime.</p>
+    <p data-nokit>You're helping more people get the right nutrition alongside their wound care. Here's how the program works and how to share it the right way.</p>
   </div>
-</div>
 
-<!-- Hero -->
-<header class="hero">
-  <div class="wrap">
-    <span class="kick"><i></i>Welcome to the Care Circle</span>
-    <h1>You're in. Let's get you ready to share.</h1>
-    <p>Thank you for joining the Epithrive® Care Circle — you're now helping more people get the right nutrition alongside their wound care, and earning as you do. Everything you need to start is right here.</p>
-    <div class="cta-row">
-      <a class="btn btn-p" href="https://affiliate.epithrive.in" target="_blank" rel="noopener">Log in to your dashboard</a>
-      <a class="btn btn-ghost" href="#start">See the 3 steps</a>
-    </div>
-    <div class="hero-note">Bookmark this page — it's your home base for links, tools, and ready-to-send messages.</div>
-  </div>
-</header>
-
-<!-- Quick start -->
-<section id="start">
-  <div class="wrap">
-    <div class="eyebrow">Start here</div>
-    <h2 class="sec-h">Three steps to your first share</h2>
-    <p class="sec-sub">Do these once and you're live. It takes about five minutes.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <h3>Get your link</h3>
-        <p>Log in to your <a href="https://affiliate.epithrive.in" target="_blank" rel="noopener">dashboard</a> and copy your personal affiliate link. Every sale through it is tracked to you.</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <h3>Make your QR card</h3>
-        <p>Paste your link into the <a href="https://training.epithrive.in/qr-card" target="_blank" rel="noopener">QR card maker</a> and download a branded card you can show or send.</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <h3>Share it</h3>
-        <p>Send your link or QR on WhatsApp, or show the card in person. Use one of the ready-made messages below to start.</p>
-      </div>
+  <div class="notice" data-nokit>
+    <h2>Looking for your links and QR card?</h2>
+    <p>Your personal kit opens from the link in your Care Circle welcome message on WhatsApp. Can't find it? Message us and we'll send it again.</p>
+    <div class="btns">
+      <a class="btn btn-wa" id="resend" href="https://wa.me/919326121131?text=Hi%2C%20I%27m%20a%20Care%20Circle%20member.%20Please%20resend%20my%20personal%20kit%20link.">Ask for my kit link</a>
+      <a class="btn btn-ghost" href="https://affiliate.epithrive.in">Log in to dashboard</a>
     </div>
   </div>
-</section>
 
-<!-- Toolkit -->
-<section style="background:var(--tint3);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="eyebrow">Your toolkit</div>
-    <h2 class="sec-h">Everything you need, in one place</h2>
-    <div class="grid">
+  <!-- ===== role chooser ===== -->
+  <fieldset class="choose" data-kit>
+    <legend>Who do you share with?</legend>
+    <div class="roles">
+      <label class="role">
+        <input type="radio" name="role" value="nurse">
+        <b>I'm a nurse or healthcare worker</b>
+        <small>I share free wound-care nutrition guides with patients and families.</small>
+      </label>
+      <label class="role">
+        <input type="radio" name="role" value="partner">
+        <b>I'm a Care Circle partner</b>
+        <small>I recommend Epithrive to people who want to order it.</small>
+      </label>
+    </div>
+  </fieldset>
 
-      <a class="card" href="https://training.epithrive.in/" target="_blank" rel="noopener">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10v6l6 3 6-3v-6"/></svg></div>
-        <h3>Training portal</h3>
-        <p>Learn the product, the science, and how to answer common questions with confidence.</p>
-        <span class="go">Open training →</span>
-      </a>
-
-      <a class="card" href="https://training.epithrive.in/qr-card" target="_blank" rel="noopener">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-7"/></svg></div>
-        <h3>QR card maker</h3>
-        <p>Turn your affiliate link into a branded QR card ready to print, show, or send on WhatsApp.</p>
-        <span class="go">Make your card →</span>
-      </a>
-
-      <a class="card" href="https://training.epithrive.in/wound-cost-calculator" target="_blank" rel="noopener">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg></div>
-        <h3>Wound care cost calculator</h3>
-        <p>A simple tool to help a customer see the cost of ongoing wound care. Great conversation starter.</p>
-        <span class="go">Open calculator →</span>
-      </a>
-
-      <a class="card" href="https://training.epithrive.in/results-hcp" target="_blank" rel="noopener">
-        <span class="tag tag-hcp">For sharing with doctors</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M8 12l3 3 5-6"/></svg></div>
-        <h3>Case studies</h3>
-        <p>The clinical results, written for healthcare professionals. Best shared doctor-to-doctor.</p>
-        <div class="microcaution">Please don't quote the clinical percentages to customers or in ads — this page is for HCP conversations only.</div>
-        <span class="go">View results →</span>
-      </a>
-
-      <a class="card" href="https://training.epithrive.in/earnings-calc/?b=40&p=2499" target="_blank" rel="noopener">
-        <span class="tag tag-plan">Members' planning tool</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h.01M8 15h2M12 15h2M16 15h.01"/></svg></div>
-        <h3>Earnings estimator</h3>
-        <p>Play with different order volumes to plan your own goals.</p>
-        <div class="microcaution">For your own planning only. This is an estimate, not a guarantee of income — actual earnings depend on your effort. Please don't show it to prospects as a promise.</div>
-        <span class="go">Open estimator →</span>
-      </a>
-
-      <a class="card" href="https://affiliate.epithrive.in" target="_blank" rel="noopener">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
-        <h3>Your dashboard</h3>
-        <p>Your affiliate link, live click and sale tracking, and your payout details — all in one place.</p>
-        <span class="go">Go to dashboard →</span>
-      </a>
-
+  <!-- ===== the kit ===== -->
+  <div class="kit" data-kit aria-live="polite">
+    <div class="kit-top">
+      <h2 id="kit-title">Your link</h2>
+      <p id="kit-desc"></p>
+      <div class="linkbox" id="share-link"></div>
+      <div class="btns">
+        <button class="btn btn-light" type="button" data-copy="share-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          Copy link
+        </button>
+        <a class="btn btn-wa" id="share-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3Z"/></svg>
+          Send on WhatsApp
+        </a>
+      </div>
+      <div class="coupon" id="coupon-row" hidden>
+        <span class="code" id="coupon-code"></span>
+        <p>Your coupon. It's applied automatically when someone orders through your link. Give out the code only if someone orders another way.</p>
+        <button type="button" data-copy="coupon-code">Copy code</button>
+      </div>
+    </div>
+    <div class="perf" aria-hidden="true"></div>
+    <div class="kit-card">
+      <h3>Your QR card</h3>
+      <p id="card-desc"></p>
+      <div class="namefield">
+        <label for="card-name">Name on your card <span>(optional)</span></label>
+        <input id="card-name" type="text" autocomplete="name" maxlength="40" placeholder="e.g. Sister Meena">
+      </div>
+      <iframe id="qrframe" title="Your QR card" loading="lazy" allow="web-share; clipboard-write"></iframe>
     </div>
   </div>
-</section>
 
-<!-- Compliance -->
-<section class="comply">
-  <div class="wrap">
-    <div class="eyebrow">Share it the right way</div>
-    <h2 class="sec-h">A few simple rules that keep us all safe</h2>
-    <p class="sec-sub">Epithrive® is a nutraceutical taken alongside standard wound care. How we talk about it matters — for the brand and for you. Keep to these and you can't go wrong.</p>
-    <div class="cc">
-      <div class="cbox ok">
+  <div class="after-kit" data-kit>
+
+    <!-- ===== messages ===== -->
+    <section class="s">
+      <h2>Ready-to-send messages</h2>
+      <p class="lead">Your link is already in each message. Send it as it is, or copy it and add a personal line.</p>
+      <div id="messages"></div>
+    </section>
+
+    <!-- ===== invite ===== -->
+    <section class="s">
+      <h2>Invite a colleague</h2>
+      <p class="lead">Know someone who'd like to join? Send them your invite link. Once they're approved, they get their own kit like this one.</p>
+      <div class="invite">
+        <div class="linkbox" id="invite-link"></div>
+        <div class="btns">
+          <button class="btn btn-ghost" type="button" data-copy="invite-link">Copy invite link</button>
+          <a class="btn btn-wa" id="invite-wa" target="_blank" rel="noopener">Send invite on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== earnings ===== -->
+    <section class="s">
+      <h2>Your earnings</h2>
+      <div class="earn">
+        <p>Clicks, orders, commission and payouts are in your dashboard. <strong>Add your payout method there once</strong> so we can pay you.</p>
+        <a class="btn btn-orange" href="https://affiliate.epithrive.in">Open dashboard</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== rules (always visible) ===== -->
+  <section class="s">
+    <h2>Share it the right way</h2>
+    <p class="lead">Epithrive® is a nutraceutical taken alongside standard wound care. How we talk about it matters, for the brand and for you.</p>
+    <div class="rules">
+      <div>
         <h3>Please do</h3>
         <ul>
-          <li>Describe it as clinical nutrition that <strong>supports the body's healing response as an adjunct to standard wound care</strong>.</li>
-          <li>Say it works <strong>alongside</strong> a doctor's wound care, not instead of it.</li>
-          <li>Encourage people to keep following their doctor or nurse's advice.</li>
-          <li>Use the ready-made messages below, or the wording from your training.</li>
+          <li>Describe it as clinical nutrition that supports the body's healing response, alongside standard wound care.</li>
+          <li>Say it works with a doctor's wound care, not instead of it.</li>
+          <li>Encourage people to keep following their doctor's or nurse's advice.</li>
+          <li>Use the messages on this page or the wording from your training.</li>
         </ul>
       </div>
-      <div class="cbox no">
+      <div class="no">
         <h3>Please don't</h3>
         <ul>
-          <li>Never say it will <strong>treat, cure, or prevent</strong> any disease.</li>
-          <li>Don't call it a medicine, drug, or a replacement for medical treatment.</li>
-          <li>Don't quote clinical percentages or study numbers to customers.</li>
-          <li>Don't promise specific results, recovery times, or guaranteed income.</li>
+          <li>Say it treats, cures or prevents any disease.</li>
+          <li>Call it a medicine, a drug or a replacement for medical treatment.</li>
+          <li>Quote clinical percentages or study numbers to customers.</li>
+          <li>Promise specific results, recovery times or income.</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Ready messages -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow">Copy &amp; send</div>
-    <h2 class="sec-h">Ready-to-send messages</h2>
-    <p class="sec-sub">Written to be clear, warm, and compliant. Tap to copy, then paste into WhatsApp and add your link.</p>
-
-    <div class="msg">
-      <div class="lbl">For a friend or family member</div>
-      <div class="body" id="m1">Hi 🙏 Sharing something that may help alongside wound care. Epithrive® is a clinical nutrition drink taken once a day that supports the body's natural healing while you continue your doctor's treatment. If it's useful for you or someone at home, here's where to learn more: [paste your link]</div>
-      <button class="copy" data-t="m1">Copy message</button>
+  <!-- ===== tools ===== -->
+  <section class="s">
+    <h2>Learn and prepare</h2>
+    <div class="tools">
+      <div class="tool">
+        <h3>Training</h3>
+        <p>The product, the science, and how to answer common questions with confidence.</p>
+        <a href="https://training.epithrive.in/">Open</a>
+      </div>
+      <div class="tool">
+        <h3>Wound care cost calculator</h3>
+        <p>Helps someone see the cost of ongoing wound care. A good conversation starter.</p>
+        <a href="https://training.epithrive.in/wound-cost-calculator">Open</a>
+      </div>
+      <div class="tool">
+        <h3>Case studies</h3>
+        <p>Clinical results written for healthcare professionals, best shared doctor to doctor.
+          <span class="warn">For conversations with doctors only. Don't quote these numbers to customers or in ads.</span></p>
+        <a href="https://training.epithrive.in/results-hcp">Open</a>
+      </div>
+      <div class="tool">
+        <h3>Earnings estimator</h3>
+        <p>Try different order volumes to plan your own goals.
+          <span class="warn">For your own planning only. It's an estimate, not a promise, so please don't show it to others.</span></p>
+        <a href="https://training.epithrive.in/earnings-calc/?b=40&amp;p=2499">Open</a>
+      </div>
     </div>
+  </section>
 
-    <div class="msg">
-      <div class="lbl">For a caregiver looking after a patient</div>
-      <div class="body" id="m2">Hello, if you're caring for someone with a slow-healing wound, good nutrition can make the daily routine easier to support. Epithrive® is a once-a-day clinical nutrition sachet used as an adjunct to standard wound care. Happy to share details — here's the link: [paste your link]</div>
-      <button class="copy" data-t="m2">Copy message</button>
-    </div>
-  </div>
-</section>
-
-<!-- Earnings -->
-<section style="background:var(--tint3);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="eyebrow">How you earn</div>
-    <h2 class="sec-h">Your commission grows with your activity</h2>
-    <p class="sec-sub">Every completed, paid order through your link earns you commission. Your tier is based on your activity each month — the more you share, the higher your rate.</p>
+  <!-- ===== how you earn ===== -->
+  <section class="s">
+    <h2>How you earn</h2>
+    <p class="lead">Every completed, paid order through your link earns commission. Your rate grows with your activity.</p>
     <div class="tiers">
-      <div class="tier">
-        <div class="nm">Member</div>
-        <div class="pc">10<span>%</span></div>
-        <div class="dt">Where everyone starts</div>
-      </div>
-      <div class="tier mid">
-        <div class="nm">Partner</div>
-        <div class="pc">17<span>%</span></div>
-        <div class="dt">For consistent sharers</div>
-      </div>
-      <div class="tier">
-        <div class="nm">Champion</div>
-        <div class="pc">25<span>%</span></div>
-        <div class="dt">For our top members</div>
-      </div>
+      <div class="tier"><span class="rate">10%</span><b>Member</b><small>Where everyone starts</small></div>
+      <div class="tier"><span class="rate">17%</span><b>Partner</b><small>For consistent sharers</small></div>
+      <div class="tier"><span class="rate">25%</span><b>Champion</b><small>For our top members</small></div>
     </div>
-    <p class="earn-note">Rates shown are the Care Circle program structure. Commission is earned only on completed, paid orders and is not a guarantee of income — what you earn depends on your own effort. Full terms are in your Care Circle agreement.</p>
-  </div>
-</section>
+    <p class="fine">Commission is earned only on completed, paid orders and isn't a guarantee of income. What you earn depends on your own effort. Full terms are in your Care Circle agreement.</p>
+  </section>
 
-<!-- Support -->
-<section>
-  <div class="wrap">
-    <div class="support">
-      <h2>Stuck on anything?</h2>
-      <p>We're here to help you get your first share out the door. Message us any time.</p>
-      <div class="cta-row">
-        <a class="btn btn-wa" href="https://wa.me/919326121131?text=Hi%20%F0%9F%91%8B%20I'm%20an%20Epithrive%20Care%20Circle%20member%20and%20I%20have%20a%20question%20about%20the%20affiliate%20program." target="_blank" rel="noopener">Chat on WhatsApp</a>
-        <a class="btn btn-ghost" href="mailto:info@zenfitra.com">Email the team</a>
-      </div>
+  <!-- ===== help ===== -->
+  <section class="s">
+    <h2>Stuck on anything?</h2>
+    <p class="lead">Message us anytime. We'll help you get your first share out.</p>
+    <div class="help">
+      <a class="btn btn-wa" href="https://wa.me/919326121131?text=Hi%20%F0%9F%91%8B%20I'm%20an%20Epithrive%20Care%20Circle%20member%20and%20I%20have%20a%20question.">Chat on WhatsApp</a>
+      <a class="btn btn-ghost" href="mailto:info@zenfitra.com">Email the team</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
-<footer>
-  <div class="wrap">
-    <div class="lg">Epithrive<span>®</span></div>
-    <div class="legal">
-      Nuin Wellness Pvt. Ltd. · ZenFitra Lifesciences Division, Pune<br>
-      FSSAI Licence 11524998000214 · CIN U15209PN2020PTC193534 · GSTIN 27AAHCN1312Q2Z7
-    </div>
-    <div class="dis">
-      Epithrive® is a nutraceutical (clinical nutrition supplement) intended as an adjunct to standard wound care. It is not intended to diagnose, treat, cure, or prevent any disease. This page is for authorised Epithrive® Care Circle members. Participation and commissions are governed by the Care Circle terms &amp; conditions.
-    </div>
-  </div>
-</footer>
+  <footer>
+    <strong>Epithrive®</strong> · Nuin Wellness Pvt. Ltd., ZenFitra Lifesciences Division, Pune<br>
+    FSSAI Licence 11524998000214 · CIN U15209PN2020PTC193534 · GSTIN 27AAHCN1312Q2Z7<br>
+    Epithrive® is a nutraceutical (clinical nutrition supplement) intended as an adjunct to standard wound care. It is not intended to diagnose, treat, cure or prevent any disease. This page is for approved Epithrive® Care Circle members. Participation and commissions are governed by the Care Circle terms and conditions.
+  </footer>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
 
 <script>
-  document.querySelectorAll('.copy').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var txt=document.getElementById(btn.getAttribute('data-t')).innerText;
-      navigator.clipboard.writeText(txt).then(function(){
-        var o=btn.innerText;btn.innerText='Copied ✓';btn.classList.add('done');
-        setTimeout(function(){btn.innerText=o;btn.classList.remove('done');},1800);
-      });
-    });
-  });
-</script>
+(function () {
+  "use strict";
 
+  /* ---------- config ---------- */
+  var CFG = {
+    productLanding: "https://epithrive.in/products/epithrive",
+    guidesLanding:  "https://epithrive.in/pages/wound-support",
+    inviteLanding:  "https://affiliate.epithrive.in/register",
+    qrCardPage:     "/qr-card/"            // same site, so the card can be embedded
+  };
+
+  var MESSAGES = {
+    nurse: [
+      { title: "For a patient",
+        text: "Hello 🙏 Here are some free, easy-to-read guides on nutrition during wound healing. They're meant to support the care your doctor or nurse has advised:\n{link}" },
+      { title: "For a family member or caregiver",
+        text: "If you're looking after someone with a slow-healing wound, these free guides explain how good nutrition supports recovery alongside regular wound care:\n{link}" }
+    ],
+    partner: [
+      { title: "For a friend or family member",
+        text: "Hi 🙏 Sharing something that may help alongside wound care. Epithrive® is a clinical nutrition sachet taken once a day that supports the body's natural healing while you continue your doctor's treatment. If it's useful for you or someone at home, you can see it here:\n{link}" },
+      { title: "For a caregiver looking after a patient",
+        text: "Hello, if you're caring for someone with a slow-healing wound, good nutrition can help support their recovery. Epithrive® is a once-a-day clinical nutrition sachet used alongside standard wound care. Here are the details:\n{link}" }
+    ]
+  };
+
+  var INVITE_TEXT = "I've joined the Epithrive Care Circle. If you'd like to join too, sign up with my link and you'll get your own kit once you're approved:\n{link}";
+
+  /* ---------- read and validate the personal values ---------- */
+  var q = new URLSearchParams(location.search);
+  function clean(v, re) { v = (v || "").trim(); return re.test(v) ? v : ""; }
+  var ref  = clean(q.get("ref"), /^[A-Za-z0-9_-]{4,40}$/);
+  var code = clean(q.get("c"),   /^[A-Za-z0-9_-]{2,40}$/);
+  if (!ref) return;                       // no kit: page stays generic
+
+  var enc = encodeURIComponent;
+  var links = {
+    guides:  CFG.guidesLanding + "?bg_ref=" + enc(ref) + (code ? "&c=" + enc(code) : ""),
+    product: CFG.productLanding + "?bg_ref=" + enc(ref),
+    invite:  CFG.inviteLanding + "?parent=" + enc(ref)
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  var wa = function (text) { return "https://wa.me/?text=" + enc(text); };
+
+  /* ---------- toast + copy ---------- */
+  var toastTimer;
+  function toast(msg) {
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove("show"); }, 1800);
+  }
+  function copyText(text, done) {
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast(done); } catch (e) { toast("Couldn't copy. Press and hold to copy instead."); }
+      ta.remove();
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { toast(done); }, fallback);
+    } else { fallback(); }
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy]");
+    if (!b) return;
+    var src = $(b.getAttribute("data-copy"));
+    var label = b.getAttribute("data-copy") === "coupon-code" ? "Code copied"
+              : b.getAttribute("data-copy") === "invite-link" ? "Invite link copied" : "Link copied";
+    copyText(src.textContent.trim(), label);
+  });
+
+  /* ---------- QR card (embedded card page) ---------- */
+  var frame = $("qrframe");
+  var nameInput = $("card-name");
+  nameInput.value = store.get("cc_name");
+
+  function cardSrc(role) {
+    var name = nameInput.value.trim();
+    var u = CFG.qrCardPage + "?embed=1";
+    if (role === "nurse") {
+      // guides card; the coupon stays inside the QR link and is never printed
+      u += "&ref=" + enc(ref) + (code ? "&c=" + enc(code) : "");
+    } else {
+      u += "&link=" + enc(links.product) + (code ? "&code=" + enc(code) : "");
+    }
+    if (name) u += "&name=" + enc(name);
+    return u;
+  }
+  window.addEventListener("message", function (e) {
+    if (e.source !== frame.contentWindow) return;
+    var d = e.data || {};
+    if (d.type === "qr-card-height" && d.h > 0) frame.style.height = Math.ceil(d.h) + "px";
+  });
+  var nameTimer;
+  nameInput.addEventListener("input", function () {
+    clearTimeout(nameTimer);
+    nameTimer = setTimeout(function () {
+      var name = nameInput.value.trim();
+      store.set("cc_name", name);
+      if (frame.contentWindow) frame.contentWindow.postMessage({ type: "qr-card-name", name: name }, "*");
+    }, 150);
+  });
+
+  /* ---------- messages ---------- */
+  function renderMessages(role, link) {
+    var box = $("messages");
+    box.textContent = "";
+    MESSAGES[role].forEach(function (m, i) {
+      var text = m.text.replace("{link}", link);
+      var card = document.createElement("div");
+      card.className = "msg";
+      var h = document.createElement("h3"); h.textContent = m.title;
+      var p = document.createElement("p"); p.id = "msg-" + i; p.textContent = text;
+      var row = document.createElement("div"); row.className = "btns";
+      var c = document.createElement("button");
+      c.className = "btn btn-ghost"; c.type = "button"; c.textContent = "Copy message";
+      c.addEventListener("click", function () { copyText(text, "Message copied"); });
+      var s = document.createElement("a");
+      s.className = "btn btn-wa"; s.href = wa(text); s.target = "_blank"; s.rel = "noopener";
+      s.textContent = "Send on WhatsApp";
+      row.appendChild(c); row.appendChild(s);
+      card.appendChild(h); card.appendChild(p); card.appendChild(row);
+      box.appendChild(card);
+    });
+  }
+
+  /* ---------- role ---------- */
+  var COPY = {
+    nurse: {
+      title: "Your patient link",
+      desc:  "Opens Epithrive's free wound-care nutrition guides. If a patient or family later orders, it's credited to you.",
+      card:  "Show it on your phone for a patient to scan, or download it and send it. It points to the free guides."
+    },
+    partner: {
+      title: "Your order link",
+      desc:  "Opens the Epithrive product page with your coupon applied. Every order through it is credited to you.",
+      card:  "Show it on your phone for someone to scan, or download it and send it. Your code is printed on it."
+    }
+  };
+
+  var currentSrc = "";
+  function applyRole(role) {
+    if (!COPY[role]) return;
+    document.documentElement.setAttribute("data-role", role);
+    Array.prototype.forEach.call(document.querySelectorAll(".role"), function (l) {
+      l.classList.toggle("on", l.querySelector("input").value === role);
+    });
+    store.set("cc_role", role);
+
+    var link = role === "nurse" ? links.guides : links.product;
+    $("kit-title").textContent = COPY[role].title;
+    $("kit-desc").textContent = COPY[role].desc;
+    $("card-desc").textContent = COPY[role].card;
+    $("share-link").textContent = link;
+    $("share-wa").href = wa(link);
+
+    var showCoupon = role === "partner" && !!code;
+    $("coupon-row").hidden = !showCoupon;
+    $("coupon-code").textContent = showCoupon ? code.toUpperCase() : "";
+
+    var src = cardSrc(role);
+    if (src !== currentSrc) { currentSrc = src; frame.src = src; }
+
+    renderMessages(role, link);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="role"]'), function (r) {
+    r.addEventListener("change", function () { if (r.checked) applyRole(r.value); });
+  });
+
+  /* ---------- invite ---------- */
+  $("invite-link").textContent = links.invite;
+  $("invite-wa").href = wa(INVITE_TEXT.replace("{link}", links.invite));
+
+  /* ---------- restore last choice on this device ---------- */
+  var saved = store.get("cc_role");
+  if (COPY[saved]) {
+    var r = document.querySelector('input[name="role"][value="' + saved + '"]');
+    if (r) { r.checked = true; applyRole(saved); }
+  }
+})();
+</script>
 </body>
 </html>

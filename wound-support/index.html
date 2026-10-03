@@ -685,8 +685,8 @@ function guideURL(g, lang, today){
   return CONFIG.learn + (useLang === 'en' ? '' : '/' + useLang) + '/' + g.s + '/?' +
          qs({utm_source:'wound_support_hub', utm_medium:'hub', utm_campaign:'guides', utm_content:g.s});
 }
-function productURL(code, lang){
-  var tags = qs({utm_source:CONFIG.utm.source, utm_medium:CONFIG.utm.medium, utm_campaign:CONFIG.utm.campaign,
+function productURL(code, lang, ref){
+  var tags = qs({bg_ref:ref, utm_source:CONFIG.utm.source, utm_medium:CONFIG.utm.medium, utm_campaign:CONFIG.utm.campaign,
                  utm_content:code || 'no_code', utm_term:lang || 'en'});
   var path = CONFIG.productPath + '?' + tags;
   return code ? CONFIG.store + '/discount/' + encodeURIComponent(code) + '?redirect=' + encodeURIComponent(path)
@@ -696,6 +696,8 @@ function waURL(text){ return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + enc
 function prettyDate(iso){ var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; var p=iso.split('-'); return (+p[2])+' '+m[+p[1]-1]; }
 function validLang(c){ for (var i=0;i<LANGS.length;i++) if (LANGS[i][0]===c) return c; return null; }
 function cleanCode(v){ return (v || '').toUpperCase().replace(/[^A-Z0-9_-]/g, ''); }
+/* affiliate ref is case-sensitive: validate, never change case */
+function cleanRef(v){ v=(v||'').trim(); return /^[A-Za-z0-9_-]{4,40}$/.test(v) ? v : ''; }
 
 /* ---------- analytics (no-op unless CONFIG.ga4 is set) ---------- */
 window.dataLayer = window.dataLayer || [];
@@ -720,6 +722,10 @@ function track(name, params){ try { if (typeof gtag === 'function') gtag('event'
   var CKEY='et_reader_code', code=cleanCode(params.get('c'));
   try { if (code) localStorage.setItem(CKEY, code); else code = cleanCode(localStorage.getItem(CKEY)); } catch(e){}
 
+  /* affiliate / nurse ref, so the order is credited to them (bg_ref from the QR, or ref) */
+  var RKEY='et_reader_ref', aref=cleanRef(params.get('bg_ref') || params.get('ref'));
+  try { if (aref) localStorage.setItem(RKEY, aref); else aref = cleanRef(localStorage.getItem(RKEY)); } catch(e){}
+
   function U(k){ return (UI[lang] && UI[lang][k]) || UI.en[k]; }
   function native(c){ for (var i=0;i<LANGS.length;i++) if (LANGS[i][0]===c) return LANGS[i][1]; return 'English'; }
   function svg(k){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICON[k]+'</svg>'; }
@@ -729,7 +735,7 @@ function track(name, params){ try { if (typeof gtag === 'function') gtag('event'
   function daysSince(iso){ return Math.round((Date.parse(today)-Date.parse(iso))/86400000); }
 
   /* nurse banner */
-  if (code) document.getElementById('ws-nurse').classList.add('on');
+  if (code || aref) document.getElementById('ws-nurse').classList.add('on');
 
   /* language buttons */
   var grid=document.getElementById('ws-lang-grid');
@@ -775,7 +781,7 @@ function track(name, params){ try { if (typeof gtag === 'function') gtag('event'
   function product(){
     var buy=document.getElementById('et-wl-buy'); if(!buy) return;
     var arrow=buy.querySelector('svg');
-    buy.href=productURL(code, lang);
+    buy.href=productURL(code, lang, aref);
     buy.textContent=(code?'Get Epithrive with \u20B9100 off':'See Epithrive')+' ';
     if (arrow) buy.appendChild(arrow);
     if (code){ document.getElementById('et-wl-code-val').textContent=code; document.getElementById('et-wl-code').hidden=false; }
@@ -786,6 +792,7 @@ function track(name, params){ try { if (typeof gtag === 'function') gtag('event'
     var base=location.origin+location.pathname, q=[];
     if (lang && lang!=='en') q.push('lang='+lang);
     if (code) q.push('c='+encodeURIComponent(code));
+    if (aref) q.push('bg_ref='+encodeURIComponent(aref));
     return base+(q.length?'?'+q.join('&'):'');
   }
   function share(){
@@ -813,7 +820,7 @@ function track(name, params){ try { if (typeof gtag === 'function') gtag('event'
     var a=e.target.closest && e.target.closest('a,button'); if(!a) return;
     if (a.hasAttribute('data-guide')) track('guide_click',{guide:a.getAttribute('data-guide'),language:lang});
     else if (a.hasAttribute('data-notify')) track('notify_click',{guide:a.getAttribute('data-notify')});
-    else if (a.id==='et-wl-buy') track('product_click',{code:code||'none',language:lang});
+    else if (a.id==='et-wl-buy') track('product_click',{code:code||'none',ref:aref||'none',language:lang});
     else if (a.id==='ws-share-wa') track('share',{method:'whatsapp'});
     else if (a.getAttribute('data-wa')==='question') track('whatsapp_click',{});
   });

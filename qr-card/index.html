@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  /* ?embed=1 → card + buttons only, for the welcome page */
+  if (/[?&]embed=1(&|$)/.test(location.search)) document.documentElement.classList.add("embed");
+</script>
 <style>
   :root{
     --teal-cyan:#0097B2; --teal:#00768C; --orange:#F7941E; --orange-hi:#E67C00;
@@ -103,6 +107,19 @@
     transition:opacity .2s, transform .2s;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:50;
   }
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* Embedded in the welcome page: card and download/share only */
+  html.embed body{background:transparent;padding:0;min-height:0;}
+  html.embed .wrap{max-width:none;}
+  html.embed header.top,
+  html.embed .card,
+  html.embed .foot,
+  html.embed .preview .plabel,
+  html.embed .hint,
+  html.embed #btn-copy{display:none;}
+  html.embed .preview{background:none;border:0;padding:2px 0 0;margin-bottom:14px;}
+  html.embed canvas#banner{max-width:300px;}
+  html.embed .actions{max-width:340px;margin:0 auto;padding-bottom:4px;}
 
   @media (prefers-reduced-motion:reduce){
     *{transition:none !important;}
@@ -2860,8 +2877,31 @@ function prefillFromQuery() {
   }
 }
 
+/* ---- embed bridge: report height to the welcome page, accept name updates */
+const IS_EMBED = document.documentElement.classList.contains("embed");
+
+function postHeight() {
+  if (!IS_EMBED || window.parent === window) return;
+  // measure the content, not the iframe viewport (scrollHeight never shrinks below it)
+  const h = Math.ceil(document.querySelector(".wrap").getBoundingClientRect().height) + 4;
+  window.parent.postMessage({ type: "qr-card-height", h: h }, "*");
+}
+
+function listenForName() {
+  if (!IS_EMBED) return;
+  window.addEventListener("message", e => {
+    if (e.source !== window.parent) return;
+    const d = e.data || {};
+    if (d.type !== "qr-card-name") return;
+    document.getElementById("f-name").value = String(d.name || "").slice(0, 40);
+    drawBanner();
+    syncCopyButton();
+  });
+}
+
 async function init() {
   prefillFromQuery();
+  listenForName();
 
   /* hide Share if the browser can't share files */
   const sh = document.getElementById("btn-share");
@@ -2883,6 +2923,11 @@ async function init() {
 
   drawBanner();
   syncCopyButton();
+  if (IS_EMBED) {
+    postHeight();
+    window.addEventListener("resize", postHeight);
+    if (window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
+  }
 
   ["f-name", "f-link", "f-code"].forEach(id =>
     document.getElementById(id).addEventListener("input", () => {

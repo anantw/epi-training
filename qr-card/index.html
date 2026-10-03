@@ -2470,6 +2470,9 @@ const CONFIG = {
   whatsapp:    "+91 93261 21131",
   fallbackUrl: "https://www.epithrive.in",
 
+  /* Landing page used by the short ?ref= link (nurse / guides card) */
+  guideLanding: "https://epithrive.in/pages/wound-support",
+
   /* One layout, three copy sets. The mode is picked automatically from the
      pasted link (see detectMode) so the card never promises something the
      QR doesn't deliver. */
@@ -2804,11 +2807,23 @@ function shareImage() {
   }, "image/png");
 }
 
+/* Copies the coupon code if there is one, otherwise the link itself
+   (nurse / guides cards carry no code, so they get "Copy link"). */
 function copyCode() {
   const code = document.getElementById("f-code").value.trim().toUpperCase();
-  if (!code) { toast("Enter your code first"); return; }
-  navigator.clipboard.writeText(code).then(() => toast("Code copied"))
+  const link = document.getElementById("f-link").value.trim();
+  const text = code || link;
+  if (!text) { toast("Paste your link first"); return; }
+  navigator.clipboard.writeText(text)
+    .then(() => toast(code ? "Code copied" : "Link copied"))
     .catch(() => toast("Couldn't copy"));
+}
+
+function syncCopyButton() {
+  const b = document.getElementById("btn-copy");
+  if (!b) return;
+  const hasCode = document.getElementById("f-code").value.trim().length > 0;
+  b.textContent = hasCode ? "Copy code" : "Copy link";
 }
 
 /* ---- toast ------------------------------------------------------------ */
@@ -2824,6 +2839,20 @@ function toast(msg) {
 /* ---- init ------------------------------------------------------------- */
 function prefillFromQuery() {
   const p = new URLSearchParams(location.search);
+
+  /* Short form, used in the WhatsApp welcome message:
+       ?ref=BG_REF&c=COUPON
+     builds the wound-support (free guides) link. The coupon goes inside the
+     QR link only, for attribution; it is never printed on the card. */
+  const ref = (p.get("ref") || "").trim();
+  if (ref) {
+    let link = CONFIG.guideLanding + "?bg_ref=" + encodeURIComponent(ref);
+    const c = (p.get("c") || "").trim();
+    if (c) link += "&c=" + encodeURIComponent(c);
+    document.getElementById("f-link").value = link;
+  }
+
+  /* Long form: ?name=…&link=…&code=… (link must be URL-encoded) */
   const map = { name: "f-name", link: "f-link", code: "f-code" };
   for (const key in map) {
     const v = p.get(key);
@@ -2853,9 +2882,13 @@ async function init() {
   } catch (e) { /* fall through and draw anyway */ }
 
   drawBanner();
+  syncCopyButton();
 
   ["f-name", "f-link", "f-code"].forEach(id =>
-    document.getElementById(id).addEventListener("input", drawBanner));
+    document.getElementById(id).addEventListener("input", () => {
+      drawBanner();
+      syncCopyButton();
+    }));
   document.getElementById("btn-download").addEventListener("click", downloadImage);
   if (sh) sh.addEventListener("click", shareImage);
   document.getElementById("btn-copy").addEventListener("click", copyCode);

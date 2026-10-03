@@ -1,1 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How your Care Circle referral is tracked · Epithrive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F4FAFB; --paper:#FFFFFF; --ink:#0E2E3B; --body:#33505B; --muted:#5B7480;
+  --teal:#0097B2; --teal-d:#00768C; --teal-tint:#E2F4F8; --orange:#F7941E; --orange-d:#9A4D00; --orange-tint:#FFEFD9;
+  --navy:#0A3D52; --line:#7F98A2; --rule:#D3E3E8; --diamond:#D6E3E7;
+  --display:'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Segoe UI', system-ui, sans-serif;
+  --text:'Manrope', 'Noto Sans Devanagari', 'Segoe UI', system-ui, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0B222C; --paper:#10303D; --ink:#EAF6F9; --body:#C3D7DE; --muted:#93AEB8;
+    --teal:#2BB8D2; --teal-d:#5CCBE0; --teal-tint:#123F4D; --orange:#F7A443; --orange-d:#FFC27A; --orange-tint:#3A2A14;
+    --navy:#9FD3E2; --line:#6F8D98; --rule:#24495A; --diamond:#24495A;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0B222C; --paper:#10303D; --ink:#EAF6F9; --body:#C3D7DE; --muted:#93AEB8;
+  --teal:#2BB8D2; --teal-d:#5CCBE0; --teal-tint:#123F4D; --orange:#F7A443; --orange-d:#FFC27A; --orange-tint:#3A2A14;
+  --navy:#9FD3E2; --line:#6F8D98; --rule:#24495A; --diamond:#24495A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0; background:var(--ground); color:var(--body); font-family:var(--text); font-size:17px; line-height:1.6; -webkit-text-size-adjust:100%}
+img,svg{max-width:100%}
+a{color:var(--teal-d)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--orange); outline-offset:3px; border-radius:6px}
+h1,h2,h3{font-family:var(--display); color:var(--ink); margin:0}
+.wrap{max-width:1040px; margin:0 auto; padding:0 20px}
 
+/* ---------- hero ---------- */
+.hero{padding:56px 0 40px}
+.brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; color:var(--teal-d); font-size:15px; margin-bottom:28px}
+.brand svg{width:28px; height:28px}
+.hero h1{font-size:clamp(34px,6vw,58px); line-height:1.05; letter-spacing:-0.02em; font-weight:800; max-width:15ch}
+.hero p.lede{font-size:clamp(18px,2.2vw,21px); line-height:1.55; margin:22px 0 0; max-width:36em; color:var(--body)}
+.promise{display:flex; flex-wrap:wrap; gap:10px; margin:28px 0 0; padding:0; list-style:none}
+.promise li{display:inline-flex; align-items:center; gap:8px; padding:9px 14px 9px 10px; border-radius:999px; background:var(--paper); border:1px solid var(--rule); font-weight:600; font-size:15px; color:var(--ink)}
+.promise svg{width:20px; height:20px; flex:none; stroke:var(--teal-d)}
+.jump{display:flex; flex-wrap:wrap; gap:8px 20px; margin:30px 0 0; font-weight:600; font-size:15px}
+.jump a{text-decoration-thickness:2px; text-underline-offset:4px}
+
+/* ---------- sections ---------- */
+section{padding:56px 0}
+section + section{border-top:1px solid var(--rule)}
+.sec-head{max-width:640px; margin-bottom:36px}
+.sec-head h2{font-size:clamp(28px,4vw,38px); line-height:1.12; letter-spacing:-0.015em; font-weight:800}
+.sec-head p{margin:12px 0 0}
+
+/* ---------- legend ---------- */
+.legend{display:flex; flex-wrap:wrap; gap:10px 22px; justify-content:center; margin:0 auto 44px; padding:14px 18px; background:var(--paper); border:1px solid var(--rule); border-radius:14px; max-width:860px; font-size:14px; font-weight:600; color:var(--body)}
+.legend span{display:inline-flex; align-items:center; gap:8px}
+.lg{display:inline-block; flex:none}
+.lg-you{width:26px; height:16px; border-radius:5px; background:var(--orange-tint); border:2px solid var(--orange)}
+.lg-pat{width:26px; height:16px; border-radius:5px; background:var(--paper); border:2px solid var(--navy)}
+.lg-auto{width:26px; height:16px; border-radius:5px; background:var(--teal-tint); border:2px solid var(--teal)}
+.lg-msg{width:30px; height:16px; background:var(--teal-d); clip-path:polygon(18% 0,100% 0,82% 100%,0 100%)}
+.lg-dec{width:22px; height:22px; background:var(--diamond); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.lg-term{width:30px; height:16px; border-radius:8px; background:var(--ink)}
+
+/* ---------- flowchart ---------- */
+.flow{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; align-items:center}
+.step{position:relative; width:100%; display:flex; flex-direction:column; align-items:center; margin-top:58px}
+.step:first-child{margin-top:0}
+.step::before{content:""; position:absolute; top:-54px; left:50%; width:2px; height:46px; margin-left:-1px; background:var(--line)}
+.step::after{content:""; position:absolute; top:-10px; left:50%; margin-left:-6px; border-left:6px solid transparent; border-right:6px solid transparent; border-top:8px solid var(--line)}
+.step:first-child::before,.step:first-child::after{display:none}
+.go{position:absolute; top:-40px; left:calc(50% + 14px); font-size:13px; font-weight:800; color:var(--teal-d)}
+
+.node{width:min(100%,420px); position:relative}
+.box{background:var(--paper); border:2px solid var(--rule); border-radius:16px; padding:16px 20px 18px; box-shadow:0 2px 0 rgba(10,61,82,.05)}
+.box.you{background:var(--orange-tint); border-color:var(--orange)}
+.box.pat{border-color:var(--navy)}
+.box.auto{background:var(--teal-tint); border-color:var(--teal)}
+.who{display:inline-block; font-size:12.5px; font-weight:700; line-height:1; padding:5px 9px; border-radius:999px; margin-bottom:8px}
+.you .who{background:var(--orange); color:#3A1D00}
+.pat .who{background:var(--navy); color:var(--paper)}
+.auto .who{background:var(--teal-d); color:#FFFFFF}
+.node h3{font-size:18px; line-height:1.3; font-weight:700; margin:0 0 4px}
+.node p{margin:0; font-size:15.5px; line-height:1.5}
+
+.term{background:var(--ink); color:var(--ground); border-radius:999px; padding:18px 34px; text-align:center}
+.term h3{color:var(--ground)}
+.term p{color:var(--ground); opacity:.82}
+.term .tag{display:block; font-size:12.5px; font-weight:700; opacity:.7; margin-bottom:2px}
+
+.msg{background:var(--teal-d); color:#FFFFFF; clip-path:polygon(5% 0,100% 0,95% 100%,0 100%); padding:16px 52px 18px}
+.msg h3{color:#FFFFFF}
+.msg p{color:#E3F5F9}
+.msg .who{background:rgba(255,255,255,.18); color:#FFFFFF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .msg{background:#0E6274}}
+:root[data-theme="dark"] .msg{background:#0E6274}
+
+.dec-row{display:grid; grid-template-columns:1fr minmax(0,280px) 1fr; align-items:center; width:100%; max-width:960px; column-gap:0}
+.dec-row .spacer{display:block}
+.diamond{width:280px; height:176px; background:var(--diamond); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%); display:flex; align-items:center; justify-content:center; text-align:center; padding:0 58px; font-family:var(--display); font-weight:700; font-size:16.5px; line-height:1.3; color:var(--ink); justify-self:center}
+.branch{position:relative; margin-left:56px; max-width:300px; border:2px dashed var(--line); border-radius:18px; padding:14px 18px 16px; background:var(--paper)}
+.branch::before{content:""; position:absolute; top:50%; left:-56px; width:48px; border-top:2px dashed var(--line)}
+.branch::after{content:""; position:absolute; top:50%; left:-10px; margin-top:-6px; border-top:6px solid transparent; border-bottom:6px solid transparent; border-left:8px solid var(--line)}
+.branch .no{position:absolute; top:calc(50% - 28px); left:-46px; font-size:13px; font-weight:800; color:var(--orange-d)}
+.branch h3{font-size:16.5px; margin:0 0 3px}
+.branch p{font-size:14.5px; line-height:1.5; margin:0}
+.branch .ifno{display:none}
+
+@media (max-width:760px){
+  .dec-row{display:block; position:relative}
+  .dec-row .spacer{display:none}
+  .diamond{margin:0 auto; width:260px; height:164px; padding:0 52px; font-size:15.5px}
+  .dec-row::after{content:""; position:absolute; left:50%; margin-left:-1px; top:164px; bottom:-4px; width:2px; background:var(--line)}
+  .branch{margin:10px 0 0 calc(50% + 18px); width:calc(50% - 18px); max-width:none; padding:12px 12px 14px; border-radius:14px}
+  .branch::before{top:-92px; left:112px; width:0; height:84px; border-top:0; border-left:2px dashed var(--line)}
+  .branch::after{top:-10px; left:107px; margin-top:0; border-top:8px solid var(--line); border-left:6px solid transparent; border-right:6px solid transparent; border-bottom:0}
+  .branch .no{top:-62px; left:122px}
+  .branch h3{font-size:15px}
+  .branch p{font-size:13.5px}
+  .msg{padding:16px 36px 18px}
+}
+
+/* ---------- three anchors ---------- */
+.anchors{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; background:var(--paper); border:1px solid var(--rule); border-radius:22px; overflow:hidden}
+.anchor{padding:28px 26px 30px}
+.anchor + .anchor{border-left:1px solid var(--rule)}
+.anchor .big{font-family:var(--display); font-weight:800; font-size:34px; line-height:1; color:var(--teal-d); letter-spacing:-0.02em}
+.anchor h3{font-size:19px; margin:12px 0 6px}
+.anchor p{margin:0; font-size:15.5px}
+@media (max-width:760px){
+  .anchors{grid-template-columns:1fr}
+  .anchor + .anchor{border-left:0; border-top:1px solid var(--rule)}
+}
+
+/* ---------- sharing ---------- */
+.share-grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:44px; align-items:start}
+@media (max-width:860px){.share-grid{grid-template-columns:1fr}}
+.cases{list-style:none; margin:0; padding:0}
+.case{display:grid; grid-template-columns:44px 1fr; gap:14px; padding:18px 0; border-bottom:1px solid var(--rule)}
+.case:first-child{padding-top:0}
+.ic{width:44px; height:44px; border-radius:12px; background:var(--paper); border:1px solid var(--rule); display:flex; align-items:center; justify-content:center}
+.ic svg{width:22px; height:22px; fill:none; stroke:var(--ink); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+.case h3{font-size:17px; line-height:1.35; font-weight:700}
+.case p{margin:4px 0 0; font-size:15.5px}
+.res{display:inline-flex; align-items:center; gap:6px; margin-top:8px; font-size:13.5px; font-weight:800; padding:4px 10px 4px 7px; border-radius:999px}
+.res svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round}
+.res.ok{background:var(--teal-d); color:#FFFFFF}
+.res.mostly{background:var(--teal-tint); color:var(--teal-d); border:1px solid var(--teal)}
+.res.code{background:var(--orange-tint); color:var(--orange-d); border:1px solid var(--orange)}
+
+.phone-wrap{position:sticky; top:24px}
+.phone{width:min(100%,320px); margin:0 auto; background:var(--ink); border-radius:40px; padding:12px; box-shadow:0 30px 60px -30px rgba(10,61,82,.45)}
+.screen{background:#FFFFFF; border-radius:30px; overflow:hidden; color:#33505B}
+.scr-top{height:28px; display:flex; justify-content:center; align-items:center}
+.scr-top span{width:84px; height:6px; border-radius:6px; background:#D3E3E8}
+.scr-body{padding:6px 18px 22px}
+.scr-banner{background:#E2F4F8; border-radius:14px; padding:12px 14px; font-size:13.5px; line-height:1.45; color:#0A3D52; font-weight:600}
+.scr-h{font-family:var(--display); font-weight:800; color:#0E2E3B; font-size:19px; line-height:1.2; margin:16px 0 6px}
+.scr-p{font-size:13px; line-height:1.5; margin:0 0 14px}
+.scr-code{border:2px dashed #F7941E; border-radius:14px; padding:12px 14px; background:#FFF7EC}
+.scr-code small{display:block; font-size:12px; color:#6B4A20; font-weight:600}
+.scr-code b{font-family:var(--display); font-size:22px; color:#0E2E3B; letter-spacing:.04em}
+.scr-code em{font-style:normal; font-size:12.5px; font-weight:700; color:#9A4D00; margin-left:6px}
+.scr-btn{display:block; text-align:center; margin-top:12px; padding:12px; border-radius:11px; background:#F7941E; color:#3A1D00; font-weight:800; font-size:14px; font-family:var(--display)}
+.scr-btn.wa{background:#FFFFFF; border:2px solid #25D366; color:#0E6B33}
+.phone-cap{text-align:center; font-size:14px; color:var(--muted); margin:16px auto 0; max-width:320px}
+
+.rule-card{margin-top:36px; background:var(--ink); color:var(--ground); border-radius:22px; padding:30px 30px 32px}
+.rule-card h3{color:var(--ground); font-size:clamp(21px,3vw,26px); line-height:1.25}
+.rule-card p{margin:10px 0 0; opacity:.86; max-width:46em}
+
+/* ---------- say / avoid ---------- */
+.say{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+@media (max-width:760px){.say{grid-template-columns:1fr}}
+.say-col{background:var(--paper); border:1px solid var(--rule); border-radius:20px; padding:24px 24px 26px}
+.say-col h3{font-size:19px; display:flex; align-items:center; gap:10px; margin-bottom:12px}
+.say-col h3 svg{width:24px; height:24px; fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round}
+.say-col.yes h3 svg{stroke:var(--teal-d)}
+.say-col.nope h3 svg{stroke:var(--orange-d)}
+.say-col ul{margin:0; padding:0 0 0 20px}
+.say-col li{margin:8px 0; font-size:16px}
+.say-col.yes li{font-style:italic}
+
+/* ---------- faq ---------- */
+.faq{max-width:720px}
+.faq details{background:var(--paper); border:1px solid var(--rule); border-radius:16px; margin-bottom:12px}
+.faq summary{cursor:pointer; list-style:none; padding:18px 52px 18px 20px; font-family:var(--display); font-weight:700; color:var(--ink); font-size:17px; position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:""; position:absolute; right:22px; top:50%; width:10px; height:10px; margin-top:-7px; border-right:2.5px solid var(--teal-d); border-bottom:2.5px solid var(--teal-d); transform:rotate(45deg); transition:transform .15s}
+.faq details[open] summary::after{transform:rotate(-135deg); margin-top:-2px}
+@media (prefers-reduced-motion: reduce){.faq summary::after{transition:none}}
+.faq .ans{padding:0 20px 20px; font-size:16px}
+.faq .ans p{margin:0}
+
+/* ---------- footer ---------- */
+footer{padding:40px 0 64px; border-top:1px solid var(--rule); font-size:14.5px; color:var(--muted)}
+.foot{display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center; justify-content:space-between}
+.print-btn{font:inherit; font-family:var(--display); font-weight:700; font-size:15px; color:var(--ink); background:var(--paper); border:2px solid var(--ink); border-radius:12px; padding:11px 18px; min-height:44px; cursor:pointer}
+.print-btn:hover{background:var(--ink); color:var(--ground)}
+
+
+/* ---------- top bar + language switch ---------- */
+.topbar{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; margin-bottom:30px}
+.topbar .brand{margin-bottom:0}
+.lang{display:inline-flex; padding:4px; gap:4px; background:var(--paper); border:1px solid var(--rule); border-radius:999px}
+.lang button{font:inherit; font-family:var(--display); font-weight:700; font-size:15px; line-height:1; color:var(--body); background:transparent; border:0; border-radius:999px; padding:10px 16px; min-height:40px; cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink); color:var(--ground)}
+.lang button:not([aria-pressed="true"]):hover{background:var(--teal-tint); color:var(--ink)}
+html[lang="hi"] body, html[lang="mr"] body{line-height:1.72}
+html[lang="hi"] h1, html[lang="mr"] h1, html[lang="hi"] h2, html[lang="mr"] h2{letter-spacing:0; line-height:1.3}
+html[lang="hi"] .hero h1, html[lang="mr"] .hero h1{max-width:18ch}
+html[lang="hi"] .node h3, html[lang="mr"] .node h3, html[lang="hi"] .diamond, html[lang="mr"] .diamond{line-height:1.45}
+html[lang="hi"] .diamond, html[lang="mr"] .diamond{font-size:15px; padding:0 54px}
+a.print-btn{display:inline-flex; align-items:center; text-decoration:none}
+
+@media print{
+  @page{size:A4; margin:10mm 10mm 12mm}
+  *{-webkit-print-color-adjust:exact !important; print-color-adjust:exact !important}
+  :root{--ground:#FFFFFF}
+  html{scroll-behavior:auto}
+  body{background:#FFFFFF}
+  .jump,.print-btn,.lang{display:none !important}
+  .hero{padding:8px 0 20px}
+  section{padding:26px 0}
+  .sec-head{break-after:avoid}
+  .step,.dec-row,.case,.anchor,.anchors,.say-col,.faq details,.rule-card,.phone-wrap,.legend{break-inside:avoid}
+  .phone-wrap{position:static}
+  .phone{box-shadow:none}
+  .box{box-shadow:none}
+  #protect{break-before:page}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap hero">
+  <div class="topbar">
+  <div class="brand">
+    <svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8.5 14.5c2.2 0 3.2-5 5.5-5s3.3 9 5.5 9" fill="none" stroke="#F7941E" stroke-width="2.4" stroke-linecap="round"/></svg>
+    Epithrive Care Circle
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">English</button>
+    <button type="button" data-lang="hi" aria-pressed="false" lang="hi">हिंदी</button>
+    <button type="button" data-lang="mr" aria-pressed="false" lang="mr">मराठी</button>
+  </div>
+  </div>
+  <h1 data-t="hero.title">How your referral is tracked</h1>
+  <p class="lede" data-t="hero.lede">You share free wound-care guides. Epithrive sends every message, gives the family their discount and connects each order back to you. You never sell, quote a price or follow up.</p>
+  <ul class="promise">
+    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="pr1">You share free guides</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="pr2">Families decide with their doctor</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="pr3">Every order through you is credited</span></li>
+  </ul>
+  <nav class="jump" aria-label="On this page">
+    <a href="#journey" data-t="j1">The full journey</a>
+    <a href="#protect" data-t="j2">What connects an order to you</a>
+    <a href="#shared" data-t="j3">When families pass it on</a>
+    <a href="#say" data-t="j4">What to say</a>
+    <a href="#faq" data-t="j5">Questions</a>
+  </nav>
+</header>
+
+<main>
+<section id="journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-t="journey.h">The full journey, step by step</h2>
+      <p data-t="journey.p">Follow the arrows from top to bottom. Diamonds are the moments where the family chooses; each "No" path shows what happens then.</p>
+    </div>
+
+    <div class="legend" aria-label="Chart key">
+      <span><i class="lg lg-you"></i><b style="font-weight:600" data-t="lg.you">You</b></span>
+      <span><i class="lg lg-pat"></i><b style="font-weight:600" data-t="lg.pat">Patient or family</b></span>
+      <span><i class="lg lg-auto"></i><b style="font-weight:600" data-t="lg.auto">Epithrive, automatically</b></span>
+      <span><i class="lg lg-msg"></i><b style="font-weight:600" data-t="lg.msg">WhatsApp message</b></span>
+      <span><i class="lg lg-dec"></i><b style="font-weight:600" data-t="lg.dec">A choice</b></span>
+      <span><i class="lg lg-term"></i><b style="font-weight:600" data-t="lg.term">Start and end</b></span>
+    </div>
+
+    <ol class="flow">
+      <li class="step">
+        <div class="node term"><span class="tag" data-t="t.start">Start</span><h3 data-t="s1.h">You meet a patient or family dealing with a wound</h3></div>
+      </li>
+      <li class="step">
+        <div class="node box you"><span class="who" data-t="who.you">You</span><h3 data-t="s2.h">Share your free-guide link or QR card</h3><p data-t="s2.p">Send it on WhatsApp or show the card. It offers free guides only, with no price and no product pitch.</p></div>
+      </li>
+      <li class="step">
+        <div class="node box pat"><span class="who" data-t="who.pat">Patient or family</span><h3 data-t="s3.h">They open it</h3><p data-t="s3.p">A scan or a tap opens Epithrive's free wound-support page.</p></div>
+      </li>
+      <li class="step">
+        <div class="node box auto"><span class="who" data-t="who.auto">Epithrive, automatically</span><h3 data-t="s4.h">Your 60-day referral tag is saved on their phone</h3><p data-t="s4.p">Your ₹100 code is attached to it.</p></div>
+      </li>
+      <li class="step">
+        <div class="dec-row">
+          <span class="spacer"></span>
+          <div class="diamond" data-t="d1">Do they ask for the free guides?</div>
+          <div class="branch"><span class="no" data-t="no">No</span><h3 data-t="b1.h">That's fine</h3><p data-t="b1.p">If they order on this phone within 60 days, it's still credited to you.</p></div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="go" data-t="yes">Yes</span>
+        <div class="node box auto"><span class="who" data-t="who.auto">Epithrive, automatically</span><h3 data-t="s5.h">The guides page opens</h3><p data-t="s5.p">It tells them their nurse shared the guides, shows your ₹100 code and has a Share on WhatsApp button that keeps your tag.</p></div>
+      </li>
+      <li class="step">
+        <div class="node msg"><span class="who" data-t="who.now">WhatsApp, straight away</span><h3 data-t="s6.h">The guides link arrives on WhatsApp</h3><p data-t="s6.p">The link carries your tag and code, so it works even on another phone.</p></div>
+      </li>
+      <li class="step">
+        <div class="node msg"><span class="who" data-t="who.day2">WhatsApp, on day 2</span><h3 data-t="s7.h">A reminder of the ₹100 code</h3><p data-t="s7.p">Skipped if they've already ordered or replied STOP.</p></div>
+      </li>
+      <li class="step">
+        <div class="dec-row">
+          <span class="spacer"></span>
+          <div class="diamond" data-t="d2">Do they decide, with their doctor, to order?</div>
+          <div class="branch"><span class="no" data-t="no">No</span><h3 data-t="b2.h">Not now is fine</h3><p data-t="b2.p">Nobody chases them. Your tag and code still count if they order later.</p></div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="go" data-t="yes">Yes</span>
+        <div class="node box pat"><span class="who" data-t="who.pat">Patient or family</span><h3 data-t="s8.h">They order on epithrive.in</h3><p data-t="s8.p">₹100 off is applied at checkout. They pay Epithrive directly.</p></div>
+      </li>
+      <li class="step">
+        <div class="dec-row">
+          <span class="spacer"></span>
+          <div class="diamond" data-t="d3">Is your code or your tag on the order?</div>
+          <div class="branch"><span class="no" data-t="no">No</span><h3 data-t="b3.h">It can't be matched to you</h3><p data-t="b3.p">This is rare, because your links apply the code for them. Orders from a pharmacy or other sites aren't tracked.</p></div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="go" data-t="yes">Yes</span>
+        <div class="node box auto"><span class="who" data-t="who.auto">Epithrive, automatically</span><h3 data-t="s9.h">The order is credited to you</h3><p data-t="s9.p">Matched by your code on any phone, or by your tag on the same phone.</p></div>
+      </li>
+      <li class="step">
+        <div class="node box auto"><span class="who" data-t="who.auto">Epithrive, automatically</span><h3 data-t="s10.h">They're linked to you for life</h3><p data-t="s10.p">Every reorder is credited to you, with no link or code needed.</p></div>
+      </li>
+      <li class="step">
+        <div class="node term"><span class="tag" data-t="t.end">End</span><h3 data-t="s11.h">You earn commission on every order</h3><p data-t="s11.p">At your Care Circle tier rate. See it in your dashboard at affiliate.epithrive.in.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="protect">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-t="protect.h">Three things connect an order to you</h2>
+      <p data-t="protect.p">Each one covers a gap the others can leave, so most orders are matched more than once.</p>
+    </div>
+    <div class="anchors">
+      <div class="anchor">
+        <div class="big" data-t="a1.big">60 days</div>
+        <h3 data-t="a1.h">Your referral tag</h3>
+        <p data-t="a1.p">Saved when someone opens your link. It lasts 60 days on that phone and browser. If they open another Care Circle member's link before ordering, the newer link takes over.</p>
+      </div>
+      <div class="anchor">
+        <div class="big" data-t="a2.big">₹100 off</div>
+        <h3 data-t="a2.h">Your code</h3>
+        <p data-t="a2.p">Gives the family ₹100 off and credits you on any phone, at any time, even if the tag is lost. Your links apply it for them automatically.</p>
+      </div>
+      <div class="anchor">
+        <div class="big" data-t="a3.big">For life</div>
+        <h3 data-t="a3.h">The lifetime link</h3>
+        <p data-t="a3.p">After their first order through you, every future order from that customer is yours. No link or code is needed again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shared">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-t="shared.h">When families pass it on</h2>
+      <p data-t="shared.p">Families often forward things to relatives on WhatsApp. Here's what keeps your credit, and what doesn't.</p>
+    </div>
+    <div class="share-grid">
+      <ul class="cases">
+        <li class="case">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5l7 7-7 7"/><path d="M20 12H9a5 5 0 0 0-5 5v2"/></svg></span>
+          <div><h3 data-t="c1.h">They forward your WhatsApp message</h3><p data-t="c1.p">Your link goes with it, so the relative gets your tag when they open it.</p><span class="res ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b style="font-weight:800" data-t="res.ok">Credited to you</b></span></div>
+        </li>
+        <li class="case">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span>
+          <div><h3 data-t="c2.h">They send a photo of your QR card</h3><p data-t="c2.p">Scanning the photo opens your link, exactly like scanning the card.</p><span class="res ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b style="font-weight:800" data-t="res.ok">Credited to you</b></span></div>
+        </li>
+        <li class="case">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4M8.2 13.2l7.6 4"/></svg></span>
+          <div><h3 data-t="c3.h">They tap Share on WhatsApp on the guides page</h3><p data-t="c3.p">The shared link includes your tag and code. The relative sees that a nurse shared the guides, with the ₹100 code ready.</p><span class="res ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b style="font-weight:800" data-t="res.ok">Credited to you</b></span></div>
+        </li>
+        <li class="case">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
+          <div><h3 data-t="c4.h">They forward Epithrive's guides message</h3><p data-t="c4.p">The link in that message carries your tag and code too.</p><span class="res ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b style="font-weight:800" data-t="res.ok">Credited to you</b></span></div>
+        </li>
+        <li class="case">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5h18v3a2 2 0 0 0 0 3v3H3v-3a2 2 0 0 0 0-3z"/><path d="M14 7.5v9" stroke-dasharray="2 2.5"/></svg></span>
+          <div><h3 data-t="c5.h">They pass on the ₹100 code</h3><p data-t="c5.p">When it's used at checkout, the order is yours on any phone, and that customer is linked to you for future orders.</p><span class="res ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b style="font-weight:800" data-t="res.ok">Credited to you</b></span></div>
+        </li>
+        <li class="case">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+          <div><h3 data-t="c6.h">They copy the guides page address</h3><p data-t="c6.p">It carries your code when they opened the page from your link. The Share on WhatsApp button is the sure way.</p><span class="res mostly"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b style="font-weight:800" data-t="res.mostly">Usually credited</b></span></div>
+        </li>
+        <li class="case">
+          <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 16.5h5"/></svg></span>
+          <div><h3 data-t="c7.h">They share a single article or the shop's own link</h3><p data-t="c7.p">Article pages and a plain epithrive.in link don't know who referred the reader.</p><span class="res code"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5h18v3a2 2 0 0 0 0 3v3H3v-3a2 2 0 0 0 0-3z"/></svg><b style="font-weight:800" data-t="res.code">Only if your code is used</b></span></div>
+        </li>
+      </ul>
+
+      <div class="phone-wrap">
+        <div class="phone" role="img" aria-label="Illustration of the guides page a family sees: a note that their nurse shared the guides, a ₹100 code, an order button and a Share on WhatsApp button">
+          <div class="screen">
+            <div class="scr-top"><span></span></div>
+            <div class="scr-body">
+              <div class="scr-banner">Your nurse shared these guides with you</div>
+              <div class="scr-h">Free wound-care nutrition guides</div>
+              <p class="scr-p">Simple reading on how nutrition supports the body's natural repair, in English and Indian languages.</p>
+              <div class="scr-code"><small>Your reader code from your nurse</small><b>ET1234</b><em>saves ₹100</em></div>
+              <span class="scr-btn">Get Epithrive with ₹100 off</span>
+              <span class="scr-btn wa">Share on WhatsApp</span>
+            </div>
+          </div>
+        </div>
+        <p class="phone-cap" data-t="ph.cap">What a family sees when they open your link. Simplified; the code shown is an example.</p>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <h3 data-t="rule.h">The simplest habit: ask families to forward your message or use the Share button</h3>
+      <p data-t="rule.p">Your link, your QR card, the guides page's Share button and Epithrive's guides message all carry your tag. Anything else only counts if your ₹100 code is used.</p>
+    </div>
+  </div>
+</section>
+
+<section id="say">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-t="say.h">What to say</h2>
+      <p data-t="say.p">You're sharing free information. The family and their doctor make the decision.</p>
+    </div>
+    <div class="say">
+      <div class="say-col yes">
+        <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="say.yes">Good to say</span></h3>
+        <ul>
+          <li data-t="y1">"These free guides explain how nutrition supports the body's repair."</li>
+          <li data-t="y2">"Please ask your doctor whether it suits you."</li>
+          <li data-t="y3">"I'm part of Epithrive's Care Circle, so I share their guides."</li>
+        </ul>
+      </div>
+      <div class="say-col nope">
+        <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-t="say.no">Please avoid</span></h3>
+        <ul>
+          <li data-t="n1">Saying it heals, cures or treats a wound</li>
+          <li data-t="n2">Promising results or a healing time</li>
+          <li data-t="n3">Quoting prices or offering discounts yourself</li>
+          <li data-t="n4">Suggesting it replaces their wound care or medicines</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-t="faq.h">Questions</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary data-t="q1">Where do I see my orders and commission?</summary>
+        <div class="ans"><p data-t="q1a">In your dashboard at <a href="https://affiliate.epithrive.in">affiliate.epithrive.in</a>. Add your payout method there so Epithrive can pay you.</p></div>
+      </details>
+      <details>
+        <summary data-t="q2">I've lost my link or QR card. What do I do?</summary>
+        <div class="ans"><p data-t="q2a">Open your personal kit page from your welcome message on WhatsApp, or go to <a href="https://training.epithrive.in/welcome/">training.epithrive.in/welcome</a> and open your kit from there. It rebuilds your link, your QR card and ready-made messages.</p></div>
+      </details>
+      <details>
+        <summary data-t="q3">A family wants the messages to stop.</summary>
+        <div class="ans"><p data-t="q3a">They can reply STOP to any Epithrive message. Nothing more is sent after that.</p></div>
+      </details>
+      <details>
+        <summary data-t="q4">What if they buy from a pharmacy or another website?</summary>
+        <div class="ans"><p data-t="q4a">Only orders on epithrive.in are tracked. Your links send families there, so most orders through you land in the right place.</p></div>
+      </details>
+      <details>
+        <summary data-t="q5">What if they open another nurse's link later?</summary>
+        <div class="ans"><p data-t="q5a">Before their first order, the newest link they opened takes over the 60-day tag. That's one more reason the ₹100 code matters: it identifies you whenever it's used.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p style="margin:0; max-width:40em" data-t="foot.disc">Epithrive is an oral nutritional supplement. Use alongside standard wound care as advised by your doctor. Care Circle by Epithrive, Nuin Wellness Pvt. Ltd.</p>
+    <a class="print-btn" id="pdf-link" href="care-circle-tracking-en.pdf" download data-t="pdf">Download PDF</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var I18N = {
+    hi: {
+      "_title": "आपका Care Circle रेफ़रल कैसे ट्रैक होता है · Epithrive",
+      "hero.title": "आपका रेफ़रल कैसे ट्रैक होता है",
+      "hero.lede": "आप घाव की देखभाल से जुड़ी मुफ़्त गाइड शेयर करते हैं। बाकी सब Epithrive करता है: हर मैसेज भेजना, परिवार को छूट देना और हर ऑर्डर को आपसे जोड़ना। आपको कभी कुछ बेचना, कीमत बताना या फ़ॉलो-अप करना नहीं पड़ता।",
+      "pr1": "आप मुफ़्त गाइड शेयर करते हैं",
+      "pr2": "परिवार अपने डॉक्टर से बात करके फ़ैसला करता है",
+      "pr3": "आपके ज़रिए आया हर ऑर्डर आपके नाम",
+      "j1": "पूरी प्रक्रिया", "j2": "ऑर्डर आपसे कैसे जुड़ता है", "j3": "जब परिवार आगे शेयर करे", "j4": "क्या कहें", "j5": "सवाल-जवाब",
+      "journey.h": "पूरी प्रक्रिया, कदम-दर-कदम",
+      "journey.p": "ऊपर से नीचे तीरों के साथ चलें। हीरे के आकार वाले खाने वे पल हैं जहाँ परिवार फ़ैसला करता है; हर “नहीं” वाला रास्ता बताता है कि तब क्या होता है।",
+      "lg.you": "आप", "lg.pat": "मरीज़ या परिवार", "lg.auto": "Epithrive, अपने-आप", "lg.msg": "WhatsApp मैसेज", "lg.dec": "फ़ैसला", "lg.term": "शुरुआत और अंत",
+      "who.you": "आप", "who.pat": "मरीज़ या परिवार", "who.auto": "Epithrive, अपने-आप", "who.now": "WhatsApp, तुरंत", "who.day2": "WhatsApp, दूसरे दिन",
+      "t.start": "शुरुआत", "t.end": "अंत", "yes": "हाँ", "no": "नहीं",
+      "s1.h": "आप किसी ऐसे मरीज़ या परिवार से मिलते हैं जो घाव से जूझ रहा है",
+      "s2.h": "अपना मुफ़्त गाइड वाला लिंक या QR कार्ड शेयर करें",
+      "s2.p": "इसे WhatsApp पर भेजें या कार्ड दिखाएँ। इसमें सिर्फ़ मुफ़्त गाइड हैं, न कोई कीमत, न प्रोडक्ट का प्रचार।",
+      "s3.h": "वे इसे खोलते हैं",
+      "s3.p": "स्कैन या टैप करते ही Epithrive का मुफ़्त घाव-देखभाल पेज खुलता है।",
+      "s4.h": "आपका 60 दिन का रेफ़रल टैग उनके फ़ोन में सेव हो जाता है",
+      "s4.p": "आपका ₹100 वाला कोड भी इसके साथ जुड़ जाता है।",
+      "d1": "क्या वे मुफ़्त गाइड मँगवाते हैं?",
+      "b1.h": "कोई बात नहीं",
+      "b1.p": "अगर वे 60 दिनों के अंदर इसी फ़ोन से ऑर्डर करते हैं, तो भी वह आपके नाम होगा।",
+      "s5.h": "गाइड वाला पेज खुलता है",
+      "s5.p": "पेज बताता है कि ये गाइड उनकी नर्स ने शेयर की हैं, आपका ₹100 वाला कोड दिखाता है, और इसमें “Share on WhatsApp” बटन है जो आपका टैग साथ रखता है।",
+      "s6.h": "गाइड का लिंक WhatsApp पर आता है",
+      "s6.p": "इस लिंक में आपका टैग और कोड होता है, इसलिए यह दूसरे फ़ोन पर भी काम करता है।",
+      "s7.h": "₹100 वाले कोड की याद दिलाई जाती है",
+      "s7.p": "अगर वे पहले ही ऑर्डर कर चुके हैं या STOP लिख चुके हैं, तो यह नहीं भेजा जाता।",
+      "d2": "क्या वे डॉक्टर से बात करके ऑर्डर करने का फ़ैसला करते हैं?",
+      "b2.h": "अभी नहीं, तो भी ठीक है",
+      "b2.p": "कोई उन पर दबाव नहीं डालता। अगर वे बाद में ऑर्डर करते हैं, तो आपका टैग और कोड तब भी गिने जाते हैं।",
+      "s8.h": "वे epithrive.in पर ऑर्डर करते हैं",
+      "s8.p": "चेकआउट पर ₹100 की छूट लग जाती है। वे भुगतान सीधे Epithrive को करते हैं।",
+      "d3": "क्या ऑर्डर पर आपका कोड या टैग है?",
+      "b3.h": "तब इसे आपसे जोड़ा नहीं जा सकता",
+      "b3.p": "ऐसा कम ही होता है, क्योंकि आपके लिंक उनके लिए कोड अपने-आप लगा देते हैं। फ़ार्मेसी या दूसरी वेबसाइटों से हुए ऑर्डर ट्रैक नहीं होते।",
+      "s9.h": "ऑर्डर आपके नाम जुड़ जाता है",
+      "s9.p": "किसी भी फ़ोन पर आपके कोड से, या उसी फ़ोन पर आपके टैग से मिलान होता है।",
+      "s10.h": "वे हमेशा के लिए आपसे जुड़ जाते हैं",
+      "s10.p": "उनका हर अगला ऑर्डर आपके नाम होता है, लिंक या कोड की ज़रूरत नहीं।",
+      "s11.h": "हर ऑर्डर पर आपको कमीशन मिलता है",
+      "s11.p": "आपके Care Circle टियर की दर से। इसे affiliate.epithrive.in पर अपने डैशबोर्ड में देखें।",
+      "protect.h": "तीन चीज़ें ऑर्डर को आपसे जोड़ती हैं",
+      "protect.p": "हर एक वह कमी पूरी करती है जो बाकी छोड़ सकती हैं, इसलिए ज़्यादातर ऑर्डर एक से ज़्यादा तरीक़ों से मिलते हैं।",
+      "a1.big": "60 दिन", "a1.h": "आपका रेफ़रल टैग",
+      "a1.p": "कोई आपका लिंक खोलता है तो यह सेव हो जाता है। यह उस फ़ोन और ब्राउज़र में 60 दिन तक रहता है। अगर ऑर्डर से पहले वे किसी दूसरे Care Circle सदस्य का लिंक खोलते हैं, तो नया लिंक इसकी जगह ले लेता है।",
+      "a2.big": "₹100 छूट", "a2.h": "आपका कोड",
+      "a2.p": "परिवार को ₹100 की छूट देता है और किसी भी फ़ोन पर, कभी भी ऑर्डर आपके नाम करता है, टैग खो जाए तब भी। आपके लिंक इसे उनके लिए अपने-आप लगा देते हैं।",
+      "a3.big": "हमेशा के लिए", "a3.h": "लाइफ़टाइम जुड़ाव",
+      "a3.p": "आपके ज़रिए पहले ऑर्डर के बाद, उस ग्राहक का हर अगला ऑर्डर आपका होता है। दोबारा लिंक या कोड की ज़रूरत नहीं पड़ती।",
+      "shared.h": "जब परिवार इसे आगे भेजता है",
+      "shared.p": "परिवार अक्सर चीज़ें रिश्तेदारों को WhatsApp पर फ़ॉरवर्ड करते हैं। यहाँ देखें किससे आपका क्रेडिट बना रहता है, और किससे नहीं।",
+      "c1.h": "वे आपका WhatsApp मैसेज फ़ॉरवर्ड करते हैं",
+      "c1.p": "आपका लिंक साथ जाता है, इसलिए रिश्तेदार जब उसे खोलते हैं तो उन्हें आपका टैग मिल जाता है।",
+      "c2.h": "वे आपके QR कार्ड की फ़ोटो भेजते हैं",
+      "c2.p": "फ़ोटो स्कैन करने पर आपका ही लिंक खुलता है, बिलकुल कार्ड स्कैन करने जैसा।",
+      "c3.h": "वे गाइड पेज पर “Share on WhatsApp” दबाते हैं",
+      "c3.p": "शेयर किए गए लिंक में आपका टैग और कोड होता है। रिश्तेदार को दिखता है कि गाइड एक नर्स ने शेयर की हैं, और ₹100 वाला कोड तैयार मिलता है।",
+      "c4.h": "वे Epithrive का गाइड वाला मैसेज फ़ॉरवर्ड करते हैं",
+      "c4.p": "उस मैसेज के लिंक में भी आपका टैग और कोड होता है।",
+      "c5.h": "वे ₹100 वाला कोड आगे बताते हैं",
+      "c5.p": "चेकआउट पर इसका इस्तेमाल होते ही ऑर्डर आपका होता है, फ़ोन कोई भी हो, और वह ग्राहक आगे के ऑर्डर के लिए आपसे जुड़ जाता है।",
+      "c6.h": "वे गाइड पेज का पता (URL) कॉपी करते हैं",
+      "c6.p": "अगर उन्होंने पेज आपके लिंक से खोला था, तो उसमें आपका कोड होता है। “Share on WhatsApp” बटन सबसे पक्का तरीक़ा है।",
+      "c7.h": "वे कोई एक लेख या शॉप का सीधा लिंक शेयर करते हैं",
+      "c7.p": "लेख वाले पेज और सादे epithrive.in लिंक को पता नहीं होता कि पढ़ने वाले को किसने भेजा।",
+      "res.ok": "आपके नाम", "res.mostly": "आम तौर पर आपके नाम", "res.code": "सिर्फ़ आपका कोड लगने पर",
+      "ph.cap": "आपका लिंक खोलने पर परिवार को यह दिखता है। सरल रूप में; दिखाया गया कोड सिर्फ़ उदाहरण है।",
+      "rule.h": "सबसे आसान आदत: परिवारों से कहें कि वे आपका मैसेज फ़ॉरवर्ड करें या Share बटन इस्तेमाल करें",
+      "rule.p": "आपका लिंक, आपका QR कार्ड, गाइड पेज का Share बटन और Epithrive का गाइड वाला मैसेज, इन सबमें आपका टैग होता है। बाकी किसी भी चीज़ से ऑर्डर तभी गिना जाता है जब आपका ₹100 वाला कोड लगे।",
+      "say.h": "क्या कहें",
+      "say.p": "आप मुफ़्त जानकारी शेयर कर रहे हैं। फ़ैसला परिवार और उनके डॉक्टर करते हैं।",
+      "say.yes": "कहना ठीक है", "say.no": "इनसे बचें",
+      "y1": "“ये मुफ़्त गाइड बताती हैं कि पोषण शरीर की मरम्मत में कैसे मदद करता है।”",
+      "y2": "“कृपया अपने डॉक्टर से पूछें कि यह आपके लिए ठीक है या नहीं।”",
+      "y3": "“Epithrive के Care Circle में मैं भी हूँ, ये गाइड उन्हीं की हैं।”",
+      "n1": "यह कहना कि इससे घाव भरता है, ठीक होता है या इलाज होता है",
+      "n2": "नतीजों या घाव भरने के समय का वादा करना",
+      "n3": "ख़ुद कीमत बताना या छूट देना",
+      "n4": "यह कहना कि यह घाव की देखभाल या दवाओं की जगह ले सकता है",
+      "faq.h": "सवाल-जवाब",
+      "q1": "मैं अपने ऑर्डर और कमीशन कहाँ देखूँ?",
+      "q1a": "<a href=\"https://affiliate.epithrive.in\">affiliate.epithrive.in</a> पर अपने डैशबोर्ड में। भुगतान पाने का तरीक़ा भी वहीं जोड़ें, ताकि Epithrive आपको भुगतान कर सके।",
+      "q2": "मेरा लिंक या QR कार्ड खो गया है। अब क्या करूँ?",
+      "q2a": "WhatsApp पर आए अपने वेलकम मैसेज से अपना पर्सनल किट पेज खोलें, या <a href=\"https://training.epithrive.in/welcome/\">training.epithrive.in/welcome</a> पर जाकर वहाँ से अपना किट खोलें। वहाँ आपका लिंक, QR कार्ड और तैयार मैसेज फिर से मिल जाते हैं।",
+      "q3": "परिवार चाहता है कि मैसेज आना बंद हो जाएँ।",
+      "q3a": "वे Epithrive के किसी भी मैसेज का जवाब STOP लिखकर दे सकते हैं। उसके बाद कुछ नहीं भेजा जाता।",
+      "q4": "अगर वे फ़ार्मेसी या किसी दूसरी वेबसाइट से ख़रीदें तो?",
+      "q4a": "सिर्फ़ epithrive.in पर हुए ऑर्डर ट्रैक होते हैं। आपके लिंक परिवारों को वहीं ले जाते हैं, इसलिए आपके ज़रिए आए ज़्यादातर ऑर्डर सही जगह पहुँचते हैं।",
+      "q5": "अगर बाद में वे किसी दूसरी नर्स का लिंक खोलें तो?",
+      "q5a": "पहले ऑर्डर से पहले, जो लिंक उन्होंने सबसे आख़िर में खोला, वही 60 दिन वाले टैग की जगह ले लेता है। इसीलिए ₹100 वाला कोड ज़रूरी है: जब भी इसका इस्तेमाल होता है, यह आपकी पहचान करता है।",
+      "foot.disc": "Epithrive मुँह से लिया जाने वाला एक पोषण सप्लीमेंट है। डॉक्टर की सलाह के अनुसार, घाव की सामान्य देखभाल के साथ लें। Care Circle by Epithrive, Nuin Wellness Pvt. Ltd.",
+      "pdf": "PDF डाउनलोड करें"
+    },
+    mr: {
+      "_title": "तुमचा Care Circle रेफरल कसा ट्रॅक होतो · Epithrive",
+      "hero.title": "तुमचा रेफरल कसा ट्रॅक होतो",
+      "hero.lede": "तुम्ही जखमेच्या काळजीविषयी मोफत गाइड्स शेअर करता. बाकी सगळं Epithrive करतं: प्रत्येक मेसेज पाठवणं, कुटुंबाला सवलत देणं आणि प्रत्येक ऑर्डर तुमच्याशी जोडणं. तुम्हाला काहीही विकायचं, किंमत सांगायची किंवा पाठपुरावा करायचा नसतो.",
+      "pr1": "तुम्ही मोफत गाइड्स शेअर करता",
+      "pr2": "कुटुंब डॉक्टरांशी बोलून निर्णय घेतं",
+      "pr3": "तुमच्यामार्फत आलेली प्रत्येक ऑर्डर तुमच्या नावावर",
+      "j1": "संपूर्ण प्रक्रिया", "j2": "ऑर्डर तुमच्याशी कशी जोडली जाते", "j3": "कुटुंबाने पुढे शेअर केलं तर", "j4": "काय बोलावं", "j5": "प्रश्नोत्तरे",
+      "journey.h": "संपूर्ण प्रक्रिया, टप्प्याटप्प्याने",
+      "journey.p": "वरून खाली बाणांप्रमाणे पुढे चला. हिऱ्याच्या आकाराचे चौकोन म्हणजे कुटुंब निर्णय घेतं ते क्षण; प्रत्येक “नाही” मार्ग तेव्हा काय होतं ते दाखवतो.",
+      "lg.you": "तुम्ही", "lg.pat": "रुग्ण किंवा कुटुंब", "lg.auto": "Epithrive, आपोआप", "lg.msg": "WhatsApp मेसेज", "lg.dec": "निर्णय", "lg.term": "सुरुवात आणि शेवट",
+      "who.you": "तुम्ही", "who.pat": "रुग्ण किंवा कुटुंब", "who.auto": "Epithrive, आपोआप", "who.now": "WhatsApp, लगेच", "who.day2": "WhatsApp, दुसऱ्या दिवशी",
+      "t.start": "सुरुवात", "t.end": "शेवट", "yes": "हो", "no": "नाही",
+      "s1.h": "जखमेशी झुंज देणाऱ्या रुग्णाला किंवा कुटुंबाला तुम्ही भेटता",
+      "s2.h": "तुमची मोफत गाइडची लिंक किंवा QR कार्ड शेअर करा",
+      "s2.p": "ती WhatsApp वर पाठवा किंवा कार्ड दाखवा. यात फक्त मोफत गाइड्स आहेत, ना किंमत, ना उत्पादनाची जाहिरात.",
+      "s3.h": "ते ती उघडतात",
+      "s3.p": "स्कॅन किंवा टॅप केल्यावर Epithrive चं मोफत जखम-काळजी पेज उघडतं.",
+      "s4.h": "तुमचा 60 दिवसांचा रेफरल टॅग त्यांच्या फोनमध्ये सेव्ह होतो",
+      "s4.p": "तुमचा ₹100 चा कोडही त्यासोबत जोडला जातो.",
+      "d1": "ते मोफत गाइड्स मागवतात का?",
+      "b1.h": "हरकत नाही",
+      "b1.p": "त्यांनी 60 दिवसांच्या आत याच फोनवरून ऑर्डर केली, तरी ती तुमच्या नावावर जमा होते.",
+      "s5.h": "गाइड्सचं पेज उघडतं",
+      "s5.p": "हे गाइड्स त्यांच्या नर्सने शेअर केले आहेत हे पेज सांगतं, तुमचा ₹100 चा कोड दाखवतं, आणि त्यात “Share on WhatsApp” बटण आहे जे तुमचा टॅग सोबत ठेवतं.",
+      "s6.h": "गाइड्सची लिंक WhatsApp वर येते",
+      "s6.p": "या लिंकमध्ये तुमचा टॅग आणि कोड असतो, त्यामुळे ती दुसऱ्या फोनवरही चालते.",
+      "s7.h": "₹100 च्या कोडची आठवण करून दिली जाते",
+      "s7.p": "त्यांनी आधीच ऑर्डर केली असेल किंवा STOP असं उत्तर दिलं असेल, तर हा मेसेज पाठवला जात नाही.",
+      "d2": "डॉक्टरांशी बोलून ते ऑर्डर करायचं ठरवतात का?",
+      "b2.h": "आत्ता नाही, तरी चालेल",
+      "b2.p": "कोणीही त्यांच्या मागे लागत नाही. त्यांनी नंतर ऑर्डर केली तरी तुमचा टॅग आणि कोड ग्राह्य धरले जातात.",
+      "s8.h": "ते epithrive.in वर ऑर्डर करतात",
+      "s8.p": "चेकआउटला ₹100 ची सवलत लागू होते. ते पैसे थेट Epithrive ला देतात.",
+      "d3": "ऑर्डरवर तुमचा कोड किंवा टॅग आहे का?",
+      "b3.h": "तर ती तुमच्याशी जोडता येत नाही",
+      "b3.p": "असं क्वचितच होतं, कारण तुमच्या लिंक त्यांच्यासाठी कोड आपोआप लावतात. फार्मसी किंवा इतर वेबसाइटवरून केलेल्या ऑर्डर ट्रॅक होत नाहीत.",
+      "s9.h": "ऑर्डर तुमच्या नावावर जमा होते",
+      "s9.p": "कोणत्याही फोनवर तुमच्या कोडने, किंवा त्याच फोनवर तुमच्या टॅगने जुळवली जाते.",
+      "s10.h": "ते कायमचे तुमच्याशी जोडले जातात",
+      "s10.p": "त्यांची पुढची प्रत्येक ऑर्डर तुमच्या नावावर जमा होते, लिंक किंवा कोडची गरज नाही.",
+      "s11.h": "प्रत्येक ऑर्डरवर तुम्हाला कमिशन मिळतं",
+      "s11.p": "तुमच्या Care Circle टियरच्या दराने. ते affiliate.epithrive.in वरच्या तुमच्या डॅशबोर्डमध्ये पाहा.",
+      "protect.h": "तीन गोष्टी ऑर्डर तुमच्याशी जोडतात",
+      "protect.p": "प्रत्येक गोष्ट इतरांकडून राहिलेली उणीव भरून काढते, त्यामुळे बहुतेक ऑर्डर एकापेक्षा जास्त प्रकारे जुळतात.",
+      "a1.big": "60 दिवस", "a1.h": "तुमचा रेफरल टॅग",
+      "a1.p": "कोणी तुमची लिंक उघडली की हा सेव्ह होतो. तो त्या फोन आणि ब्राउझरमध्ये 60 दिवस राहतो. ऑर्डर करण्याआधी त्यांनी दुसऱ्या Care Circle सदस्याची लिंक उघडली, तर नवी लिंक त्याची जागा घेते.",
+      "a2.big": "₹100 सवलत", "a2.h": "तुमचा कोड",
+      "a2.p": "कुटुंबाला ₹100 ची सवलत देतो आणि कोणत्याही फोनवर, कधीही ऑर्डर तुमच्या नावावर जमा करतो, टॅग हरवला तरीही. तुमच्या लिंक तो त्यांच्यासाठी आपोआप लावतात.",
+      "a3.big": "कायमचं", "a3.h": "कायमची जोडणी",
+      "a3.p": "तुमच्यामार्फत पहिली ऑर्डर झाल्यावर, त्या ग्राहकाची पुढची प्रत्येक ऑर्डर तुमची असते. पुन्हा लिंक किंवा कोडची गरज लागत नाही.",
+      "shared.h": "कुटुंब हे पुढे पाठवतं तेव्हा",
+      "shared.p": "कुटुंबं अनेकदा नातेवाइकांना WhatsApp वर गोष्टी फॉरवर्ड करतात. कशामुळे तुमचं क्रेडिट टिकतं आणि कशामुळे नाही, ते इथे पाहा.",
+      "c1.h": "ते तुमचा WhatsApp मेसेज फॉरवर्ड करतात",
+      "c1.p": "तुमची लिंक सोबत जाते, त्यामुळे नातेवाइकाने ती उघडली की त्यांना तुमचा टॅग लागतो.",
+      "c2.h": "ते तुमच्या QR कार्डचा फोटो पाठवतात",
+      "c2.p": "फोटो स्कॅन केल्यावर तुमचीच लिंक उघडते, अगदी कार्ड स्कॅन केल्यासारखी.",
+      "c3.h": "ते गाइड पेजवरचं “Share on WhatsApp” बटण दाबतात",
+      "c3.p": "शेअर केलेल्या लिंकमध्ये तुमचा टॅग आणि कोड असतो. गाइड्स एका नर्सने शेअर केले आहेत हे नातेवाइकाला दिसतं, आणि ₹100 चा कोड तयार असतो.",
+      "c4.h": "ते Epithrive चा गाइड्सचा मेसेज फॉरवर्ड करतात",
+      "c4.p": "त्या मेसेजमधल्या लिंकमध्येही तुमचा टॅग आणि कोड असतो.",
+      "c5.h": "ते ₹100 चा कोड पुढे सांगतात",
+      "c5.p": "चेकआउटला तो वापरला की ऑर्डर तुमची होते, फोन कोणताही असो, आणि तो ग्राहक पुढच्या ऑर्डरसाठी तुमच्याशी जोडला जातो.",
+      "c6.h": "ते गाइड पेजचा पत्ता (URL) कॉपी करतात",
+      "c6.p": "त्यांनी पेज तुमच्या लिंकवरून उघडलं असेल, तर त्यात तुमचा कोड असतो. “Share on WhatsApp” बटण हाच खात्रीचा मार्ग आहे.",
+      "c7.h": "ते एखादा लेख किंवा दुकानाची थेट लिंक शेअर करतात",
+      "c7.p": "लेखांच्या पेजेसना आणि साध्या epithrive.in लिंकला वाचकाला कोणी पाठवलं हे कळत नाही.",
+      "res.ok": "तुमच्या नावावर", "res.mostly": "सहसा तुमच्या नावावर", "res.code": "फक्त तुमचा कोड वापरला तरच",
+      "ph.cap": "तुमची लिंक उघडल्यावर कुटुंबाला हे दिसतं. सोप्या स्वरूपात; दाखवलेला कोड फक्त उदाहरण आहे.",
+      "rule.h": "सर्वात सोपी सवय: कुटुंबांना तुमचा मेसेज फॉरवर्ड करायला किंवा Share बटण वापरायला सांगा",
+      "rule.p": "तुमची लिंक, तुमचं QR कार्ड, गाइड पेजवरचं Share बटण आणि Epithrive चा गाइड्सचा मेसेज, या सगळ्यांमध्ये तुमचा टॅग असतो. इतर कशानेही ऑर्डर तेव्हाच धरली जाते जेव्हा तुमचा ₹100 चा कोड वापरला जातो.",
+      "say.h": "काय बोलावं",
+      "say.p": "तुम्ही मोफत माहिती शेअर करत आहात. निर्णय कुटुंब आणि त्यांचे डॉक्टर घेतात.",
+      "say.yes": "असं बोलू शकता", "say.no": "हे टाळा",
+      "y1": "“या मोफत गाइड्समध्ये पोषण शरीराच्या दुरुस्तीला कशी मदत करतं ते सांगितलं आहे.”",
+      "y2": "“हे तुम्हाला योग्य आहे का, ते कृपया तुमच्या डॉक्टरांना विचारा.”",
+      "y3": "“मी Epithrive च्या Care Circle मध्ये आहे; हे गाइड्स त्यांचेच आहेत.”",
+      "n1": "यामुळे जखम भरते, बरी होते किंवा उपचार होतो असं सांगणं",
+      "n2": "परिणामांचं किंवा जखम भरण्याच्या वेळेचं आश्वासन देणं",
+      "n3": "स्वतः किंमत सांगणं किंवा सवलत देणं",
+      "n4": "हे जखमेच्या काळजीची किंवा औषधांची जागा घेऊ शकतं असं सुचवणं",
+      "faq.h": "प्रश्नोत्तरे",
+      "q1": "माझ्या ऑर्डर आणि कमिशन कुठे पाहू?",
+      "q1a": "<a href=\"https://affiliate.epithrive.in\">affiliate.epithrive.in</a> वरच्या तुमच्या डॅशबोर्डमध्ये. पैसे मिळण्याची पद्धतही तिथेच जोडा, म्हणजे Epithrive तुम्हाला पैसे देऊ शकेल.",
+      "q2": "माझी लिंक किंवा QR कार्ड हरवलं आहे. आता काय करू?",
+      "q2a": "WhatsApp वर आलेल्या वेलकम मेसेजमधून तुमचं पर्सनल किट पेज उघडा, किंवा <a href=\"https://training.epithrive.in/welcome/\">training.epithrive.in/welcome</a> वर जाऊन तिथून तुमचं किट उघडा. तिथे तुमची लिंक, QR कार्ड आणि तयार मेसेज पुन्हा मिळतात.",
+      "q3": "कुटुंबाला मेसेज बंद करायचे आहेत.",
+      "q3a": "ते Epithrive च्या कोणत्याही मेसेजला STOP असं उत्तर देऊ शकतात. त्यानंतर काहीही पाठवलं जात नाही.",
+      "q4": "त्यांनी फार्मसीतून किंवा दुसऱ्या वेबसाइटवरून खरेदी केली तर?",
+      "q4a": "फक्त epithrive.in वरच्या ऑर्डर ट्रॅक होतात. तुमच्या लिंक कुटुंबांना तिथेच नेतात, त्यामुळे तुमच्यामार्फत येणाऱ्या बहुतेक ऑर्डर योग्य ठिकाणी होतात.",
+      "q5": "नंतर त्यांनी दुसऱ्या नर्सची लिंक उघडली तर?",
+      "q5a": "पहिल्या ऑर्डरच्या आधी, त्यांनी सर्वात शेवटी उघडलेली लिंक 60 दिवसांच्या टॅगची जागा घेते. म्हणूनच ₹100 चा कोड महत्त्वाचा आहे: तो जेव्हा वापरला जातो तेव्हा तुमची ओळख पटवतो.",
+      "foot.disc": "Epithrive हे तोंडावाटे घ्यायचे पोषण सप्लिमेंट आहे. डॉक्टरांच्या सल्ल्यानुसार, जखमेच्या नेहमीच्या काळजीसोबत घ्या. Care Circle by Epithrive, Nuin Wellness Pvt. Ltd.",
+      "pdf": "PDF डाउनलोड करा"
+    }
+  };
+  var PDF = { en: "care-circle-tracking-en.pdf", hi: "care-circle-tracking-hi.pdf", mr: "care-circle-tracking-mr.pdf" };
+  var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-t]"));
+  var EN = { _title: document.title };
+  nodes.forEach(function(el){ var k = el.getAttribute("data-t"); if (!(k in EN)) EN[k] = el.innerHTML; });
+  I18N.en = EN;
+  var buttons = Array.prototype.slice.call(document.querySelectorAll(".lang button"));
+
+  function apply(lang){
+    var dict = I18N[lang] || EN;
+    nodes.forEach(function(el){
+      var k = el.getAttribute("data-t");
+      el.innerHTML = (dict[k] != null) ? dict[k] : EN[k];
+    });
+    document.documentElement.lang = lang;
+    document.title = dict._title || EN._title;
+    buttons.forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false"); });
+    var pdf = document.getElementById("pdf-link");
+    if (pdf) pdf.setAttribute("href", PDF[lang] || PDF.en);
+    try {
+      var u = new URL(location.href);
+      if (lang === "en") u.searchParams.delete("lang"); else u.searchParams.set("lang", lang);
+      history.replaceState(null, "", u.toString());
+    } catch (e) {}
+  }
+  buttons.forEach(function(b){ b.addEventListener("click", function(){ apply(b.getAttribute("data-lang")); }); });
+
+  var start = "en";
+  try { var q = new URLSearchParams(location.search).get("lang"); if (q && I18N[q]) start = q; } catch (e) {}
+  if (start !== "en") apply(start);
+
+  /* open every answer when printing, so the PDF shows them */
+  window.addEventListener("beforeprint", function(){
+    Array.prototype.forEach.call(document.querySelectorAll(".faq details"), function(d){ d.setAttribute("open", ""); });
+  });
+})();
+</script>
+
+</body>
+</html>
